@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom'; // React Router를 사용한다고 가�
 import '../styles/util.css'
 
 
-function Header(){
+function Header(props){
+  const {userId, name} = props
   const [keyword, setKeyword] = useState('');
 
   const handleSearch = (e) => {
@@ -16,29 +17,7 @@ function Header(){
     console.log(keyword);
   };
 
-  const [userId, setUserId] = useState(null);
-  const [name, setName] = useState('');
-  const [categories, setCategories] = useState([]);
-  console.log(categories)
-
-  useEffect(() => {
-    // 서버로부터 데이터를 받아오는 함수 정의
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('http://localhost:9090/api/categories'); // 서버의 루트 경로로 GET 요청
-        const { data } = response;
-        const { userId, name, categories } = data;
-        setUserId(userId); // 사용자 ID 설정
-        setName(name); // 사용자 이름 설정
-        setCategories(categories); // 카테고리 목록 설정
-      } catch (error) {
-        console.error('서버로부터 데이터를 받아오는데 실패했습니다.', error);
-      }
-    };
-
-    fetchData(); // fetchData 함수 호출하여 데이터 받아오기
-  }, []);
-
+  
 return (
   <body>
     <header className="header container-lg d-flex align-items-center">
