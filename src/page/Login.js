@@ -44,6 +44,17 @@ function Login(){
 
   
   return(
+
+    <>
+    <header>
+        <div class="header">
+          <a href="/">
+            <img src="/image/logo.PNG" alt="다이닝코드"></img>
+          </a>
+        </div>
+    </header>
+  
+
     <div className="container mainPage">
       <div className="title">
         <h2>로그인 및 회원가입</h2>
@@ -104,6 +115,7 @@ function Login(){
                 <a href="/join"><button type="button" class="btn btn-outline-secondary">회원가입</button></a>
             </div>
     </div>
+    </>
   );
 }
   

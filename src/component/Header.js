@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'; // React Router를 사용한다고 가정
 import '../styles/util.css'
+import axios from 'axios';
 
 
 function Header(){
@@ -25,7 +26,7 @@ function Header(){
     // 서버로부터 데이터를 받아오는 함수 정의
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:9090/api/categories'); // 서버의 루트 경로로 GET 요청
+        const response = await axios.get('http://localhost:9090/'); // 서버의 루트 경로로 GET 요청
         const { data } = response;
         const { userId, name, categories } = data;
         setUserId(userId); // 사용자 ID 설정
