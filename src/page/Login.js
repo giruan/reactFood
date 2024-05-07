@@ -47,7 +47,7 @@ function Login(){
 
     <>
     <header>
-        <div class="header">
+        <div className="header_login">
           <a href="/">
             <img src="/image/logo.PNG" alt="다이닝코드"></img>
           </a>
@@ -56,7 +56,7 @@ function Login(){
   
 
     <div className="container mainPage">
-      <div className="title">
+      <div className="title_login">
         <h2>로그인 및 회원가입</h2>
       </div>
 

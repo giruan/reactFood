@@ -2,26 +2,26 @@
 ul,ol,li { list-style: none; } 
 a { text-decoration: none; } 
 
-.container { width: 960px; margin: 0 auto; padding-bottom: 25px; } 
+.container { width: 960px; margin: 0 auto;} 
 
 body .joinPage{ width: 500px;}
 body .mainPage{ width: 400px;}
 body .joinPage,
 body .mainPage { padding-left: 0; margin-bottom: 110px; }
 
-.header { padding: 20px 0 20px; border-bottom: gray solid 1px; } 
-.header img { width: 150px; } 
+.header_login { padding: 20px 0 20px; border-bottom: gray solid 1px; } 
+.header_login img{ width: 150px; } 
 
 .subtitle,
-.header,
-.title,
+.header_login,
+.title_login,
 .jointitle
 {
 text-align: center;}
 
-.title, .jointitle {padding: 50px 15px 25px; border-bottom: gray solid 1px;}
+.title_login, .jointitle {padding: 50px 15px 25px; border-bottom: gray solid 1px;}
 
-.title h2,
+.title_login h2,
 .jointitle h2 { font-size: 20px; font-weight: bold; } 
 
 .joinPage .idCheck{position: relative;} 
