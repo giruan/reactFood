@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'; // React Router를 사용한다고 가정
 import '../styles/util.css'
 import { useUser } from '../contexts/UserContext';
+import axios from 'axios';
 
 
 function Header(props){

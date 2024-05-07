@@ -44,8 +44,19 @@ function Login(props){
   };
 
   return(
+
+    <>
+    <header>
+        <div className="header_login">
+          <a href="/">
+            <img src="/image/logo.PNG" alt="다이닝코드"></img>
+          </a>
+        </div>
+    </header>
+  
+
     <div className="container mainPage">
-      <div className="title">
+      <div className="title_login">
         <h2>로그인 및 회원가입</h2>
       </div>
 
@@ -104,6 +115,7 @@ function Login(props){
                 <a href="/join"><button type="button" className="btn btn-outline-secondary">회원가입</button></a>
             </div>
     </div>
+    </>
   );
 }
   
