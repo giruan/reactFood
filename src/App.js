@@ -1,16 +1,27 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
-import { useEffect } from 'react';
 import Main from './page/Main';
-import {Route, Routes} from 'react-router-dom'
+import Login from './page/Login';
+import Header from './component/Header';
+import { Routes, Route } from 'react-router-dom';
+import Footer from './component/Footer';
 
-function App() {
-
+function DefaultLayout({ children }) {
   return (
     <>
-      <Routes>
-        <Route path='/' element={<Main/>}></Route>
-      </Routes>
+      <Header />
+      <main>{children}</main>
+    </>
+  );
+}
+
+function App() {
+  return (
+    <>
+        <Routes>
+          <Route path='/' element={<DefaultLayout><Main/></DefaultLayout>} />
+          <Route path='/login' element={<Login/>}/>
+        </Routes>
+      <Footer />
     </>
   );
 }
