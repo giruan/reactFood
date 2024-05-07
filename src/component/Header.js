@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'; // React Router를 사용한다고 가정
 import '../styles/util.css'
+import { useUser } from '../contexts/UserContext';
 
 
 function Header(props){
-  const {userId, name} = props
+  const {userId, name} = props;
+  console.log(userId, name)
   const [keyword, setKeyword] = useState('');
 
+  
   const handleSearch = (e) => {
     if (keyword === '') {
       alert('검색어를 입력해주세요');

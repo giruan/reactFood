@@ -57,7 +57,7 @@ function Main() {
 
 
 
-      <div class="info d-flex justify-content-center">
+      <div className="info d-flex justify-content-center">
         <p>로그인하여 전국에 있는 맛집들을 확인하세요!</p>
       </div>
 
