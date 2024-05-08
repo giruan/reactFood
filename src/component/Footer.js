@@ -2,7 +2,6 @@ import '../styles/util.css'
 
 function Footer() {
   return (
-    <body>
       <footer>
         <div className="container footerPage">
           <ul className="row row-cols-auto terms ">
@@ -26,7 +25,6 @@ function Footer() {
           </div>
         </div>
       </footer>
-    </body>
   );
 }
 

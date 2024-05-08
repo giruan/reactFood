@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Category from '../component/Category';
-import '../styles/main.css'
+import '../styles/main.css';
 import Visual from '../component/Visual';
-
-
-
-
 
 function Main() {
   const [categories, setCategories] = useState([]);
@@ -50,10 +46,10 @@ function Main() {
           </ul>
         </div>
       </nav>
-            
+
       {/* 모달창, 비쥬얼 */}
 
-    <Visual></Visual>
+      <Visual></Visual>
 
 
 
@@ -63,8 +59,7 @@ function Main() {
 
       {/* 카테고리 */}
 
-      <Category categories={categories} ></Category>
-
+      <Category categories={categories}></Category>
     </main>
   );
 }

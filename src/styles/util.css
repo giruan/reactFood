@@ -25,10 +25,13 @@ a{color: black;}
 
 
 
-.searchBar{position: relative;}
-.searchBar button{position: absolute; top: 5%; right: 15%; font-size: 25px;}
+.searchBar{}
 
-#searchBtn{border: 0; background-color: transparent; }
+.searchBar #searchBtn{ font-size: 25px;}
+
+#searchBtn{border: 0; background-color: transparent; font-size: 20px;}
+
+.searchBtn{border: 1px solid black;}
 
 .loginBar{margin-left: 50px;}
 
