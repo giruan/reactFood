@@ -5,6 +5,7 @@ import Header from './component/Header';
 import { Routes, Route } from 'react-router-dom';
 import Footer from './component/Footer';
 import Join from './page/Join';
+import Detail from './page/Detail';
 import { useState } from 'react';
 import { UserProvider } from './contexts/UserContext';
 import Search from './page/Search';
@@ -33,10 +34,24 @@ function App() {
   return (
     <UserProvider>
       <Routes>
+<<<<<<< HEAD
         <Route path='/' element={<DefaultLayout userId = {userId} name = {name}><Main setUserId={setUserId} setName = {setName}></Main></DefaultLayout>}></Route>
         <Route path='/login' element={<Login onLoginSuccess = {handleLoginSuccess}></Login>}></Route>
         <Route path='/join' element={<Join></Join>}></Route>
         <Route path='/search' element={<Search></Search>}></Route>
+=======
+        <Route
+          path="/"
+          element={
+            <DefaultLayout userId={userId} name={name}>
+              <Main setUserId={setUserId} setName={setName}></Main>
+            </DefaultLayout>
+          }
+        ></Route>
+        <Route path="/login" element={<Login onLoginSuccess={handleLoginSuccess}></Login>}></Route>
+        <Route path="/join" element={<Join></Join>}></Route>
+        <Route path="/detail/:id" element={<Detail></Detail>} />
+>>>>>>> 9e55a72b9065a5972b5f08840fcf66789e73baf3
       </Routes>
       <Footer />
     </UserProvider>
