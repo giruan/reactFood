@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import '../styles/util.css';
+import { Link } from 'react-router-dom';
 import { useUser } from '../contexts/UserContext';
-import axios from 'axios';
+
 
 
 function Header(props){
@@ -68,13 +69,12 @@ return (
                       <li>관리자</li>
                       <Link to="/add">관리자페이지</Link>
                       <Link to={`/myPage/${userId}`}>마이페이지</Link>
-                      <Link to="/logout">로그아웃</Link>
+                      <Link to="/">로그아웃</Link>
                     </>
                   ) : (
                     <>
                       <li>{name}님</li>
-                      {/* <Link to="/" onClick={onLogout}>로그아웃</Link> */}
-                      <button onClick={onLogout}>로그아웃</button>
+                      <Link to = {'/'} onClick={onLogout}>로그아웃</Link>
                       <Link to={`/myPage/${userId}`}>마이페이지</Link>
                     </>
                   )}

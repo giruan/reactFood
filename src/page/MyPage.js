@@ -59,58 +59,67 @@ const handleSubmit = (e) => {
 // 
 const handleInputChange = (e) => {
   const { name, value } = e.target;
-  switch (name) {
-    case "name":
-      setMember({name : value});
-      break;
-    case "address":
-      setMember({address : value});
-      break;
-    case "phone":
-      setMember({phone : value});
-      break;
-    default:
-      break;
+  setMember(prevState => ({
+    ...prevState,
+    [name]: value,
+  }));
+};
+
+
+// 이미지 미리보기를 위한 함수 수정
+const handleImageChange = (e) => {
+  const file = e.target.files[0];
+  if (file) {
+    // 파일로부터 URL 생성
+    const previewUrl = URL.createObjectURL(file);
+    setPreviewSrc(previewUrl);
+
+    // 바로 생성된 URL 사용
+    document.getElementById('profileImage').src = previewUrl;
   }
 };
 
-// const handleImageChange = (e) => {
-//   const file = e.target.files[0];
-//   if (file) {
-//     const reader = new FileReader();
-
-//     reader.onloadend = () => {
-//       setPreviewSrc(reader.result);
-//     };
-
-//     reader.readAsDataURL(file);
-//   }
-// };
-
-
-const handleImageChange = (e) => {
-  const file = e.target.files[0];
-  setPreviewSrc(URL.createObjectURL(file));
-  
-  // 이미지 미리보기 설정
-  document.getElementById('profileImage').src = previewSrc;
+// 회원 탈퇴 기능
+const handleDelete = (e) => {
+  e.preventDefault();
+  if (window.confirm('정말로 탈퇴하시겠습니까?')) {
+    // 회원 탈퇴 로직을 구현하세요.
+    fetch(`/delete/${member.userId}`, {
+      method: 'DELETE',
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data) {
+        alert('정상적으로 탈퇴되었습니다.');
+        window.location.href = '/login';
+      } else {
+        alert('회원 탈퇴에 실패했습니다.');
+      }
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+      alert('회원 탈퇴에 실패했습니다.');
+    });
+  }
 };
+
+
   return(
     <>
       <header>
         <div className="header_login">
-          <a href="/">
+          <Link to="/">
             <img src="/image/logo.PNG" alt="다이닝코드"></img>
-          </a>
+          </Link>
         </div>
-    </header>
+      </header>
 
 <section className="sec row d-flex justify-content-center">
       <div className="col-1 leftBar">
         <ul>
           <li><Link to={`/editPw/${member.userId}`}>비밀번호변경</Link></li>
           <li><Link to={`/myReview/${member.userId}`}>작성한 리뷰</Link></li>
-          <li><Link to="#" id="deleteId">회원탈퇴</Link></li>
+          <li><Link to="#" id="deleteId" onClick={handleDelete}>회원탈퇴</Link></li>
         </ul>
       </div>
       <div className="col-5 rightBar">
