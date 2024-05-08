@@ -48,10 +48,6 @@ function Search() {
     return shops.sort((a, b) => b.grade - a.grade);
   };
 
-  // 도시 선택 핸들러
-  const handleCitySelect = (city) => {
-    setSelectedCity(city);
-  };
 
   // 검색 키워드가 변경될 때마다 검색 결과를 가져오도록 useEffect 사용
   useEffect(() => {
