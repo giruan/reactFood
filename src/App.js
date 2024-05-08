@@ -5,11 +5,14 @@ import MyPage from './page/MyPage';
 import Join from './page/Join';
 import Search from './page/Search';
 import Detail from './page/Detail';
+import FindPassword from './page/FindPassword';
 import Header from './component/Header';
 import Footer from './component/Footer';
+
 import { Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { UserProvider } from './contexts/UserContext';
+
 
 
 
@@ -72,6 +75,7 @@ function App() {
         <Route path='/join' element={<Join></Join>}></Route>
         <Route path='/myPage/:userId' element={<MyPage/>}></Route>
         <Route path="/search" element={<Search></Search>}></Route>
+        <Route path="/findPassword" element={<FindPassword></FindPassword>}></Route>
      
       </Routes>
       <Footer />
