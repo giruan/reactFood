@@ -34,43 +34,63 @@ function Visual(props){
 
 
   useEffect(() => {
-    // 도시 버튼에 이벤트 리스너 추가
     const cityButtons = document.querySelectorAll(".selectCity");
-    cityButtons.forEach(function (button) {
-      button.addEventListener("click", function () {
-        // 선택된 버튼에 "selected" 클래스 추가
-        cityButtons.forEach(function (btn) {
-          btn.classList.remove("selected");
-        });
-        button.classList.add("selected")
+    const handleClick = (event) => {
+      cityButtons.forEach((btn) => {
+        btn.classList.remove("selected");
       });
+      event.target.classList.add("selected");
+      const city = event.target.innerText;
+      setSelectedCity(city);
+    };
+  
+    cityButtons.forEach((button) => {
+      button.addEventListener("click", handleClick);
+      return () => {
+        button.removeEventListener("click", handleClick);
+      };
     });
+  
+    // Cleanup 함수를 반환하여 이벤트 리스너를 제거합니다.
+    return () => {
+      cityButtons.forEach((button) => {
+        button.removeEventListener("click", handleClick);
+      });
+    };
+  }, [isModalOpen]);
+  
 
-  }, [isModalOpen,guList]); // 컴포넌트가 모달 오픈될 때 실행
 
   useEffect(() => {
-    console.log(guList);
     const guButtons = document.querySelectorAll(".selectGu");
-    guButtons.forEach(function (button) {
-      button.addEventListener("click", function () {
-        // 선택된 버튼에 "selected" 클래스 추가
-        guButtons.forEach(function (btn) {
-          btn.classList.remove("selected");
-        });
-        button.classList.add("selected")
+    const handleClick = (event) => {
+      // 선택된 버튼에 "selected" 클래스 추가
+      guButtons.forEach((btn) => {
+        btn.classList.remove("selected");
       });
+      event.target.classList.add("selected");
+      
+      const selectedGu = event.target.innerText;
+      const selectedGuElement = document.querySelector(".selectedGu");
+      selectedGuElement.innerHTML = "선택된 지역 : " + selectedGu;
+    };
+  
+    guButtons.forEach((button) => {
+      button.addEventListener("click", handleClick);
+      return () => {
+        button.removeEventListener("click", handleClick);
+      };
     });
   }, [guList]);
 
 
-  useEffect(()=>{
-    
-    // const selectedGuElement = document.querySelector(".selectedGu");
-    // // 선택된 지역을 설정합니다.
-    // selectedGuElement.innerText = "선택된 지역 : " + selectedGu;
+  const handleSelectRegionClick = () => {
 
-    console.log(selectedGu);
-  },[selectedGu])
+    const currentUrl = new URL(window.location.href);
+    currentUrl.searchParams.set("region", selectedGu);
+    console.log(currentUrl.href);
+    window.location.href = currentUrl.href;
+  };
 
 
 
@@ -131,7 +151,7 @@ return(
                 <button onClick={closeModal}>취소</button>
               </div>
               <div className="col">
-                <button type="button" id="selectRegion">
+                <button type="button" id="selectRegion" onClick={handleSelectRegionClick}>
                   선택
                 </button>
               </div>
