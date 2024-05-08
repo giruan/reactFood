@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import '../styles/login.css'
 import { useUser } from "../contexts/UserContext";
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 function Login(props){
@@ -50,11 +51,11 @@ function Login(props){
     <>
     <header>
         <div className="header_login">
-          <a href="/">
+          <Link to="/">
             <img src="/image/logo.PNG" alt="다이닝코드"></img>
-          </a>
+          </Link>
         </div>
-    </header>
+      </header>
   
 
     <div className="container mainPage">

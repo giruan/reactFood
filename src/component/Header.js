@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import '../styles/util.css';
+import { Link } from 'react-router-dom';
 import { useUser } from '../contexts/UserContext';
-import axios from 'axios';
+
 
 
 function Header(props){
@@ -38,7 +39,7 @@ return (
           <div className="col-3">
             <Link to="/">
               <h1 className="logo">
-                <img className="logo-img" src="http://localhost:9090/image/logo.PNG" alt="yumyard" />
+                <img className="logo-img" src="http://192.168.5.20:9090/image/logo.PNG" alt="yumyard" />
               </h1>
             </Link>
           </div>
@@ -52,8 +53,10 @@ return (
               value={keyword}
               onChange={(e) => setKeyword(e.target.value)}
             />
-            <Link to={`/search?keyword=${keyword}`} onClick={handleSearch} className='searchBtn'>
-              <button id="searchBtn"><i className="bi bi-search"></i></button>
+            <Link to={`/search?keyword=${keyword}`} onClick={handleSearch} className="searchBtn">
+              <button id="searchBtn">
+                <i className="bi bi-search"></i>
+              </button>
             </Link>
           </div>
 
@@ -66,21 +69,24 @@ return (
                       <li>관리자</li>
                       <Link to="/add">관리자페이지</Link>
                       <Link to={`/myPage/${userId}`}>마이페이지</Link>
-                      <Link to="/logout">로그아웃</Link>
+                      <Link to="/">로그아웃</Link>
                     </>
                   ) : (
                     <>
                       <li>{name}님</li>
-                      {/* <Link to="/" onClick={onLogout}>로그아웃</Link> */}
-                      <button onClick={onLogout}>로그아웃</button>
+                      <Link to = {'/'} onClick={onLogout}>로그아웃</Link>
                       <Link to={`/myPage/${userId}`}>마이페이지</Link>
                     </>
                   )}
                 </>
               ) : (
                 <>
-                  <li><Link to="/login">로그인</Link></li>
-                  <li><Link to="/join">회원가입</Link></li>
+                  <li>
+                    <Link to="/login">로그인</Link>
+                  </li>
+                  <li>
+                    <Link to="/join">회원가입</Link>
+                  </li>
                 </>
               )}
             </ul>
