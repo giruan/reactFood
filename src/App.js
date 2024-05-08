@@ -5,6 +5,7 @@ import Header from './component/Header';
 import { Routes, Route } from 'react-router-dom';
 import Footer from './component/Footer';
 import Join from './page/Join';
+import Detail from './page/Detail';
 import { useState } from 'react';
 import { UserProvider } from './contexts/UserContext';
 
@@ -32,9 +33,17 @@ function App() {
   return (
     <UserProvider>
       <Routes>
-        <Route path='/' element={<DefaultLayout userId = {userId} name = {name}><Main setUserId={setUserId} setName = {setName}></Main></DefaultLayout>}></Route>
-        <Route path='/login' element={<Login onLoginSuccess = {handleLoginSuccess}></Login>}></Route>
-        <Route path='/join' element={<Join></Join>}></Route>
+        <Route
+          path="/"
+          element={
+            <DefaultLayout userId={userId} name={name}>
+              <Main setUserId={setUserId} setName={setName}></Main>
+            </DefaultLayout>
+          }
+        ></Route>
+        <Route path="/login" element={<Login onLoginSuccess={handleLoginSuccess}></Login>}></Route>
+        <Route path="/join" element={<Join></Join>}></Route>
+        <Route path="/detail/:id" element={<Detail></Detail>} />
       </Routes>
       <Footer />
     </UserProvider>

@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Category from '../component/Category';
-import '../styles/main.css'
+import '../styles/main.css';
 import Visual from '../component/Visual';
-
-
-
-
 
 function Main() {
   const [categories, setCategories] = useState([]);
@@ -15,7 +11,7 @@ function Main() {
     // 서버로부터 데이터를 받아오는 함수 정의
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:9090'); // 서버의 루트 경로로 GET 요청
+        const response = await axios.get('http://192.168.5.20:9090/'); // 서버의 루트 경로로 GET 요청
         const { data } = response;
         const { userId, categories, name } = data;
         setCategories(categories); // 카테고리 목록 설정
@@ -50,12 +46,10 @@ function Main() {
           </ul>
         </div>
       </nav>
-            
+
       {/* 모달창, 비쥬얼 */}
 
-    <Visual></Visual>
-
-
+      <Visual></Visual>
 
       <div className="info d-flex justify-content-center">
         <p>로그인하여 전국에 있는 맛집들을 확인하세요!</p>
@@ -63,8 +57,7 @@ function Main() {
 
       {/* 카테고리 */}
 
-      <Category categories={categories} ></Category>
-
+      <Category categories={categories}></Category>
     </main>
   );
 }
