@@ -88,31 +88,31 @@ function Login(){
         </form>
       </div>
 
-      <div class="loginSet row ">
-                <span class="col">
-                    <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off"/>
-                        <label class="btn btn-outline-primary" for="btncheck2">
-                            <i class="bi bi-check-lg"></i>
+      <div className="loginSet row ">
+                <span className="col">
+                    <input type="checkbox" className="btn-check" id="btncheck2" autocomplete="off"/>
+                        <label className="btn btn-outline-primary" for="btncheck2">
+                            <i className="bi bi-check-lg"></i>
                         </label>
                     로그인 상태 유지
                 </span>
-                <a class="col" href="/findPassword">비밀번호 찾기</a>
+                <a className="col" href="/findPassword">비밀번호 찾기</a>
             </div>
 
-            <div class="loginBtn">
-                <div class="andLine row">
-                    <div class="line col"></div>
-                    <div class="and">또는</div>
-                    <div class="line col"></div>
+            <div className="loginBtn">
+                <div className="andLine row">
+                    <div className="line col"></div>
+                    <div className="and">또는</div>
+                    <div className="line col"></div>
                 </div>
-                <button type="button" class="btn btn-warning loginButton">카카오톡으로 로그인</button>
+                <button type="button" className="btn btn-warning loginButton">카카오톡으로 로그인</button>
             </div>
 
-            <div class="join">
-                <span class="upWord">아직 YUM YARD 회원이 아니신가요?</span>
+            <div className="join">
+                <span className="upWord">아직 YUM YARD 회원이 아니신가요?</span>
                 <br/>
-                <span class="downWord">회원가입을 하시면 더 많은 정보와 혜택을 받으실수 있습니다</span>
-                <a href="/join"><button type="button" class="btn btn-outline-secondary">회원가입</button></a>
+                <span className="downWord">회원가입을 하시면 더 많은 정보와 혜택을 받으실수 있습니다</span>
+                <a href="/join"><button type="button" className="btn btn-outline-secondary">회원가입</button></a>
             </div>
     </div>
     </>
