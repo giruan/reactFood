@@ -10,6 +10,7 @@ import Footer from './component/Footer';
 import { Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { UserProvider } from './contexts/UserContext';
+import ShopAdd from './page/ShopAdd';
 
 
 
@@ -72,6 +73,8 @@ function App() {
         <Route path='/join' element={<Join></Join>}></Route>
         <Route path='/myPage/:userId' element={<MyPage/>}></Route>
         <Route path="/search" element={<Search></Search>}></Route>
+        <Route path="/add" element={<ShopAdd></ShopAdd>}></Route>
+        
      
       </Routes>
       <Footer />
