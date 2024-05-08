@@ -1,10 +1,12 @@
 import React, {useState} from "react";
 import '../styles/login.css'
 import { useUser } from "../contexts/UserContext";
+import { useNavigate } from "react-router-dom";
 
 function Login(props){
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -29,10 +31,10 @@ function Login(props){
       .then((response) => response.json())
       .then((data) => {
         if (data.exists && data.passwordCorrect) {
-          props.onLoginSuccess(data.name, 
-            data.userId)
+          props.onLoginSuccess(data.userId, data.name)
+        
           alert(`로그인 되었습니다.${data.name}` );
-          window.location.href = '/';
+          navigate('/')
         } else {
           alert('아이디 또는 비밀번호가 일치하지 않습니다.');
         }
@@ -82,6 +84,8 @@ function Login(props){
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+          
+
           <button type="submit" className="btn btn-dark loginButton" id="login">
             로그인
           </button>

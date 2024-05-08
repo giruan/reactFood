@@ -6,7 +6,7 @@ import axios from 'axios';
 
 
 function Header(props){
-  const {userId, name} = props;
+  const {userId, name, onLogout} = props;
   console.log(userId, name)
   const [keyword, setKeyword] = useState('');
 
@@ -58,12 +58,12 @@ return (
                         <li>관리자</li>
                         <Link to="/add">관리자페이지</Link>
                         <Link to={`/myPage/${userId}`}>마이페이지</Link>
-                        <Link to="/logout">로그아웃</Link>
+                        <button onClick={onLogout}>로그아웃</button>
                       </>
                     ) : (
                       <>
                         <li>{name}님</li>
-                        <Link to="/logout">로그아웃</Link>
+                        <button onClick={onLogout}>로그아웃</button>
                         <Link to={`/myPage/${userId}`}>마이페이지</Link>
                       </>
                     )}
