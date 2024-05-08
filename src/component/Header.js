@@ -39,7 +39,7 @@ return (
           <div className="col-3">
             <Link to="/">
               <h1 className="logo">
-                <img className="logo-img" src="http://localhost:9090/image/logo.PNG" alt="yumyard" />
+                <img className="logo-img" src="http://192.168.5.20:9090/image/logo.PNG" alt="yumyard" />
               </h1>
             </Link>
           </div>
@@ -53,8 +53,10 @@ return (
               value={keyword}
               onChange={(e) => setKeyword(e.target.value)}
             />
-            <Link to={`/search?keyword=${keyword}`} onClick={handleSearch} className='searchBtn'>
-              <button id="searchBtn"><i className="bi bi-search"></i></button>
+            <Link to={`/search?keyword=${keyword}`} onClick={handleSearch} className="searchBtn">
+              <button id="searchBtn">
+                <i className="bi bi-search"></i>
+              </button>
             </Link>
           </div>
 
@@ -79,8 +81,12 @@ return (
                 </>
               ) : (
                 <>
-                  <li><Link to="/login">로그인</Link></li>
-                  <li><Link to="/join">회원가입</Link></li>
+                  <li>
+                    <Link to="/login">로그인</Link>
+                  </li>
+                  <li>
+                    <Link to="/join">회원가입</Link>
+                  </li>
                 </>
               )}
             </ul>
