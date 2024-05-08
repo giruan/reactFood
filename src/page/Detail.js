@@ -8,7 +8,6 @@ import DetailReview from '../component/DetailReview';
 function Detail() {
   return (
     <body>
-      <Header />
       <main>
         <div className="content">
           <DetailMain></DetailMain>
