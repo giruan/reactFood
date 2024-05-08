@@ -1,12 +1,11 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import axios from "axios";
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 
-function Category( props ){
-  const {categories} = props
- 
+function Category(props) {
+  const { categories } = props;
+
   // 메인 홈페이지 카테고리 불러오는 훅
-  
 
 return(
   <section className="main container-lg">
@@ -21,16 +20,15 @@ return(
               <div className="col" key={index}>
                 <div className="pic">
                   <Link href={`/search?keyword=${category.categoryName}`}>
-                    <img src={`/image/category/category${index}.jpg`} alt={category.categoryName} />
+                    <img src={`http://192.168.5.20:9090/image/category/category${index}.jpg`} alt={category.categoryName} />
                   </Link>
                 </div>
                 <p className="restoraunt_title">{category.categoryName}</p>
               </div>
-            ))}
-          </div>
+          ))}
         </div>
-      </section>
-)
-
+      </div>
+    </section>
+  );
 }
 export default Category;

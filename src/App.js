@@ -3,11 +3,14 @@ import Main from './page/Main';
 import Login from './page/Login';
 import MyPage from './page/MyPage';
 import Join from './page/Join';
+import Search from './page/Search';
+import Detail from './page/Detail';
 import Header from './component/Header';
 import Footer from './component/Footer';
 import { Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { UserProvider } from './contexts/UserContext';
+
 
 
 function DefaultLayout({ children, userId, name, onLogout }) {
@@ -55,13 +58,15 @@ function App() {
     <UserProvider>
       <Routes>
         <Route path='/' element={
-        <DefaultLayout userId = {userId} name = {name} onLogout = {handleLogout}>
-          <Main setUserId={setUserId} setName = {setName}></Main>
+          <DefaultLayout userId = {userId} name = {name} onLogout = {handleLogout}>
+            <Main setUserId={setUserId} setName = {setName}></Main>
           </DefaultLayout>}>
-          </Route>
+        </Route>
         <Route path='/login' element={<Login onLoginSuccess = {handleLoginSuccess}></Login>}></Route>
         <Route path='/join' element={<Join></Join>}></Route>
         <Route path='/myPage/:userId' element={<MyPage/>}></Route>
+        <Route path="/search" element={<Search></Search>}></Route>
+        <Route path="/detail/:id" element={<Detail></Detail>} />
       </Routes>
       <Footer />
     </UserProvider>

@@ -24,8 +24,8 @@ return(
         {isModalOpen &&(
           <div id="myModal" class="modal container-fluid">
           <div class="modal-content">
-          <span class="close" onClick={closeModal}>&times;</span>
-          <h2>지역 선택</h2>
+            <span class="close" onClick={closeModal}>&times;</span>
+            <h2>지역 선택</h2>
 
             <div class="table">
               <div class="region_option row">
