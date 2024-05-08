@@ -38,7 +38,7 @@ return (
           <div className="col-3">
             <Link to="/">
               <h1 className="logo">
-                <img className="logo-img" src="http://192.168.5.20:9090/image/logo.PNG" alt="yumyard" />
+                <img className="logo-img" src="http://localhost:9090/image/logo.PNG" alt="yumyard" />
               </h1>
             </Link>
           </div>

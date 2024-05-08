@@ -11,7 +11,7 @@ function Main() {
     // 서버로부터 데이터를 받아오는 함수 정의
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://192.168.5.20:9090/'); // 서버의 루트 경로로 GET 요청
+        const response = await axios.get('http://localhost:9090/'); // 서버의 루트 경로로 GET 요청
         const { data } = response;
         const { userId, categories, name } = data;
         setCategories(categories); // 카테고리 목록 설정
