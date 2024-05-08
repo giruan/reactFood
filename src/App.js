@@ -62,11 +62,17 @@ function App() {
             <Main setUserId={setUserId} setName = {setName}></Main>
           </DefaultLayout>}>
         </Route>
+        <Route path='/detail/:id' element={
+          <DefaultLayout userId = {userId} name = {name} onLogout = {handleLogout}>
+          <Detail setUserId={setUserId} setName = {setName}></Detail>
+        </DefaultLayout>}>
+        </Route>
+        
         <Route path='/login' element={<Login onLoginSuccess = {handleLoginSuccess}></Login>}></Route>
         <Route path='/join' element={<Join></Join>}></Route>
         <Route path='/myPage/:userId' element={<MyPage/>}></Route>
         <Route path="/search" element={<Search></Search>}></Route>
-        <Route path="/detail/:id" element={<Detail></Detail>} />
+     
       </Routes>
       <Footer />
     </UserProvider>
