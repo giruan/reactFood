@@ -11,12 +11,10 @@ import { Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { UserProvider } from './contexts/UserContext';
 
-
-
 function DefaultLayout({ children, userId, name, onLogout }) {
   return (
     <>
-      <Header userId={userId} name = {name} onLogout={onLogout}/>
+      <Header userId={userId} name={name} onLogout={onLogout} />
       <main>{children}</main>
     </>
   );
@@ -37,37 +35,46 @@ function App() {
   }, []);
 
   // 로그인 성공 시 호출할 함수
-  const handleLoginSuccess = (userId, name) =>{
-    localStorage.setItem('userId', userId)
-    localStorage.setItem('name', name)
+  const handleLoginSuccess = (userId, name) => {
+    localStorage.setItem('userId', userId);
+    localStorage.setItem('name', name);
 
-    setName(name)
-    setUserId(userId)
-  }
+    setName(name);
+    setUserId(userId);
+  };
 
-  const handleLogout = () =>{
+  const handleLogout = () => {
     localStorage.removeItem('userId');
     localStorage.removeItem('name');
 
     setUserId(null);
-    setName('')
-  }
-
+    setName('');
+  };
 
   return (
     <UserProvider>
       <Routes>
-        <Route path='/' element={
-          <DefaultLayout userId = {userId} name = {name} onLogout = {handleLogout}>
-            <Main setUserId={setUserId} setName = {setName}></Main>
-          </DefaultLayout>}>
-        </Route>
-        
-        <Route path='/myPage/:userId' element={<MyPage/>}></Route>
+        <Route
+          path="/"
+          element={
+            <DefaultLayout userId={userId} name={name} onLogout={handleLogout}>
+              <Main setUserId={setUserId} setName={setName}></Main>
+            </DefaultLayout>
+          }
+        ></Route>
+        <Route
+          path="/detail/:id"
+          element={
+            <DefaultLayout userId={userId} name={name} onLogout={handleLogout}>
+              <Detail setUserId={setUserId} setName={setName}></Detail>
+            </DefaultLayout>
+          }
+        ></Route>
+
+        <Route path="/login" element={<Login onLoginSuccess={handleLoginSuccess}></Login>}></Route>
+        <Route path="/join" element={<Join></Join>}></Route>
+        <Route path="/myPage/:userId" element={<MyPage />}></Route>
         <Route path="/search" element={<Search></Search>}></Route>
-        <Route path="/detail/:id" element={<Detail></Detail>} />
-        <Route path='/login' element={<Login onLoginSuccess={handleLoginSuccess}></Login>}></Route>
-        <Route path='/join' element={<Join></Join>}></Route>
       </Routes>
       <Footer />
     </UserProvider>
