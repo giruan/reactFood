@@ -7,6 +7,7 @@ import Footer from './component/Footer';
 import Join from './page/Join';
 import { useState } from 'react';
 import { UserProvider } from './contexts/UserContext';
+import Search from './page/Search';
 
 function DefaultLayout({ children, userId, name }) {
 
@@ -35,6 +36,7 @@ function App() {
         <Route path='/' element={<DefaultLayout userId = {userId} name = {name}><Main setUserId={setUserId} setName = {setName}></Main></DefaultLayout>}></Route>
         <Route path='/login' element={<Login onLoginSuccess = {handleLoginSuccess}></Login>}></Route>
         <Route path='/join' element={<Join></Join>}></Route>
+        <Route path='/search' element={<Search></Search>}></Route>
       </Routes>
       <Footer />
     </UserProvider>
