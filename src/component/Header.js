@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import '../styles/util.css';
 import { Link } from 'react-router-dom';
-import { useUser } from '../contexts/UserContext';
 
 
 
 function Header(props){
+  
+  // 헤더부분 props
   const {userId, name, onLogout} = props;
+
   const [keyword, setKeyword] = useState('');
-  const [regionString,setRegionString] = useState('')
+  const [selectedRegion, setSelectedRegion] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const navigate = useNavigate() 
   const location = useLocation();
   
 
@@ -19,49 +23,49 @@ function Header(props){
       alert('검색어를 입력해주세요');
       return;
     }
-    // 검색 로직 처리
-    let targetUrl
-    if(regionString){
-      targetUrl = `/search?${regionString}&keyword=${keyword}`;
-    }else{
-      targetUrl = `/search?keyword=${keyword}`;
-    }
-    window.location.href = targetUrl;
     
+    let targetUrl = `/search?`;
+    if (selectedRegion) {
+      targetUrl += `region=${selectedRegion}&`;
+    }
+    if (selectedCategory) {
+      targetUrl += `category=${selectedCategory}&`;
+    }
+    targetUrl += `keyword=${keyword}`;
+    
+    navigate(targetUrl);
   };
-
-  useEffect(()=>{
-    const query = location.search;
-    setRegionString(location.search.split('?')[1])
-    console.log(query)
-    console.log(regionString)
-  },[location.search])
 
 
   useEffect(() => {
-    const links = document.querySelectorAll(".pic Link");
-
-    if (regionString !== undefined) {
-      links.forEach(link => {
-        const categoryString = link.to.split('?')[1];
-        link.to  = `/search?${regionString}&${categoryString}`;
-      });
-    }
-  }, [regionString,location.search]);
+    const searchParams = new URLSearchParams(location.search);
+    const region = searchParams.get('region');
+    const category = searchParams.get('category');
+    
+    if (region) setSelectedRegion(region);
+    if (category) setSelectedCategory(category);
+  }, [location]);
   
+
 return (
   <header className="header container-lg d-flex align-items-center">
     <div className="container g-0">
-      <form action="/search">
+
+      <form action="/search" onSubmit={handleSearch}>
         <div className="row d-flex g-0 align-items-center">
           <div className="col-3">
-            <Link to="/">
+
+            <Link to="/" onClick={()=>{
+              setSelectedCategory('')
+              setSelectedRegion('')
+              navigate('/')
+            }}>
               <h1 className="logo">
                 <img className="logo-img" src="/image/logo.PNG" alt="yumyard" />
               </h1>
             </Link>
-          </div>
 
+          </div>
           <div className="col d-flex justify-content-center searchBar">
             <input
               className="search_box"
@@ -71,11 +75,8 @@ return (
               value={keyword}
               onChange={(e) => setKeyword(e.target.value)}
             />
-            <Link to={`/search?keyword=${keyword}`} onClick={handleSearch} className="searchBtn">
-              <button id="searchBtn">
-                <i className="bi bi-search"></i>
-              </button>
-            </Link>
+          <button type='submit' className='searchBtn'>검색</button>
+   
           </div>
 
           <div className="col-3 d-flex justify-content-end loginBar">
@@ -111,6 +112,8 @@ return (
           </div>
         </div>
       </form>
+
+
     </div>
   </header>
 );
