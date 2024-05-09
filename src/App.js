@@ -5,9 +5,11 @@ import MyPage from './page/MyPage';
 import Join from './page/Join';
 import Search from './page/Search';
 import Detail from './page/Detail';
-import ShopAdd from './page/ShopAdd';
 import FindPassword from './page/FindPassword';
 import EditPassword from './page/EditPassword';
+import ShopAdd from './page/ShopAdd';
+import MyReviews from './page/MyReviews';
+
 import Header from './component/Header';
 import Footer from './component/Footer';
 
@@ -79,7 +81,8 @@ function App() {
 
         <Route path="/login" element={<Login onLoginSuccess={handleLoginSuccess}></Login>}></Route>
         <Route path="/join" element={<Join></Join>}></Route>
-        <Route path="/myPage/:userId" element={<MyPage />}></Route>
+        <Route path="/myPage/:userId" element={<MyPage/>}></Route>
+        <Route path="/myReview/:userId" element={<MyReviews/>}></Route>
         <Route path="/search" element={<Search></Search>}></Route>
         <Route path="/add" element={<ShopAdd></ShopAdd>}></Route>
         <Route path="/findPassword" element={<FindPassword></FindPassword>}></Route>

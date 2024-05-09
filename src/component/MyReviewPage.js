@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
+function MyReviewPage(props) {
+  const {myReviews, restaurantName, myReviewsImg} = props;
+  console.log(myReviews, restaurantName, myReviewsImg)
 
-function MyReviewPage({ myReviews, restaurantName, myReviewsImg }) {
   return (
     <ul>
       {myReviews.map((review, i) => (
@@ -14,7 +17,7 @@ function MyReviewPage({ myReviews, restaurantName, myReviewsImg }) {
                 if (res.restaurantId === review.restaurantId) {
                   return (
                     <h2 className="resTitle" key={j}>
-                      <a href={`/detail/${res.restaurantId}`}>{res.restaurantName}</a>
+                      <Link to={`/detail/${res.restaurantId}`}>{res.restaurantName}</Link>
                     </h2>
                   );
                 }
@@ -46,7 +49,7 @@ function MyReviewPage({ myReviews, restaurantName, myReviewsImg }) {
               ))}
             </div>
             <div className="createdAt">
-              <p>작성일 : {formatDate(review.createdAt)}</p>
+              
             </div>
           </div>
         </li>
@@ -56,4 +59,3 @@ function MyReviewPage({ myReviews, restaurantName, myReviewsImg }) {
 }
 
 export default MyReviewPage;
-
