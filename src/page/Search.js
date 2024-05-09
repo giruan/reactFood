@@ -17,23 +17,35 @@ function Search() {
   // URL의 쿼리스트링 파라미터에서 keyword 값을 가져오기
   const searchParams = new URLSearchParams(location.search);
   const keyword = searchParams.get('keyword');
+  const region = searchParams.get('region');
   console.log('params : ', keyword);
+  console.log('params : ', region);
 
   const [shops, setShops] = useState([]);
 
   const fetchSearchResults = async () => {
     try {
       // API 호출 등의 로직으로 검색 결과를 가져옴
-      const response = await fetch(
-        `/search?keyword=${encodeURIComponent(keyword)}`, // keyword를 쿼리스트링에 포함하여 전달
-        { method: 'GET' }
-      );
-      const data = await response.json();
-      // shops 데이터를 추출하여 상태로 설정
-      console.log(data);
-      const fetchedShops = data.shops;
-      setShops(fetchedShops);
-      console.log('없음? : ', setShops);
+      if(region && keyword){
+        const response = await fetch(
+          `/search?region=${encodeURIComponent(region)}&keyword=${encodeURIComponent(keyword)}`, // keyword를 쿼리스트링에 포함하여 전달
+          { method: 'GET' }
+        );
+        const data = await response.json();
+        // shops 데이터를 추출하여 상태로 설정
+        const fetchedShops = data.shops;
+        setShops(fetchedShops);
+      }else{
+        const response = await fetch(
+          `/search?keyword=${encodeURIComponent(keyword)}`, // keyword를 쿼리스트링에 포함하여 전달
+          { method: 'GET' }
+        );
+        const data = await response.json();
+        // shops 데이터를 추출하여 상태로 설정
+        const fetchedShops = data.shops;
+        setShops(fetchedShops);
+      }
+      
     } catch (error) {
       console.error('Error fetching search results:', error);
     }
@@ -50,7 +62,7 @@ function Search() {
   };
 
 
-  // 검색 키워드가 변경될 때마다 검색 결과를 가져오도록 useEffect 사용
+  //검색 키워드가 변경될 때마다 검색 결과를 가져오도록 useEffect 사용
   useEffect(() => {
     if (keyword) {
       fetchSearchResults();

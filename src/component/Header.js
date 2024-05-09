@@ -8,20 +8,46 @@ import { useUser } from '../contexts/UserContext';
 
 function Header(props){
   const {userId, name, onLogout} = props;
-  console.log(userId, name)
   const [keyword, setKeyword] = useState('');
+  const [regionString,setRegionString] = useState('')
+  const location = useLocation();
+  
 
   const handleSearch = (e) => {
-    
+    e.preventDefault();
     if (keyword.trim() === '') {
       alert('검색어를 입력해주세요');
-      e.preventDefault();
       return;
     }
     // 검색 로직 처리
-    console.log(keyword);
+    let targetUrl
+    if(regionString){
+      targetUrl = `/search?${regionString}&keyword=${keyword}`;
+    }else{
+      targetUrl = `/search?keyword=${keyword}`;
+    }
+    window.location.href = targetUrl;
+    
   };
 
+  useEffect(()=>{
+    const query = location.search;
+    setRegionString(location.search.split('?')[1])
+    console.log(query)
+    console.log(regionString)
+  },[location.search])
+
+
+  useEffect(() => {
+    const links = document.querySelectorAll(".pic Link");
+
+    if (regionString !== undefined) {
+      links.forEach(link => {
+        const categoryString = link.to.split('?')[1];
+        link.to  = `/search?${regionString}&${categoryString}`;
+      });
+    }
+  }, [regionString,location.search]);
   
 return (
   <header className="header container-lg d-flex align-items-center">
@@ -31,7 +57,7 @@ return (
           <div className="col-3">
             <Link to="/">
               <h1 className="logo">
-                <img className="logo-img" src="http://localhost:9090/image/logo.PNG" alt="yumyard" />
+                <img className="logo-img" src="/image/logo.PNG" alt="yumyard" />
               </h1>
             </Link>
           </div>
