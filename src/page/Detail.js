@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
 import axios from 'axios';
-import styles from '../styles/detail.css';
+import '../styles/detail.css';
 import DetailMain from '../component/DetailMain';
 import DetailPhoto from '../component/DetailPhoto';
 import DetailReview from '../component/DetailReview';
