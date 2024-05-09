@@ -1,12 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 
 
-function DetailPhoto({ restaurant, imgList }) {
-  const [renderedImgCount, setRenderedImgCount] = useState(9); // 현재 렌더링된 사진 개수를 상태로 관리
-
+function DetailPhoto({ restaurant, imgList, filteredreviewImgList }) {
+  const [renderedImgCount, setRenderedImgCount] = useState(6); // 현재 렌더링된 사진 개수를 상태로 관리
+  const [renderImgList, setRenderImgList] = useState([{}])
   // 렌더링할 이미지 배열 생성
-  const renderImgList = imgList.slice(0, renderedImgCount);
+    
+  console.log(renderImgList)
+
+
+// 컴포넌트 마운트 시 또는 renderedImgCount가 변경될 때 실행
+useEffect(() => {
+  setRenderImgList(filteredreviewImgList.slice(0, renderedImgCount)); // 현재 렌더링될 이미지 개수에 따라 imgList를 슬라이스하여 상태 업데이트
+}, [renderedImgCount, filteredreviewImgList]); // 의존성 배열에 renderedImgCount와 imgList 추가
+
+
 
   // 사진 더보기 버튼 클릭 핸들러
   const handleMorePhotosClick = () => {
@@ -23,12 +32,12 @@ function DetailPhoto({ restaurant, imgList }) {
         <div className="picGrid row row-cols-3 g-3">
           {renderImgList.map((img, index) => (
             <div key={index} className="col">
-              <img src={img.imgUrl} alt={`imgId ${index}`} />
+              <img src={`/reviews/${img.imgUrl}`} alt={`imgId ${index}`} />
             </div>
           ))}
         </div>
 
-        {renderedImgCount < imgList.length && (
+        {renderedImgCount < filteredreviewImgList.length && (
           <div className="d-grid gap-2" role="group">
             <button type="button" className="btn btn-secondary morePic" onClick={handleMorePhotosClick}>
               사진 더보기 ▼
