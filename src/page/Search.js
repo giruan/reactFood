@@ -21,21 +21,22 @@ function Search() {
   console.log('params : ', keyword);
   console.log('params : ', region);
 
+  // 가게 상태
   const [shops, setShops] = useState([]);
 
   const fetchSearchResults = async () => {
     try {
       // API 호출 등의 로직으로 검색 결과를 가져옴
       if(region && keyword){
-        const response = await fetch(
-          `/search?region=${encodeURIComponent(region)}&keyword=${encodeURIComponent(keyword)}`, // keyword를 쿼리스트링에 포함하여 전달
+        const response = 
+        await fetch(`/search?region=${encodeURIComponent(region)}&keyword=${encodeURIComponent(keyword)}`, // keyword를 쿼리스트링에 포함하여 전달
           { method: 'GET' }
         );
         const data = await response.json();
         // shops 데이터를 추출하여 상태로 설정
         const fetchedShops = data.shops;
         setShops(fetchedShops);
-      }else{
+      }else {
         const response = await fetch(
           `/search?keyword=${encodeURIComponent(keyword)}`, // keyword를 쿼리스트링에 포함하여 전달
           { method: 'GET' }
