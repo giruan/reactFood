@@ -9,20 +9,12 @@ function Header(props){
   const {userId, name, onLogout} = props;
   console.log(userId, name)
   const [keyword, setKeyword] = useState('');
-  const location = useLocation();
 
-  // URL에서 검색어 추출
-  useEffect(() => {
-    const searchParams = new URLSearchParams(location.search);
-    const keywordParam = searchParams.get('keyword');
-    if (keywordParam) {
-      setKeyword(keywordParam);
-    }
-  }, [location.search]);
-
-  const handleSearch = () => {
+  const handleSearch = (e) => {
+    
     if (keyword.trim() === '') {
       alert('검색어를 입력해주세요');
+      e.preventDefault();
       return;
     }
     // 검색 로직 처리
