@@ -5,14 +5,16 @@ import MyPage from './page/MyPage';
 import Join from './page/Join';
 import Search from './page/Search';
 import Detail from './page/Detail';
+import ShopAdd from './page/ShopAdd';
 import FindPassword from './page/FindPassword';
+import EditPassword from './page/EditPassword';
 import Header from './component/Header';
 import Footer from './component/Footer';
 
 import { Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { UserProvider } from './contexts/UserContext';
-import ShopAdd from './page/ShopAdd';
+
 
 
 function DefaultLayout({ children, userId, name, onLogout }) {
@@ -81,8 +83,7 @@ function App() {
         <Route path="/search" element={<Search></Search>}></Route>
         <Route path="/add" element={<ShopAdd></ShopAdd>}></Route>
         <Route path="/findPassword" element={<FindPassword></FindPassword>}></Route>
-
-     
+        <Route path='/editPw/:userId' element={<EditPassword></EditPassword>}></Route>
       </Routes>
       <Footer />
     </UserProvider>

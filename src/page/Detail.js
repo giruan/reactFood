@@ -17,7 +17,7 @@ useEffect(() => {
   const fetchData = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`http://192.168.5.20:9090/detail/${id}`);
+      const response = await axios.get(`http://localhost:9090/detail/${id}`);
       setData(response.data);
     } catch (error) {
       setError(error);
