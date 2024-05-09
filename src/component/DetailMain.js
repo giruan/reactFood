@@ -1,50 +1,69 @@
 import React from 'react';
+import styles from '../styles/detail.module.css'
 
-function DetailMain({ restaurant }) {
+function calculateAvgRating(reviews) {
+  console.log(reviews);
+  if (!reviews || reviews.length === 0) return 0;
+
+  let totalRating = 0;
+  for (let i = 0; i < reviews.length; i++) {
+    totalRating += reviews[i].rating;
+  }
+  return (totalRating / reviews.length).toFixed(1);
+}
+
+function DetailMain({ restaurant, reviews, filteredImgList }) {
+  
+   const avgRating = calculateAvgRating(reviews);
+   const reviewCount = reviews ? reviews.length : 0;
+  
   return (
-    <div className="restaurantMain container">
-      <div className="restaurantInfo">
-        <div className="infoImg">
-          {restaurant &&
-            restaurant.imgUrls &&
-            restaurant.imgUrls.map((imgUrl, index) => (
-              <img key={index} src={imgUrl} alt={`Restaurant Image ${index + 1}`} />
-            ))}
+    <div className={styles.restaurantMain}>
+      <div className={styles.restaurantInfo}>
+        <div className={styles.infoImg}>
+          {filteredImgList &&
+            filteredImgList.map((img, index) => {
+              return <img key={index} src={`/test/${img.imgUrl}`} alt={`Restaurant Image ${index + 1}`} />;
+            })}
         </div>
 
-        <div className="infoName row justify-content-between">
-          <h1 className="col">{restaurant && restaurant.restaurantName}</h1>
-          <div className="col infoShare d-flex">
+        <div className={styles.infoName}>
+          <h1 className="col">{restaurant.restaurantName}</h1>
+          <div className={styles.infoShare}>
             <a>리뷰작성</a>
-            <button className="col-3 shareBtn">공유</button>
+            <button className={styles.shareBtn}>공유</button>
           </div>
         </div>
 
-        <div className="restaurantCategory">
-          <a>{restaurant && restaurant.restaurantAddress}</a>
-          <a>{restaurant && restaurant.category}</a>
+        <div className={styles.restaurantCategory}>
+          <a>{restaurant.restaurantAddress}</a>
+          <a> {restaurant.category}</a>
         </div>
 
-        <div className="restaurantRating">
-          <div className="gradeInfo row row-cols-auto">
-            <div className="gradeRating col"></div>
-            <span className="totalScore col">평균점 {restaurant && restaurant.avgRating}</span>
-            <p className="col">{restaurant && restaurant.reviewCount}명의 평가</p>
+        <div className={styles.restaurantRating}>
+          <div className={styles.gradeInfo}>
+            <div className={styles.gradeRating}>
+              {[...Array(5)].map((_, index) => (
+                <i key={index} className={`bi bi-star${index + 1 <= avgRating ? '-fill' : ''}`}></i>
+              ))}
+            </div>
+            <span className={styles.totalScore}>{avgRating}점</span>
+            <p className="col">{reviewCount}명의 평가</p>
           </div>
         </div>
       </div>
 
-      <div className="restaurantDetail">
+      <div className={styles.restaurantDetail}>
         <ul>
-          <li className="address row justify-content-between">
-            {restaurant && restaurant.restaurantAddress}
+          <li className={styles.address}>
+            {restaurant.restaurantAddress}
             <button type="button" className="col-3 btn btn-info text-light">
               지도보기
             </button>
           </li>
-          <li className="number">{restaurant && restaurant.callNumber}</li>
-          <li className="category">{restaurant && restaurant.category}</li>
-          <li className="openTime">{restaurant && restaurant.openTime}</li>
+          <li className={styles.number}>{restaurant.callNumber}</li>
+          <li className={styles.category}>{restaurant.category}</li>
+          <li className={styles.openTime}>{restaurant.openTime}</li>
           <li>폐업신고 · 정보수정 제안</li>
         </ul>
       </div>

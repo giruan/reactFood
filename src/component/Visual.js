@@ -73,6 +73,24 @@ function Visual(props){
       const selectedGu = event.target.innerText;
       const selectedGuElement = document.querySelector(".selectedGu");
       selectedGuElement.innerHTML = "선택된 지역 : " + selectedGu;
+      console.log(selectedGu)
+
+
+      //선택 버튼 동작
+      const handleSelectRegionClick = () => {
+        const currentUrl = new URL(window.location.href);
+        currentUrl.searchParams.set("region", selectedGu);//파라미터에 region=? 으로 지정
+        window.location.href = currentUrl.href;
+      };
+    
+      const selectRegionButton = document.getElementById("selectRegion");//선택버튼 요소 갖고옴
+      if (selectRegionButton) {
+        selectRegionButton.addEventListener("click", handleSelectRegionClick);
+        return () => {
+          selectRegionButton.removeEventListener("click", handleSelectRegionClick);
+        };
+      }
+
     };
   
     guButtons.forEach((button) => {
@@ -81,17 +99,8 @@ function Visual(props){
         button.removeEventListener("click", handleClick);
       };
     });
+    
   }, [guList]);
-
-
-  const handleSelectRegionClick = () => {
-
-    const currentUrl = new URL(window.location.href);
-    currentUrl.searchParams.set("region", selectedGu);
-    console.log(currentUrl.href);
-    window.location.href = currentUrl.href;
-  };
-
 
 
 
@@ -151,7 +160,7 @@ return(
                 <button onClick={closeModal}>취소</button>
               </div>
               <div className="col">
-                <button type="button" id="selectRegion" onClick={handleSelectRegionClick}>
+                <button type="button" id="selectRegion">
                   선택
                 </button>
               </div>
