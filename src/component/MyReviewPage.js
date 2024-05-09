@@ -4,8 +4,14 @@ import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
 function MyReviewPage(props) {
-  const {myReviews, restaurantName, myReviewsImg} = props;
+  const { myReviews, restaurantName, myReviewsImg } = props;
+
   console.log(myReviews, restaurantName, myReviewsImg)
+
+  const formatDate = (date) => {
+    const d = new Date(date);
+    return `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, '0')}.${String(d.getDate()).padStart(2, '0')}`;
+  };
 
   return (
     <ul>
@@ -49,7 +55,7 @@ function MyReviewPage(props) {
               ))}
             </div>
             <div className="createdAt">
-              
+            <p>작성일 : {formatDate(review.createdAt)}</p>
             </div>
           </div>
         </li>
