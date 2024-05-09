@@ -9,7 +9,7 @@ import FindPassword from './page/FindPassword';
 import EditPassword from './page/EditPassword';
 import ShopAdd from './page/ShopAdd';
 import MyReviews from './page/MyReviews';
-
+import Map from './page/Map';
 import Header from './component/Header';
 import Footer from './component/Footer';
 
@@ -62,6 +62,8 @@ function App() {
   return (
     <UserProvider>
       <Routes>
+
+        {/* 메인 페이지 */}
         <Route
           path="/"
           element={
@@ -70,6 +72,8 @@ function App() {
             </DefaultLayout>
           }
         ></Route>
+
+        {/* 상세 페이지 */}
         <Route
           path="/detail/:id"
           element={
@@ -79,6 +83,7 @@ function App() {
           }
         ></Route>
 
+        {/* 검색 */}
         <Route path="/search" 
         element={ 
         <DefaultLayout userId={userId} name={name} onLogout={handleLogout}>
@@ -87,14 +92,15 @@ function App() {
         }
         ></Route>
 
+        {/* 로그인 */}
         <Route path="/login" element={<Login onLoginSuccess={handleLoginSuccess}></Login>}></Route>
         <Route path="/join" element={<Join></Join>}></Route>
         <Route path="/myPage/:userId" element={<MyPage/>}></Route>
         <Route path="/myReview/:userId" element={<MyReviews/>}></Route>
-        <Route path="/search" element={<Search></Search>}></Route>
         <Route path="/add" element={<ShopAdd></ShopAdd>}></Route>
         <Route path="/findPassword" element={<FindPassword></FindPassword>}></Route>
         <Route path='/editPw/:userId' element={<EditPassword></EditPassword>}></Route>
+        <Route path='/map' element={<Map></Map>}></Route>
       </Routes>
       <Footer />
     </UserProvider>

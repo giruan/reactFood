@@ -1,11 +1,30 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
+
 
 function Category(props) {
+  
   const { categories } = props;
+  const navigate = useNavigate()
+  const location = useLocation()
 
-  // 메인 홈페이지 카테고리 불러오는 훅
+
+  const getRegionFromUrl = () =>{
+    const searchParams = new URLSearchParams(location.search)
+    return searchParams.get('region') || '' ;
+  }
+
+  const handleCategoryClick = (categoryName) =>{
+    const region = getRegionFromUrl();
+    let targetUrl = `/search?keyword=${categoryName}`
+    if(region){
+       targetUrl = `/search?region=${region}&keyword=${categoryName}`  
+    }
+    navigate(targetUrl);
+  }
 
 return(
   <section className="main container-lg">
@@ -16,16 +35,17 @@ return(
         <div className="category_box">
           <div className="row row-cols-5 restoraunt_list g-0">
             {/* 카테고리 리스트 영역 */}
+            
             {categories.map((category, index) => (
-              <div className="col" key={index}>
+              <div className="col" key={index} onClick={() => handleCategoryClick(category.categoryName)}>
                 <div className="pic">
-                  <Link href={`/search?keyword=${category.categoryName}`}>
+                  {/* <Link to={`/search?keyword=${category.categoryName}`} className='linkCategory'> */}
                     <img src={`image/category/category${index}.jpg`} alt={category.categoryName} />
-                  </Link>
+                  {/* </Link> */}
                 </div>
                 <p className="restoraunt_title">{category.categoryName}</p>
               </div>
-          ))}
+           ))} 
         </div>
       </div>
     </section>
