@@ -23,7 +23,7 @@ function Visual(props){
     setSelectedCity(city);
 
     axios
-      .get(`http://192.168.5.20:9090/region?city=${city}`)
+      .get(`http://localhost:9090/region?city=${city}`)
       .then(function (response) {
         setGuList(response.data);
       })

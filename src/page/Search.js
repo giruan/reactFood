@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom'; // useLocation 가져오기
 import SearchPage from '../component/SearchPage';
 import Header from '../component/Header';
 import Dropdown from 'react-bootstrap/Dropdown';
+import Map from './Map';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -70,7 +71,6 @@ function Search() {
 
   return (
     <>
-      <Header/>
       <main className="searchBody">
         <div className="container">
           <section className="row justify-content-center">
@@ -233,6 +233,7 @@ function Search() {
             <div className="col-9">
               <div className="food-shop">
                 {/* 내용 */}
+                <Map></Map>
                 <div>
                   {/* 검색 페이지 컴포넌트 */}
                   <SearchPage shops={shops} />

@@ -10,7 +10,7 @@ function DetailPhoto() {
         </h2>
         <div className="photo-container">
           <div className="picGrid row row-cols-3 g-3">
-            <div classNameName="col">1</div>
+            <div className="col">1</div>
             <div className="col">2</div>
             <div className="col">3</div>
             <div className="col">4</div>

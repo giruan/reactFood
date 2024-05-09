@@ -17,8 +17,9 @@ useEffect(() => {
   const fetchData = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`http://192.168.5.20:9090/detail/${id}`);
-      setData(response.data);
+      const response = await axios.get(`http://localhost:9090/detail/${id}`);
+      const filteredImgList = response.data.imgList.filter(img => img.userId === null && img.reviewId === null);
+      setData({ ...response.data, filteredImgList});
     } catch (error) {
       setError(error);
     } finally {
@@ -35,9 +36,14 @@ if (error) return <div>Error! {error.message}</div>;
   
   return (
     <body>
-      <main>
+      <main className="main">
         <div className="content">
-          <DetailMain restaurant={data.restaurant} reviews={data.reviews} userAvgRatings={data.userAvgRatings} />
+          <DetailMain
+            restaurant={data.restaurant}
+            reviews={data.reviews}
+            userAvgRatings={data.userAvgRatings}
+            filteredImgList={data.filteredImgList}
+          />
 
           <DetailPhoto imgList={data.imgList} />
 

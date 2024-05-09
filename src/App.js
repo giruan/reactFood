@@ -6,13 +6,17 @@ import Join from './page/Join';
 import Search from './page/Search';
 import Detail from './page/Detail';
 import FindPassword from './page/FindPassword';
+import EditPassword from './page/EditPassword';
+import ShopAdd from './page/ShopAdd';
+import MyReviews from './page/MyReviews';
+import Map from './page/Map';
 import Header from './component/Header';
 import Footer from './component/Footer';
 
 import { Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { UserProvider } from './contexts/UserContext';
-import ShopAdd from './page/ShopAdd';
+
 
 
 function DefaultLayout({ children, userId, name, onLogout }) {
@@ -30,8 +34,8 @@ function App() {
 
   useEffect(() => {
     // 페이지 로드 시 localStorage에서 사용자 정보를 읽어와서 상태를 초기화
-    const storedUserId = localStorage.getItem('userId');
-    const storedName = localStorage.getItem('name');
+    const storedUserId = sessionStorage.getItem('userId');
+    const storedName = sessionStorage.getItem('name');
     if (storedUserId && storedName) {
       setUserId(storedUserId);
       setName(storedName);
@@ -40,16 +44,16 @@ function App() {
 
   // 로그인 성공 시 호출할 함수
   const handleLoginSuccess = (userId, name) => {
-    localStorage.setItem('userId', userId);
-    localStorage.setItem('name', name);
+    sessionStorage.setItem('userId', userId);
+    sessionStorage.setItem('name', name);
 
     setName(name);
     setUserId(userId);
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('userId');
-    localStorage.removeItem('name');
+    sessionStorage.removeItem('userId');
+    sessionStorage.removeItem('name');
 
     setUserId(null);
     setName('');
@@ -58,6 +62,8 @@ function App() {
   return (
     <UserProvider>
       <Routes>
+
+        {/* 메인 페이지 */}
         <Route
           path="/"
           element={
@@ -66,6 +72,8 @@ function App() {
             </DefaultLayout>
           }
         ></Route>
+
+        {/* 상세 페이지 */}
         <Route
           path="/detail/:id"
           element={
@@ -75,14 +83,24 @@ function App() {
           }
         ></Route>
 
+        {/* 검색 */}
+        <Route path="/search" 
+        element={ 
+        <DefaultLayout userId={userId} name={name} onLogout={handleLogout}>
+          <Search setUserId={setUserId} setName={setName}></Search>
+        </DefaultLayout>
+        }
+        ></Route>
+
+        {/* 로그인 */}
         <Route path="/login" element={<Login onLoginSuccess={handleLoginSuccess}></Login>}></Route>
         <Route path="/join" element={<Join></Join>}></Route>
-        <Route path="/myPage/:userId" element={<MyPage />}></Route>
-        <Route path="/search" element={<Search></Search>}></Route>
+        <Route path="/myPage/:userId" element={<MyPage/>}></Route>
+        <Route path="/myReview/:userId" element={<MyReviews/>}></Route>
         <Route path="/add" element={<ShopAdd></ShopAdd>}></Route>
         <Route path="/findPassword" element={<FindPassword></FindPassword>}></Route>
-
-     
+        <Route path='/editPw/:userId' element={<EditPassword></EditPassword>}></Route>
+        <Route path='/map' element={<Map></Map>}></Route>
       </Routes>
       <Footer />
     </UserProvider>
