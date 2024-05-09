@@ -5,24 +5,46 @@ import { useNavigate } from 'react-router-dom'; // useHistory 가져오기
 import '../styles/shopAdd.css'
 
 function ShopAdd() {
-  const history = useNavigate();
+  const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState('카테고리'); // 선택된 카테고리 상태 설정
 
   // 폼 전송 핸들러
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
-    formData.set('category', selectedCategory); // 선택된 카테고리 값을 FormData에 추가
-    fetch('/add', {
-      method: 'POST',
-      body: formData
-    }).then((response) => {
+    formData.set('category', selectedCategory);
+  
+    const restaurantName = event.target.restaurantName.value;
+    const restaurantAddress = event.target.restaurantAddress.value;
+  
+    // 음식점 이름과 주소 유효성 검사
+    if (!restaurantName || !restaurantAddress) {
+      alert('음식점 이름과 주소를 모두 입력하세요.');
+      return;
+    }
+  
+    // 파일 업로드 유효성 검사
+    const imgUrlInput = event.target.imgUrl;
+    if (!imgUrlInput.files || imgUrlInput.files.length === 0) {
+      alert('사진을 1개 이상 등록하세요.');
+      return;
+    }
+  
+    try {
+      const response = await fetch('/add', {
+        method: 'POST',
+        body: formData
+      });
+  
       if (response.ok) {
-        history.push('/'); // 등록 후 홈페이지로 이동
+        alert('등록 성공');
+        navigate('/');
+      } else {
+        alert('음식점이 존재합니다');
       }
-    }).catch((error) => {
+    } catch (error) {
       console.error('Error adding shop:', error);
-    });
+    }
   };
 
   // 카테고리 변경 핸들러
@@ -145,7 +167,7 @@ function ShopAdd() {
 
             <div className="addBtn row">
               <button type="reset" className="btn btn-dark col-4"><a href="/">취소하기</a></button>
-              <button type="submit" className="btn btn-dark col-4">등록하기</button>
+              <button type="submit"className="btn btn-dark col-4">등록하기</button>
             </div>
           </div>
         </form>

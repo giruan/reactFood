@@ -13,6 +13,7 @@ import { Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { UserProvider } from './contexts/UserContext';
 import ShopAdd from './page/ShopAdd';
+import MyReviews from './page/MyReviews';
 
 
 function DefaultLayout({ children, userId, name, onLogout }) {
@@ -77,7 +78,8 @@ function App() {
 
         <Route path="/login" element={<Login onLoginSuccess={handleLoginSuccess}></Login>}></Route>
         <Route path="/join" element={<Join></Join>}></Route>
-        <Route path="/myPage/:userId" element={<MyPage />}></Route>
+        <Route path="/myPage/:userId" element={<MyPage/>}></Route>
+        <Route path="/myReview/:userId" element={<MyReviews/>}></Route>
         <Route path="/search" element={<Search></Search>}></Route>
         <Route path="/add" element={<ShopAdd></ShopAdd>}></Route>
         <Route path="/findPassword" element={<FindPassword></FindPassword>}></Route>
