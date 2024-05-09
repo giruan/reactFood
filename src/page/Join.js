@@ -80,8 +80,6 @@ function Join() {
     if(fileInput.files[0]){
       formData.append('imgUrl', fileInput.files[0])
     }
-
-
     fetch("/join", {
       method: "POST",
       body: formData,
@@ -89,7 +87,7 @@ function Join() {
       .then((response) => response.json())
       .then((data) => {
         // 서버로부터의 응답 처리
-        navigate("/login");
+        window.location.href = '/login'
       })
       .catch((error) => {
         console.error("Error:", error);

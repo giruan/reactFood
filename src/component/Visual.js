@@ -23,12 +23,12 @@ function Visual(props){
     setSelectedCity(city);
 
     axios
-      .get(`http://localhost:9090/region?city=${city}`)
+      .get(`http://192.168.5.20:9090/region?city=${city}`)
       .then(function (response) {
         setGuList(response.data);
       })
       .catch(function (error) {
-        console.error("서버로부터 데이터를 받아오는데 실패했습니다.", error);
+        console.error('서버로부터 데이터를 받아오는데 실패했습니다.', error);
       });
   };
 
