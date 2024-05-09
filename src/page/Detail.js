@@ -47,7 +47,10 @@ if (error) return <div>Error! {error.message}</div>;
 
           <DetailPhoto restaurant={data.restaurant} imgList={data.imgList} />
 
-          <DetailReview reviews={data.reviews} userAvgRatings={data.userAvgRatings}/>
+          <DetailReview
+            reviews={data.reviews}
+            userAvgRatings={data.userAvgRatings}
+            imgList={data.imgList} />
         </div>
       </main>
     </body>

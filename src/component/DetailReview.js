@@ -10,7 +10,7 @@ function calculateAvgRating(reviews) {
   return (totalRating / reviews.length).toFixed(1);
 }
 
-function Detailreview({ reviews, userAvgRatings }) {
+function Detailreview({ reviews, userAvgRatings, imgList }) {
   const avgRating = calculateAvgRating(reviews);
   const reviewCount = reviews ? reviews.length : 0;
 
@@ -29,12 +29,13 @@ function Detailreview({ reviews, userAvgRatings }) {
         <div key={index} className="container userReview">
           <p className="personGrade">
             <span className="username">
-              <strong>{reviews.userId}</strong>
+              <strong>{review.userId} </strong>
             </span>
             <span className="scoreInfo">
-              {userAvgRatings[review.userId] && (<span>{userAvgRatings[review.userId].avgRating}점</span>)} : 평가
+              리뷰작성=
               <span className="scoreCnt">
-                {userAvgRatings[review.userId] && userAvgRatings[review.userId].reviewCount}개
+                {userAvgRatings[review.userId] && userAvgRatings[review.userId].reviewCount}개, 평균 :
+                {userAvgRatings[review.userId] && <span>{userAvgRatings[review.userId].avgRating}점</span>}
               </span>
             </span>
           </p>
@@ -42,13 +43,17 @@ function Detailreview({ reviews, userAvgRatings }) {
           <div className="container">
             <div className="pointDetail">
               <div className="restaurantRating">
-                <span className="totalScore">{reviews.rating}점</span>
+                <span className="totalScore">{review.rating}점</span>
               </div>
             </div>
-            <div className="reviewContent">{reviews.content}</div>
+            <div className="reviewContent">{review.content}</div>
             <div className="userReviewPic">
               <div className="picGrid row row-cols-4 g-3">
-                <div className="col">사진</div>
+                <div className="col">
+                  {imgList[review.restaurantId] && imgList[review.restaurantId][review.userId] && (
+                    <img src={imgList[review.restaurantId][review.userId]} alt={`User ${review.userId} Image`} />
+                  )}
+                </div>
               </div>
             </div>
           </div>
