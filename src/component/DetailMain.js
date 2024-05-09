@@ -1,7 +1,7 @@
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function calculateAvgRating(reviews) {
-  console.log(reviews);
   if (!reviews || reviews.length === 0) return 0;
 
   let totalRating = 0;
@@ -61,7 +61,7 @@ function DetailMain({ restaurant, reviews, filteredImgList }) {
             </button>
           </li>
           <li className="number">{restaurant.callNumber}</li>
-          <li className="category">{restaurant.category}</li>
+          <li className="dtCategory">{restaurant.category}</li>
           <li className="openTime">{restaurant.openTime}</li>
           <li>폐업신고 · 정보수정 제안</li>
         </ul>
