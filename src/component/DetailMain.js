@@ -1,5 +1,4 @@
 import React from 'react';
-import styles from '../styles/detail.module.css'
 
 function calculateAvgRating(reviews) {
   console.log(reviews);
@@ -18,52 +17,52 @@ function DetailMain({ restaurant, reviews, filteredImgList }) {
    const reviewCount = reviews ? reviews.length : 0;
   
   return (
-    <div className={styles.restaurantMain}>
-      <div className={styles.restaurantInfo}>
-        <div className={styles.infoImg}>
+    <div className="restaurantMain container">
+      <div className="restaurantInfo">
+        <div className="infoImg">
           {filteredImgList &&
             filteredImgList.map((img, index) => {
               return <img key={index} src={`/test/${img.imgUrl}`} alt={`Restaurant Image ${index + 1}`} />;
             })}
         </div>
 
-        <div className={styles.infoName}>
+        <div className="infoName row justify-content-between">
           <h1 className="col">{restaurant.restaurantName}</h1>
-          <div className={styles.infoShare}>
+          <div className="col infoShare d-flex">
             <a>리뷰작성</a>
-            <button className={styles.shareBtn}>공유</button>
+            <button className="col-3 shareBtn">공유</button>
           </div>
         </div>
 
-        <div className={styles.restaurantCategory}>
+        <div className="restaurantCategory">
           <a>{restaurant.restaurantAddress}</a>
           <a> {restaurant.category}</a>
         </div>
 
-        <div className={styles.restaurantRating}>
-          <div className={styles.gradeInfo}>
-            <div className={styles.gradeRating}>
+        <div className="restaurantRating">
+          <div className="gradeInfo row row-cols-auto">
+            <div className="gradeRating col">
               {[...Array(5)].map((_, index) => (
                 <i key={index} className={`bi bi-star${index + 1 <= avgRating ? '-fill' : ''}`}></i>
               ))}
             </div>
-            <span className={styles.totalScore}>{avgRating}점</span>
+            <span className="totalScore col">{avgRating}점</span>
             <p className="col">{reviewCount}명의 평가</p>
           </div>
         </div>
       </div>
 
-      <div className={styles.restaurantDetail}>
+      <div className="restaurantDetail">
         <ul>
-          <li className={styles.address}>
+          <li className="address row justify-content-between">
             {restaurant.restaurantAddress}
             <button type="button" className="col-3 btn btn-info text-light">
               지도보기
             </button>
           </li>
-          <li className={styles.number}>{restaurant.callNumber}</li>
-          <li className={styles.category}>{restaurant.category}</li>
-          <li className={styles.openTime}>{restaurant.openTime}</li>
+          <li className="number">{restaurant.callNumber}</li>
+          <li className="category">{restaurant.category}</li>
+          <li className="openTime">{restaurant.openTime}</li>
           <li>폐업신고 · 정보수정 제안</li>
         </ul>
       </div>
