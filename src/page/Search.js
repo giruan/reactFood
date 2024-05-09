@@ -58,7 +58,6 @@ function Search() {
 
   return (
     <>
-      <Header/>
       <main className="searchBody">
         <div className="container">
           <section className="row justify-content-center">

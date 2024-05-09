@@ -34,8 +34,8 @@ function App() {
 
   useEffect(() => {
     // 페이지 로드 시 localStorage에서 사용자 정보를 읽어와서 상태를 초기화
-    const storedUserId = localStorage.getItem('userId');
-    const storedName = localStorage.getItem('name');
+    const storedUserId = sessionStorage.getItem('userId');
+    const storedName = sessionStorage.getItem('name');
     if (storedUserId && storedName) {
       setUserId(storedUserId);
       setName(storedName);
@@ -44,16 +44,16 @@ function App() {
 
   // 로그인 성공 시 호출할 함수
   const handleLoginSuccess = (userId, name) => {
-    localStorage.setItem('userId', userId);
-    localStorage.setItem('name', name);
+    sessionStorage.setItem('userId', userId);
+    sessionStorage.setItem('name', name);
 
     setName(name);
     setUserId(userId);
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('userId');
-    localStorage.removeItem('name');
+    sessionStorage.removeItem('userId');
+    sessionStorage.removeItem('name');
 
     setUserId(null);
     setName('');
@@ -77,6 +77,14 @@ function App() {
               <Detail setUserId={setUserId} setName={setName}></Detail>
             </DefaultLayout>
           }
+        ></Route>
+
+        <Route path="/search" 
+        element={ 
+        <DefaultLayout userId={userId} name={name} onLogout={handleLogout}>
+          <Search setUserId={setUserId} setName={setName}></Search>
+        </DefaultLayout>
+        }
         ></Route>
 
         <Route path="/login" element={<Login onLoginSuccess={handleLoginSuccess}></Login>}></Route>
