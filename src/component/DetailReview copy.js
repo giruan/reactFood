@@ -50,8 +50,8 @@ function Detailreview({ reviews, userAvgRatings, imgList }) {
             <div className="userReviewPic">
               <div className="picGrid row row-cols-4 g-3">
                 <div className="col">
-                  {imgList[review.restaurantId] && imgList[review.restaurantId][review.userId] && (
-                    <img src={imgList[review.restaurantId][review.userId]} alt={`User ${review.userId} Image`} />
+                  {imgList[review.restaurantId] && imgList[review.userId] && (
+                    <img src={imgList[review.userId]} alt={`User ${review.userId} Image`} />
                   )}
                 </div>
               </div>
