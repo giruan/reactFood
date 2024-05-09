@@ -19,7 +19,7 @@ return(
             {categories.map((category, index) => (
               <div className="col" key={index}>
                 <div className="pic">
-                  <Link href={`/search?keyword=${category.categoryName}`}>
+                  <Link to={`/search?keyword=${category.categoryName}`}>
                     <img src={`image/category/category${index}.jpg`} alt={category.categoryName} />
                   </Link>
                 </div>
