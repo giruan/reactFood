@@ -41,18 +41,19 @@ if (error) return <div>Error! {error.message}</div>;
     <body>
       <main className="main">
         <div className="content">
-          <DetailMain
-            restaurant={data.restaurant}
-            reviews={data.reviews}
-            filteredImgList={data.filteredImgList}
-          />
+          <DetailMain restaurant={data.restaurant} reviews={data.reviews} filteredImgList={data.filteredImgList} />
 
-          <DetailPhoto restaurant={data.restaurant} imgList={data.imgList} filteredreviewImgList={data.filteredreviewImgList} />
+          <DetailPhoto
+            restaurant={data.restaurant}
+            imgList={data.imgList}
+            filteredreviewImgList={data.filteredreviewImgList}
+          />
 
           <DetailReview
             reviews={data.reviews}
             userAvgRatings={data.userAvgRatings}
-            imgList={data.imgList} />
+            filteredreviewImgList={data.filteredreviewImgList}
+          />
         </div>
       </main>
     </body>
