@@ -2,69 +2,39 @@
 ul,ol,li { list-style: none; } 
 a { text-decoration: none; } 
 
-.container { width: 960px; margin: 0 auto;} 
-
-body .joinPage{ width: 500px;}
-body .mainPage{ width: 400px;}
-body .joinPage,
-body .mainPage { padding-left: 0; margin-bottom: 110px; }
-
-.header_login { padding: 20px 0 20px; border-bottom: gray solid 1px; } 
+.header_login { padding: 20px 0 20px; border-bottom: gray solid 1px; text-align: center;} 
 .header_login img{ width: 150px; } 
 
-.subtitle,
-.header_login,
-.title_login,
-.jointitle
-{
-text-align: center;}
+.loginPage { width: 430px; margin: 0 auto; margin-bottom: 110px;} 
 
-.title_login, .jointitle {padding: 50px 15px 25px; border-bottom: gray solid 1px;}
+.loginPage .title_login{padding: 50px 15px 25px; border-bottom: gray solid 1px;text-align: center;}
+.loginPage .title_login h2{ font-size: 20px; font-weight: bold; } 
 
-.title_login h2,
-.jointitle h2 { font-size: 20px; font-weight: bold; } 
+.loginPage .subtitle { padding: 24px; white-space: nowrap; text-align: center;}
+.loginPage .subtitle h2 { font-size: 15px; font-weight: bold;}
 
-.joinPage .idCheck{position: relative;} 
-.joinPage .idCheck button{position: absolute; width: 90px; top: 7px; right: 15px; border-radius: 5px; border: gray 1px solid;}
-.joinPage .numCheck{width: 100%;justify-content: space-between;} 
-.joinPage .numCheck input{width: 75%;}
-.joinPage .numCheck button{width: 22%; height: 80%; border: gray 1px solid; border-radius: 5px;}
+.loginPage .loginForm { text-align: center; border-radius: 15%; } 
 
-.joinPage .picCheck input{padding-left: 0; margin-top: 10px;}
-.joinPage .picCheck .picPreview{border: gray 1px solid;}
+.loginPage .loginForm input{ width: 100%; height: 40px; padding-left: 10px; margin-bottom: 10px; } 
 
-.jointitle {margin-bottom: 50px;}
+.loginPage .loginSet { padding: 24px 0; text-align: center; font-size: 14px; } 
 
-.subtitle { padding: 24px; white-space: nowrap;}
-.subtitle h2 { font-size: 15px; font-weight: bold;}
+.loginPage .loginSet span { text-align: left; } 
+.loginPage .loginSet a { text-align: right; } 
+.loginPage .loginSet .btn { width: 30px; height: 30px; padding: 2px 0px; border-radius: 0; } 
 
-.loginForm { text-align: center; border-radius: 15%; } 
+.loginPage .loginBtn .btn{ width: 100%; height: 40px; font-size: 14px; border-radius: 0; } 
 
-.loginForm input,
-.joinForm input { width: 100%; height: 40px; padding-left: 10px; margin-bottom: 10px; } 
-.joinForm { border: lightgray 1px solid; padding: 15px;}
+.loginPage .andLine { width: 400px; margin: auto; padding: 14px; } 
+.loginPage .andLine .and { width: 40px; font-size: 14px; white-space: nowrap; margin-right: 8px;}
+.loginPage .andLine .line { border-bottom: gray solid 1px; height: 7px; } 
 
-.loginSet { padding: 24px 0; text-align: center; font-size: 14px; } 
+.loginPage .join { border: gray 1px solid; font-size: 15px; text-align: center; width: 100%; height: 150px; margin: 30px 0 0; padding: 24px; } 
 
-.loginSet span { text-align: left; } 
-.loginSet a { text-align: right; } 
+.loginPage .join .upWord { font-size: 14px; font-weight: bold; } 
+.loginPage .join .downWord { font-size: 12px; white-space: nowrap;}
 
-.loginSet .btn { width: 30px; height: 30px; padding: 2px 0px; border-radius: 0; } 
-
-.loginBtn .btn,
-.joinBtn .btn { width: 100%; height: 40px; font-size: 14px; border-radius: 0; } 
-.joinBtn .btn{margin-top: 30px; }
-
-.andLine { width: 400px; margin: auto; padding: 14px; } 
-.andLine .and { width: 40px; font-size: 14px; white-space: nowrap; margin-right: 8px;}
-.andLine .line { border-bottom: gray solid 1px; height: 7px; } 
-
-.join { border: gray 1px solid; font-size: 15px; text-align: center; width: 100%; height: 150px; margin: 30px 0 0; padding: 24px; } 
-
-.join .upWord { font-size: 14px; font-weight: bold; } 
-.join .downWord { font-size: 12px; white-space: nowrap;}
-
-.join .btn { width: 200px; height: 40px; border-radius: 0; margin-top: 12px; font-size: 13px;}
+.loginPage .join .btn { width: 200px; height: 40px; border-radius: 0; margin-top: 12px; font-size: 13px;}
 
 
 #userIdValidation, #passwordValidation, #rePasswordValidation, #newPasswordValidation{

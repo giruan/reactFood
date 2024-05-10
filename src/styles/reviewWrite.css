@@ -1,0 +1,70 @@
+ul,ol,li { list-style: none; } 
+
+
+.reviewWrite h3{text-align: center;}
+.reviewWrite .review-box{display: flex; justify-content: center; align-items: center; margin: 30px 0 80px;}
+.reviewWrite .review-box form{background-color: #f0f0f3; padding: 30px 50px; border-radius: 10px;}
+.reviewWrite .review-title{text-align: center; padding-top: 20px; margin: 0;}
+
+.reviewWrite .select-star{text-align: center; margin: 0;}
+
+/* 별점 */
+.reviewWrite .review-rating {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 30px;
+}
+
+.reviewWrite .rating {
+  position: relative;
+  color: #ddd;
+  font-size: 30px;
+  text-align: center;
+}
+
+.reviewWrite .rating input {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.reviewWrite .rating_star {
+  width: 0;
+  color: #ffc107;
+  position: absolute;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.reviewWrite .rating-title{text-align: center;}
+
+/* 리뷰 작성 */
+.reviewWrite .review-content{padding-bottom: 30px;}
+
+/* 리뷰 사진 */
+.reviewWrite .review-img{
+  border: 1px solid black; 
+  border-radius: 10px; 
+}
+.reviewWrite .upload-img{display: flex; justify-content: center; align-items: center;}
+.reviewWrite #imgUrl{padding: 10px 0; padding-left: 50px;}
+
+/* 리뷰 버튼 */
+.reviewWrite .review-btn{
+  margin-top: 30px; 
+  display: flex; justify-content: center;
+}
+
+.reviewWrite .write-btn{
+  width: 200px; height: 40px;
+  background-color: #0ac7ce;
+  border-radius: 5px;
+  border: none;
+  color: white;
+}

@@ -1,42 +1,43 @@
 * { margin: 0; padding: 0; box-sizing: border-box; } 
 ul,ol,li { list-style: none; } 
 a { text-decoration: none; }
-p{margin: 0; color: black;}
+.sel-social p{margin: 0; color: black;}
 
 .select, .food-shop{background-color: white; }
 
-.searchBody{background-color: #f0f0f0; margin-top: 0;}
+.searchBody .select{width: 260px; height: 730px; border-radius: 5px; border: black 1px solid;}
+.searchBody{width: 100%; background-color: #f0f0f0; margin-top: 0; }
 
 
 
-section{ width: 1350px; padding-bottom: 60px; padding: 30px 0 60px 0;}
+.searchSection{ width: 1350px; padding-bottom: 60px; padding: 30px 0 60px 0; margin: 0 auto;}
 
 /* 왼쪽 박스 */
 
 /* .select{width: 260px; height: 650px; border: 1px solid black; border-radius: 10px;} */
 
 .sel-social{padding-top: 10px;}
-.title{align-items: center; padding: 3px 16px 9px;}
-.square{height: 10px; width: 10px; border-radius: 2px; margin-right: 6px;}
-h4{font-size: 24px; font-weight: 700; margin: 0;}
+.searchBody .title{align-items: center; padding: 3px 16px 9px;}
+.searchBody .square{height: 10px; width: 10px; border-radius: 2px; margin-right: 6px; }
+.searchBody h4{font-size: 24px; font-weight: 700; margin: 0;}
 
-.filterOption{padding: 0 16px; margin: 0;}
+.searchBody .filterOption{padding: 0 16px; margin: 0;}
 
-.filterOption .filterBtn{padding: 5px 0;}
+.searchBody .filterOption .filterBtn{padding: 5px 0;}
 .filterBtn .filterBtn-click{align-items: center;}
-.filterBtn-click img{margin-right: 10px;}
+.filterBtn .filterBtn-click img{margin-right: 10px; height: 20px;}
 
-.peopleGroup{margin: 0; padding-left: 16px;}
+.searchBody .peopleGroup{margin: 0; padding-left: 16px;}
 
-.categoryGroup, .gender{padding-left: 16px;}
-.gender {margin-left: 0px;}
+.searchBody .categoryGroup, .searchBody .gender{padding-left: 16px;}
+.searchBody .gender {margin-left: 0px;}
 
 
-.dropdown{
+.searchBody .dropdown{
   padding: 0 10px;
 }
 
- .question {
+.searchBody .dropdown .question {
   padding: 0;
   font: 18px "inherit";
   width: 100%;
@@ -45,11 +46,12 @@ h4{font-size: 24px; font-weight: 700; margin: 0;}
   text-align: left;
 }
 
-.question span{
+.searchBody .dropdown .question span{
   margin-left: 15px;
 }
+.searchBody .dropdown .dropdown-toggle{background-color: white; color: black; height: 35px;display: flex; align-items: center;}
 
-.city_list {
+.searchBody .city_list {
 
  background-color: white;
   font-size: 18px;
@@ -61,54 +63,47 @@ h4{font-size: 24px; font-weight: 700; margin: 0;}
   cursor: pointer;
 }
 
-.city_list li{box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.1);}
-.city_list li:hover{background-color: rgb(204, 205, 206);}
+.searchBody .city_list .cityDetail{box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.1);}
+.searchBody .city_list .cityDetail:hover{background-color: rgb(204, 205, 206);}
 
 /* 오른쪽 박스 */
 
-.food-shop{width: 900px;  overflow-x: auto; border: black 1px solid; margin-left: 20px; border-radius: 10px; padding: 0 20px;} 
-.order-wrap{
+.searchBody .food-shop{width: 900px; overflow-x: auto; border: black 1px solid; margin-left: 20px; border-radius: 10px; padding: 0 20px;} 
+.searchBody .order-wrap{
   border-bottom: 1px solid rgb(245, 245, 245);
   border-top-right-radius:14px;
   border-top-left-radius: 14px;
 }
 
-.range{width: 80px; border-right: 1px solid rgb(245, 245, 245); justify-content: center; align-items: center; display: flex;}
+.searchBody .range{width: 80px; border-right: 1px solid rgb(245, 245, 245); justify-content: center; align-items: center; display: flex;}
 
-.l-btn{margin: 20px 0;}
+.searchBody .l-btn{margin: 20px 0;}
 
-.order{ align-items: center; justify-content: center; display: flex;}
-.order button{height: 34px; border-radius: 6px; cursor: pointer; margin-left: 20px;}
-.order button span{margin: 0 15px;}
+.searchBody .order{ align-items: center; justify-content: center; display: flex;}
+.searchBody .order button{height: 34px; border-radius: 6px; cursor: pointer; margin-left: 20px;}
+.searchBody .order button span{margin: 0 15px;}
 
-.r-btn button{height: 62px; padding: 0 20px; border : 1px solid black;}
+#map{width: 400px; height: 400px; border-radius: 10px;}
 
-button{background-color: white;}
+.select-shop .look-shop{padding: 20px 20px; cursor: pointer;}
+.select-shop .shop-h{ box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.1); margin-bottom: 20px;}
+.select-shop .shop-h:hover{background-color: rgb(243, 239, 239);}
+.select-shop .shop-box{padding-left: 0;}
 
+.select-shop .info{padding: 2px 0 2px 16px;  }
+.select-shop .info .shop-name{margin-bottom: 10px; font-size: 24px;}
+.select-shop .info .category{margin: 0;}
 
-.map{width: 400px; height: 400px;}
+.select-shop .shop-h .title-img{padding: 0; border-radius: 10px; width: 110px; height: 110px;}
 
-.look-shop{padding: 20px 20px; cursor: pointer;}
-.shop-h{ box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.1); margin-bottom: 20px;}
-.shop-h:hover{background-color: rgb(243, 239, 239);}
-.shop-box{padding-left: 0;}
+.select-shop .info .rate .score{margin-right: 5px;}
+.select-shop .info .rate .user-score{margin-right: 5px;}
 
-.info{padding: 2px 0 2px 16px;}
-.info .shop-name{margin-bottom: 10px; font-size: 24px;}
-.info .hash{margin: 0;}
-.info .category{margin: 0;}
+.select-shop .info .heart img{height: 20px;}
 
-
-/* img{width: 16px; height: 16px;} */
-
-.title-img{padding: 0; border-radius: 10px; width: 110px; height: 110px;}
-
-.rate .score{margin-right: 5px;}
-.rate .user-score{margin-right: 5px;}
-
-.request { margin: 20px 0 0 20px; background-color: white; border-radius: 15px;
+.searchBody .request { margin: 20px 0 0 20px; background-color: white; border-radius: 15px;
   border: black 1px solid; width: 900px; justify-content: end;}
-.request .inner{
+.searchBody .request .inner{
   display: flex; 
   justify-content: center; 
   align-items: center; 
@@ -116,22 +111,16 @@ button{background-color: white;}
   gap: 20px;
   padding: 40px 0;
 }
-.request h1{font-size: 20px;}
-.request button{
+.searchBody .request h1{font-size: 20px;}
+.searchBody .request button{
   padding: 14px 101px;
   background-color:rgb(25, 183, 194);
   border-radius: 10px;
   cursor: pointer;
 }
-.request-btn a{color: white; font-weight: bold;}
-.request-btn button{border: rgb(25, 183, 194);}
-.request span{
+.searchBody .request-btn a{color: white; font-weight: bold;}
+.searchBody .request-btn button{border: rgb(25, 183, 194);}
+.searchBody .request span{
   color: rgb(158, 158, 158);
   font-size: 14px;
 }
-
-.blank {width: 260px; margin-right: 20px;}
-
-footer{background-color: white; padding: 30px 0 ;}
-
-#map{border-radius: 10px;}

@@ -48,7 +48,7 @@ function ShopAdd() {
   };
 
   // 카테고리 변경 핸들러
-  const handleCategoryChange = (category) => {
+  const handleCategoryChange = (category) => { 
     setSelectedCategory(category);
   };
 
@@ -84,7 +84,7 @@ function ShopAdd() {
   };
 
   return (
-    <div>
+    <div className="shopAdd">
       <header>
         <div className="header">
           <a href="/">
@@ -115,25 +115,25 @@ function ShopAdd() {
             <div className="addItem">
               <strong>카테고리</strong>
 
-              <Dropdown>
+              <Dropdown className='dropdown'>
                 <Dropdown.Toggle variant="light" className="category-dropdown">
                   {selectedCategory}
                 </Dropdown.Toggle>
-                <Dropdown.Menu>
-                  <Dropdown.Item onClick={() => handleCategoryChange('고기')}>고기</Dropdown.Item>
-                  <Dropdown.Item onClick={() => handleCategoryChange('돈까스')}>돈까스</Dropdown.Item>
-                  <Dropdown.Item onClick={() => handleCategoryChange('버거')}>버거</Dropdown.Item>
-                  <Dropdown.Item onClick={() => handleCategoryChange('분식')}>분식</Dropdown.Item>
-                  <Dropdown.Item onClick={() => handleCategoryChange('아시안')}>아시안</Dropdown.Item>
-                  <Dropdown.Item onClick={() => handleCategoryChange('양식')}>양식</Dropdown.Item>
-                  <Dropdown.Item onClick={() => handleCategoryChange('일식')}>일식</Dropdown.Item>
-                  <Dropdown.Item onClick={() => handleCategoryChange('족발 • 보쌈')}>족발 • 보쌈</Dropdown.Item>
-                  <Dropdown.Item onClick={() => handleCategoryChange('죽')}>죽</Dropdown.Item>
-                  <Dropdown.Item onClick={() => handleCategoryChange('중식')}>중식</Dropdown.Item>
-                  <Dropdown.Item onClick={() => handleCategoryChange('탕 • 찌개')}>탕 • 찌개</Dropdown.Item>
-                  <Dropdown.Item onClick={() => handleCategoryChange('치킨')}>치킨</Dropdown.Item>
-                  <Dropdown.Item onClick={() => handleCategoryChange('피자')}>피자</Dropdown.Item>
-                  <Dropdown.Item onClick={() => handleCategoryChange('디저트')}>디저트</Dropdown.Item>
+                <Dropdown.Menu className="dropdown-menu">
+                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('고기')}>고기</Dropdown.Item>
+                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('돈까스')}>돈까스</Dropdown.Item>
+                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('버거')}>버거</Dropdown.Item>
+                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('분식')}>분식</Dropdown.Item>
+                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('아시안')}>아시안</Dropdown.Item>
+                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('양식')}>양식</Dropdown.Item>
+                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('일식')}>일식</Dropdown.Item>
+                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('족발 • 보쌈')}>족발 • 보쌈</Dropdown.Item>
+                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('죽')}>죽</Dropdown.Item>
+                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('중식')}>중식</Dropdown.Item>
+                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('탕 • 찌개')}>탕 • 찌개</Dropdown.Item>
+                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('치킨')}>치킨</Dropdown.Item>
+                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('피자')}>피자</Dropdown.Item>
+                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('디저트')}>디저트</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             </div>
@@ -156,9 +156,7 @@ function ShopAdd() {
                   multiple
                 />
               </div>
-              <div className="col-12 picPreview">
-                {/* 여기에 미리보기 이미지들이 표시됩니다. */}
-              </div>
+              <div className="col-12 picPreview">{/* 여기에 미리보기 이미지들이 표시됩니다. */}</div>
             </div>
 
             <div className="addItem">
@@ -166,8 +164,12 @@ function ShopAdd() {
             </div>
 
             <div className="addBtn row">
-              <button type="reset" className="btn btn-dark col-4"><a href="/">취소하기</a></button>
-              <button type="submit"className="btn btn-dark col-4">등록하기</button>
+              <button type="reset" className="btn btn-dark col-4">
+                <a href="/">취소하기</a>
+              </button>
+              <button type="submit" className="btn btn-dark col-4">
+                등록하기
+              </button>
             </div>
           </div>
         </form>

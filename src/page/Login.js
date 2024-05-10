@@ -58,7 +58,7 @@ function Login(props){
       </header>
   
 
-    <div className="container mainPage">
+    <div className="container loginPage">
       <div className="title_login">
         <h2>로그인 및 회원가입</h2>
       </div>
