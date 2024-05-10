@@ -9,7 +9,7 @@ function MyReviewEdit(){
 
   return(
     <>
-    <section>
+    {/* <section>
         <div className="container-lg">
           <h2 className="review-title">리뷰 수정하기</h2>
           <div className="review-box">
@@ -61,7 +61,7 @@ function MyReviewEdit(){
             </form>
           </div>
         </div>
-      </section>
+      </section> */}
     </>
   )
 }

@@ -113,7 +113,6 @@ function App() {
         <Route path="/findPassword" element={<FindPassword></FindPassword>}></Route>
         <Route path='/editPw/:userId' element={<EditPassword></EditPassword>}></Route>
         <Route path='/map' element={<Map></Map>}></Route>
-        <Route path='/reviewEdit/reviewId' element={<MyReviewEdit></MyReviewEdit>}></Route>
       </Routes>
       <Footer />
     </UserProvider>
