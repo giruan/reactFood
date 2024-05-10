@@ -10,6 +10,16 @@ function calculateAvgRating(reviews) {
   return (totalRating / reviews.length).toFixed(1);
 }
 
+// export function getAvgRating(reviews) {
+//   const avgRating = calculateAvgRating(reviews);
+//   return avgRating;
+// }
+
+// export function getReviewCount(reviews) {
+//   const reviewCount = reviews ? reviews.length : 0;
+//   return reviewCount;
+// }
+
 function Detailreview({ reviews, userAvgRatings, filteredreviewImgList }) {
   const avgRating = calculateAvgRating(reviews);
   const reviewCount = reviews ? reviews.length : 0;
@@ -51,7 +61,7 @@ function Detailreview({ reviews, userAvgRatings, filteredreviewImgList }) {
               <div className="userReviewPic">
                 <div className="picGrid row row-cols-4 g-3">
                   {filteredreviewImgList.map((img, index) =>
-                    img.userId === review.userId ? (
+                    img.userId === review.userId && img.reviewId === review.reviewId ? (
                       <div key={index} className="col">
                         <img src={`/reviews/${img.imgUrl}`} alt={`Review Image ${index}`} />
                       </div>

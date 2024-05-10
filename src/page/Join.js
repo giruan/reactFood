@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "../styles/login.css";
+import "../styles/join.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -192,7 +192,9 @@ function Join() {
           </Link>
         </div>
       </header>
-      <div className="container joinPage">
+
+
+      <div className="contaier joinPage">
         <div className="jointitle">
           <h2>신규 회원가입</h2>
         </div>

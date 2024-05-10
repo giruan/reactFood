@@ -23,35 +23,31 @@ a{color: black;}
   border: none;
 }
 
+.header .searchBar #searchBtn{ font-size: 25px;}
 
+.header #searchBtn{border: 0; background-color: transparent; font-size: 20px;}
 
-.searchBar{}
+.header .searchBtn{border: 1px solid black;}
 
-.searchBar #searchBtn{ font-size: 25px;}
-
-#searchBtn{border: 0; background-color: transparent; font-size: 20px;}
-
-.searchBtn{border: 1px solid black;}
-
-.loginBar{margin-left: 50px;}
+.header .loginBar{margin-left: 50px;}
 
 
 /* 유저 버튼 */
 
-.user li{padding: 0 10px;}
+.header .user li{padding: 0 10px;}
 
 
 /* nav */
-nav{
+.mainPage nav{
   background-color: #e5e5e5; 
   height: 50px;
   display: flex; align-items: center;
   
 }
-nav .nav-ul{gap: 20px; margin: 0; padding: 0 0 0 20px ;}
-nav .nav-ul .nav-li a:hover{color: gray; cursor: pointer; transition: 0.3s;}
-nav .nav-ul .nav-li a{position: relative; padding: 6px 12px;}
-nav .nav-ul .nav-li a::after{
+.mainPage nav .mainNav-ul{gap: 20px; margin: 0; padding: 0 0 0 20px ;}
+.mainPage nav .mainNav-ul .nav-li a:hover{color: gray; cursor: pointer; transition: 0.3s;}
+.mainPage nav .mainNav-ul .nav-li Link{position: relative; padding: 6px 12px;}
+.mainPage nav .mainNav-ul .nav-li Link::after{
     content: '';
     position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
     width: 0;
@@ -59,7 +55,7 @@ nav .nav-ul .nav-li a::after{
     background: rgb(206, 206, 214);
     transition: all .3s ease-out;
   }
-nav .nav-ul .nav-li a:hover::after{
+.mainPage nav .mainNav-ul .nav-li Link:hover::after{
     width: 100%;
   }
 

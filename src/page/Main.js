@@ -26,10 +26,10 @@ function Main() {
   }, []);
 
   return (
-    <main>
+    <main className='mainPage'>
       <nav>
         <div className="container g-0 nav-box">
-          <ul className="nav-ul d-flex">
+          <ul className="mainNav-ul d-flex">
             <li className="nav-li">
               <Link to="#">YUM YARD 소개</Link>
             </li>
