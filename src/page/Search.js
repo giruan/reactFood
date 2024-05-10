@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom'; // useLocation 가져오기
 import SearchPage from '../component/SearchPage';
-import Header from '../component/Header';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Map from './Map';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import '../styles/Search.css'
 
 
@@ -27,29 +23,19 @@ function Search() {
   const fetchSearchResults = async () => {
     try {
       // API 호출 등의 로직으로 검색 결과를 가져옴
-      if(region && keyword){
-        const response = 
-        await fetch(`/search?region=${encodeURIComponent(region)}&keyword=${encodeURIComponent(keyword)}`, // keyword를 쿼리스트링에 포함하여 전달
-          { method: 'GET' }
-        );
-        const data = await response.json();
-        // shops 데이터를 추출하여 상태로 설정
-        const fetchedShops = data.shops;
-        setShops(fetchedShops);
-      }else {
-        const response = await fetch(
-          `/search?keyword=${encodeURIComponent(keyword)}`, // keyword를 쿼리스트링에 포함하여 전달
-          { method: 'GET' }
-        );
-        const data = await response.json();
-        // shops 데이터를 추출하여 상태로 설정
-        const fetchedShops = data.shops;
-        setShops(fetchedShops);
+      let url = `/search?keyword=${encodeURIComponent(keyword)}`;
+      if (region && keyword) {
+        url = `/search?region=${encodeURIComponent(region)}&keyword=${encodeURIComponent(keyword)}`;
       }
       
-    } catch (error) {
+      const response = await fetch(url, { method: 'GET' });
+      
+      const data = await response.json();
+      //const fetchedShops = data.shops;
+      setShops(data.shops);
+      } catch (error) {
       console.error('Error fetching search results:', error);
-    }
+      }
   };
 
   const [selectedItem, setSelectedItem] = useState('광역시도'); // 기본 값은 '광역시도'

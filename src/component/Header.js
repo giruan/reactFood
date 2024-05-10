@@ -10,7 +10,6 @@ function Header(props){
 
   const [keyword, setKeyword] = useState('');
   const [selectedRegion, setSelectedRegion] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('');
   const navigate = useNavigate() 
   const location = useLocation();
 
@@ -25,9 +24,6 @@ function Header(props){
     if (selectedRegion) {
       targetUrl += `region=${selectedRegion}&`;
     }
-    if (selectedCategory) {
-      targetUrl += `category=${selectedCategory}&`;
-    }
     targetUrl += `keyword=${keyword}`;
     
     navigate(targetUrl);
@@ -37,10 +33,8 @@ function Header(props){
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
     const region = searchParams.get('region');
-    const category = searchParams.get('category');
     
     if (region) setSelectedRegion(region);
-    if (category) setSelectedCategory(category);
   }, [location]);
   
 
@@ -53,7 +47,6 @@ return (
           <div className="col-3">
 
             <Link to="/" onClick={()=>{
-              setSelectedCategory('')
               setSelectedRegion('')
               navigate('/')
             }}>
@@ -85,7 +78,7 @@ return (
                       <li>관리자</li>
                       <Link to="/add">관리자페이지</Link>
                       <Link to={`/myPage/${userId}`}>마이페이지</Link>
-                      <Link to="/">로그아웃</Link>
+                      <Link to={'/'} onClick={onLogout}>로그아웃</Link>
                     </>
                   ) : (
                     <>
