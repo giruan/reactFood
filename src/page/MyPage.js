@@ -106,7 +106,7 @@ const handleDelete = (e) => {
 
   return(
     <>
-      <header>
+      <header className="">
         <div className="header_login">
           <Link to="/">
             <img src="/image/logo.PNG" alt="다이닝코드"></img>
@@ -114,7 +114,7 @@ const handleDelete = (e) => {
         </div>
       </header>
 
-<section className="sec row d-flex justify-content-center">
+<section className="mySec row d-flex justify-content-center">
       <div className="col-1 leftBar">
         <ul>
           <li><Link to={`/editPw/${member.userId}`}>비밀번호변경</Link></li>

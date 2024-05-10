@@ -107,7 +107,7 @@ function Visual(props){
 
 
 return(
-  <section className="visual">
+  <section className="mainVisual">
         <div className="select">
           {userId ? <p>{name} 님을 위한</p> : <p>회원님을 위한</p>}
           <h1>추천 맛집</h1>

@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom'; // useLocation 가져오기
 import SearchPage from '../component/SearchPage';
-import Header from '../component/Header';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Map from './Map';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+// import container from 'react-bootstrap/Container';
+// import row from 'react-bootstrap/Row';
+// import col from 'react-bootstrap/Col';
 import '../styles/Search.css'
 
 
@@ -18,13 +17,12 @@ function Search() {
   const searchParams = new URLSearchParams(location.search);
   const keyword = searchParams.get('keyword');
   const region = searchParams.get('region');
-  console.log('params : ', keyword);
-  console.log('params : ', region);
 
   // 가게 상태
   const [shops, setShops] = useState([]);
 
   const fetchSearchResults = async () => {
+    
     try {
       // API 호출 등의 로직으로 검색 결과를 가져옴
       if(region && keyword){
@@ -46,7 +44,6 @@ function Search() {
         const fetchedShops = data.shops;
         setShops(fetchedShops);
       }
-      
     } catch (error) {
       console.error('Error fetching search results:', error);
     }
@@ -73,8 +70,9 @@ function Search() {
   return (
     <>
       <main className="searchBody">
-        <div className="container">
-          <section className="row justify-content-center">
+        {/* 왼쪽 컨테이너 */}
+        <div className="container-xl">
+          <section className="row justify-content-center searchSection">
             <div className="select col-3">
               {/* 소셜 */}
               <div className="sel-social">
@@ -85,28 +83,30 @@ function Search() {
                 </div>
 
                 <ul className="filterOption">
-                <li className="filterBtn">
-                  <div className="filterBtn-click d-flex">
-                    <img src="/image/plus.png" alt="+" />
-                    <p>내가좋아요한</p>
-                  </div>
-                </li>
+                  <li className="filterBtn">
+                    <div className="filterBtn-click d-flex">
+                      <img src="/image/plus.png" alt="+" />
+                      <p>내가좋아요한</p>
+                    </div>
+                  </li>
 
-                <li className="filterBtn">
-                  <div className="filterBtn-click d-flex">
-                    <img src="/image/plus.png" alt="+" />
-                    <p>나의팔로우추천</p>
-                  </div>
-                </li>
+                  <li className="filterBtn">
+                    <div className="filterBtn-click d-flex">
+                      <img src="/image/plus.png" alt="+" />
+                      <p>나의팔로우추천</p>
+                    </div>
+                  </li>
 
-                <li className="filterBtn">
-                  <div className="filterBtn-click d-flex">
-                    <img src="/image/plus.png" alt="+" />
-                    <p>다코미식가추천</p>
-                  </div>
-                </li>
+                  <li className="filterBtn">
+                    <div className="filterBtn-click d-flex">
+                      <img src="/image/plus.png" alt="+" />
+                      <p>다코미식가추천</p>
+                    </div>
+                  </li>
                 </ul>
-                <div className="bk"><hr /></div>
+                <div className="bk">
+                  <hr />
+                </div>
               </div>
 
               {/* 이용자층 */}
@@ -121,14 +121,22 @@ function Search() {
                   {/* 내용 */}
                   <div className="form-check col">
                     <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
-                    <label className="form-check-label" for="flexRadioDefault1"> 남자 </label>
+                    <label className="form-check-label" for="flexRadioDefault1">
+                      {' '}
+                      남자{' '}
+                    </label>
                   </div>
                   <div className="form-check col">
                     <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
-                    <label className="form-check-label" for="flexRadioDefault1"> 여자 </label>
+                    <label className="form-check-label" for="flexRadioDefault1">
+                      {' '}
+                      여자{' '}
+                    </label>
                   </div>
                 </ul>
-                <div className="bk"><hr /></div>
+                <div className="bk">
+                  <hr />
+                </div>
               </div>
 
               {/* 연령대 */}
@@ -136,26 +144,43 @@ function Search() {
                 {/* 내용 */}
                 <div className="form-check col-6">
                   <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault1" />
-                  <label className="form-check-label" for="flexCheckDefault"> 20대 </label>
+                  <label className="form-check-label" for="flexCheckDefault">
+                    {' '}
+                    20대{' '}
+                  </label>
                 </div>
                 <div className="form-check col-6">
                   <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault1" />
-                  <label className="form-check-label" for="flexCheckDefault"> 30대 </label>
+                  <label className="form-check-label" for="flexCheckDefault">
+                    {' '}
+                    30대{' '}
+                  </label>
                 </div>
                 <div className="form-check col-6">
                   <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault1" />
-                  <label className="form-check-label" for="flexCheckDefault"> 40대 </label>
+                  <label className="form-check-label" for="flexCheckDefault">
+                    {' '}
+                    40대{' '}
+                  </label>
                 </div>
                 <div className="form-check col-6">
                   <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault1" />
-                  <label className="form-check-label" for="flexCheckDefault"> 50대 </label>
+                  <label className="form-check-label" for="flexCheckDefault">
+                    {' '}
+                    50대{' '}
+                  </label>
                 </div>
                 <div className="form-check col-6">
                   <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault1" />
-                  <label className="form-check-label" for="flexCheckDefault"> 60대 이상 </label>
+                  <label className="form-check-label" for="flexCheckDefault">
+                    {' '}
+                    60대 이상{' '}
+                  </label>
                 </div>
               </ul>
-              <div className="bk"><hr /></div>
+              <div className="bk">
+                <hr />
+              </div>
 
               {/* 카테고리 */}
               <div className="sel-category">
@@ -170,35 +195,52 @@ function Search() {
                   <li className="filterBtn col-6">
                     <div className="form-check">
                       <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault2" />
-                      <label className="form-check-label" for="flexCheckDefault"> 한식 </label>
+                      <label className="form-check-label" for="flexCheckDefault">
+                        {' '}
+                        한식{' '}
+                      </label>
                     </div>
                   </li>
                   <li className="filterBtn col-6">
                     <div className="form-check">
                       <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault2" />
-                      <label className="form-check-label" for="flexCheckDefault"> 일식 </label>
+                      <label className="form-check-label" for="flexCheckDefault">
+                        {' '}
+                        일식{' '}
+                      </label>
                     </div>
                   </li>
                   <li className="filterBtn col-6">
                     <div className="form-check">
                       <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault2" />
-                      <label className="form-check-label" for="flexCheckDefault"> 중식 </label>
+                      <label className="form-check-label" for="flexCheckDefault">
+                        {' '}
+                        중식{' '}
+                      </label>
                     </div>
                   </li>
                   <li className="filterBtn col-6">
                     <div className="form-check">
                       <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault2" />
-                      <label className="form-check-label" for="flexCheckDefault"> 아시안 </label>
+                      <label className="form-check-label" for="flexCheckDefault">
+                        {' '}
+                        아시안{' '}
+                      </label>
                     </div>
                   </li>
                   <li className="filterBtn col-6">
                     <div className="form-check">
                       <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault2" />
-                      <label className="form-check-label" for="flexCheckDefault"> 디저트 </label>
+                      <label className="form-check-label" for="flexCheckDefault">
+                        {' '}
+                        디저트{' '}
+                      </label>
                     </div>
                   </li>
                 </ul>
-                <div className="dk"><hr /></div>
+                <div className="dk">
+                  <hr />
+                </div>
               </div>
 
               {/* 지역 */}
@@ -214,26 +256,73 @@ function Search() {
                     <span>{selectedItem}</span>
                   </Dropdown.Toggle>
                   <Dropdown.Menu className="dropdown-menu city_list" data-popper-placement="bottom-start">
-                    <Dropdown.Item onClick={() => handleItemClick('서울')}>서울</Dropdown.Item>
-                    <Dropdown.Item onClick={() => handleItemClick('경기')}>경기</Dropdown.Item>
-                    <Dropdown.Item onClick={() => handleItemClick('인천')}>인천</Dropdown.Item>
-                    <Dropdown.Item onClick={() => handleItemClick('강원')}>강원</Dropdown.Item>
-                    <Dropdown.Item onClick={() => handleItemClick('세종')}>세종</Dropdown.Item>
-                    <Dropdown.Item onClick={() => handleItemClick('부산')}>부산</Dropdown.Item>
-                    <Dropdown.Item onClick={() => handleItemClick('경남')}>경남</Dropdown.Item>
-                    <Dropdown.Item onClick={() => handleItemClick('경북')}>경북</Dropdown.Item>
-                    <Dropdown.Item onClick={() => handleItemClick('광주')}>광주</Dropdown.Item>
-                    <Dropdown.Item onClick={() => handleItemClick('전주')}>전주</Dropdown.Item>
-                    <Dropdown.Item onClick={() => handleItemClick('목포')}>목포</Dropdown.Item>
-                    <Dropdown.Item onClick={() => handleItemClick('전라')}>전라</Dropdown.Item>
+                    <Dropdown.Item className="cityDetail" onClick={() => handleItemClick('서울')}>
+                      서울
+                    </Dropdown.Item>
+                    <Dropdown.Item className="cityDetail" onClick={() => handleItemClick('경기')}>
+                      경기
+                    </Dropdown.Item>
+                    <Dropdown.Item className="cityDetail" onClick={() => handleItemClick('인천')}>
+                      인천
+                    </Dropdown.Item>
+                    <Dropdown.Item className="cityDetail" onClick={() => handleItemClick('강원')}>
+                      강원
+                    </Dropdown.Item>
+                    <Dropdown.Item className="cityDetail" onClick={() => handleItemClick('세종')}>
+                      세종
+                    </Dropdown.Item>
+                    <Dropdown.Item className="cityDetail" onClick={() => handleItemClick('부산')}>
+                      부산
+                    </Dropdown.Item>
+                    <Dropdown.Item className="cityDetail" onClick={() => handleItemClick('경남')}>
+                      경남
+                    </Dropdown.Item>
+                    <Dropdown.Item className="cityDetail" onClick={() => handleItemClick('경북')}>
+                      경북
+                    </Dropdown.Item>
+                    <Dropdown.Item className="cityDetail" onClick={() => handleItemClick('광주')}>
+                      광주
+                    </Dropdown.Item>
+                    <Dropdown.Item className="cityDetail" onClick={() => handleItemClick('전주')}>
+                      전주
+                    </Dropdown.Item>
+                    <Dropdown.Item className="cityDetail" onClick={() => handleItemClick('목포')}>
+                      목포
+                    </Dropdown.Item>
+                    <Dropdown.Item className="cityDetail" onClick={() => handleItemClick('전라')}>
+                      전라
+                    </Dropdown.Item>
                   </Dropdown.Menu>
-                </Dropdown> 
+                </Dropdown>
               </div>
             </div>
 
             <div className="col-9">
               <div className="food-shop">
-                {/* 내용 */}
+                <div className="order-wrap row">
+                  <div className="l-btn d-flex">
+                    <div className="range">
+                      <span>
+                        <img src="/image/tab.png" alt="정렬" />
+                        정렬
+                      </span>
+                    </div>
+                    <div className="order">
+                      <button className="grade">
+                        <span>평점순</span>
+                      </button>
+                      <button className="review">
+                        <span>리뷰많은순</span>
+                      </button>
+                      <button className="like">
+                        <span>좋아요많은순</span>
+                      </button>
+                      <button className="load">
+                        <span>조회순</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
                 <Map></Map>
                 <div>
                   {/* 검색 페이지 컴포넌트 */}
@@ -245,7 +334,9 @@ function Search() {
                 <div className="inner">
                   <h1>찾으시는 식당이 없으신가요?</h1>
                   <div className="request-btn">
-                    <button><a href="/add">맛집 등록 요청하기</a></button>
+                    <button>
+                      <a href="/add">맛집 등록 요청하기</a>
+                    </button>
                   </div>
                   <span>보통 당일 등록이 이루어지며, 등록 시 즉시 푸시 알림을 드립니다.</span>
                 </div>
@@ -255,7 +346,6 @@ function Search() {
         </div>
       </main>
     </>
-
   );
 }
 
