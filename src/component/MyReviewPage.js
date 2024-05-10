@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
 function MyReviewPage(props) {
-  const { myReviews, restaurantName, myReviewsImg } = props;
+  const { myReviews, restaurantName, myReviewsImg, handleDelete } = props;
 
   console.log(myReviews, restaurantName, myReviewsImg)
 
@@ -56,6 +56,10 @@ function MyReviewPage(props) {
             </div>
             <div className="createdAt">
             <p>작성일 : {formatDate(review.createdAt)}</p>
+            </div>
+            <div className='reviewEdit-Box'>
+              <Link to="#" id="delReview" onClick={(e) => handleDelete(e, review.reviewId)}>리뷰 삭제</Link>
+
             </div>
           </div>
         </li>

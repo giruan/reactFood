@@ -48,7 +48,7 @@ function ShopAdd() {
   };
 
   // 카테고리 변경 핸들러
-  const handleCategoryChange = (category) => {
+  const handleCategoryChange = (category) => { 
     setSelectedCategory(category);
   };
 
