@@ -21,7 +21,6 @@ useEffect(() => {
       const response = await axios.get(`http://localhost:9090/detail/${id}`);
       const filteredImgList = response.data.imgList.filter(img => img.userId === null && img.reviewId === null);
       const filteredreviewImgList = response.data.imgList.filter(img => img.userId && img.reviewId);
-      console.log(filteredreviewImgList)
       setData({ ...response.data, filteredImgList, filteredreviewImgList});
     } catch (error) {
       setError(error);
@@ -41,18 +40,19 @@ if (error) return <div>Error! {error.message}</div>;
     <body>
       <main className="main">
         <div className="content">
-          <DetailMain
-            restaurant={data.restaurant}
-            reviews={data.reviews}
-            filteredImgList={data.filteredImgList}
-          />
+          <DetailMain restaurant={data.restaurant} reviews={data.reviews} filteredImgList={data.filteredImgList} />
 
-          <DetailPhoto restaurant={data.restaurant} imgList={data.imgList} filteredreviewImgList={data.filteredreviewImgList} />
+          <DetailPhoto
+            restaurant={data.restaurant}
+            imgList={data.imgList}
+            filteredreviewImgList={data.filteredreviewImgList}
+          />
 
           <DetailReview
             reviews={data.reviews}
             userAvgRatings={data.userAvgRatings}
-            imgList={data.imgList} />
+            filteredreviewImgList={data.filteredreviewImgList}
+          />
         </div>
       </main>
     </body>

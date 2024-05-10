@@ -27,7 +27,7 @@ function Category(props) {
   }
 
 return(
-  <section className="main container-lg">
+  <section className="categoryMain container-lg">
         <div className="category">
           <h2 className="title">카테고리</h2>
         </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Link } from 'react-router-dom';
 
 function calculateAvgRating(reviews) {
   if (!reviews || reviews.length === 0) return 0;
@@ -29,7 +30,7 @@ function DetailMain({ restaurant, reviews, filteredImgList }) {
         <div className="infoName row justify-content-between">
           <h1 className="col">{restaurant.restaurantName}</h1>
           <div className="col infoShare d-flex">
-            <a>리뷰작성</a>
+          <Link to={`/review/${restaurant.restaurantId}`}>리뷰작성</Link>
             <button className="col-3 shareBtn">공유</button>
           </div>
         </div>

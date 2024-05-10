@@ -10,12 +10,14 @@ import EditPassword from './page/EditPassword';
 import ShopAdd from './page/ShopAdd';
 import MyReviews from './page/MyReviews';
 import Map from './page/Map';
+import ReviewWrite from './page/ReviewWrite';
 import Header from './component/Header';
 import Footer from './component/Footer';
 
 import { Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { UserProvider } from './contexts/UserContext';
+
 
 
 
@@ -79,6 +81,15 @@ function App() {
           element={
             <DefaultLayout userId={userId} name={name} onLogout={handleLogout}>
               <Detail setUserId={setUserId} setName={setName}></Detail>
+            </DefaultLayout>
+          }
+        ></Route>
+
+        <Route
+          path="/review/:restaurantId"
+          element={
+            <DefaultLayout userId={userId} name={name} onLogout={handleLogout}>
+              <ReviewWrite setUserId={setUserId} setName={setName}></ReviewWrite>
             </DefaultLayout>
           }
         ></Route>
