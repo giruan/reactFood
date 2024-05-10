@@ -57,7 +57,6 @@ function MyReviews() {
         });
     }
   };
-  
 
   return (
     <main>
