@@ -21,7 +21,7 @@ function Category(props) {
     const region = getRegionFromUrl();
     let targetUrl = `/search?keyword=${categoryName}`
     if(region){
-       targetUrl = `/search?region=${region}&keyword=${categoryName}`  
+      targetUrl = `/search?region=${region}&keyword=${categoryName}`  
     }
     navigate(targetUrl);
   }
@@ -37,15 +37,13 @@ return(
             {/* 카테고리 리스트 영역 */}
             
             {categories.map((category, index) => (
-              <div className="col" key={index} onClick={() => handleCategoryClick(category.categoryName)}>
+              <div className="col" key={index} >
                 <div className="pic">
-                  {/* <Link to={`/search?keyword=${category.categoryName}`} className='linkCategory'> */}
-                    <img src={`image/category/category${index}.jpg`} alt={category.categoryName} />
-                  {/* </Link> */}
+                    <img src={`image/category/category${index}.jpg`} alt={category.categoryName} onClick={() => handleCategoryClick(category.categoryName)}/>
                 </div>
                 <p className="restoraunt_title">{category.categoryName}</p>
               </div>
-           ))} 
+          ))}
         </div>
       </div>
     </section>
