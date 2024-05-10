@@ -17,9 +17,8 @@ function MyReviews() {
         const response = await fetch(`/myReview/${userId}`, {
           method: 'GET',
         });
-        console.log('res1', response);
+        
         const data = await response.json(); // 데이터를 기다림
-        console.log('res2', data);
         console.log('Data from server:', data);
         setMyReviews(data.myReviews);
         setRestaurantName(data.restaurantName);
