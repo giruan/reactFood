@@ -17,6 +17,7 @@ import Footer from './component/Footer';
 import { Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { UserProvider } from './contexts/UserContext';
+import MyReviewEdit from './page/MyReviewEdit';
 
 
 
