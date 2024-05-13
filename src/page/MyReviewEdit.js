@@ -88,7 +88,7 @@ function MyReviewEdit(props){
       if(response.ok){
         alert('등록성공');
         console.log(userId)
-        navigate(`/detail/${restaurantId}`)
+        navigate(`/detail/${userId}`)
       } else{
         alert('등록 실패')
       }

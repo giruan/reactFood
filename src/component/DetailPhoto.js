@@ -29,7 +29,7 @@ useEffect(() => {
         <span>의 사진</span>
       </h2>
       <div className="photo-container">
-        <div className="picGrid row row-cols-3 g-3">
+        <div className="picGridPhoto">
           {renderImgList.map((img, index) => (
             <div key={index} className="col">
               <img src={`/reviews/${img.imgUrl}`} alt={`imgId ${index}`} />
