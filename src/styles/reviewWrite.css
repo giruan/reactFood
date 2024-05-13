@@ -8,6 +8,9 @@ ul,ol,li { list-style: none; }
 
 .reviewWrite .select-star{text-align: center; margin: 0;}
 
+#imgUrl::after {
+  content: none;
+}
 /* 별점 */
 .reviewWrite .review-rating {
   display: flex;

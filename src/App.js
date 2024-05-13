@@ -72,7 +72,7 @@ function App() {
           path="/"
           element={
             <DefaultLayout userId={userId} name={name} onLogout={handleLogout}>
-              <Main setUserId={setUserId} setName={setName}></Main>
+              <Main setUserId={setUserId} setName={setName} userId={userId} name={name}></Main>
             </DefaultLayout>
           }
         ></Route>
