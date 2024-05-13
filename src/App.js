@@ -13,10 +13,12 @@ import Map from './page/Map';
 import ReviewWrite from './page/ReviewWrite';
 import Header from './component/Header';
 import Footer from './component/Footer';
+import MyReviewEdit from './page/MyReviewEdit';
 
 import { Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { UserProvider } from './contexts/UserContext';
+
 
 
 
@@ -85,11 +87,12 @@ function App() {
           }
         ></Route>
 
+         {/* 리뷰 페이지 */} 
         <Route
           path="/review/:restaurantId"
           element={
             <DefaultLayout userId={userId} name={name} onLogout={handleLogout}>
-              <ReviewWrite setUserId={setUserId} setName={setName}></ReviewWrite>
+              <ReviewWrite setUserId={setUserId} setName={setName} userId={userId}></ReviewWrite>
             </DefaultLayout>
           }
         ></Route>
@@ -103,15 +106,26 @@ function App() {
         }
         ></Route>
 
-        {/* 로그인 */}
+
+        {/* 마이 리뷰 페이지 */}
+        <Route path="/myReview/:userId" 
+        element={
+        <DefaultLayout userId={userId} name={name} onLogout={handleLogout}><MyReviews setUserId={setUserId} setName={setName}/></DefaultLayout> 
+        }> 
+        </Route>
+
+        {/* 로그인 및 회원가입 */}
         <Route path="/login" element={<Login onLoginSuccess={handleLoginSuccess}></Login>}></Route>
         <Route path="/join" element={<Join></Join>}></Route>
         <Route path="/myPage/:userId" element={<MyPage/>}></Route>
-        <Route path="/myReview/:userId" element={<MyReviews/>}></Route>
+        
+
         <Route path="/add" element={<ShopAdd></ShopAdd>}></Route>
         <Route path="/findPassword" element={<FindPassword></FindPassword>}></Route>
         <Route path='/editPw/:userId' element={<EditPassword></EditPassword>}></Route>
         <Route path='/map' element={<Map></Map>}></Route>
+
+        <Route path='/reviewEdit/:reviewId' element={<MyReviewEdit userId={userId}></MyReviewEdit>}></Route>
       </Routes>
       <Footer />
     </UserProvider>

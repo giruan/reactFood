@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom'; // useLocation 가져오기
 import SearchPage from '../component/SearchPage';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Map from './Map';
+
 import '../styles/Search.css'
 
 

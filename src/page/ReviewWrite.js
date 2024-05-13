@@ -3,27 +3,14 @@ import '../styles/reviewWrite.css';
 import { useNavigate, useParams } from "react-router-dom";
 
 
-function ReviewWrite(){
+function ReviewWrite(props){
+  const {userId} = props
   const [rating, setRating] = useState(1)
   const { restaurantId } = useParams();
-  const [userData, setUserData] = useState({ userId: ''});
   const navigate = useNavigate();
 
   console.log(restaurantId)
-  useEffect(() => {
-    fetchData(); // 컴포넌트가 마운트될 때 데이터를 가져옴
-  }, []);
-
-  async function fetchData() {
-    try {
-      const response = await fetch('/review/:restaurantId');
-      const data = await response.json();
-      setUserData(data); // 서버에서 받은 데이터를 상태에 저장
-      console.log(data)
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  }
+ 
 
   const handleRatingChange = (event) => {
     setRating(parseInt(event.target.value));
@@ -33,6 +20,7 @@ function ReviewWrite(){
     e.preventDefault();
     const formData = new FormData(e.target);
     formData.append('rating', rating);
+    
     try {
       const response = await fetch('/review',{
         method: 'POST',
@@ -41,6 +29,7 @@ function ReviewWrite(){
       console.log(response)
       if(response.ok){
         alert('등록성공');
+        console.log(userId)
         navigate(`/detail/${restaurantId}`)
       } else{
         alert('등록 실패')
@@ -58,7 +47,7 @@ function ReviewWrite(){
             <h2 className="review-title">리뷰 작성하기</h2>
             <div className="review-box">
               <form onSubmit={handleSubmit} encType="multipart/form-data">
-                <input id="userId" name="userId" value={userData.userId} type="hidden" />
+                <input id="userId" name="userId" value={userId} type="hidden" />
                 <input id="restaurantId" name="restaurantId" value={restaurantId} type="hidden" />
                 <div className="review-user"></div>
                 <h3 className="rating-title">전체적으로 어떠셨나요?</h3>

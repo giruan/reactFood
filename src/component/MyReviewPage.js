@@ -58,8 +58,9 @@ function MyReviewPage(props) {
             <p>작성일 : {formatDate(review.createdAt)}</p>
             </div>
             <div className='reviewEdit-Box'>
-              <Link to="#" id="delReview" onClick={(e) => handleDelete(e, review.reviewId)}>리뷰 삭제</Link>
-
+              <Link to={`/reviewEdit/${review.reviewId}`} id="editReview" reviewId={review.reviewId} restaurantName={restaurantName}>수정</Link>
+              <Link to="#" id="delReview" onClick={(e) => handleDelete(e, review.reviewId)}>삭제</Link>
+              
             </div>
           </div>
         </li>
