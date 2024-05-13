@@ -1,7 +1,10 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
+
+//평점 계산
 function calculateAvgRating(reviews) {
   if (!reviews || reviews.length === 0) return 0;
 
@@ -12,10 +15,32 @@ function calculateAvgRating(reviews) {
   return (totalRating / reviews.length).toFixed(1);
 }
 
+
+
 function DetailMain({ restaurant, reviews, filteredImgList }) {
+
+  const [zzim, setZzim] = useState(false);
   
-   const avgRating = calculateAvgRating(reviews);
-   const reviewCount = reviews ? reviews.length : 0;
+
+
+  const handleClick = (event) => {
+    // 클릭된 버튼의 클래스 목록에 "selected"가 포함되어 있는지 확인
+    const isSelected = event.target.classList.contains("selected");
+    
+    // "selected" 클래스가 있는지 여부에 따라 토글 동작 수행
+    if (isSelected) {
+      // "selected" 클래스가 있으면 제거
+      event.target.classList.remove("selected");
+    } else {
+      // "selected" 클래스가 없으면 추가
+      event.target.classList.add("selected");
+    }
+  }
+  
+
+  
+  const avgRating = calculateAvgRating(reviews);
+  const reviewCount = reviews ? reviews.length : 0;
   
   return (
     <div className="restaurantMain container">
@@ -28,7 +53,15 @@ function DetailMain({ restaurant, reviews, filteredImgList }) {
         </div>
 
         <div className="infoName row justify-content-between">
-          <h1 className="col">{restaurant.restaurantName}</h1>
+          <div className='detailTitle d-flex'>
+            <h1 className="col">{restaurant.restaurantName}</h1>
+            <span className="zzimBtn" onClick={handleClick}>
+              찜하기
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="64" height="64">
+  <path fill="white" stroke="black" strokeWidth="1" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+</svg>
+            </span>
+          </div>
           <div className="col infoShare d-flex">
           <Link to={`/review/${restaurant.restaurantId}`}>리뷰작성</Link>
             <button className="col-3 shareBtn">공유</button>
