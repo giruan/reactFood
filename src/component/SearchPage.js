@@ -15,30 +15,29 @@ function SearchPage(props) {
           <li key={shop.restaurantId} className="look-shop">
             <Link to={`/detail/${shop.restaurantId}`} className="search">
               <div className="shop-h row">
-                {shop.Images && shop.Images.length > 0 ? (
-                  <img src={`/test/${shop.Images[0].imgUrl}`} alt={shop.restaurantName} className="col-3 title-img" />
-                ) : (
-                  <img src="/path/to/default/image.png" alt="Default Image" className="col-3 title-img" />
-                )}
+                <img src={`/test/${shop.imgUrl}`} alt={shop.restaurantName} className="col-3 title-img" />
                 <div className="info col-9">
-                  <h3 className="shop-name">{shop.restaurantName}</h3>
+                  <h3 className="shop-name">{shop.restaurantName}  
+                    <span className="heart">
+                      <img src="/image/heart.png" alt="" />
+                    </span>
+                  </h3>
                   <p className="category">{shop.category}</p>
                   <div className="rate d-flex">
-                    <p className="score">
-                      <span>{shop.reviews}</span>점
-                    </p>
-                    <p className="user-score">
-                      <span>({shop.reviews}명)</span>
-                    </p>
-                    <p className="heart">
-                      <img src="/image/heart.png" alt="" />
-                      <span>{shop.favoriteCount}</span>
-                    </p>
+                    <div>
+                      <p className="score">
+                        <span>{shop.avg_rating ? parseFloat(shop.avg_rating).toFixed(1) : '0'}점</span>{" "}
+                        <span>({shop.review_count || 0}명)</span>
+                      </p>
+                    </div>
                   </div>
                 </div>
-                <div className="body">
-                  <span> "{shop.reviewContent}" </span>
-                </div>
+                {shop.content && (
+                  <div className="body">
+                    <span> "{shop.content}" </span>
+                  </div>
+                )}
+                
               </div>
             </Link>
           </li>
