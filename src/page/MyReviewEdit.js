@@ -51,22 +51,50 @@ function MyReviewEdit(props){
     .catch(err => console.error('Error', err))  
   },[])
 
-  console.log(previewImages)
 
-  // 이미지 미리보기
+  // // 이미지 미리보기
+  // const handleImageChange = (e) => {
+  //   const files = e.target.files;
+
+  //   if(previewImages.length > 0){
+  //     const updatedPreviewImages = [...previewImages];
+  //     Array.from(files).forEach(file => {
+  //       const reader = new FileReader();
+  //       reader.onload = () => {
+  //         updatedPreviewImages.push(reader.result);
+  //         if (updatedPreviewImages.length === files.length) {
+  //           setPreviewImages(updatedPreviewImages);
+  //         }
+  //       };
+  //       reader.readAsDataURL(file);
+  //     });
+  //   }
+  //   else {
+  //     const updatedPreviewImages = [];
+  //     Array.from(files).forEach(file => {
+  //       const reader = new FileReader();
+  //       reader.onload = () => {
+  //         updatedPreviewImages.push(reader.result);
+  //         if (updatedPreviewImages.length === files.length) {
+  //           setPreviewImages(updatedPreviewImages);
+  //         }
+  //       };
+  //       reader.readAsDataURL(file);
+  //     });
+  //   }
+  // };
   const handleImageChange = (e) => {
     const files = e.target.files;
-    const updatedPreviewImages = [...previewImages];
-
+    const updatedPreviewImages = [...previewImages]; // 미리보기 이미지 배열 복사
+  
     Array.from(files).forEach(file => {
       const reader = new FileReader();
+      console.log(file)
       reader.onload = () => {
-        updatedPreviewImages.push(reader.result);
-        if (updatedPreviewImages.length === files.length) {
-          setPreviewImages(updatedPreviewImages);
-        }
+        updatedPreviewImages.push(reader.result); // 결과를 배열에 추가
+        setPreviewImages(updatedPreviewImages); // 상태 업데이트
       };
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(file); // 파일을 Data URL로 읽기
     });
   };
 
