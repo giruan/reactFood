@@ -8,7 +8,6 @@ function MyReviews() {
   const [restaurantName, setRestaurantName] = useState([]);
   const [myReviewsImg, setMyReviewsImg] = useState([]);
   const [reviewId, setReviewId] = useState([])
-
   const { userId } = useParams();
   console.log({ userId });
 
@@ -41,6 +40,8 @@ function MyReviews() {
       console.log(reviewId);
       fetch(`/deleteReview/${reviewId}`, {
         method: 'DELETE',
+        headers : {'Content-Type' : 'application/json'},
+        body: JSON.stringify({ reviewId: reviewId })
       })
         .then((response) => response.json())
         .then((data) => {
@@ -61,7 +62,7 @@ function MyReviews() {
   return (
     <main>
       <section className="container-lg">
-        <h1 className="myReviewTitle">내 리뷰 목록</h1>
+        <h1 className="myReviewTitle">마이 리뷰</h1>
         <div className="myReview-box">
           <MyReviewPage myReviews={myReviews} restaurantName={restaurantName} myReviewsImg={myReviewsImg} handleDelete={handleDelete} />
         </div>

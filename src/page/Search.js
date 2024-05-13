@@ -3,12 +3,7 @@ import { useLocation } from 'react-router-dom'; // useLocation 가져오기
 import SearchPage from '../component/SearchPage';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Map from './Map';
-<<<<<<< HEAD
-=======
-// import container from 'react-bootstrap/Container';
-// import row from 'react-bootstrap/Row';
-// import col from 'react-bootstrap/Col';
->>>>>>> ff9364ad55ac8ead1263c23009614d14f718851d
+
 import '../styles/Search.css'
 
 
@@ -32,7 +27,6 @@ function Search() {
       if (region && keyword) {
         url = `/search?region=${encodeURIComponent(region)}&keyword=${encodeURIComponent(keyword)}`;
       }
-<<<<<<< HEAD
       
       const response = await fetch(url, { method: 'GET' });
       
@@ -40,9 +34,6 @@ function Search() {
       //const fetchedShops = data.shops;
       setShops(data.shops);
       } catch (error) {
-=======
-    } catch (error) {
->>>>>>> ff9364ad55ac8ead1263c23009614d14f718851d
       console.error('Error fetching search results:', error);
       }
   };
