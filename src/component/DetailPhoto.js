@@ -7,7 +7,7 @@ function DetailPhoto({ restaurant, imgList, filteredreviewImgList }) {
   const [renderImgList, setRenderImgList] = useState([])
   // 렌더링할 이미지 배열 생성
     
-  console.log(renderImgList)
+  
 
 
 // 컴포넌트 마운트 시 또는 renderedImgCount가 변경될 때 실행

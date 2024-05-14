@@ -25,7 +25,7 @@ a { text-decoration: none; }
 .restaurantInfo .infoName .infoShare a{margin-right: 25px;}
 .restaurantInfo .infoName h1{padding-left: 10px; font-size: 35px; font-weight: bold;}
 .restaurantInfo .infoName .shareBtn{width: 73px; height: 35px;  border-radius: 10px;font-size: 13px;}
-.restaurantInfo .infoName .zzimBtn .selected{fill:red; stroke : red}
+/* .restaurantInfo .infoName .zzimBtn .selected{fill:red; stroke : red} */
 .restaurantCategory{ margin-bottom: 10px;}
 .restaurantCategory a{color: #7e7e7e;}
 .restaurantCategory a:not(:last-child)::after {content: " |";}

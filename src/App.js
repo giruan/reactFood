@@ -82,7 +82,7 @@ function App() {
           path="/detail/:id"
           element={
             <DefaultLayout userId={userId} name={name} onLogout={handleLogout}>
-              <Detail setUserId={setUserId} setName={setName}></Detail>
+              <Detail setUserId={setUserId} setName={setName} userId={userId}></Detail>
             </DefaultLayout>
           }
         ></Route>

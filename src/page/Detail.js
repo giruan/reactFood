@@ -7,12 +7,13 @@ import DetailMain from '../component/DetailMain';
 import DetailPhoto from '../component/DetailPhoto';
 import DetailReview from '../component/DetailReview';
 
-function Detail() {
+function Detail(props) {
 
+const {userId} = props;
 const [data, setData] = useState(null);
 const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const { id } = useParams();
+const [error, setError] = useState(null);
+const { id } = useParams();
 
 useEffect(() => {
   const fetchData = async () => {
@@ -37,10 +38,10 @@ if (error) return <div>Error! {error.message}</div>;
   
   
   return (
-    <body>
+    
       <main className="main">
         <div className="content">
-          <DetailMain restaurant={data.restaurant} reviews={data.reviews} filteredImgList={data.filteredImgList} />
+          <DetailMain restaurant={data.restaurant} reviews={data.reviews} filteredImgList={data.filteredImgList} restaurantId={id} userId={userId}/>
 
           <DetailPhoto
             restaurant={data.restaurant}
@@ -55,7 +56,7 @@ if (error) return <div>Error! {error.message}</div>;
           />
         </div>
       </main>
-    </body>
+    
   );
 }
 
