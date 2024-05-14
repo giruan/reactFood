@@ -18,6 +18,7 @@ import MyReviewEdit from './page/MyReviewEdit';
 import { Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { UserProvider } from './contexts/UserContext';
+import ZzimList from './page/ZzimList';
 
 
 
@@ -106,6 +107,13 @@ function App() {
         }
         ></Route>
 
+        <Route path="/zzimList/users/:userId" 
+        element={ 
+        <DefaultLayout userId={userId} name={name} onLogout={handleLogout}>
+          <ZzimList setUserId={setUserId} setName={setName} userId = {userId}/>
+        </DefaultLayout>
+        }
+        ></Route>
 
         {/* 마이 리뷰 페이지 */}
         <Route path="/myReview/:userId" 
