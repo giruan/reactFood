@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 
 
 
 function MyReviewEdit(props){
-  const {userId, restaurantName} = props
-
+  const {userId} = props;
   const [previewImages, setPreviewImages] = useState([]);
+  const inputFileRef = useRef(null);
 
   const {reviewId} = useParams();
   const [review, setReview] = useState({
@@ -19,9 +19,7 @@ function MyReviewEdit(props){
   const [restaurant, setRestaurant] = useState({
     restaurantName : '',
   })
-  const [reviewImg, setReviewImg] = useState({
-    imgUrl : {}
-  })
+ 
  
   const [rating, setRating] = useState(1)
 
@@ -29,7 +27,20 @@ function MyReviewEdit(props){
 
   // 별점 
   const handleRatingChange = (event) => {
-    setRating(parseInt(event.target.value));
+    setReview(preReview => ({ 
+      ...preReview,
+      reviewId : reviewId,
+      rating : parseInt(event.target.value)
+    }));
+  };
+
+  // 내용
+  const handleContentChange = (event) => {
+    setReview(preReview => ({ 
+      ...preReview,
+      reviewId : reviewId,
+      content : event.target.value
+    }));
   };
 
   // 렌더링 되면 데이터 값 불러옴
@@ -43,44 +54,52 @@ function MyReviewEdit(props){
       setRestaurant({
         ...data.restaurant
       })
-      setReviewImg({
-        ...data.img
-      })
-      setPreviewImages(data.img.map(imgObject => imgObject.imgUrl))
+      setPreviewImages(data.img.map(imgObject => ({ url: imgObject.imgUrl, isFromServer: true })))
     })
     .catch(err => console.error('Error', err))  
   },[])
 
-  console.log(previewImages)
 
-  // 이미지 미리보기
   const handleImageChange = (e) => {
     const files = e.target.files;
-    const updatedPreviewImages = [...previewImages];
-
+    // 미리보기 이미지 배열 복사
+  
     Array.from(files).forEach(file => {
       const reader = new FileReader();
+      console.log(file)
+
       reader.onload = () => {
-        updatedPreviewImages.push(reader.result);
-        if (updatedPreviewImages.length === files.length) {
-          setPreviewImages(updatedPreviewImages);
-        }
+        const newImage = { url: reader.result, isFromServer: false, file: file };
+       
+        setPreviewImages(previewImages => [...previewImages, newImage]); // 상태 업데이트
       };
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(file); // 파일을 Data URL로 읽기
     });
   };
 
-  // 미리보기 이미지 초기화
+  // 미리보기 이미지와 선택 초기화
   const handleResetPreviewImages = () => {
     setPreviewImages([]);
+    if (inputFileRef.current) {
+      inputFileRef.current.value = ""; // input 파일 필드 초기화
+    }
   };
 
-  const handleSubmit = async(e) =>{
+  const handleSubmit = async (e) =>{
     e.preventDefault();
     const formData = new FormData(e.target);
-    formData.append('rating', rating);
+    formData.append('rating', review.rating);
+    formData.append('content', review.content);
+
+    previewImages.forEach((image) => {
+      if (!image.isFromServer) {
+        formData.append('imgUrl', image.file); // 'file'을 'imgUrl'로 변경. 여기서 image.file은 FileReader로 읽은 파일 데이터입니다.
+      }
+    });
+
+    console.log(formData)
     try {
-      const response = await fetch('/review',{
+      const response = await fetch(`/editReview/${review.reviewId}`,{
         method: 'PUT',
         body: formData
       })
@@ -88,7 +107,7 @@ function MyReviewEdit(props){
       if(response.ok){
         alert('등록성공');
         console.log(userId)
-        navigate(`/detail/${userId}`)
+        navigate(`/myReview/${userId}`)
       } else{
         alert('등록 실패')
       }
@@ -98,6 +117,7 @@ function MyReviewEdit(props){
   }
 
   console.log(review.reviewId)  
+  console.log(review.content)  
   console.log(restaurant.restaurantName)  
     
   return(
@@ -108,7 +128,7 @@ function MyReviewEdit(props){
             <h2 className="review-title">{restaurant.restaurantName} 리뷰 수정하기</h2>
             <div className="review-box">
 
-              <form onSubmit={handleSubmit} encType="multipart/form-data">
+              <form onSubmit={handleSubmit}>
                 <input id="userId" name="userId" value={review.userId} type="hidden" />
                 <input id="reviewId" name="reviewId" value={review.reviewId} type="hidden" />
                 <div className="review-user"></div>
@@ -139,22 +159,22 @@ function MyReviewEdit(props){
                     id="content"
                     cols="50"
                     rows="15"
-                    placeholder="음식 서비스 등의 방문경험을 작성해주세요"
                     value={review.content}
+                    placeholder="음식 서비스 등의 방문경험을 작성해주세요"
+                    onChange={handleContentChange}
                   ></textarea>
                 </div>
                 <h3>음식 및 메뉴판 사진</h3>
                 <div className="review-img">
                   <div className="upload-img">
-                    <input name="imgUrl" id="imgUrl" type="file" placeholder="리뷰사진" onChange={handleImageChange} multiple />
-                    {previewImages.length > 0 ? 
-                      previewImages.map((image, index) => (  
-                        <img key={index} src={`/reviews/${image}`} alt="Preview" style={{ width: '100px', height: '100px' }} />
-                    ))
-                    : previewImages.map((image, index) => (
-                      <img key={index} src={image} alt="Preview" style={{ width: '100px', height: '100px' }} />
-                    ))
-                  }
+                    <input ref={inputFileRef} name="imgUrl" id="imgUrl" type="file" placeholder="리뷰사진" onChange={handleImageChange} multiple />
+                    
+                    {previewImages.map((image, index) => {
+                      // 서버에서 불러온 이미지와 사용자가 선택한 이미지를 구분하여 처리
+                      const imageUrl = image.isFromServer ? `/reviews/${image.url}` : image.url;
+                      return <img key={index} src={imageUrl} alt="Preview" style={{ width: '100px', height: '100px' }} />;
+                    })}
+                  
                   </div>
                 </div>
                 <div className="review-btn" id="reviewBtn">

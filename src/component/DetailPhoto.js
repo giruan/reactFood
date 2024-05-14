@@ -3,8 +3,8 @@ import React, { useEffect, useState } from "react";
 
 
 function DetailPhoto({ restaurant, imgList, filteredreviewImgList }) {
-  const [renderedImgCount, setRenderedImgCount] = useState(6); // 현재 렌더링된 사진 개수를 상태로 관리
-  const [renderImgList, setRenderImgList] = useState([{}])
+  const [renderedImgCount, setRenderedImgCount] = useState(9); // 현재 렌더링된 사진 개수를 상태로 관리
+  const [renderImgList, setRenderImgList] = useState([])
   // 렌더링할 이미지 배열 생성
     
   
@@ -19,7 +19,7 @@ useEffect(() => {
 
   // 사진 더보기 버튼 클릭 핸들러
   const handleMorePhotosClick = () => {
-    setRenderedImgCount((prevCount) => prevCount + 9); // 기존 렌더링된 사진 개수에 9를 더하여 상태 업데이트
+    setRenderedImgCount((prevCount) => prevCount + 6); // 기존 렌더링된 사진 개수에 6를 더하여 상태 업데이트
   };
 
   return (
@@ -29,9 +29,9 @@ useEffect(() => {
         <span>의 사진</span>
       </h2>
       <div className="photo-container">
-        <div className="picGridPhoto">
+        <div className="picGridPhoto ">
           {renderImgList.map((img, index) => (
-            <div key={index} className="col">
+            <div key={index} className="col imgCol">
               <img src={`/reviews/${img.imgUrl}`} alt={`imgId ${index}`} />
             </div>
           ))}

@@ -33,7 +33,7 @@ function Login(props){
       .then((data) => {
         if (data.exists && data.passwordCorrect) {
           props.onLoginSuccess(data.userId, data.name)
-        
+          
           alert(`로그인 되었습니다.${data.name}` );
           navigate('/')
         } else {

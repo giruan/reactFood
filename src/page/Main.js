@@ -5,7 +5,8 @@ import Category from '../component/Category';
 import '../styles/main.css';
 import Visual from '../component/Visual';
 
-function Main() {
+function Main(props) {
+  const {userId, name} = props;
   const [categories, setCategories] = useState([]);
   useEffect(() => {
     // 서버로부터 데이터를 받아오는 함수 정의
@@ -51,7 +52,7 @@ function Main() {
 
       {/* 모달창, 비쥬얼 */}
 
-      <Visual></Visual>
+      <Visual userId = {userId} name = {name}></Visual>
 
 
 
