@@ -120,6 +120,7 @@ const handleDelete = (e) => {
           <li><Link to={`/editPw/${member.userId}`}>비밀번호변경</Link></li>
           <li><Link to={`/myReview/${member.userId}`}>작성한 리뷰</Link></li>
           <li><Link to="#" id="deleteId" onClick={handleDelete}>회원탈퇴</Link></li>
+          <li><Link to={`/favorite/${member.userId}`}>찜목록</Link></li>
         </ul>
       </div>
       <div className="col-5 rightBar">

@@ -18,6 +18,42 @@ function Search() {
 
   // 가게 상태
   const [shops, setShops] = useState([]);
+  const [sortedShops, setSortedShops] = useState([]);
+
+  // 평점 내림차순
+  const sortByGrade = () => {
+    const sorted = [...shops].sort((a, b) => b.avg_rating - a.avg_rating); 
+    setSortedShops(sorted);
+    console.log(sorted)
+  };
+
+  // 리뷰 많은순
+  const sortByReviewCount  = () =>{
+    const sorted = [...shops].sort((a, b)=> b.review_count - a.review_count);
+    setSortedShops(sorted)
+  }
+
+    // 조회수 많은순
+    const sortByVisitCount  = () =>{
+      const sorted = [...shops].sort((a, b)=> b.views - a.views);
+      setSortedShops(sorted)
+    }
+
+  const handleReviewCount = async (restaurantId) => {
+    try {
+      // 해당 식당의 조회수를 증가시키는 API를 호출
+      const response = await fetch(`/increaseViews/${restaurantId}`, { method: 'POST' });
+      if (response.ok) {
+        console.log('조회수가 증가되었습니다.');
+      } else {
+        console.error('조회수 증가 실패:', response.statusText);
+      }
+    } catch (error) {
+      console.error('API 호출 오류:', error);
+    }
+  };
+  
+
 
   const fetchSearchResults = async () => {
     
@@ -43,18 +79,12 @@ function Search() {
     setSelectedItem(item);
   };
 
-  // 평점순으로 정렬하는 함수
-  const sortByGrade = (shops) => {
-    return shops.sort((a, b) => b.grade - a.grade);
-  };
 
-
-  //검색 키워드가 변경될 때마다 검색 결과를 가져오도록 useEffect 사용
   useEffect(() => {
     if (keyword) {
       fetchSearchResults();
     }
-  }, [keyword]); // keyword가 변경될 때마다 useEffect가 실행됨
+  }, [keyword, region]);
 
   return (
     <>
@@ -297,16 +327,16 @@ function Search() {
                       </span>
                     </div>
                     <div className="order">
-                      <button className="grade">
-                        <span>평점순</span>
-                      </button>
-                      <button className="review">
+                    <button className="grade" onClick={sortByGrade}>
+                      <span>평점순</span>
+                    </button>
+                      <button className="review" onClick={sortByReviewCount}>
                         <span>리뷰많은순</span>
                       </button>
                       <button className="like">
                         <span>좋아요많은순</span>
                       </button>
-                      <button className="load">
+                      <button className="load" onClick={sortByVisitCount}>
                         <span>조회순</span>
                       </button>
                     </div>
@@ -315,7 +345,7 @@ function Search() {
                 <Map></Map>
                 <div>
                   {/* 검색 페이지 컴포넌트 */}
-                  <SearchPage shops={shops} />
+                  <SearchPage shops={sortedShops.length > 0 ? sortedShops : shops} handleReviewCount={handleReviewCount} />
                 </div>
               </div>
 
