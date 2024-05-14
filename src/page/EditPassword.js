@@ -4,7 +4,9 @@ import { useParams } from "react-router-dom";
 
 function EditPassword(){
   const passwordRegex = /^(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()`])[a-z\d!@#$%^&*()`]{8,}$/;
-  
+  const [isCurrentPasswordCorrect, setIsCurrentPasswordCorrect] = useState(false);
+  const [isCurrentRePasswordCorrect, setIsCurrentRePasswordCorrect] = useState(false);
+  const [isCurrentNewPasswordCorrect, setIsCurrentNewPasswordCorrect] = useState(false);
   const {userId} = useParams()
 
   const [password, setPassword] = useState('');
@@ -28,8 +30,10 @@ function EditPassword(){
       const data = await response.json();
       if (data.exists && data.passwordCorrect) {
         setPasswordValidation('현재 비밀번호가 일치합니다.');
+        setIsCurrentPasswordCorrect(true);
       } else {
         setPasswordValidation('비밀번호가 일치하지 않습니다.');
+        setIsCurrentPasswordCorrect(false);
       }
     } catch (error) {
       console.error('Error:', error);
@@ -41,7 +45,19 @@ function EditPassword(){
   // 필요한 경우, 폼 제출 로직을 여기에 추가합니다.
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
+    if (!isCurrentPasswordCorrect) {
+      alert('현재 비밀번호가 올바르지 않습니다. 다시 입력해주세요.');
+      return;
+    }
+    else if(!isCurrentNewPasswordCorrect){
+      alert('비밀번호가 조건에 맞지 않습니다.')
+      return;
+    }
+    else if(rePassword != newPassword ){
+      alert('비밀번호가 맞지 않습니다.')
+      return;
+    }
     fetch(`/editPw/${userId}`, {
       method : 'PUT',
       headers: {
@@ -72,11 +88,12 @@ function EditPassword(){
 
     if (passwordRegex.test(newPassword)) {
       setNewPasswordValidation("사용 가능한 비밀번호입니다.");
+      setIsCurrentNewPasswordCorrect(true)
       // 여기서 추가적인 상태 변경이 필요하면 수행합니다.
     } else {
-      setNewPasswordValidation(
-        "비밀번호는 최소 8자 이상이어야 하며, 숫자, 소문자, 특수문자를 포함해야 합니다."
-      );
+      setNewPasswordValidation("비밀번호는 최소 8자 이상이어야 하며, 숫자, 소문자, 특수문자를 포함해야 합니다.");
+      setIsCurrentNewPasswordCorrect(false)
+
     }
   };
 

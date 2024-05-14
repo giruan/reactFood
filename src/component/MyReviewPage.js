@@ -21,6 +21,7 @@ function MyReviewPage(props) {
             <div className="resName">
               {restaurantName.map((res, j) => {
                 if (res.restaurantId === review.restaurantId) {
+       
                   return (
                     <h2 className="resTitle" key={j}>
                       <Link to={`/detail/${res.restaurantId}`}>{res.restaurantName}</Link>

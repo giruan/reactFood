@@ -6,12 +6,15 @@ import { useNavigate, useParams } from "react-router-dom"
 function MyReviewEdit(props){
   const {userId} = props;
   const [previewImages, setPreviewImages] = useState([]);
+
+  // 삭제할 이미지 ID를 관리하는 상태 추가
+const [deletedImages, setDeletedImages] = useState([]);
   const inputFileRef = useRef(null);
 
   const {reviewId} = useParams();
   const [review, setReview] = useState({
-    reviewId : '',
-    userId : '',
+    reviewId : reviewId,
+    userId : userId,
     restaurantId : '',
     content : '',
     rating : ''
@@ -20,26 +23,26 @@ function MyReviewEdit(props){
     restaurantName : '',
   })
  
- 
-  const [rating, setRating] = useState(1)
-
   const navigate = useNavigate();
+
+// 이미지 삭제 처리 함수
+const handleDeleteImage = (image, index) => {
+  if (image.isFromServer) {
+    // 서버에서 불러온 이미지의 경우, 삭제 목록에 추가
+    setDeletedImages(deletedImages => [...deletedImages, image.url]);
+  }
+  // 상태에서 해당 이미지 제거
+  setPreviewImages(prevImages => prevImages.filter((_, i) => i !== index));
+};
+
+
+
 
   // 별점 
   const handleRatingChange = (event) => {
     setReview(preReview => ({ 
       ...preReview,
-      reviewId : reviewId,
       rating : parseInt(event.target.value)
-    }));
-  };
-
-  // 내용
-  const handleContentChange = (event) => {
-    setReview(preReview => ({ 
-      ...preReview,
-      reviewId : reviewId,
-      content : event.target.value
     }));
   };
 
@@ -60,50 +63,58 @@ function MyReviewEdit(props){
   },[])
 
 
+
   const handleImageChange = (e) => {
     const files = e.target.files;
     // 미리보기 이미지 배열 복사
-  
     Array.from(files).forEach(file => {
       const reader = new FileReader();
-      console.log(file)
-
       reader.onload = () => {
         const newImage = { url: reader.result, isFromServer: false, file: file };
-       
         setPreviewImages(previewImages => [...previewImages, newImage]); // 상태 업데이트
       };
       reader.readAsDataURL(file); // 파일을 Data URL로 읽기
     });
   };
 
-  // 미리보기 이미지와 선택 초기화
-  const handleResetPreviewImages = () => {
-    setPreviewImages([]);
-    if (inputFileRef.current) {
-      inputFileRef.current.value = ""; // input 파일 필드 초기화
-    }
+  // // 미리보기 이미지와 선택 초기화
+  // const handleResetPreviewImages = () => {
+  //   setPreviewImages([]);
+  //   if (inputFileRef.current) {
+  //     inputFileRef.current.value = ""; // input 파일 필드 초기화
+  //   }
+  // };
+
+  // 입력값 변경
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setReview(prevState => ({
+      ...prevState,
+      [name]: value,
+    }));
   };
 
   const handleSubmit = async (e) =>{
     e.preventDefault();
-    const formData = new FormData(e.target);
-    formData.append('rating', review.rating);
-    formData.append('content', review.content);
+    const formData = new FormData();
+
+    // content가 계속 배열로 넘겨줘서 JSON으로 처리해서 문자열로 넘겨줌
+    formData.append('data', JSON.stringify({ ...review, deletedImages }));
 
     previewImages.forEach((image) => {
       if (!image.isFromServer) {
         formData.append('imgUrl', image.file); // 'file'을 'imgUrl'로 변경. 여기서 image.file은 FileReader로 읽은 파일 데이터입니다.
+        
       }
     });
 
-    console.log(formData)
+    formData.forEach((value, key)=> {console.log(key, value)})
+
     try {
       const response = await fetch(`/editReview/${review.reviewId}`,{
         method: 'PUT',
         body: formData
       })
-      console.log(response)
       if(response.ok){
         alert('등록성공');
         console.log(userId)
@@ -116,9 +127,6 @@ function MyReviewEdit(props){
     }
   }
 
-  console.log(review.reviewId)  
-  console.log(review.content)  
-  console.log(restaurant.restaurantName)  
     
   return(
     <>
@@ -161,7 +169,7 @@ function MyReviewEdit(props){
                     rows="15"
                     value={review.content}
                     placeholder="음식 서비스 등의 방문경험을 작성해주세요"
-                    onChange={handleContentChange}
+                    onChange={handleInputChange}
                   ></textarea>
                 </div>
                 <h3>음식 및 메뉴판 사진</h3>
@@ -170,9 +178,13 @@ function MyReviewEdit(props){
                     <input ref={inputFileRef} name="imgUrl" id="imgUrl" type="file" placeholder="리뷰사진" onChange={handleImageChange} multiple />
                     
                     {previewImages.map((image, index) => {
-                      // 서버에서 불러온 이미지와 사용자가 선택한 이미지를 구분하여 처리
                       const imageUrl = image.isFromServer ? `/reviews/${image.url}` : image.url;
-                      return <img key={index} src={imageUrl} alt="Preview" style={{ width: '100px', height: '100px' }} />;
+                      return (
+                        <div key={index}>
+                          <img src={imageUrl} alt="Preview" style={{ width: '100px', height: '100px' }} />
+                          <button type="button" onClick={() => handleDeleteImage(image, index)}>삭제</button>
+                        </div>
+                      );
                     })}
                   
                   </div>
@@ -181,9 +193,7 @@ function MyReviewEdit(props){
                   <button type="submit" className="write-btn">
                     작성하기
                   </button>
-                  <button type="button" className="reset-btn" onClick={handleResetPreviewImages}>
-                    이미지 초기화
-                  </button>
+                 
                 </div>
               </form>
             </div>
