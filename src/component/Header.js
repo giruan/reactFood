@@ -57,6 +57,7 @@ return (
 
           </div>
           <div className="col d-flex justify-content-center searchBar">
+
             <input
               className="search_box"
               name="keyword"
@@ -64,12 +65,13 @@ return (
               placeholder="지역,음식 또는 식당명 입력"
               value={keyword}
               onChange={(e) => setKeyword(e.target.value)}
-            />
-          <button type='submit' className='searchBtn'>검색</button>
-   
+              />
+
+              <button type='submit' className='searchBtn'>검색</button>
+              
           </div>
 
-          <div className="col-3 d-flex justify-content-end loginBar">
+          <div className="col-3 loginBar">
             <ul className="user d-flex justify-content-end">
               {userId ? (
                 <>

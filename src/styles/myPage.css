@@ -3,7 +3,10 @@ a{text-decoration: none;}
 
 .mySec{margin: 0 auto; margin-top: 50px; width: 1700px; }
 
-.mySec .leftBar{padding-top: 75px; margin-right: 10px;}
+.mySec .leftBar{padding-top: 75px; margin-right: 10px; max-width: 200px;}
+.mySec .leftBar ul{margin-left: 10%;}
+.mySec .leftBar li{margin: 10px 0;}
+
 
 .mySec .leftBar, .mySec .rightBar{
   border: 1px grey solid;

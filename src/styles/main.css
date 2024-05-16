@@ -28,7 +28,14 @@ ul,li,a{text-decoration: none; list-style: none;}
   { color: white; text-align: center;}
   .mainVisual .select p{font-size: 24px;}
   .mainVisual .select h1{font-size: 35px; margin-bottom: 30px;}
-  .mainVisual .select button{background-color: #19b7c2; width: 150px; height: 40px; border-radius: 13px; color: white; border: #19b7c2;}
+  .mainVisual .select button{
+    display: flex; justify-content: center; 
+    background-color: #19b7c2; 
+    width: 150px; height: 40px; 
+    border-radius: 13px;
+    border: none; margin: auto; 
+  }
+  .mainVisual .select button span{ color: white; margin: auto 0;}
   
   
 
@@ -103,7 +110,7 @@ ul,li,a{text-decoration: none; list-style: none;}
   padding: 20px;
   border: 1px solid #888;
   width: 550px;
-  height: 550px ;
+  height: 575px ;
 }
 
 .mainVisual .modal-content .gu{

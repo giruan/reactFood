@@ -19,7 +19,7 @@ useEffect(() => {
 
   // 사진 더보기 버튼 클릭 핸들러
   const handleMorePhotosClick = () => {
-    setRenderedImgCount((prevCount) => prevCount + 6); // 기존 렌더링된 사진 개수에 6를 더하여 상태 업데이트
+    setRenderedImgCount((prevCount) => prevCount + 9); // 기존 렌더링된 사진 개수에 6를 더하여 상태 업데이트
   };
 
   return (
