@@ -35,4 +35,4 @@ function MyZzim(){
   )
 }
 
-export default MyZzim
+export default MyZzim;

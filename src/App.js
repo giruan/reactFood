@@ -18,8 +18,8 @@ import MyReviewEdit from './page/MyReviewEdit';
 import { Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { UserProvider } from './contexts/UserContext';
-import ZzimList from './page/ZzimList';
 import Complain from './page/Complain';
+import MyZzim from './page/MyZzim';
 
 
 
@@ -111,7 +111,7 @@ function App() {
         <Route path="/zzimList/users/:userId" 
         element={ 
         <DefaultLayout userId={userId} name={name} onLogout={handleLogout}>
-          <ZzimList setUserId={setUserId} setName={setName} userId = {userId}/>
+          <MyZzim setUserId={setUserId} setName={setName} userId = {userId}/>
         </DefaultLayout>
         }
         ></Route>
