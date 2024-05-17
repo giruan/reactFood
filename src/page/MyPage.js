@@ -120,99 +120,99 @@ const handleDelete = (e) => {
         </div>
       </header>
 
-<section className="mySec">
-      <div className="leftBar">
+      <section className="mySec">
+            <div className="leftBar">
 
-        {name === "관리자" ?(
-          <>
-          <ul>
-            <li><Link to={`/zzimList/users/${member.userId}`}>찜목록</Link></li>
-            <li><Link to={`/myReview/${member.userId}`}>작성한 리뷰</Link></li>
-            <li><Link to={`/editPw/${member.userId}`}>비밀번호 변경</Link></li>
-            <li><Link to={`/complain/admin/${member.userId}`}>사용자 문의사항</Link></li>
-            <li><Link to="#" id="deleteId" onClick={handleDelete}>회원탈퇴</Link></li>
-        </ul>
-          </>
-        ):(
-          <>
-          <ul>
-            <li><Link to={`/editPw/${member.userId}`}>비밀번호변경</Link></li>
-            <li><Link to={`/myReview/${member.userId}`}>작성한 리뷰</Link></li>
-            <li><Link to="#" id="deleteId" onClick={handleDelete}>회원탈퇴</Link></li>
-            <li><Link to={`/zzimList/users/${member.userId}`}>찜목록</Link></li>
-            <li><Link to={`/complain/users/${member.userId}`}>1:1 문의 내역</Link></li>
-        </ul>
-        </>
-        )}
-        
-      </div>
-      <div className="rightBar">
-        <form action="/edit" method="post" encType="multipart/form-data">
-          <h2>내정보</h2>
-          <div className="profile-img">
-            <div className="img-edit">
-              <label htmlFor="imgUrl" style={{ cursor: 'pointer' }} className="find">사진변경</label>
-              <input id="imgUrl" name="imgUrl" type="file" accept="image/*" style={{ display: 'none' }} src={previewSrc}  onChange={handleImageChange} />
+              {name === "관리자" ?(
+                <>
+                <ul>
+                  <li><Link to={`/zzimList/users/${member.userId}`}>찜목록</Link></li>
+                  <li><Link to={`/myReview/${member.userId}`}>작성한 리뷰</Link></li>
+                  <li><Link to={`/editPw/${member.userId}`}>비밀번호 변경</Link></li>
+                  <li><Link to={`/complain/admin/${member.userId}`}>사용자 문의사항</Link></li>
+                  <li className="deleteId"><Link to="#" id="deleteId" onClick={handleDelete}>회원탈퇴</Link></li>
+              </ul>
+                </>
+              ):(
+                <>
+                <ul>
+                  <li><Link to={`/zzimList/users/${member.userId}`}>찜목록</Link></li>
+                  <li><Link to={`/myReview/${member.userId}`}>작성한 리뷰</Link></li>
+                  <li><Link to={`/editPw/${member.userId}`}>비밀번호변경</Link></li>
+                  <li><Link to={`/complain/users/${member.userId}`}>1:1 문의 내역</Link></li>
+                  <li className="deleteId"><Link to="#" id="deleteId" onClick={handleDelete}>회원탈퇴</Link></li>
+              </ul>
+              </>
+              )}
+              
             </div>
-            <div className="table">
-              <table className="input-box">
-                <tbody>
-                  <tr className="tr-id">
-                    <th>아이디</th>
-                    <td>
-                      <input id="userId" className="userId col" name="userId" value={member.userId} readOnly />
-                    </td>
-                  </tr>
-                  <tr className="tr-name">
-                    <th>이름</th>
-                    <td>
-                      <input
-                        id="name"
-                        className="name"
-                        name="name"
-                        placeholder="name"
-                        value={member.name}
-                        onChange={handleInputChange}
-                      />
-                    </td>
-                  </tr>
-                  <tr className="tr-birth">
-                    <th>생일</th>
-                    <td>
-                      <input
-                        id="birthNum"
-                        className="birthNum"
-                        name="birthNum"
-                        placeholder="birthNum"
-                        value={member.birthNum}
-                        onChange={handleInputChange}
-                      />
-                    </td>
-                  </tr>
-                  <tr className="tr-num">
-                    <th>휴대폰</th>
-                    <td>
-                      <input
-                        id="phone"
-                        className="phone"
-                        name="phone"
-                        placeholder="phone"
-                        value={member.phone}
-                        onChange={handleInputChange}
-                      />
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+            <div className="rightBar">
+              <form action="/edit" method="post" encType="multipart/form-data">
+                <h2>내정보</h2>
+                <div className="profile-img">
+                  <div className="img-edit">
+                    <label htmlFor="imgUrl" style={{ cursor: 'pointer' }} className="find">사진변경</label>
+                    <input id="imgUrl" name="imgUrl" type="file" accept="image/*" style={{ display: 'none' }} src={previewSrc}  onChange={handleImageChange} />
+                  </div>
+                </div>
+                <div className="table">
+                  <table className="input-box">
+                    <tbody>
+                      <tr className="tr-id">
+                        <th>아이디</th>
+                        <td>
+                          <input id="userId" className="userId col" name="userId" value={member.userId} readOnly />
+                        </td>
+                      </tr>
+                      <tr className="tr-name">
+                        <th>이름</th>
+                        <td>
+                          <input
+                            id="name"
+                            className="name"
+                            name="name"
+                            placeholder="name"
+                            value={member.name}
+                            onChange={handleInputChange}
+                          />
+                        </td>
+                      </tr>
+                      <tr className="tr-birth">
+                        <th>생일</th>
+                        <td>
+                          <input
+                            id="birthNum"
+                            className="birthNum"
+                            name="birthNum"
+                            placeholder="birthNum"
+                            value={member.birthNum}
+                            onChange={handleInputChange}
+                          />
+                        </td>
+                      </tr>
+                      <tr className="tr-num">
+                        <th>휴대폰</th>
+                        <td>
+                          <input
+                            id="phone"
+                            className="phone"
+                            name="phone"
+                            placeholder="phone"
+                            value={member.phone}
+                            onChange={handleInputChange}
+                          />
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div className="edit-box">
+                  <button className="edit" data-id={member.userId} onClick={handleSubmit}>
+                    변경사항저장
+                  </button>
+                </div>
+              </form>
             </div>
-            <div className="edit-box">
-              <button className="edit" data-id={member.userId} onClick={handleSubmit}>
-                변경사항저장
-              </button>
-            </div>
-            </div>
-          </form>
-        </div>
       </section>
     </>
   );
