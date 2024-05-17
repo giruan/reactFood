@@ -34,6 +34,10 @@ function MyPage(props){
 const handleSubmit = (e) => {
   e.preventDefault();
   
+  if(member.name == "관리자" || "admin" || "root" || "마스터" || "관리인"){
+    alert("사용할 수 없는 이름입니다. 다시 입력해주세요.");
+    return ;
+  }
   // formData 인스턴스 생성
   const formData = new FormData();
 
@@ -116,81 +120,39 @@ const handleDelete = (e) => {
         </div>
       </header>
 
-      <section className="mySec">
-        <div className=" leftBar">
-          {name === '관리자' ? (
-            <>
-              <ul>
-                <li>
-                  <Link to={`/editPw/${member.userId}`}>비밀번호변경</Link>
-                </li>
-                <li>
-                  <Link to={`/myReview/${member.userId}`}>작성한 리뷰</Link>
-                </li>
-                <li>
-                  <Link to={`/zzimList/users/${member.userId}`}>찜목록</Link>
-                </li>
-                <li>
-                  <Link to={`/zzimList/users/${member.userId}`}>1:1 문의 목록</Link>
-                </li>
-                <li className="deleteId">
-                  <Link to="#" id="deleteId" onClick={handleDelete}>
-                    회원탈퇴
-                  </Link>
-                </li>
-              </ul>
-            </>
-          ) : (
-            <>
-              <ul>
-                <li>
-                  <Link to={`/editPw/${member.userId}`}>비밀번호변경</Link>
-                </li>
-                <li>
-                  <Link to={`/myReview/${member.userId}`}>작성한 리뷰</Link>
-                </li>
-                <li>
-                  <Link to={`/zzimList/users/${member.userId}`}>찜목록</Link>
-                </li>
-                <li>
-                  <Link to={`/zzimList/users/${member.userId}`}>1:1 문의 내역</Link>
-                </li>
-                <li className="deleteId">
-                  <Link to="#" id="deleteId" onClick={handleDelete}>
-                    회원탈퇴
-                  </Link>
-                </li>
-              </ul>
-            </>
-          )}
-        </div>
-        <div className="rightBar">
-          <form action="/edit" method="post" encType="multipart/form-data">
-            <h2>내정보</h2>
-            <div className="profile-img">
-              <div className="img-edit">
-                <label htmlFor="imgUrl" style={{ cursor: 'pointer' }} className="find">
-                  사진변경
-                </label>
-                <input
-                  id="imgUrl"
-                  name="imgUrl"
-                  type="file"
-                  accept="image/*"
-                  style={{ display: 'none' }}
-                  src={previewSrc}
-                  onChange={handleImageChange}
-                />
-              </div>
-              {member.memImg ? (
-                <div className="person-circle">
-                  <img id="profileImage" name="profileImage" src={`/users/${member.memImg.imgUrl}`} alt="이미지변경" />
-                </div>
-              ) : (
-                <div className="person-circle">
-                  <img id="profileImage" name="profileImage" src="/test/Pic.jpg" alt="기본이미지" />
-                </div>
-              )}
+<section className="mySec">
+      <div className="leftBar">
+
+        {name === "관리자" ?(
+          <>
+          <ul>
+            <li><Link to={`/zzimList/users/${member.userId}`}>찜목록</Link></li>
+            <li><Link to={`/myReview/${member.userId}`}>작성한 리뷰</Link></li>
+            <li><Link to={`/editPw/${member.userId}`}>비밀번호 변경</Link></li>
+            <li><Link to={`/complain/admin/${member.userId}`}>사용자 문의사항</Link></li>
+            <li><Link to="#" id="deleteId" onClick={handleDelete}>회원탈퇴</Link></li>
+        </ul>
+          </>
+        ):(
+          <>
+          <ul>
+            <li><Link to={`/editPw/${member.userId}`}>비밀번호변경</Link></li>
+            <li><Link to={`/myReview/${member.userId}`}>작성한 리뷰</Link></li>
+            <li><Link to="#" id="deleteId" onClick={handleDelete}>회원탈퇴</Link></li>
+            <li><Link to={`/zzimList/users/${member.userId}`}>찜목록</Link></li>
+            <li><Link to={`/complain/users/${member.userId}`}>1:1 문의 내역</Link></li>
+        </ul>
+        </>
+        )}
+        
+      </div>
+      <div className="rightBar">
+        <form action="/edit" method="post" encType="multipart/form-data">
+          <h2>내정보</h2>
+          <div className="profile-img">
+            <div className="img-edit">
+              <label htmlFor="imgUrl" style={{ cursor: 'pointer' }} className="find">사진변경</label>
+              <input id="imgUrl" name="imgUrl" type="file" accept="image/*" style={{ display: 'none' }} src={previewSrc}  onChange={handleImageChange} />
             </div>
             <div className="table">
               <table className="input-box">
@@ -247,6 +209,7 @@ const handleDelete = (e) => {
               <button className="edit" data-id={member.userId} onClick={handleSubmit}>
                 변경사항저장
               </button>
+            </div>
             </div>
           </form>
         </div>

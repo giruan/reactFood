@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Dropdown } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import '../styles/shopAdd.css'
 
-function Complain(){
-
+function Complain(props){
+  const {userId} = props;
   const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState('카테고리'); // 선택된 카테고리 상태 설정
 
@@ -12,35 +12,34 @@ function Complain(){
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
-    formData.set('category', selectedCategory);
+    formData.append('category', selectedCategory);
   
     const restaurantName = event.target.restaurantName.value;
     const restaurantAddress = event.target.restaurantAddress.value;
   
-    // 음식점 이름과 주소 유효성 검사
-    if (!restaurantName || !restaurantAddress) {
-      alert('음식점 이름과 주소를 모두 입력하세요.');
-      return;
-    }
+    // // 음식점 이름과 주소 유효성 검사
+    // if (!restaurantName || !restaurantAddress) {
+    //   alert('음식점 이름과 주소를 모두 입력하세요.');
+    //   return;
+    // }
   
-    // 파일 업로드 유효성 검사
-    const imgUrlInput = event.target.imgUrl;
-    if (!imgUrlInput.files || imgUrlInput.files.length === 0) {
-      alert('사진을 1개 이상 등록하세요.');
-      return;
-    }
+    // // 파일 업로드 유효성 검사
+    // const imgUrlInput = event.target.imgUrl;
+    // if (!imgUrlInput.files || imgUrlInput.files.length === 0) {
+    //   alert('사진을 1개 이상 등록하세요.');
+    //   return;
+    // }
   
     try {
-      const response = await fetch('/add', {
+      const response = await fetch(`/complain/users/${userId}`, {
         method: 'POST',
         body: formData
       });
   
       if (response.ok) {
         alert('등록 성공');
-        navigate('/');
       } else {
-        alert('음식점이 존재합니다');
+        alert('오류가 발생했습니다.');
       }
     } catch (error) {
       console.error('Error adding shop:', error);
@@ -108,39 +107,22 @@ function Complain(){
                   {selectedCategory}
                 </Dropdown.Toggle>
                 <Dropdown.Menu className="dropdown-menu">
-                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('고기')}>고기</Dropdown.Item>
-                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('돈까스')}>돈까스</Dropdown.Item>
-                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('버거')}>버거</Dropdown.Item>
-                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('분식')}>분식</Dropdown.Item>
-                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('아시안')}>아시안</Dropdown.Item>
-                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('양식')}>양식</Dropdown.Item>
-                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('일식')}>일식</Dropdown.Item>
-                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('족발 • 보쌈')}>족발 • 보쌈</Dropdown.Item>
-                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('죽')}>죽</Dropdown.Item>
-                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('중식')}>중식</Dropdown.Item>
-                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('탕 • 찌개')}>탕 • 찌개</Dropdown.Item>
-                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('치킨')}>치킨</Dropdown.Item>
-                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('피자')}>피자</Dropdown.Item>
-                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('디저트')}>디저트</Dropdown.Item>
+                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('계정 관련 문의')}>계정 관련 문의</Dropdown.Item>
+                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('기술적 문제 문의')}>기술적 문제 문의</Dropdown.Item>
+                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('제품/서비스 관련 문의')}>제품/서비스 관련 문의</Dropdown.Item>
+                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('맛집 요청 및 피드백')}>맛집 요청 및 피드백</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             </div>
 
-
-
-
-
+            <div className="addItem">
+              <strong>제목</strong>
+              <input name="callNumber" id="callNumber" type="text" placeholder="제목을 적어주세요."></input>
+            </div>  
 
             <div className="addItem">
-              <strong>음식점 이름</strong>
-              <input name="restaurantName" id="restaurantName" type="text" placeholder="음식점 이름" />
-            </div>
-           
-           
-            
-            <div className="addItem">
-              <strong>건의사항</strong>
-              <textarea name="callNumber" id="callNumber" type="text" placeholder="전화 번호"></textarea>
+              <strong>내용</strong>
+              <textarea name="callNumber" id="callNumber" type="text" placeholder="내용을 적어주세요."></textarea>
             </div>
 
             <div className="addItem row align-items-center">
@@ -153,12 +135,13 @@ function Complain(){
             </div>
 
             <div className="addBtn row">
-              <button type="reset" className="btn btn-dark col-4">
-                <a href="/">취소하기</a>
-              </button>
-              <button type="submit" className="btn btn-dark col-4">
+            <button type="submit" className="btn btn-dark col-4">
                 등록하기
               </button>
+              <button type="reset" className="btn btn-dark col-4">
+                <Link to="/">취소하기</Link>
+              </button>
+             
             </div>
           </div>
         </form>

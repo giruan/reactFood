@@ -1,10 +1,10 @@
-import React from 'react';
-import { useState } from 'react';
-import { Dropdown } from 'react-bootstrap'; // Bootstrap Dropdown 가져오기
-import { useNavigate } from 'react-router-dom'; // useHistory 가져오기
+import { useState } from "react";
+import { Dropdown } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import '../styles/shopAdd.css'
 
-function ShopAdd() {
+function Complain(){
+
   const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState('카테고리'); // 선택된 카테고리 상태 설정
 
@@ -12,11 +12,6 @@ function ShopAdd() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
-
-    if(selectedCategory == "카테고리"){
-      alert("카테고리를 선택해주세요.")
-      return ;
-    }
     formData.set('category', selectedCategory);
   
     const restaurantName = event.target.restaurantName.value;
@@ -100,32 +95,20 @@ function ShopAdd() {
 
       <div className="container addPage">
         <div className="addtitle">
-          <h2>식당 추가하기</h2>
+          <h2>1:1 문의</h2>
         </div>
 
         <form onSubmit={handleSubmit} encType="multipart/form-data">
           <div className="addForm">
-            <div className="addItem">
-              <strong>음식점 이름</strong>
-              <input name="restaurantName" id="restaurantName" type="text" placeholder="음식점 이름" />
-            </div>
-            <div className="addItem">
-              <strong>음식점 주소</strong>
-              <input name="restaurantAddress" id="restaurantAddress" type="text" placeholder="음식점 주소" />
-            </div>
-            <div className="addItem">
-              <strong>영업 시간</strong>
-              <input name="openTime" id="openTime" type="text" placeholder="영업 시간" />
-            </div>
-            <div className="addItem">
-              <strong>카테고리</strong>
 
+          <div className="addItem">
+              <strong>문의사항</strong>
               <Dropdown className='dropdown'>
                 <Dropdown.Toggle variant="light" className="category-dropdown">
                   {selectedCategory}
                 </Dropdown.Toggle>
                 <Dropdown.Menu className="dropdown-menu">
-                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('고기')}>고기</Dropdown.Item>
+                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('사이트 오류')}>사이트 오류</Dropdown.Item>
                   <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('돈까스')}>돈까스</Dropdown.Item>
                   <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('버거')}>버거</Dropdown.Item>
                   <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('분식')}>분식</Dropdown.Item>
@@ -143,24 +126,25 @@ function ShopAdd() {
               </Dropdown>
             </div>
 
+
+
+
+
+
             <div className="addItem">
-              <strong>매장 번호 (선택)</strong>
-              <input name="callNumber" id="callNumber" type="text" placeholder="전화 번호" />
+              <strong>음식점 이름</strong>
+              <input name="restaurantName" id="restaurantName" type="text" placeholder="음식점 이름" />
+            </div>
+           
+           
+            
+            <div className="addItem">
+              <strong>건의사항</strong>
+              <textarea name="callNumber" id="callNumber" type="text" placeholder="전화 번호"></textarea>
             </div>
 
             <div className="addItem row align-items-center">
-              <div className="col picCheck">
-                <strong className="col">가게 사진 :</strong>
-                <input
-                  name="imgUrl"
-                  id="imgUrl"
-                  type="file"
-                  className="form-control-file"
-                  onChange={previewImages}
-                  placeholder="사진"
-                  multiple
-                />
-              </div>
+              
               <div className="col-12 picPreview">{/* 여기에 미리보기 이미지들이 표시됩니다. */}</div>
             </div>
 
@@ -183,4 +167,4 @@ function ShopAdd() {
   );
 }
 
-export default ShopAdd;
+export default Complain;
