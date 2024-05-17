@@ -2,11 +2,11 @@
 ul,ol,li { list-style: none; padding: 0;} 
 a { text-decoration: none; } 
 
-.content{width: 760px; margin: 0 auto; }
-.main{padding: 20px 0 30px; background-color: #f0f0f3; } 
-.restaurantMain {padding-top: 20px; background-color: white; border-radius: 10px;} 
+.main .content{width: 760px; margin-left: 30%;}
+.main{padding: 20px 0 30px; background-color: #f0f0f3;} 
+.restaurantMain {padding-top: 20px; background-color: white; border-radius: 10px; margin: 0 auto;} 
 
-.restaurantInfo{padding: 0 20px;}
+.restaurantInfo{padding: 0 10px;}
 
 .restaurantInfo .infoImg{padding: 10px 0; margin-bottom: 25px; display: flex;}
 .restaurantInfo .infoImg img
@@ -20,19 +20,21 @@ a { text-decoration: none; }
 .restaurantInfo .infoImg img:last-child {
   margin-right: 0;
 }
-
+.restaurantInfo .infoName .detailTitle{padding-left: 5px;}
 .restaurantInfo .infoName .infoShare{justify-content: end; align-items: center;}
-.restaurantInfo .infoName .infoShare a{margin-right: 25px;}
+.restaurantInfo .infoName .infoShare .zzimBtn{margin-right: 15px; }
+.restaurantInfo .infoName .infoShare .zzimBtn svg{margin-left: 5px; width: 25px; height: 25px;}
+
 .restaurantInfo .infoName h1{padding-left: 10px; font-size: 35px; font-weight: bold;}
-.restaurantInfo .infoName .shareBtn{width: 73px; height: 35px;  border-radius: 10px;font-size: 13px;}
+.restaurantInfo .infoName .shareBtn{width: 73px; height: 32px;  border-radius: 10px;font-size: 13px;}
+.restaurantInfo .infoName .reviewBtn{width: 73px; height: 32px;  border-radius: 10px;font-size: 13px; margin-right: 10px;}
 /* .restaurantInfo .infoName .zzimBtn .selected{fill:red; stroke : red} */
 .restaurantCategory{ margin-bottom: 10px;}
 .restaurantCategory a{color: #7e7e7e;}
 .restaurantCategory a:not(:last-child)::after {content: " |";}
 
-.gradeInfo {display: flex; align-items: center; margin-bottom: 20px;}
-.gradeInfo p{margin: 0;}
-.restaurantRating .gradeInfo p{padding-left: 0;}
+.gradeInfo {display: flex; align-items: center; margin-bottom: 20px; margin-left: 0px;}
+.restaurantRating .gradeInfo p{padding-left: 0;margin: 0;}
 .restaurantRating .gradeInfo span
 {font-weight: bold; font-size: 25px; padding-left: 5px;}
 .restaurantRating .gradeRating{font-size: 25px;}
@@ -41,9 +43,10 @@ a { text-decoration: none; }
 {color: blue;}
 
 .restaurantDetail{padding: 0 12px 10px 12px; margin-bottom: 20px;}
-.restaurantDetail .address{display: flex; align-items: center;}
+.restaurantDetail .address{display: flex; align-items: center; margin-left: 0;}
 .restaurantDetail li{margin-bottom: 10px;}
-.restaurantDetail .address .btn{width: 73px; height: 32px; margin-right: 16px; font-size: 14px; padding: 0; background-color: #124886; border-color: #124886;}
+.restaurantDetail .address .btn{width: 73px; height: 32px; font-size: 14px; padding: 0; background-color: #124886; border-color: #124886; margin-left: auto;}
+.restaurantDetail svg{margin-right: 10px;}
 
 .restaurantReviewPic{ background-color: white; padding: 22px; margin-bottom: 20px; border-radius: 10px;}
 .restaurantReviewPic h2{font-size: 25px; font-weight: bold; margin-bottom: 20px;} 

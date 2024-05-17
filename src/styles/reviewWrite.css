@@ -1,10 +1,10 @@
 ul,ol,li { list-style: none; } 
 
-
 .reviewWrite h3{text-align: center;}
 .reviewWrite .review-box{display: flex; justify-content: center; align-items: center; margin: 30px 0 80px;}
 .reviewWrite .review-box form{background-color: #f0f0f3; padding: 30px 50px; border-radius: 10px;}
 .reviewWrite .review-title{text-align: center; padding-top: 20px; margin: 0;}
+
 
 .reviewWrite .select-star{text-align: center; margin: 0;}
 
@@ -55,8 +55,47 @@ ul,ol,li { list-style: none; }
   border: 1px solid black; 
   border-radius: 10px; 
 }
-.reviewWrite .upload-img{display: flex; justify-content: center; align-items: center;}
-.reviewWrite #imgUrl{padding: 10px 0; padding-left: 50px;}
+.reviewWrite .upload-img{ display: flex; justify-content: space-between; flex-wrap: wrap; }
+.reviewWrite #imgUrl{ padding: 10px 0; padding-left: 50px;}
+
+
+
+/*  */
+
+.reviewWrite .review-img-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  max-width: 427px;
+}
+
+.reviewWrite .review-img-preview > div {
+  flex: 1 0 45%; /* 한 줄에 두 개씩 배치되도록 설정 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.reviewWrite .review-img-preview img {
+  max-width: 100%;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.reviewWrite .review-img-preview button {
+  margin-top: 5px;
+  color: red;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+
+/*  */
+
 
 /* 리뷰 버튼 */
 .reviewWrite .review-btn{

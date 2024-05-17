@@ -122,6 +122,10 @@ function App() {
         <DefaultLayout userId={userId} name={name} onLogout={handleLogout}><MyReviews setUserId={setUserId} setName={setName}/></DefaultLayout> 
         }> 
         </Route>
+        {/* 내 리뷰 수정 */}
+        <Route path='/reviewEdit/:reviewId'
+          element={
+            <MyReviewEdit userId={userId}/>}></Route>
 
         {/* 로그인 및 회원가입 */}
         <Route path="/login" element={<Login onLoginSuccess={handleLoginSuccess}></Login>}></Route>
@@ -134,7 +138,6 @@ function App() {
         <Route path='/editPw/:userId' element={<EditPassword></EditPassword>}></Route>
         <Route path='/map' element={<Map></Map>}></Route>
 
-        <Route path='/reviewEdit/:reviewId' element={<MyReviewEdit userId={userId}></MyReviewEdit>}></Route>
         <Route path='/reqRestaurant' element= {<Complain></Complain>}></Route>
       </Routes>
       <Footer />

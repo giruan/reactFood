@@ -1,12 +1,19 @@
 
 a{text-decoration: none;}
 
-.mySec{margin: 0 auto; margin-top: 50px; width: 1700px; }
+.mySec{
+  margin: 50px 0 0 0;
+  display: flex;
+  justify-content: center;
+}
 
-.mySec .leftBar{padding-top: 75px; margin-right: 10px; max-width: 200px;}
+.mySec .leftBar{position: relative; padding-top: 75px; margin-right: 10px; min-width: 190px; height: 828px;}
 .mySec .leftBar ul{margin-left: 10%;}
 .mySec .leftBar li{margin: 10px 0;}
+.mySec .leftBar .deleteId{position: absolute; bottom: 0; margin-bottom: 50px;}
+.mySec .leftBar .deleteId a{color: rgb(255, 0, 0);}
 
+.mySec .rightBar{max-width: 750px;}
 
 .mySec .leftBar, .mySec .rightBar{
   border: 1px grey solid;
