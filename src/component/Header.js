@@ -73,7 +73,7 @@ return (
             <ul className="user d-flex justify-content-end">
               {userId ? (
                 <>
-                  {name === 'admin' ? (
+                  {name === '관리자' ? (
                     <>
                       <li>관리자</li>
                       <Link to="/add">관리자페이지</Link>

@@ -3,7 +3,8 @@ import { Link, useParams } from "react-router-dom";
 import '../styles/myPage.css'
 
 
-function MyPage(){
+function MyPage(props){
+  const {name} = props
   const {userId} = useParams()
   const [member, setMember] = useState({
     userId: '',
@@ -49,6 +50,7 @@ const handleSubmit = (e) => {
     .then((r) => r.text())
     .then((r) => {
       alert('회원 정보가 변경 되었습니다.')
+      sessionStorage.setItem('name', member.name);
       window.location.href = "/";
     })
     .catch((error) => {
@@ -116,12 +118,30 @@ const handleDelete = (e) => {
 
 <section className="mySec row d-flex justify-content-center">
       <div className="col-1 leftBar">
-        <ul>
-          <li><Link to={`/editPw/${member.userId}`}>비밀번호변경</Link></li>
-          <li><Link to={`/myReview/${member.userId}`}>작성한 리뷰</Link></li>
-          <li><Link to="#" id="deleteId" onClick={handleDelete}>회원탈퇴</Link></li>
-          <li><Link to={`/zzimList/users/${member.userId}`}>찜목록</Link></li>
+
+        {name === "관리자" ?(
+          <>
+          <ul>
+            <li><Link to={`/editPw/${member.userId}`}>비밀번호변경</Link></li>
+            <li><Link to={`/myReview/${member.userId}`}>작성한 리뷰</Link></li>
+            <li><Link to="#" id="deleteId" onClick={handleDelete}>회원탈퇴</Link></li>
+            <li><Link to={`/zzimList/users/${member.userId}`}>찜목록</Link></li>
+            <li><Link to={`/zzimList/users/${member.userId}`}>1:1 문의 목록</Link></li>
         </ul>
+          </>
+        ):(
+          <>
+          <ul>
+            <li><Link to={`/editPw/${member.userId}`}>비밀번호변경</Link></li>
+            <li><Link to={`/myReview/${member.userId}`}>작성한 리뷰</Link></li>
+            <li><Link to="#" id="deleteId" onClick={handleDelete}>회원탈퇴</Link></li>
+            <li><Link to={`/zzimList/users/${member.userId}`}>찜목록</Link></li>
+            <li><Link to={`/zzimList/users/${member.userId}`}>1:1 문의 내역</Link></li>
+        </ul>
+        </>
+        )}
+ 
+        
       </div>
       <div className="col-5 rightBar">
         <form action="/edit" method="post" encType="multipart/form-data">

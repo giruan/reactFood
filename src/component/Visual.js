@@ -18,6 +18,17 @@ function Visual(props){
     setIsModalOpen(false)
   }
 
+
+const handleResetRegion = () =>{
+  setSelectedCity(""); // 선택된 도시 상태 초기화
+  setSelectedGu("");   // 선택된 구 상태 초기화
+  setIsModalOpen(false)
+  window.location.href = '/'
+  
+}
+
+
+
   //도시 선택했을 때 동작
   const handleCityButtonClick = (city) => {
     setSelectedCity(city);
@@ -72,7 +83,7 @@ function Visual(props){
       
       const selectedGu = event.target.innerText;
       const selectedGuElement = document.querySelector(".selectedGu");
-      selectedGuElement.innerHTML = "선택된 지역 : " + selectedGu;
+      selectedGuElement.innerHTML = "선택된 지역 : " + selectedCity + selectedGu;
       console.log(selectedGu)
 
 
@@ -100,7 +111,7 @@ function Visual(props){
       };
     });
     
-  }, [guList]);
+  }, [guList, selectedCity]);
 
 
 
@@ -157,7 +168,7 @@ return(
             <div className="selectedGu">선택된 지역 :</div>
             <div className="row selectBtn gx-2">
               <div className="col">
-                <button onClick={closeModal}>취소</button>
+                <button onClick={handleResetRegion}>초기화</button>
               </div>
               <div className="col">
                 <button type="button" id="selectRegion">

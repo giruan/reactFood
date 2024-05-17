@@ -19,6 +19,7 @@ import { Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { UserProvider } from './contexts/UserContext';
 import ZzimList from './page/ZzimList';
+import Complain from './page/Complain';
 
 
 
@@ -38,7 +39,7 @@ function App() {
   const [name, setName] = useState('');
 
   useEffect(() => {
-    // 페이지 로드 시 localStorage에서 사용자 정보를 읽어와서 상태를 초기화
+    // 페이지 로드 시 sessionStorage에서 사용자 정보를 읽어와서 상태를 초기화
     const storedUserId = sessionStorage.getItem('userId');
     const storedName = sessionStorage.getItem('name');
     if (storedUserId && storedName) {
@@ -125,7 +126,7 @@ function App() {
         {/* 로그인 및 회원가입 */}
         <Route path="/login" element={<Login onLoginSuccess={handleLoginSuccess}></Login>}></Route>
         <Route path="/join" element={<Join></Join>}></Route>
-        <Route path="/myPage/:userId" element={<MyPage/>}></Route>
+        <Route path="/myPage/:userId" element={<MyPage name = {name}/>}></Route>
         
 
         <Route path="/add" element={<ShopAdd></ShopAdd>}></Route>
@@ -134,6 +135,7 @@ function App() {
         <Route path='/map' element={<Map></Map>}></Route>
 
         <Route path='/reviewEdit/:reviewId' element={<MyReviewEdit userId={userId}></MyReviewEdit>}></Route>
+        <Route path='/reqRestaurant' element= {<Complain></Complain>}></Route>
       </Routes>
       <Footer />
     </UserProvider>

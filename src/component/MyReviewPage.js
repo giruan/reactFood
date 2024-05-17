@@ -61,7 +61,6 @@ function MyReviewPage(props) {
             <div className='reviewEdit-Box'>
               <Link to={`/reviewEdit/${review.reviewId}`} id="editReview" reviewId={review.reviewId} restaurantName={restaurantName}>수정</Link>
               <Link to="#" id="delReview" onClick={(e) => handleDelete(e, review.reviewId)}>삭제</Link>
-              
             </div>
           </div>
         </li>
