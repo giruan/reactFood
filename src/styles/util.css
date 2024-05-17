@@ -16,6 +16,7 @@ a{color: black;}
 .header .logo{margin: 0;}
 .header .logo .logo-img{width: 100%; height: 70%; }
 .header .search_box{
+  position: relative;
   width: 80%; height: 40px;
   padding: 20px; font-size: 14px;
   background-color: rgb(245, 245, 245);
@@ -23,18 +24,16 @@ a{color: black;}
   border: none;
 }
 
-.header .searchBar #searchBtn{ font-size: 25px;}
-
-.header #searchBtn{border: 0; background-color: transparent; font-size: 20px;}
-
-.header .searchBtn{border: 1px solid black;}
+.header .searchBtn{border: 0; background-color: transparent; font-size: 20px; position: absolute; right: 40%; top: 43px; font-size: 18px;}
 
 .header .loginBar{margin-left: 50px;}
 
 
 /* 유저 버튼 */
 
-.header .user li{padding: 0 10px;}
+.header .user li,
+.header .user a
+{padding: 0 10px;}
 
 
 /* nav */

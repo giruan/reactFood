@@ -1,22 +1,22 @@
-import { useState,useEffect } from "react"
-import axios from "axios"
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
-function Visual(props){
-  const {userId, name} = props
-  
-  const [isModalOpen, setIsModalOpen] = useState(false)
-  const [selectedCity, setSelectedCity] = useState(""); // 선택된 도시 상태 추가
-   // 구 목록 상태 추가
-   const [guList, setGuList] = useState([]);
-   const [selectedGu, setSelectedGu] = useState(""); // 
+function Visual(props) {
+  const { userId, name } = props;
 
-  const openModal = () =>{
-    setIsModalOpen(true)
-  }
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedCity, setSelectedCity] = useState(''); // 선택된 도시 상태 추가
+  // 구 목록 상태 추가
+  const [guList, setGuList] = useState([]);
+  const [selectedGu, setSelectedGu] = useState(''); //
 
-  const closeModal = () =>{
-    setIsModalOpen(false)
-  }
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
 
 const handleResetRegion = () =>{
@@ -43,41 +43,38 @@ const handleResetRegion = () =>{
       });
   };
 
-
   useEffect(() => {
-    const cityButtons = document.querySelectorAll(".selectCity");
+    const cityButtons = document.querySelectorAll('.selectCity');
     const handleClick = (event) => {
       cityButtons.forEach((btn) => {
-        btn.classList.remove("selected");
+        btn.classList.remove('selected');
       });
-      event.target.classList.add("selected");
+      event.target.classList.add('selected');
       const city = event.target.innerText;
       setSelectedCity(city);
     };
-  
+
     cityButtons.forEach((button) => {
-      button.addEventListener("click", handleClick);
+      button.addEventListener('click', handleClick);
       return () => {
-        button.removeEventListener("click", handleClick);
+        button.removeEventListener('click', handleClick);
       };
     });
-  
+
     // Cleanup 함수를 반환하여 이벤트 리스너를 제거합니다.
     return () => {
       cityButtons.forEach((button) => {
-        button.removeEventListener("click", handleClick);
+        button.removeEventListener('click', handleClick);
       });
     };
   }, [isModalOpen]);
-  
-
 
   useEffect(() => {
-    const guButtons = document.querySelectorAll(".selectGu");
+    const guButtons = document.querySelectorAll('.selectGu');
     const handleClick = (event) => {
       // 선택된 버튼에 "selected" 클래스 추가
       guButtons.forEach((btn) => {
-        btn.classList.remove("selected");
+        btn.classList.remove('selected');
       });
       event.target.classList.add("selected");
       
@@ -86,50 +83,48 @@ const handleResetRegion = () =>{
       selectedGuElement.innerHTML = "선택된 지역 : " + selectedCity + selectedGu;
       console.log(selectedGu)
 
-
       //선택 버튼 동작
       const handleSelectRegionClick = () => {
         const currentUrl = new URL(window.location.href);
-        currentUrl.searchParams.set("region", selectedGu);//파라미터에 region=? 으로 지정
+        currentUrl.searchParams.set('region', selectedGu); //파라미터에 region=? 으로 지정
         window.location.href = currentUrl.href;
       };
-    
-      const selectRegionButton = document.getElementById("selectRegion");//선택버튼 요소 갖고옴
+
+      const selectRegionButton = document.getElementById('selectRegion'); //선택버튼 요소 갖고옴
       if (selectRegionButton) {
-        selectRegionButton.addEventListener("click", handleSelectRegionClick);
+        selectRegionButton.addEventListener('click', handleSelectRegionClick);
         return () => {
-          selectRegionButton.removeEventListener("click", handleSelectRegionClick);
+          selectRegionButton.removeEventListener('click', handleSelectRegionClick);
         };
       }
-
     };
-  
+
     guButtons.forEach((button) => {
-      button.addEventListener("click", handleClick);
+      button.addEventListener('click', handleClick);
       return () => {
-        button.removeEventListener("click", handleClick);
+        button.removeEventListener('click', handleClick);
       };
     });
     
   }, [guList, selectedCity]);
 
+  return (
+    <section className="mainVisual">
+      <div className="select">
+        {userId ? <p>{name} 님을 위한</p> : <p>회원님을 위한</p>}
+        <h1>추천 맛집</h1>
+        <button type="button" id="openModal" onClick={openModal}>
+          <span>지역 선택</span>
+        </button>
+      </div>
 
-
-
-
-return(
-  <section className="mainVisual">
-        <div className="select">
-          {userId ? <p>{name} 님을 위한</p> : <p>회원님을 위한</p>}
-          <h1>추천 맛집</h1>
-          <button type="button" id="openModal" onClick={openModal}>지역 선택</button>
-        </div>
-        
-        {isModalOpen && (
-          <div id="myModal" className="modal container-fluid">
+      {isModalOpen && (
+        <div id="myModal" className="modal container-fluid">
           <div className="modal-content">
-          <span className="close" onClick={closeModal}>&times;</span>
-          <h2>지역 선택</h2>
+            <span className="close" onClick={closeModal}>
+              &times;
+            </span>
+            <h2>지역 선택</h2>
 
             <div className="table">
               <div className="region_option row">
@@ -140,17 +135,17 @@ return(
                 <div className="col-6">
                   <ul className="city">
                     <li>
-                      <button type="radio" className="selectCity" onClick={()=> handleCityButtonClick("서울")}>
+                      <button type="radio" className="selectCity" onClick={() => handleCityButtonClick('서울')}>
                         서울
                       </button>
                     </li>
                     <li>
-                      <button type="radio" className="selectCity" onClick={()=> handleCityButtonClick("경기")}>
+                      <button type="radio" className="selectCity" onClick={() => handleCityButtonClick('경기')}>
                         경기
-                      </button> 
+                      </button>
                     </li>
                     <li>
-                      <button type="radio" className="selectCity" onClick={()=> handleCityButtonClick("인천")}>
+                      <button type="radio" className="selectCity" onClick={() => handleCityButtonClick('인천')}>
                         인천
                       </button>
                     </li>
@@ -158,8 +153,12 @@ return(
                 </div>
                 <div className="col">
                   <ul className="gu">
-                    {guList.map((gu,index)=>(
-                      <li key={index}><button type= "radio" className="selectGu">{gu.gu}</button></li>
+                    {guList.map((gu, index) => (
+                      <li key={index}>
+                        <button type="radio" className="selectGu">
+                          {gu.gu}
+                        </button>
+                      </li>
                     ))}
                   </ul>
                 </div>
@@ -178,9 +177,9 @@ return(
             </div>
           </div>
         </div>
-        )}
-  </section>
-)
+      )}
+    </section>
+  );
 }
 
-export default Visual
+export default Visual;
