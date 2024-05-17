@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import MyZzimPage from "../component/MyZzimPage";
 import { useParams } from "react-router-dom";
+import '../styles/myZzim.css'
 
 
 function MyZzim(){
@@ -29,9 +30,16 @@ function MyZzim(){
   }, [userId]);
 
   return(
-    <>
-    <MyZzimPage myFavorites={myFavorites} restaurantName={restaurantName} restaurantImg={restaurantImg}></MyZzimPage>
-    </>
+    <main>
+      <section className="container-lg z-c">
+        <div className="zzim">
+          <h1 className="zzimTitle">관심목록</h1>
+          <div className="zzimContent">
+            <MyZzimPage myFavorites={myFavorites} restaurantName={restaurantName} restaurantImg={restaurantImg}></MyZzimPage> 
+          </div>
+        </div>
+      </section>
+    </main>
   )
 }
 
