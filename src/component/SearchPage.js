@@ -31,11 +31,11 @@ function SearchPage(props) {
                     </div>
                   </div>
                 </div>
-                {shop.content && (
+                {/* {shop.content && (
                   <div className="body">
                     <span> "{shop.content}" </span>
                   </div>
-                )}
+                )} */}
               </div>
             </Link>
           </li>

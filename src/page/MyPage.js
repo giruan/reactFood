@@ -110,7 +110,7 @@ const handleDelete = (e) => {
 };
 
 
-  return(
+  return (
     <>
       <header className="">
         <div className="header_login">
@@ -120,8 +120,8 @@ const handleDelete = (e) => {
         </div>
       </header>
 
-<section className="mySec row d-flex justify-content-center">
-      <div className="col-1 leftBar">
+<section className="mySec">
+      <div className="leftBar">
 
         {name === "관리자" ?(
           <>
@@ -144,10 +144,9 @@ const handleDelete = (e) => {
         </ul>
         </>
         )}
- 
         
       </div>
-      <div className="col-5 rightBar">
+      <div className="rightBar">
         <form action="/edit" method="post" encType="multipart/form-data">
           <h2>내정보</h2>
           <div className="profile-img">
@@ -155,57 +154,68 @@ const handleDelete = (e) => {
               <label htmlFor="imgUrl" style={{ cursor: 'pointer' }} className="find">사진변경</label>
               <input id="imgUrl" name="imgUrl" type="file" accept="image/*" style={{ display: 'none' }} src={previewSrc}  onChange={handleImageChange} />
             </div>
-            {member.memImg ? (
-              <div className="person-circle">
-                <img id="profileImage" name="profileImage" src={`/users/${member.memImg.imgUrl}`} alt="이미지변경" />
-              </div>
-            ) : (
-              <div className="person-circle">
-                <img id="profileImage" name="profileImage" src="/test/Pic.jpg" alt="기본이미지" />
-              </div>
-            )}
-          </div>
-          <div className="table">
-        <table className="input-box">
-          <tbody>
-            <tr className="tr-id">
-              <th>아이디</th>
-              <td>
-                <input id="userId" className="userId col" name="userId" value={member.userId} readOnly/>
-              </td>
-            </tr>
-            <tr className="tr-name">
-              <th>이름</th>
-              <td>
-                <input id="name" className="name" name="name" placeholder="name" value={member.name} onChange={handleInputChange}  />
-              </td>
-            </tr>
-            <tr className="tr-birth">
-              <th>생일</th>
-              <td>
-                <input id="birthNum" className="birthNum" name="birthNum" placeholder="birthNum" value={member.birthNum} onChange={handleInputChange}  />
-              </td>
-            </tr>
-            <tr className="tr-num">
-              <th>휴대폰</th>
-              <td>
-                <input id="phone" className="phone" name="phone" placeholder="phone" value={member.phone} onChange={handleInputChange} />
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div className="edit-box">
-        <button className="edit" data-id={member.userId} onClick={handleSubmit}>변경사항저장</button>
-      </div>
-        </form> 
-      </div>
-    </section>
-
-
-
+            <div className="table">
+              <table className="input-box">
+                <tbody>
+                  <tr className="tr-id">
+                    <th>아이디</th>
+                    <td>
+                      <input id="userId" className="userId col" name="userId" value={member.userId} readOnly />
+                    </td>
+                  </tr>
+                  <tr className="tr-name">
+                    <th>이름</th>
+                    <td>
+                      <input
+                        id="name"
+                        className="name"
+                        name="name"
+                        placeholder="name"
+                        value={member.name}
+                        onChange={handleInputChange}
+                      />
+                    </td>
+                  </tr>
+                  <tr className="tr-birth">
+                    <th>생일</th>
+                    <td>
+                      <input
+                        id="birthNum"
+                        className="birthNum"
+                        name="birthNum"
+                        placeholder="birthNum"
+                        value={member.birthNum}
+                        onChange={handleInputChange}
+                      />
+                    </td>
+                  </tr>
+                  <tr className="tr-num">
+                    <th>휴대폰</th>
+                    <td>
+                      <input
+                        id="phone"
+                        className="phone"
+                        name="phone"
+                        placeholder="phone"
+                        value={member.phone}
+                        onChange={handleInputChange}
+                      />
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div className="edit-box">
+              <button className="edit" data-id={member.userId} onClick={handleSubmit}>
+                변경사항저장
+              </button>
+            </div>
+            </div>
+          </form>
+        </div>
+      </section>
     </>
-  )
+  );
 }
 
 export default MyPage;

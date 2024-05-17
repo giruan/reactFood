@@ -136,7 +136,7 @@ const handleDeleteImage = (image, index) => {
             <h2 className="review-title">{restaurant.restaurantName} 리뷰 수정하기</h2>
             <div className="review-box">
 
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit} className="formContainer">
                 <input id="userId" name="userId" value={review.userId} type="hidden" />
                 <input id="reviewId" name="reviewId" value={review.reviewId} type="hidden" />
                 <div className="review-user"></div>

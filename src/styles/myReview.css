@@ -34,7 +34,8 @@ a{text-decoration: none; color: black;}
 } 
 
 /* 리뷰내용 */
-.content p{
+.content{margin: 0;}
+.content p{ 
   font-size: 18px;
   font-family: inherit;
   padding-left: 10px;
@@ -46,6 +47,9 @@ a{text-decoration: none; color: black;}
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  margin: 0 auto;
+  max-width: 1100px;
 }
 
 /* 리뷰 아이템을 감싸는 컨테이너를 스타일링합니다. */
@@ -56,6 +60,8 @@ a{text-decoration: none; color: black;}
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
 }
+
+
 
 /* 리뷰 제목을 스타일링합니다. */
 .resTitle {
@@ -87,8 +93,8 @@ a{text-decoration: none; color: black;}
   }
 }
 
-.review-img{}
-
 .review-img-preview{display: flex; flex-wrap: wrap; margin-top: 20px;}
 .review-img-preview div{width: 25%;}
 .review-img-preview button{display: flex; border: none; margin-left: 10px;}
+
+.reviewEdit-Box a{margin-right: 10px; font-size: 18px;}
