@@ -126,13 +126,9 @@ const handleDelete = (e) => {
         {name === "관리자" ?(
           <>
           <ul>
-          <li><Link to={`/zzimList/users/${member.userId}`}>찜목록</Link></li>
+            <li><Link to={`/zzimList/users/${member.userId}`}>찜목록</Link></li>
             <li><Link to={`/myReview/${member.userId}`}>작성한 리뷰</Link></li>
-            
             <li><Link to={`/editPw/${member.userId}`}>비밀번호 변경</Link></li>
-            
-            
-            
             <li><Link to={`/complain/admin/${member.userId}`}>사용자 문의사항</Link></li>
             <li><Link to="#" id="deleteId" onClick={handleDelete}>회원탈퇴</Link></li>
         </ul>
