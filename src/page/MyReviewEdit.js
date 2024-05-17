@@ -176,17 +176,17 @@ const handleDeleteImage = (image, index) => {
                 <div className="review-img">
                   <div className="upload-img">
                     <input ref={inputFileRef} name="imgUrl" id="imgUrl" type="file" placeholder="리뷰사진" onChange={handleImageChange} multiple />
-                    
-                    {previewImages.map((image, index) => {
-                      const imageUrl = image.isFromServer ? `/reviews/${image.url}` : image.url;
-                      return (
-                        <div key={index}>
-                          <img src={imageUrl} alt="Preview" style={{ width: '100px', height: '100px' }} />
-                          <button type="button" onClick={() => handleDeleteImage(image, index)}>삭제</button>
-                        </div>
-                      );
-                    })}
-                  
+                  </div>
+                  <div className="review-img-preview">
+                  {previewImages.map((image, index) => {
+                    const imageUrl = image.isFromServer ? `/reviews/${image.url}` : image.url;
+                    return (
+                      <div key={index}>
+                        <img src={imageUrl} alt="Preview" style={{ width: '100px', height: '100px' }} />
+                        <button type="button" onClick={() => handleDeleteImage(image, index)}>삭제</button>
+                      </div>
+                    );
+                  })}
                   </div>
                 </div>
                 <div className="review-btn" id="reviewBtn">

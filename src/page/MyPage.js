@@ -115,7 +115,7 @@ const handleDelete = (e) => {
       </header>
 
 <section className="mySec row d-flex justify-content-center">
-      <div className="col-1 leftBar">
+      <div className="col-2 leftBar">
         <ul>
           <li><Link to={`/editPw/${member.userId}`}>비밀번호변경</Link></li>
           <li><Link to={`/myReview/${member.userId}`}>작성한 리뷰</Link></li>

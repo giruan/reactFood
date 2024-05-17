@@ -86,3 +86,9 @@ a{text-decoration: none; color: black;}
     text-align: center;
   }
 }
+
+.review-img{}
+
+.review-img-preview{display: flex; flex-wrap: wrap; margin-top: 20px;}
+.review-img-preview div{width: 25%;}
+.review-img-preview button{display: flex; border: none; margin-left: 10px;}
