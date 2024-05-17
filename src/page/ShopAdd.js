@@ -12,6 +12,11 @@ function ShopAdd() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
+
+    if(selectedCategory == "카테고리"){
+      alert("카테고리를 선택해주세요.")
+      return ;
+    }
     formData.set('category', selectedCategory);
   
     const restaurantName = event.target.restaurantName.value;
@@ -139,7 +144,7 @@ function ShopAdd() {
             </div>
 
             <div className="addItem">
-              <strong>매장 번호</strong>
+              <strong>매장 번호 (선택)</strong>
               <input name="callNumber" id="callNumber" type="text" placeholder="전화 번호" />
             </div>
 

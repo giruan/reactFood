@@ -75,11 +75,10 @@ return (
             <ul className="user d-flex justify-content-end">
               {userId ? (
                 <>
-                  {name === '관리자' ? (
+                  {name === '관리자' || "root" || "admin" ?  (
                     <>
                       <li>관리자</li>
-                      <Link to="/add">관리자페이지</Link>
-                      <Link to={`/myPage/${userId}`}>마이페이지</Link>
+                      <Link to={`/myPage/${userId}`}>관리자페이지</Link>
                       <Link to={'/'} onClick={onLogout}>로그아웃</Link>
                     </>
                   ) : (

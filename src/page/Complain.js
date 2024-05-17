@@ -108,7 +108,7 @@ function Complain(){
                   {selectedCategory}
                 </Dropdown.Toggle>
                 <Dropdown.Menu className="dropdown-menu">
-                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('고기')}>고기</Dropdown.Item>
+                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('사이트 오류')}>사이트 오류</Dropdown.Item>
                   <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('돈까스')}>돈까스</Dropdown.Item>
                   <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('버거')}>버거</Dropdown.Item>
                   <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('분식')}>분식</Dropdown.Item>

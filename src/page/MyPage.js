@@ -34,6 +34,10 @@ function MyPage(props){
 const handleSubmit = (e) => {
   e.preventDefault();
   
+  if(member.name == "관리자" || "admin" || "root" || "마스터" || "관리인"){
+    alert("사용할 수 없는 이름입니다. 다시 입력해주세요.");
+    return ;
+  }
   // formData 인스턴스 생성
   const formData = new FormData();
 
@@ -122,11 +126,15 @@ const handleDelete = (e) => {
         {name === "관리자" ?(
           <>
           <ul>
-            <li><Link to={`/editPw/${member.userId}`}>비밀번호변경</Link></li>
+          <li><Link to={`/zzimList/users/${member.userId}`}>찜목록</Link></li>
             <li><Link to={`/myReview/${member.userId}`}>작성한 리뷰</Link></li>
+            
+            <li><Link to={`/editPw/${member.userId}`}>비밀번호 변경</Link></li>
+            
+            
+            
+            <li><Link to={`/complain/admin/${member.userId}`}>사용자 문의사항</Link></li>
             <li><Link to="#" id="deleteId" onClick={handleDelete}>회원탈퇴</Link></li>
-            <li><Link to={`/zzimList/users/${member.userId}`}>찜목록</Link></li>
-            <li><Link to={`/zzimList/users/${member.userId}`}>1:1 문의 목록</Link></li>
         </ul>
           </>
         ):(
@@ -136,7 +144,7 @@ const handleDelete = (e) => {
             <li><Link to={`/myReview/${member.userId}`}>작성한 리뷰</Link></li>
             <li><Link to="#" id="deleteId" onClick={handleDelete}>회원탈퇴</Link></li>
             <li><Link to={`/zzimList/users/${member.userId}`}>찜목록</Link></li>
-            <li><Link to={`/zzimList/users/${member.userId}`}>1:1 문의 내역</Link></li>
+            <li><Link to={`/complain/users/${member.userId}`}>1:1 문의 내역</Link></li>
         </ul>
         </>
         )}

@@ -135,7 +135,7 @@ function App() {
         <Route path='/map' element={<Map></Map>}></Route>
 
         <Route path='/reviewEdit/:reviewId' element={<MyReviewEdit userId={userId}></MyReviewEdit>}></Route>
-        <Route path='/reqRestaurant' element= {<Complain></Complain>}></Route>
+        <Route path='/complain/admin/:userId' element= {<Complain></Complain>}></Route>
       </Routes>
       <Footer />
     </UserProvider>
