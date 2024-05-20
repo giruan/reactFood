@@ -1,4 +1,4 @@
-import { useState,} from "react";
+import { useState } from "react";
 import '../styles/reviewWrite.css';
 import { useNavigate, useParams } from "react-router-dom";
 

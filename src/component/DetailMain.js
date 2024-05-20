@@ -23,52 +23,78 @@ function calculateAvgRating(reviews) {
 
 
 function DetailMain({ restaurant, reviews, filteredImgList ,restaurantId,userId}) {
-
   const [zzim, setZzim] = useState(false);
-  
-  // console.log(restaurantId)
-  // console.log(userId)
 
-  useEffect(()=>{
+  const [selectedImgUrl, setSelectedImgUrl] = useState(null);
+  const [modalStyle, setModalStyle] = useState({});
+
+  useEffect(() => {
     fetch(`/zzim/users/${userId}/restaurantId/${restaurantId}`)
-    .then(response=> response.json())
-    .then(data=>{
-      setZzim(data.zzim);
-      console.log(data)
-    })
-  },[])
+      .then((response) => response.json())
+      .then((data) => {
+        setZzim(data.zzim);
+        console.log(data);
+      });
+  }, []);
 
   const handleClick = (e) => {
     const currentZzim = !zzim;
     setZzim(currentZzim);
-  
 
-  fetch(`/zzim/users/${userId}/restaurantId/${restaurantId}`, {
-    method: currentZzim ? 'POST' : 'DELETE',
-  })
-    .then(response => response.json())
-    .then(data => {
-      if (!data.success) {
-        setZzim(!zzim);
-      }
+    fetch(`/zzim/users/${userId}/restaurantId/${restaurantId}`, {
+      method: currentZzim ? 'POST' : 'DELETE',
     })
-    .catch(error => {
-      console.error('찜 상태 업데이트 중 오류 발생:', error);
-      setZzim(!zzim);
-    });
-  }
+      .then((response) => response.json())
+      .then((data) => {
+        if (!data.success) {
+          setZzim(!zzim);
+        }
+      })
+      .catch((error) => {
+        console.error('찜 상태 업데이트 중 오류 발생:', error);
+        setZzim(!zzim);
+      });
+  };
 
-  
+  // 사진 클릭 이벤트 핸들러
+  const handlePhotoClick = (imgUrl) => {
+    setSelectedImgUrl(imgUrl);
+
+    // 이미지가 로드된 후, 이미지의 크기를 측정하여 모달 창에 적용
+    const img = new Image();
+    img.src = imgUrl;
+    img.onload = () => {
+      setModalStyle({ maxHeight: `${img.height}px` });
+    };
+  };
+
+  const closeModal = () => {
+    setSelectedImgUrl(null);
+  };
+
+  const handleModalOutsideClick = (e) => {
+    if (e.target.classList.contains('modal')) {
+      closeModal();
+    }
+  };
+
   const avgRating = calculateAvgRating(reviews);
   const reviewCount = reviews ? reviews.length : 0;
-  
+
   return (
     <div className="restaurantMain container">
       <div className="restaurantInfo">
         <div className="infoImg">
           {filteredImgList &&
             filteredImgList.map((img, index) => {
-              return <img key={index} src={`/test/${img.imgUrl}`} alt={`Restaurant Image ${index + 1}`} />;
+              return (
+                <img
+                  key={index}
+                  src={`/test/${img.imgUrl}`}
+                  alt={`Restaurant Image ${index + 1}`}
+                  onClick={() => handlePhotoClick(`/test/${img.imgUrl}`)}
+                />
+              );
             })}
         </div>
 
@@ -88,7 +114,8 @@ function DetailMain({ restaurant, reviews, filteredImgList ,restaurantId,userId}
                 </svg>
               </span>
               <button className="col-3 reviewBtn">
-              <Link to={`/review/${restaurant.restaurantId}`}>리뷰작성</Link></button>
+                <Link to={`/review/${restaurant.restaurantId}`}>리뷰작성</Link>
+              </button>
               <button className="col-3 shareBtn">공유</button>
             </div>
           </div>
@@ -112,11 +139,10 @@ function DetailMain({ restaurant, reviews, filteredImgList ,restaurantId,userId}
           </div>
         </div>
       </div>
-
       <div className="restaurantDetail">
         <ul>
           <li className="address ">
-            <FaHouse className='iconHouse' />
+            <FaHouse className="iconHouse" />
             {restaurant.restaurantAddress}
             <button type="button" className=" btn btn-info text-light">
               지도보기
@@ -140,6 +166,31 @@ function DetailMain({ restaurant, reviews, filteredImgList ,restaurantId,userId}
           </li>
         </ul>
       </div>
+      {/* 모달 창 */}
+      {selectedImgUrl && (
+        <div
+          className="modal"
+          tabIndex="-1"
+          role="dialog"
+          style={{ display: 'block' }}
+          onClick={handleModalOutsideClick}
+        >
+          <div className="modal-dialog modal-dialog-centered" role="document">
+            <div className="modal-content style={modalStyle}">
+              <div className="modal-body">
+                <img src={selectedImgUrl} alt="Selected" />
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-secondary" onClick={closeModal}>
+                  닫기
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      {/* 배경 */}
+      {selectedImgUrl && <div className="modal-backdrop fade show"></div>}
     </div>
   );
 }

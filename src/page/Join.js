@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import "../styles/join.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Join() {
@@ -37,6 +37,7 @@ function Join() {
   const [birthNum, setBirthNum] = useState("");
   const [address, setAdderss] = useState("");
   const [phone, setPhone] = useState("");
+  
   const [imgUrl, setImgUrl] = useState("");
 
   
@@ -52,9 +53,6 @@ function Join() {
         break;
       case "address":
         setAdderss(value);
-        break;
-      case "phone":
-        setPhone(value);
         break;
       default:
         break;
@@ -183,6 +181,26 @@ function Join() {
     }
   };
 
+  //
+const handlePhoneChange = (e) => {
+  let value = e.target.value.replace(/\D/g, ''); // 숫자가 아닌 모든 문자를 제거
+  if (value.length > 11) {
+    value = value.slice(0, 11); // 최대 11자리로 제한
+  } 
+  
+  let formattedValue = value;
+
+  if (formattedValue.length > 3 && formattedValue.length <= 7) {
+    formattedValue = value.replace(/(\d{3})(\d{1,4})/, '$1-$2');
+  } else if (formattedValue.length > 7) {
+    formattedValue = formattedValue.replace(/(\d{3})(\d{3,4})(\d{1,4})/, '$1-$2-$3');
+  }
+
+  setPhone(formattedValue);
+};
+  //
+
+
   return (
     <>
       <header>
@@ -192,7 +210,6 @@ function Join() {
           </Link>
         </div>
       </header>
-
 
       <div className="contaier joinPage">
         <div className="jointitle">
@@ -211,17 +228,22 @@ function Join() {
                   onChange={handleUserIdChange}
                 />
               </div>
-              <div id="userIdValidation">{emailValidationMessage}</div>
+              <div
+                id="userIdValidation"
+                className={emailValidationMessage === '사용 가능한 아이디입니다.' ? 'valid' : 'invalid'}
+              >
+                {emailValidationMessage}
+              </div>
             </div>
             <div className="joinItem">
               <strong>비밀번호</strong>
-              <input
-                name="password"
-                type="password"
-                placeholder="비밀번호 (필수)"
-                onChange={handlePasswordChange}
-              />
-              <div id="passwordValidation">{passwordValidationMessage}</div>
+              <input name="password" type="password" placeholder="비밀번호 (필수)" onChange={handlePasswordChange} />
+              <div
+                id="passwordValidation"
+                className={passwordValidationMessage === '사용가능한 비밀번호입니다.' ? 'valid' : 'invalid'}
+              >
+                {passwordValidationMessage}
+              </div>
             </div>
             <div className="joinItem">
               <strong>비밀번호 재확인</strong>
@@ -231,77 +253,62 @@ function Join() {
                 placeholder="비밀번호 재확인 (필수)"
                 onChange={handleRePasswordChange}
               />
-              <div id="rePasswordValidation">{rePasswordValidationMessage}</div>
+              <div
+                id="rePasswordValidation"
+                className={rePasswordValidationMessage === '비밀번호가 일치합니다.' ? 'valid' : 'invalid'}
+              >
+                {rePasswordValidationMessage}
+              </div>
             </div>
             <div className="joinItem">
               <strong>이름</strong>
-              <input
-                name="name"
-                type="text"
-                placeholder="이름 (필수)"
-                onChange={handleInputChange}
-              />
+              <input name="name" type="text" placeholder="이름 (필수)" onChange={handleInputChange} />
             </div>
             <div className="joinItem">
               <strong>생년월일</strong>
-              <input
-                name="birthNum"
-                type="text"
-                placeholder="YYYY-MM-DD (필수)"
-                onChange={handleInputChange}
-              />
+              <input name="birthNum" type="date" onChange={handleInputChange} />
             </div>
             <div className="joinItem">
               <strong>주소</strong>
-              <input
-                name="address"
-                type="text"
-                placeholder="주소 (필수)"
-                onChange={handleInputChange}
-              />
+              <input name="address" type="text" placeholder="주소 (필수)" onChange={handleInputChange} />
             </div>
-            <div className="joinItem">
+            <div className="joinItem ">
               <strong>휴대폰</strong>
-              <input
-                name="phone"
-                type="text"
-                placeholder="'-'를 빼고 숫자만 입력"
-                onChange={handleInputChange}
-              />
-              <button type="button">인증번호발송</button>
+              <div className="phoneReg">
+                <input
+                  name="phone"
+                  type="text"
+                  placeholder="전화번호 (필수)"
+                  onChange={handlePhoneChange}
+                  value={phone}
+                />
+                <button type="button">인증번호발송</button>
+              </div>
             </div>
-            <br/>
+            <br />
 
             {/* 이미지 선택 서버에서 upload가 single로 되어있어서 한 개만 설정됨.*/}
             <div className="joinItem row align-items-center">
               <div className="col picCheck">
                 <strong className="col">프로필 사진 : (선택)</strong>
-                <input
-                  name="imgUrl"
-                  type="file"
-                  className="form-control-file"
-                  onChange={handleImageChange}
-                />
+                <input name="imgUrl" type="file" className="form-control-file" onChange={handleImageChange} />
                 {/* 이미지 미리보기 */}
                 {previewSrc && (
                   <div className="col-12 picPreview">
-                  <img
-                    id="preview"
-                    src={previewSrc}
-                    alt="Preview"
-                    style={{ maxWidth: "400px", maxHeight: "500px" }}
-                  />
-                </div>
+                    <img
+                      id="preview"
+                      src={previewSrc}
+                      alt="Preview"
+                      style={{ maxWidth: '400px', maxHeight: '500px' }}
+                    />
+                  </div>
                 )}
               </div>
             </div>
 
             {/* 회원가입 버튼 */}
             <div className="joinBtn" id="joinBtn">
-              <button
-                type="submit"
-                className="btn btn-dark loginButton"
-                onClick={handleJoinClick}>
+              <button type="submit" className="btn btn-dark loginButton" onClick={handleJoinClick}>
                 회원가입
               </button>
             </div>

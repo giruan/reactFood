@@ -35,10 +35,7 @@ function MyPage(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (member.name == "관리자") {
-      alert("사용할 수 없는 이름입니다. 다시 입력해주세요.");
-      return;
-    }
+   
     // formData 인스턴스 생성
     const formData = new FormData();
 
@@ -132,7 +129,7 @@ function MyPage(props) {
                   <Link to={`/editPw/${member.userId}`}>비밀번호 변경</Link>
                 </li>
                 <li>
-                  <Link to={`/complain/admin/${member.userId}`}>
+                  <Link to={`/complainList/admin`}>
                     사용자 문의사항
                   </Link>
                 </li>
@@ -156,8 +153,13 @@ function MyPage(props) {
                   <Link to={`/editPw/${member.userId}`}>비밀번호변경</Link>
                 </li>
                 <li>
-                  <Link to={`/complain/users/${member.userId}`}>
+                  <Link to={`/complainList/users/${member.userId}`}>
                     1:1 문의 내역
+                  </Link>
+                </li>
+                <li>
+                  <Link to={`/complain/users/${member.userId}`}>
+                    고객센터
                   </Link>
                 </li>
                 <li className="deleteId">

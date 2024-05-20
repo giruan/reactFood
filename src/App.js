@@ -14,12 +14,14 @@ import ReviewWrite from './page/ReviewWrite';
 import Header from './component/Header';
 import Footer from './component/Footer';
 import MyReviewEdit from './page/MyReviewEdit';
-
 import { Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { UserProvider } from './contexts/UserContext';
 import Complain from './page/Complain';
 import MyZzim from './page/MyZzim';
+import ComplainList from './page/ComplainList';
+import AdminComplainList from './page/AdminComplainList';
+import ComplainDetail from './page/ComplainDetail';
 
 
 
@@ -139,6 +141,10 @@ function App() {
         <Route path='/map' element={<Map></Map>}></Route>
 
         <Route path='/complain/users/:userId' element= {<Complain userId = {userId}></Complain>}></Route>
+        <Route path='/complainList/users/:userId' element= {<ComplainList userId = {userId}></ComplainList>}></Route>
+        <Route path='/complainList/admin' element= {<AdminComplainList userId = {userId}></AdminComplainList>}></Route>
+
+        <Route path='/complainDetail/users/:userId' element= {<ComplainDetail userId = {userId}></ComplainDetail>}></Route>
       </Routes>
       <Footer />
     </UserProvider>
