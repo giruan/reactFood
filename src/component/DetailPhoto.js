@@ -25,9 +25,20 @@ useEffect(() => {
     const img = new Image();
     img.src = imgUrl;
     img.onload = () => {
-      setModalStyle({ maxWidth: `${img.width}px`, maxHeight: `${img.height}px` });
+      setModalStyle({ maxHeight: `${img.height}px` });
     };
   };
+
+ const closeModal = () => {
+   setSelectedImgUrl(null);
+ };
+
+ const handleModalOutsideClick = (e) => {
+   if (e.target.classList.contains('modal')) {
+     closeModal();
+   }
+ };
+
     
 
   // 사진 더보기 버튼 클릭 핸들러
@@ -64,14 +75,20 @@ useEffect(() => {
       </div>
       {/* 모달 창 */}
       {selectedImgUrl && (
-        <div className="modal" tabIndex="-1" role="dialog" style={{ display: 'block' }}>
+        <div
+          className="modal"
+          tabIndex="-1"
+          role="dialog"
+          style={{ display: 'block' }}
+          onClick={handleModalOutsideClick}
+        >
           <div className="modal-dialog modal-dialog-centered" role="document">
             <div className="modal-content style={modalStyle}">
               <div className="modal-body">
                 <img src={selectedImgUrl} alt="Selected" />
               </div>
               <div className="modal-footer">
-                <button type="button" className="btn btn-secondary" onClick={() => setSelectedImgUrl(null)}>
+                <button type="button" className="btn btn-secondary" onClick={closeModal}>
                   닫기
                 </button>
               </div>
