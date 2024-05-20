@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 
 function calculateAvgRating(reviews) {
   if (!reviews || reviews.length === 0) return 0;
@@ -10,19 +11,34 @@ function calculateAvgRating(reviews) {
   return (totalRating / reviews.length).toFixed(1);
 }
 
-// export function getAvgRating(reviews) {
-//   const avgRating = calculateAvgRating(reviews);
-//   return avgRating;
-// }
-
-// export function getReviewCount(reviews) {
-//   const reviewCount = reviews ? reviews.length : 0;
-//   return reviewCount;
-// }
-
 function Detailreview({ reviews, userAvgRatings, filteredreviewImgList }) {
   const avgRating = calculateAvgRating(reviews);
   const reviewCount = reviews ? reviews.length : 0;
+
+  const [selectedImgUrl, setSelectedImgUrl] = useState(null);
+  const [modalStyle, setModalStyle] = useState({});
+
+  // 사진 클릭 이벤트 핸들러
+  const handlePhotoClick = (imgUrl) => {
+    setSelectedImgUrl(imgUrl);
+
+    // 이미지가 로드된 후, 이미지의 크기를 측정하여 모달 창에 적용
+    const img = new Image();
+    img.src = imgUrl;
+    img.onload = () => {
+      setModalStyle({ maxHeight: `${img.height}px` });
+    };
+  };
+
+  const closeModal = () => {
+    setSelectedImgUrl(null);
+  };
+
+  const handleModalOutsideClick = (e) => {
+    if (e.target.classList.contains('modal')) {
+      closeModal();
+    }
+  };
 
   return (
     <div className="restaurantReview container">
@@ -63,7 +79,11 @@ function Detailreview({ reviews, userAvgRatings, filteredreviewImgList }) {
                   {filteredreviewImgList.map((img, index) =>
                     img.userId === review.userId && img.reviewId === review.reviewId ? (
                       <div key={index} className="col">
-                        <img src={`/reviews/${img.imgUrl}`} alt={`Review Image ${index}`} />
+                        <img
+                          src={`/reviews/${img.imgUrl}`}
+                          alt={`Review Image ${index}`}
+                          onClick={() => handlePhotoClick(`/reviews/${img.imgUrl}`)}
+                        />
                       </div>
                     ) : null
                   )}
@@ -73,6 +93,31 @@ function Detailreview({ reviews, userAvgRatings, filteredreviewImgList }) {
           </div>
         </div>
       ))}
+      {/* 모달 창 */}
+      {selectedImgUrl && (
+        <div
+          className="modal"
+          tabIndex="-1"
+          role="dialog"
+          style={{ display: 'block' }}
+          onClick={handleModalOutsideClick}
+        >
+          <div className="modal-dialog modal-dialog-centered" role="document">
+            <div className="modal-content style={modalStyle}">
+              <div className="modal-body">
+                <img src={selectedImgUrl} alt="Selected" />
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-secondary" onClick={closeModal}>
+                  닫기
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      {/* 배경 */}
+      {selectedImgUrl && <div className="modal-backdrop fade show"></div>}
     </div>
   );
 }
