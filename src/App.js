@@ -140,6 +140,7 @@ function App() {
 
         <Route path='/complain/users/:userId' element= {<Complain userId = {userId}></Complain>}></Route>
         <Route path='/complainList/users/:userId' element= {<ComplainList userId = {userId}></ComplainList>}></Route>
+        <Route path='/response/admin/:userId' element= {<Response userId = {userId}></Response>}></Route>
       </Routes>
       <Footer />
     </UserProvider>

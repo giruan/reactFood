@@ -3,33 +3,20 @@ import { Dropdown } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import '../styles/shopAdd.css'
 
-function Complain(){
+function Response(){
 
   const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState('카테고리'); // 선택된 카테고리 상태 설정
+
+
+  
 
   // 폼 전송 핸들러
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
     formData.set('category', selectedCategory);
-  
-    const restaurantName = event.target.restaurantName.value;
-    const restaurantAddress = event.target.restaurantAddress.value;
-  
-    // 음식점 이름과 주소 유효성 검사
-    if (!restaurantName || !restaurantAddress) {
-      alert('음식점 이름과 주소를 모두 입력하세요.');
-      return;
-    }
-  
-    // 파일 업로드 유효성 검사
-    const imgUrlInput = event.target.imgUrl;
-    if (!imgUrlInput.files || imgUrlInput.files.length === 0) {
-      alert('사진을 1개 이상 등록하세요.');
-      return;
-    }
-  
+
     try {
       const response = await fetch('/add', {
         method: 'POST',
@@ -95,35 +82,14 @@ function Complain(){
 
       <div className="container addPage">
         <div className="addtitle">
-          <h2>1:1 문의</h2>
+          <h2>사용자 문의 내역</h2>
         </div>
 
-        <form onSubmit={handleSubmit} encType="multipart/form-data">
+        <form onSubmit={handleSubmit}>
           <div className="addForm">
 
           <div className="addItem">
               <strong>문의사항</strong>
-              <Dropdown className='dropdown'>
-                <Dropdown.Toggle variant="light" className="category-dropdown">
-                  {selectedCategory}
-                </Dropdown.Toggle>
-                <Dropdown.Menu className="dropdown-menu">
-                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('사이트 오류')}>사이트 오류</Dropdown.Item>
-                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('돈까스')}>돈까스</Dropdown.Item>
-                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('버거')}>버거</Dropdown.Item>
-                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('분식')}>분식</Dropdown.Item>
-                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('아시안')}>아시안</Dropdown.Item>
-                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('양식')}>양식</Dropdown.Item>
-                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('일식')}>일식</Dropdown.Item>
-                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('족발 • 보쌈')}>족발 • 보쌈</Dropdown.Item>
-                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('죽')}>죽</Dropdown.Item>
-                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('중식')}>중식</Dropdown.Item>
-                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('탕 • 찌개')}>탕 • 찌개</Dropdown.Item>
-                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('치킨')}>치킨</Dropdown.Item>
-                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('피자')}>피자</Dropdown.Item>
-                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('디저트')}>디저트</Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
             </div>
 
 
@@ -167,4 +133,4 @@ function Complain(){
   );
 }
 
-export default Complain;
+export default Response;

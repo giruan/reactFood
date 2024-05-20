@@ -157,6 +157,11 @@ function MyPage(props) {
                     1:1 문의 내역
                   </Link>
                 </li>
+                <li>
+                  <Link to={`/complain/users/${member.userId}`}>
+                    고객센터
+                  </Link>
+                </li>
                 <li className="deleteId">
                   <Link to="#" id="deleteId" onClick={handleDelete}>
                     회원탈퇴
