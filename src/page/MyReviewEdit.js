@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react"
-import { useNavigate, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 
 
 
@@ -131,6 +131,15 @@ const handleDeleteImage = (image, index) => {
   return(
     <>
     <div>
+
+    <header>
+        <div className="header_login">
+          <Link to="/">
+            <img src="/image/logo.PNG" alt="다이닝코드"></img>
+          </Link>
+        </div>
+      </header>
+
         <section className="reviewWrite">
           <div className="container-lg">
             <h2 className="review-title">{restaurant.restaurantName} 리뷰 수정하기</h2>
