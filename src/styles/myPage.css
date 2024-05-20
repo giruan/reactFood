@@ -26,17 +26,18 @@ a{text-decoration: none;}
 }
 
 
-.mySec .profile-img{margin: 0 70px; width: 550px; display: flex; justify-content: space-between;}
+.mySec .profile-img{margin: 0 70px; width: 550px;}
 
 
 .mySec .img-edit{
   display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 
 
 .mySec .img-edit .find{
+  margin-top: 83px;
+  justify-content: center;
+  height: 34px;
   font-size: 12px;
   padding: 8px 20px; color: white; 
   background-color: black;
@@ -56,6 +57,7 @@ a{text-decoration: none;}
   width: 100%; 
   height: 100%; 
   display: block; 
+    object-fit: cover;
 }
 
 

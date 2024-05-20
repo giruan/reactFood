@@ -24,12 +24,24 @@ a { text-decoration: none; }
 .joinPage .joinBtn .btn { width: 100%; height: 40px; font-size: 14px; border-radius: 0; } 
 .joinPage .joinBtn .btn{margin-top: 30px; }
 
-#userIdValidation, #passwordValidation, #rePasswordValidation, #newPasswordValidation{
+.joinPage .joinForm .phoneReg{display: flex; justify-content: space-between;}
+.joinPage .joinForm .phoneReg input {width: 360px;}
+.joinPage .joinForm .phoneReg button{margin-left: 10px; height: 40px; padding: 0 5px;}
+ 
+/* #userIdValidation, #passwordValidation, #rePasswordValidation, #newPasswordValidation{
   font-weight: 600;
   color: red;
 }
 #userIdValidation.invalid, #passwordValidation.invalid,#rePasswordValidation.invalid ,#newPasswordValidation.invalid{
   color: red;
 }
- 
+  */
+
+  .joinPage .valid{  font-weight: 600;
+ color: lightgreen;}
+
+.joinPage .invaild{  font-weight: 600;
+  color: red;
+}
+
 

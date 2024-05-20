@@ -13,7 +13,7 @@ function ShopAdd() {
     event.preventDefault();
     const formData = new FormData(event.target);
 
-    if(selectedCategory == "카테고리"){
+    if(selectedCategory === "카테고리"){
       alert("카테고리를 선택해주세요.")
       return ;
     }

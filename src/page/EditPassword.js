@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom"
-import { useParams } from "react-router-dom";
+import { useParams } from
+"react-router-dom";
+import "../styles/pwEdit.css"
 
 function EditPassword(){
   const passwordRegex = /^(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()`])[a-z\d!@#$%^&*()`]{8,}$/;
@@ -107,7 +109,7 @@ function EditPassword(){
     }
   };
 
-  return(
+  return (
     <>
       <header>
         <div className="header_login">
@@ -116,49 +118,84 @@ function EditPassword(){
           </Link>
         </div>
       </header>
-    
-    <main>
-      <div className="container">
-        <div className="content">
-          <div className="title">
+
+      <main>
+        <div className="container editPage">
+          <div className="editTitle">
             <h2>비밀번호 변경</h2>
           </div>
-          <div className="text">
-            <p>YUM YARD 회원으로 인증이 완료된 휴대전화 혹은</p>
-            <p>이메일로 비밀번호를 재설정 하실수 있습니다.</p>
+          <div className="content">
+            <div className="text">
+              <p>YUM YARD 회원으로 인증이 완료된 휴대전화 혹은</p>
+              <p>이메일로 비밀번호를 재설정 하실수 있습니다.</p>
+            </div>
+            <form onSubmit={handleSubmit} className="form-box">
+              <div className="findEmail">
+                {/* 아이디 (사용자가 볼 수 없음) */}
+                <input type="hidden" name="userId" id="userId" value={userId} />
+
+                {/* 현재 비밀번호 */}
+                <div>
+                  <input
+                    type="password"
+                    placeholder="현재 비밀번호 입력"
+                    name="password"
+                    id="password"
+                    onChange={validateCurrentPassword}
+                  />
+                  <span
+                    id="passwordValidation"
+                    className={passwordValidation === '현재 비밀번호가 일치합니다.' ? 'valid' : 'invalid'}
+                  >
+                    {passwordValidation}
+                  </span>
+                </div>
+
+                {/* 새로운 비밀번호 */}
+                <div>
+                  <input
+                    type="password"
+                    placeholder="새로운 비밀번호 입력"
+                    name="newPassword"
+                    id="newPassword"
+                    onChange={handlePasswordChange}
+                  />
+                  <span
+                    id="newPasswordValidation"
+                    className={newPasswordValidation === '사용 가능한 비밀번호입니다.' ? 'valid' : 'invalid'}
+                  >
+                    {newPasswordValidation}
+                  </span>
+                </div>
+
+                {/* 새로운 비밀번호 재확인 */}
+                <div>
+                  <input
+                    type="password"
+                    placeholder="새로운 비밀번호 재입력"
+                    name="rePassword"
+                    id="rePassword"
+                    onChange={handleRePasswordChange}
+                  />
+                  <span
+                    id="rePasswordValidation"
+                    className={rePasswordValidation === '비밀번호가 일치합니다.' ? 'valid' : 'invalid'}
+                  >
+                    {rePasswordValidation}
+                  </span>
+                </div>
+              </div>
+              <div className="btn-box">
+                <button type="submit" className="btn btn-dark loginButton">
+                  변경
+                </button>
+              </div>
+            </form>
           </div>
-          <form onSubmit={handleSubmit} className="form-box">
-            <div className="findEmail">
-              {/* 아이디 (사용자가 볼 수 없음) */}
-              <input type="hidden" name="userId" id="userId" value={userId} />
-
-              {/* 현재 비밀번호 */}
-              <div>
-                <input type="password" placeholder="현재 비밀번호 입력" name="password" id="password" onChange={validateCurrentPassword} />
-                <span id="passwordValidation" className="validation-msg">{passwordValidation}</span>
-              </div>
-
-              {/* 새로운 비밀번호 */}
-              <div>
-                <input type="password" placeholder="새로운 비밀번호 입력" name="newPassword" id="newPassword" onChange={handlePasswordChange} />
-                <span id="newPasswordValidation" className="validation-msg">{newPasswordValidation}</span>
-              </div>
-
-              {/* 새로운 비밀번호 재확인 */}
-              <div>
-                <input type="password" placeholder="새로운 비밀번호 재입력" name="rePassword" id="rePassword" onChange={handleRePasswordChange} />
-                <span id="rePasswordValidation" className="validation-msg">{rePasswordValidation}</span>
-              </div>
-            </div>
-            <div className="btn-box">
-              <button type="submit" className="btn btn-dark loginButton">변경</button>
-            </div>
-          </form>
         </div>
-      </div>
-    </main>
+      </main>
     </>
-   );
+  );
 }
 
 export default EditPassword

@@ -1,0 +1,25 @@
+* { margin: 0; padding: 0; box-sizing: border-box; } 
+ul,ol,li { list-style: none; } 
+a { text-decoration: none; } 
+
+.editPage { width: 500px; margin: 0 auto; padding-left: 0; margin-bottom: 110px;} 
+
+
+.editPage .editTitle {padding: 50px 15px 25px; border-bottom: gray solid 1px; text-align: center; margin-bottom: 50px;}
+.editPage .editTitle h2 { font-size: 20px; font-weight: bold; } 
+
+.editPage input { width: 100%; height: 40px; padding-left: 10px; margin-bottom: 10px; } 
+.editPage .content { border: lightgray 1px solid; padding: 15px;}
+.editPage .content .text{ text-align: center;}
+.editPage .content .btn { width: 100%; height: 40px; font-size: 14px; border-radius: 0; } 
+.editPage .content .btn{margin-top: 20px; }
+
+.editPage .findEmail input {margin-top: 10px;}
+
+.editPage .valid{  font-weight: 600;
+ color: lightgreen;}
+
+.editPage .invaild{  font-weight: 600;
+  color: red;
+}
+
