@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
-import "../styles/join.css";
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from 'react-router-dom';
+import '../styles/join.css';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Join() {
   const navigate = useNavigate();
@@ -14,44 +14,42 @@ function Join() {
   };
 
   // 패스워드 정규식
-  const passwordRegex =/^(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()`])[a-z\d!@#$%^&*()`]{8,}$/;
+  const passwordRegex = /^(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()`])[a-z\d!@#$%^&*()`]{8,}$/;
 
   // Id 중복 확인
   const [isIdValidated, setIsIdValidated] = useState(false);
 
   // email 정규식 확인
-  const [emailValidationMessage, setEmailValidationMessage] = useState("");
+  const [emailValidationMessage, setEmailValidationMessage] = useState('');
 
   // password 중복확인
-  const [passwordValidationMessage, setPasswordValidationMessage] = useState("");
+  const [passwordValidationMessage, setPasswordValidationMessage] = useState('');
 
   // 비밀번호 재확인
-  const [rePasswordValidationMessage, setRePasswordValidationMessage] = useState("");
-  const [previewSrc, setPreviewSrc] = useState("");
+  const [rePasswordValidationMessage, setRePasswordValidationMessage] = useState('');
+  const [previewSrc, setPreviewSrc] = useState('');
 
   // 폼 입력 상태 관리
-  const [userId, setUserId] = useState("");
-  const [password, setPassword] = useState("");
-  const [rePassword, setRePassword] = useState("");
-  const [name, setName] = useState("");
-  const [birthNum, setBirthNum] = useState("");
-  const [address, setAdderss] = useState("");
-  const [phone, setPhone] = useState("");
-  
-  const [imgUrl, setImgUrl] = useState("");
+  const [userId, setUserId] = useState('');
+  const [password, setPassword] = useState('');
+  const [rePassword, setRePassword] = useState('');
+  const [name, setName] = useState('');
+  const [birthNum, setBirthNum] = useState('');
+  const [address, setAdderss] = useState('');
+  const [phone, setPhone] = useState('');
 
-  
+  const [imgUrl, setImgUrl] = useState('');
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     switch (name) {
-      case "name":
+      case 'name':
         setName(value);
         break;
-      case "birthNum":
+      case 'birthNum':
         setBirthNum(value);
         break;
-      case "address":
+      case 'address':
         setAdderss(value);
         break;
       default:
@@ -62,33 +60,33 @@ function Join() {
   // 폼 제출을 처리하는 함수
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     // formData 인스턴스 생성
     const formData = new FormData();
 
     // 기존 데이터 추가
-    formData.append('userId', userId)
+    formData.append('userId', userId);
     formData.append('password', password);
     formData.append('name', name);
     formData.append('birthNum', birthNum);
     formData.append('address', address);
     formData.append('phone', phone);
 
-    const fileInput = document.querySelector('input[type="file"]')
-    if(fileInput.files[0]){
-      formData.append('imgUrl', fileInput.files[0])
+    const fileInput = document.querySelector('input[type="file"]');
+    if (fileInput.files[0]) {
+      formData.append('imgUrl', fileInput.files[0]);
     }
-    fetch("/join", {
-      method: "POST",
+    fetch('/join', {
+      method: 'POST',
       body: formData,
     })
       .then((response) => response.json())
       .then((data) => {
         // 서버로부터의 응답 처리
-        window.location.href = '/login'
+        window.location.href = '/login';
       })
       .catch((error) => {
-        console.error("Error:", error);
+        console.error('Error:', error);
       });
   };
 
@@ -97,27 +95,27 @@ function Join() {
     const userIdValue = e.target.value;
     setUserId(userIdValue);
 
-    fetch("/checkId", {
-      method: "POST",
+    fetch('/checkId', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({ userId: userIdValue }),
     })
       .then((response) => response.json())
       .then((data) => {
         if (!validateEmail(userIdValue)) {
-          setEmailValidationMessage("올바르지 않은 아이디 형식입니다.");
+          setEmailValidationMessage('올바르지 않은 아이디 형식입니다.');
         } else if (data.exists) {
-          setEmailValidationMessage("중복된 아이디입니다.");
+          setEmailValidationMessage('중복된 아이디입니다.');
         } else if (!data.exists && validateEmail(userIdValue)) {
-          setEmailValidationMessage("사용 가능한 아이디입니다.");
+          setEmailValidationMessage('사용 가능한 아이디입니다.');
           setIsIdValidated(true);
         }
       })
       .catch((error) => {
-        console.error("Error:", error);
-        alert("서버 오류가 발생했습니다.");
+        console.error('Error:', error);
+        alert('서버 오류가 발생했습니다.');
       });
   };
 
@@ -127,12 +125,10 @@ function Join() {
     setPassword(newPassword);
 
     if (passwordRegex.test(newPassword)) {
-      setPasswordValidationMessage("사용가능한 비밀번호입니다.");
+      setPasswordValidationMessage('사용가능한 비밀번호입니다.');
       // 여기서 추가적인 상태 변경이 필요하면 수행합니다.
     } else {
-      setPasswordValidationMessage(
-        "비밀번호는 최소 8자 이상이어야 하며, 숫자, 소문자, 특수문자를 포함해야 합니다."
-      );
+      setPasswordValidationMessage('비밀번호는 최소 8자 이상이어야 하며, 숫자, 소문자, 특수문자를 포함해야 합니다.');
     }
   };
 
@@ -140,31 +136,27 @@ function Join() {
   const handleRePasswordChange = (e) => {
     setRePassword(e.target.value);
     if (password === e.target.value) {
-      setRePasswordValidationMessage("비밀번호가 일치합니다.");
+      setRePasswordValidationMessage('비밀번호가 일치합니다.');
     } else {
-      setRePasswordValidationMessage("비밀번호가 일치하지 않습니다.");
+      setRePasswordValidationMessage('비밀번호가 일치하지 않습니다.');
     }
   };
 
   // 회원가입 버튼 눌렀을시 이벤트
   const handleJoinClick = (e) => {
     e.preventDefault();
-    if (
-      isIdValidated &&
-      passwordRegex.test(password) &&
-      rePassword == password
-    ) {
-      alert("환영합니다! 회원가입 되었습니다.");
+    if (isIdValidated && passwordRegex.test(password) && rePassword == password) {
+      alert('환영합니다! 회원가입 되었습니다.');
       handleSubmit(e);
     } else if (!isIdValidated && passwordRegex.test(password)) {
       e.preventDefault();
-      alert("아이디를 규칙에 맞게 입력 해주세요.");
+      alert('아이디를 규칙에 맞게 입력 해주세요.');
     } else if (isIdValidated && !passwordRegex.test(password)) {
       e.preventDefault();
-      alert("비밀번호를 규칙에 맞게 입력 해주세요");
+      alert('비밀번호를 규칙에 맞게 입력 해주세요');
     } else {
       e.preventDefault();
-      alert("아이디와 비밀번호를 입력해주세요.");
+      alert('아이디와 비밀번호를 입력해주세요.');
     }
   };
 
@@ -182,24 +174,23 @@ function Join() {
   };
 
   //
-const handlePhoneChange = (e) => {
-  let value = e.target.value.replace(/\D/g, ''); // 숫자가 아닌 모든 문자를 제거
-  if (value.length > 11) {
-    value = value.slice(0, 11); // 최대 11자리로 제한
-  } 
-  
-  let formattedValue = value;
+  const handlePhoneChange = (e) => {
+    let value = e.target.value.replace(/\D/g, ''); // 숫자가 아닌 모든 문자를 제거
+    if (value.length > 11) {
+      value = value.slice(0, 11); // 최대 11자리로 제한
+    }
 
-  if (formattedValue.length > 3 && formattedValue.length <= 7) {
-    formattedValue = value.replace(/(\d{3})(\d{1,4})/, '$1-$2');
-  } else if (formattedValue.length > 7) {
-    formattedValue = formattedValue.replace(/(\d{3})(\d{3,4})(\d{1,4})/, '$1-$2-$3');
-  }
+    let formattedValue = value;
 
-  setPhone(formattedValue);
-};
+    if (formattedValue.length > 3 && formattedValue.length <= 7) {
+      formattedValue = value.replace(/(\d{3})(\d{1,4})/, '$1-$2');
+    } else if (formattedValue.length > 7) {
+      formattedValue = formattedValue.replace(/(\d{3})(\d{3,4})(\d{1,4})/, '$1-$2-$3');
+    }
+
+    setPhone(formattedValue);
+  };
   //
-
 
   return (
     <>
@@ -301,6 +292,17 @@ const handlePhoneChange = (e) => {
                       alt="Preview"
                       style={{ maxWidth: '400px', maxHeight: '500px' }}
                     />
+                    {/* 삭제 버튼 */}
+                    <button
+                      className="btn btn-danger"
+                      onClick={() => {
+                        setPreviewSrc('');
+                        const fileInput = document.querySelector('input[type="file"]');
+                        fileInput.value = '';
+                      }}
+                    >
+                      ✖
+                    </button>
                   </div>
                 )}
               </div>
