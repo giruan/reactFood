@@ -22,6 +22,7 @@ import ComplainDetailPost from './page/ComplainDetailPost';
 import { Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { UserProvider } from './contexts/UserContext';
+import ComplainDetail from './page/ComplainDetail';
 
 
 
@@ -141,6 +142,7 @@ function App() {
 
         <Route path='/complain/users/:userId' element= {<Complain userId = {userId}></Complain>}></Route>
         <Route path='/complainList/users/:userId' element= {<ComplainList userId = {userId}></ComplainList>}></Route>
+        <Route path='/complainDetail/users/:userId' element={<ComplainDetail userId={userId}/>}></Route>
         <Route path='/complainList/admin' element= {<AdminComplainList userId = {userId}></AdminComplainList>}></Route>
 
         <Route path='/complainDetailPost/admin/:userId' element= {<ComplainDetailPost adminId = {userId}></ComplainDetailPost>}></Route>
