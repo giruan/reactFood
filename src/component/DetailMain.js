@@ -38,7 +38,9 @@ function DetailMain({ restaurant, reviews, filteredImgList ,restaurantId,userId}
   }, []);
 
   const handleClick = (e) => {
-    const currentZzim = !zzim;
+
+    if(userId){
+      const currentZzim = !zzim;
     setZzim(currentZzim);
 
     fetch(`/zzim/users/${userId}/restaurantId/${restaurantId}`, {
@@ -54,6 +56,11 @@ function DetailMain({ restaurant, reviews, filteredImgList ,restaurantId,userId}
         console.error('찜 상태 업데이트 중 오류 발생:', error);
         setZzim(!zzim);
       });
+    }else{
+      alert("로그인이 필요합니다.")
+    }
+
+    
   };
 
   // 사진 클릭 이벤트 핸들러
