@@ -159,7 +159,7 @@ function MyPage(props) {
                 </li>
                 <li>
                   <Link to={`/complain/users/${member.userId}`}>
-                    고객센터
+                    문의하기
                   </Link>
                 </li>
                 <li className="deleteId">

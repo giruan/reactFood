@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom'; // useLocation 가져오기
+import { Link, useLocation } from 'react-router-dom'; // useLocation 가져오기
 import SearchPage from '../component/SearchPage';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Map from './Map';
@@ -8,7 +8,9 @@ import '../styles/Search.css'
 
 
 
-function Search() {
+function Search(props) {
+
+  const {userId} = props;
   // useLocation 훅을 사용하여 현재 URL 정보 가져오기
   const location = useLocation();
   // URL의 쿼리스트링 파라미터에서 keyword 값을 가져오기
@@ -351,10 +353,10 @@ function Search() {
 
               <div className="request">
                 <div className="inner">
-                  <h1>찾으시는 식당이 없으신가요?</h1>
+                  <h1>불편한 점은 없으신가요?</h1>
                   <div className="request-btn">
                     <button>
-                      <a href="/add">맛집 등록 요청하기</a>
+                      <Link to={`/complain/users/${userId}`}>문의하기</Link>
                     </button>
                   </div>
                   <span>보통 당일 등록이 이루어지며, 등록 시 즉시 푸시 알림을 드립니다.</span>

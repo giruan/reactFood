@@ -13,6 +13,12 @@ function ComplainDetailPost({adminId}){
   const [selectedCategory, setSelectedCategory] = useState('카테고리'); // 선택된 카테고리 상태 설정
   const [loading, setLoading] = useState(true);
 
+  const handleChange = () =>{
+    setComplain({
+      ...complain,
+      status : "처리됨"
+    })
+  }
 
   // 문의 내역 가져오기
   useEffect(() => {
@@ -39,6 +45,8 @@ function ComplainDetailPost({adminId}){
   // 폼 전송 핸들러
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+  
     const formData = new FormData(event.target);
     const formDataObj = Object.fromEntries(formData);
     // FormData를 JSON 객체로 변환
@@ -55,6 +63,7 @@ function ComplainDetailPost({adminId}){
   
       if (response.ok) {
         alert('등록 성공');
+        window.location.href = `/myPage/${adminId}`
        
       } else {
         alert('오류가 발생했습니다.');
@@ -91,6 +100,9 @@ console.log(complain.userId)
               {/* 관리자 ID */}
               <input name = "adminId" id= "adminId" type="hidden" value={adminId}></input>
               
+              {/* 관리자 ID */}
+              <input name = "status" id= "status" type="hidden" value={complain.status}></input>
+
                 <div className="addItem">
                   <strong>문의 ID</strong>
                   <p>{complain.userId}</p>
@@ -121,7 +133,7 @@ console.log(complain.userId)
                 등록하기
               </button>
               <button type="reset" className="btn btn-dark col-4">
-                <Link to="/">취소하기</Link>
+                <Link to={`/complainList/admin`}>취소하기</Link>
               </button>
              
             </div>

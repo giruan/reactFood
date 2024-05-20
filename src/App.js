@@ -104,7 +104,7 @@ function App() {
         <Route path="/search" 
         element={ 
         <DefaultLayout userId={userId} name={name} onLogout={handleLogout}>
-          <Search setUserId={setUserId} setName={setName}></Search>
+          <Search setUserId={setUserId} setName={setName} userId = {userId}></Search>
         </DefaultLayout>
         }
         ></Route>
