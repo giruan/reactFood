@@ -32,6 +32,7 @@ function Complain(props){
   
       if (response.ok) {
         alert('등록 성공');
+        window.location.href = `/complainList/users/${userId}`;
       } else {
         alert('오류가 발생했습니다.');
       }
