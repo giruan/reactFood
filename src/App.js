@@ -20,6 +20,8 @@ import { UserProvider } from './contexts/UserContext';
 import Complain from './page/Complain';
 import MyZzim from './page/MyZzim';
 import ComplainList from './page/ComplainList';
+import AdminComplainList from './page/AdminComplainList';
+import ComplainDetail from './page/ComplainDetail';
 
 
 
@@ -140,7 +142,9 @@ function App() {
 
         <Route path='/complain/users/:userId' element= {<Complain userId = {userId}></Complain>}></Route>
         <Route path='/complainList/users/:userId' element= {<ComplainList userId = {userId}></ComplainList>}></Route>
-        <Route path='/response/admin/:userId' element= {<Response userId = {userId}></Response>}></Route>
+        <Route path='/complainList/admin' element= {<AdminComplainList userId = {userId}></AdminComplainList>}></Route>
+
+        <Route path='/complainDetail/users/:userId' element= {<ComplainDetail userId = {userId}></ComplainDetail>}></Route>
       </Routes>
       <Footer />
     </UserProvider>

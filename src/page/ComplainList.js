@@ -61,7 +61,7 @@ function ComplainList() {
               {complains.length > 0 ? (
                 complains.map((complain, i) => (
                   <tr key={i}>
-                    <td><Link to={`/complainDetail/userId/${complain.userId}`}>{complain.title}</Link></td>
+                    <td><Link to={`/complainDetail/users/${complain.userId}`}>{complain.title}</Link></td>
                     <td>{complain.complainId}</td>
                     <td>{formatDate(complain.createdAt)}</td>
                     <td>{complain.status}</td>

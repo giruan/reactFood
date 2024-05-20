@@ -129,7 +129,7 @@ function MyPage(props) {
                   <Link to={`/editPw/${member.userId}`}>비밀번호 변경</Link>
                 </li>
                 <li>
-                  <Link to={`/complain/admin/${member.userId}`}>
+                  <Link to={`/complainList/admin`}>
                     사용자 문의사항
                   </Link>
                 </li>
