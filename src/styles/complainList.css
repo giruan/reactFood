@@ -1,0 +1,19 @@
+.complainTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.complainTable th,
+.complainTable td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.complainTable th {
+  background-color: #f2f2f2;
+  text-align: left;
+}
+
+.complainTable tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
