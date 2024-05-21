@@ -44,8 +44,16 @@ function ComplainList() {
   }, [userId]);
 
   return (
-    <main>
-      <section className="container-lg">
+        <main>
+     <header>
+        <div className="header_login">
+          <Link to="/">
+            <img src="/image/logo.PNG" alt="다이닝코드"></img>
+          </Link>
+        </div>
+      </header>
+    
+      <section className="container-lg complainSec">
         <h1 className="complainListTitle">문의 내역</h1>
         <div className="complainListContent">
           <table className="complainTable">

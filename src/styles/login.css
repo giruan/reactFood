@@ -21,7 +21,8 @@ a { text-decoration: none; }
 
 .loginPage .loginSet span { text-align: left; } 
 .loginPage .loginSet a { text-align: right; } 
-.loginPage .loginSet .btn { width: 30px; height: 30px; padding: 2px 0px; border-radius: 0; } 
+.loginPage .loginSet .btn { width: 27px; height: 27px; padding: 2px 0px; border-radius: 0; margin-right: 7px; border-radius: 5px;} 
+.loginPage .loginSet .btn svg{display: flex; margin: 3px auto;}
 
 .loginPage .loginBtn .btn{ width: 100%; height: 40px; font-size: 14px; border-radius: 0; } 
 
