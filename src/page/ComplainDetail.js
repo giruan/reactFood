@@ -1,23 +1,26 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import '../styles/complainDetail.css'
 
+
 function formatDate(dateString) {
+  
   const date = new Date(dateString);
   return `${date.getFullYear()}/${String(date.getMonth() + 1).padStart(2, '0')}/${String(date.getDate()).padStart(2, '0')}`;
 }
 
 function ComplainDetail(){
+  
+  const {complainId} = useParams();
+  console.log(complainId)
   const [complainList, setComplainList] = useState([]);
   const [responseContent, setResponseContent] = useState([]);
-  const { userId } = useParams();
-
+ 
   // 문의 내역 가져오기
   useEffect(()=>{
     const getComplain = async () => {
       try {
-        const response = await fetch(`/complainDetail/users/${userId}`,{
+        const response = await fetch(`/complainDetail/users/${complainId}`,{
           method : 'GET'
         })
 
@@ -30,11 +33,8 @@ function ComplainDetail(){
       }
     }
     getComplain();
-  },[userId])
+  },[complainId])
     
-
-
-
 
   return (
     <div className="shopAdd">
@@ -66,10 +66,20 @@ function ComplainDetail(){
             <th>내용</th>
             <td colSpan={4}>{complainList.content}</td>
           </tr>
-          <tr>
+
+
+          {responseContent && responseContent.content ? (
+            <tr>
             <th>답변</th>
             <td colSpan={4}>{responseContent.content}</td>
           </tr>
+          ):
+          <tr>
+            <th>답변</th>
+            <td colSpan={4}>답변 대기중입니다...</td>
+          </tr>
+          }
+          
         </tbody>
       </table>
     </div>

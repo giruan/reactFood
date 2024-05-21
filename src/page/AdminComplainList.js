@@ -6,7 +6,6 @@ import '../styles/shopAdd.css'
 
 function AdminComplainList(){
 
-
   const [complainList, setComplainList] = useState([]);
   const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState('카테고리'); // 선택된 카테고리 상태 설정
@@ -31,9 +30,6 @@ function AdminComplainList(){
     
 
 
-  
-
-
   return (
     <div className="shopAdd">
       <header>
@@ -48,8 +44,8 @@ function AdminComplainList(){
         <div className="addtitle">
           <h2>사용자 문의 목록</h2>
         </div>
-        {complainList.map((complain, index) => (
-          <Link to={`/complainDetailPost/admin/${complain.userId}`}>
+        {complainList.filter(complain => complain.status !== "처리 완료").map((complain, index) => (
+          <Link to={`/complainDetailPost/admin/${complain.complainId}`}>
           
             <div className="addForm">
               <div key={index} className="addItem">

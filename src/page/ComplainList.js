@@ -44,7 +44,16 @@ function ComplainList() {
   }, [userId]);
 
   return (
+
     <main>
+      <header>
+       <div className="header_login">
+         <Link to="/">
+           <img src="/image/logo.PNG" alt="다이닝코드"></img>
+          </Link>
+        </div>
+      </header>
+
       <section className="container-lg">
         <h1 className="complainListTitle">문의 내역</h1>
         <div className="complainListContent">
@@ -61,7 +70,7 @@ function ComplainList() {
               {complains.length > 0 ? (
                 complains.map((complain, i) => (
                   <tr key={i}>
-                    <td><Link to={`/complainDetail/users/${complain.userId}`}>{complain.title}</Link></td>
+                    <td><Link to={`/complainDetail/users/${complain.complainId}`}>{complain.title}</Link></td>
                     <td>{complain.complainId}</td>
                     <td>{formatDate(complain.createdAt)}</td>
                     <td>{complain.status}</td>
