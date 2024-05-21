@@ -15,9 +15,6 @@ function SearchPage(props) {
                 <div className="info col-9">
                   <h3 className="shop-name">
                     {shop.restaurantName}  
-                    <span className="heart">
-                      <img src="/image/heart.png" alt="" />
-                    </span>
                   </h3>
                   <p className="category">{shop.category}</p>
                   <div className="rate d-flex">
