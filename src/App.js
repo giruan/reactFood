@@ -142,10 +142,10 @@ function App() {
 
         <Route path='/complain/users/:userId' element= {<Complain userId = {userId}></Complain>}></Route>
         <Route path='/complainList/users/:userId' element= {<ComplainList userId = {userId}></ComplainList>}></Route>
-        <Route path='/complainDetail/users/:userId' element={<ComplainDetail userId={userId}/>}></Route>
+        <Route path='/complainDetail/users/:complainId' element={<ComplainDetail userId={userId}/>}></Route>
         <Route path='/complainList/admin' element= {<AdminComplainList userId = {userId}></AdminComplainList>}></Route>
 
-        <Route path='/complainDetailPost/admin/:userId' element= {<ComplainDetailPost adminId = {userId}></ComplainDetailPost>}></Route>
+        <Route path='/complainDetailPost/admin/:complainId' element= {<ComplainDetailPost adminId = {userId}></ComplainDetailPost>}></Route>
       </Routes>
       <Footer />
     </UserProvider>

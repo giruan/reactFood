@@ -4,27 +4,21 @@ import { Link } from "react-router-dom";
 
 function ComplainDetailPost({adminId}){
 
-  const {userId} = useParams();
+  const {complainId} = useParams();
 
   console.log(adminId)
 
   const [complain, setComplain] = useState({});
-  const navigate = useNavigate();
-  const [selectedCategory, setSelectedCategory] = useState('카테고리'); // 선택된 카테고리 상태 설정
+
   const [loading, setLoading] = useState(true);
 
-  const handleChange = () =>{
-    setComplain({
-      ...complain,
-      status : "처리됨"
-    })
-  }
+  
 
   // 문의 내역 가져오기
   useEffect(() => {
     const fetchComplainDetail = async () => {
       try {
-        const response = await fetch(`/complainDetailPost/admin/${userId}`);
+        const response = await fetch(`/complainDetailPost/admin/${complainId}`);
         const data = await response.json();
         console.log(data);
         setComplain(data.complain);
@@ -35,10 +29,10 @@ function ComplainDetailPost({adminId}){
       }
     };
 
-    if (userId) {
+    if (complainId) {
       fetchComplainDetail();
     }
-  }, [userId]);
+  }, [complainId]);
     
 
 
@@ -116,22 +110,21 @@ console.log(complain.userId)
                 <div className="addItem">
                   <strong>제목</strong>
                   <p>{complain.title}</p>
-           
                 </div>
 
                 <div className="addItem">
                   <strong>내용</strong>
                   <p>{complain.content}</p>
                 </div>
-
                 <div className="addItem">
                   <strong>답변 내용</strong>
                   <textarea name="content" id="content" type="text" placeholder="답변"></textarea>
                 </div>
+                
                 <div className="addBtn row">
-            <button type="submit" className="btn btn-dark col-4">
-                등록하기
-              </button>
+                  <button type="submit" className="btn btn-dark col-4">
+                    등록하기
+                  </button>
               <button type="reset" className="btn btn-dark col-4">
                 <Link to={`/complainList/admin`}>취소하기</Link>
               </button>

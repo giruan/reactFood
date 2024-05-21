@@ -1,10 +1,13 @@
-import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import '../styles/complainList.css'
+import { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import '../styles/complainList.css';
 
 function formatDate(dateString) {
   const date = new Date(dateString);
-  return `${date.getFullYear()}/${String(date.getMonth() + 1).padStart(2, '0')}/${String(date.getDate()).padStart(2, '0')}`;
+  return `${date.getFullYear()}/${String(date.getMonth() + 1).padStart(2, '0')}/${String(date.getDate()).padStart(
+    2,
+    '0'
+  )}`;
 }
 
 function ComplainList() {
@@ -33,7 +36,6 @@ function ComplainList() {
           console.error('data.complains is not an array:', data.complains);
           setComplains([]);
         }
-
       } catch (error) {
         console.log('Error complainList', error);
         setComplains([]);
@@ -44,16 +46,16 @@ function ComplainList() {
   }, [userId]);
 
   return (
-        <main>
-     <header>
+    <main>
+      <header>
         <div className="header_login">
           <Link to="/">
             <img src="/image/logo.PNG" alt="다이닝코드"></img>
           </Link>
         </div>
       </header>
-    
-      <section className="container-lg complainSec">
+
+      <section className="container complainSec">
         <h1 className="complainListTitle">문의 내역</h1>
         <div className="complainListContent">
           <table className="complainTable">
@@ -69,7 +71,9 @@ function ComplainList() {
               {complains.length > 0 ? (
                 complains.map((complain, i) => (
                   <tr key={i}>
-                    <td><Link to={`/complainDetail/users/${complain.userId}`}>{complain.title}</Link></td>
+                    <td>
+                      <Link to={`/complainDetail/users/${complain.complainId}`}>{complain.title}</Link>
+                    </td>
                     <td>{complain.complainId}</td>
                     <td>{formatDate(complain.createdAt)}</td>
                     <td>{complain.status}</td>
