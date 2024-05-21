@@ -112,7 +112,6 @@ function Complain(props){
               <button type="reset" className="btn btn-dark col-4">
                 <Link to="/">취소하기</Link>
               </button>
-             
             </div>
           </div>
         </form>

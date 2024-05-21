@@ -39,9 +39,10 @@ function ComplainList() {
         setComplains([]);
       }
     };
-
     getComplains();
   }, [userId]);
+
+
 
   return (
 
