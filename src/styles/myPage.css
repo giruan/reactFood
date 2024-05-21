@@ -42,7 +42,11 @@ a{text-decoration: none;}
   padding: 8px 20px; color: white; 
   background-color: black;
 }
-
+.mySec .img-edit button{margin-top: 83px;
+  justify-content: center;
+  height: 34px;
+  font-size: 12px;
+  padding: 7px 20px;background-color: black; color: white;}
 
 .mySec .person-circle {
 
@@ -59,6 +63,7 @@ a{text-decoration: none;}
   display: block; 
     object-fit: cover;
 }
+
 
 
 .mySec .input-box{ width: 100%; display: flex; justify-content: center;}

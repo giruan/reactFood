@@ -1,3 +1,9 @@
+.complainSec{
+  min-height: 600px; max-width: 1000px;
+}
+
+.complainListTitle{display: flex; margin: 50px 0 45px; padding-bottom: 30px;  justify-content: center; border-bottom: 1px gray solid;}
+
 .complainTable {
   width: 100%;
   border-collapse: collapse;

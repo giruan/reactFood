@@ -6,10 +6,10 @@ function MyPage(props) {
   const { name } = props;
   const { userId } = useParams();
   const [member, setMember] = useState({
-    userId: "",
-    name: "",
-    birthNum: "",
-    phone: "",
+    userId: '',
+    name: '',
+    birthNum: '',
+    phone: '',
   });
   const [previewSrc, setPreviewSrc] = useState(null);
 
@@ -24,7 +24,7 @@ function MyPage(props) {
           });
           console.log(member.userId);
         })
-        .catch((err) => console.error("Error", err));
+        .catch((err) => console.error('Error', err));
     }
   }, [userId]);
 
@@ -35,26 +35,25 @@ function MyPage(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-   
     // formData 인스턴스 생성
     const formData = new FormData();
 
     // 기존 데이터 추가
-    formData.append("data", JSON.stringify(member));
-    formData.append("imgUrl", document.getElementById("imgUrl").files[0]);
+    formData.append('data', JSON.stringify(member));
+    formData.append('imgUrl', document.getElementById('imgUrl').files[0]);
 
     fetch(`/edit/${member.userId}`, {
-      method: "PUT",
+      method: 'PUT',
       body: formData,
     })
       .then((r) => r.text())
       .then((r) => {
-        alert("회원 정보가 변경 되었습니다.");
-        sessionStorage.setItem("name", member.name);
-        window.location.href = "/";
+        alert('회원 정보가 변경 되었습니다.');
+        sessionStorage.setItem('name', member.name);
+        window.location.href = '/';
       })
       .catch((error) => {
-        console.error("Error:", error);
+        console.error('Error:', error);
       });
   };
 
@@ -76,33 +75,66 @@ function MyPage(props) {
       setPreviewSrc(previewUrl);
 
       // 바로 생성된 URL 사용
-      document.getElementById("profileImage").src = previewUrl;
+      document.getElementById('profileImage').src = previewUrl;
     }
   };
+
+  // 사진 기본이미지로 변경
+  const handleDeleteImage = () => {
+    setPreviewSrc(null);
+    setMember((prevState) => ({
+      ...prevState,
+      memImg: null,
+    }));
+    document.getElementById('profileImage').src = '/test/Pic.jpg';
+  };
+  
 
   // 회원 탈퇴 기능
   const handleDelete = (e) => {
     e.preventDefault();
-    if (window.confirm("정말로 탈퇴하시겠습니까?")) {
+    if (window.confirm('정말로 탈퇴하시겠습니까?')) {
       // 회원 탈퇴 로직을 구현하세요.
       fetch(`/delete/${member.userId}`, {
-        method: "DELETE",
+        method: 'DELETE',
       })
         .then((response) => response.json())
         .then((data) => {
           if (data) {
-            alert("정상적으로 탈퇴되었습니다.");
-            window.location.href = "/login";
+            alert('정상적으로 탈퇴되었습니다.');
+            window.location.href = '/login';
           } else {
-            alert("회원 탈퇴에 실패했습니다.");
+            alert('회원 탈퇴에 실패했습니다.');
           }
         })
         .catch((error) => {
-          console.error("Error:", error);
-          alert("회원 탈퇴에 실패했습니다.");
+          console.error('Error:', error);
+          alert('회원 탈퇴에 실패했습니다.');
         });
     }
   };
+
+  // 핸드폰 번호 제한
+  const handlePhoneChange = (e) => {
+    let value = e.target.value.replace(/\D/g, ''); // 숫자가 아닌 모든 문자를 제거
+    if (value.length > 11) {
+      value = value.slice(0, 11); // 최대 11자리로 제한
+    }
+
+    let formattedValue = value;
+
+    if (formattedValue.length > 3 && formattedValue.length <= 7) {
+      formattedValue = value.replace(/(\d{3})(\d{1,4})/, '$1-$2');
+    } else if (formattedValue.length > 7) {
+      formattedValue = formattedValue.replace(/(\d{3})(\d{3,4})(\d{1,4})/, '$1-$2-$3');
+    }
+
+    setMember((prevState) => ({
+      ...prevState,
+      phone: formattedValue,
+    }));
+  };
+  //
 
   return (
     <>
@@ -116,7 +148,7 @@ function MyPage(props) {
 
       <section className="mySec">
         <div className="leftBar">
-          {name === "관리자" ? (
+          {name === '관리자' ? (
             <>
               <ul>
                 <li>
@@ -129,9 +161,7 @@ function MyPage(props) {
                   <Link to={`/editPw/${member.userId}`}>비밀번호 변경</Link>
                 </li>
                 <li>
-                  <Link to={`/complainList/admin`}>
-                    사용자 문의사항
-                  </Link>
+                  <Link to={`/complainList/admin`}>사용자 문의사항</Link>
                 </li>
                 <li className="deleteId">
                   <Link to="#" id="deleteId" onClick={handleDelete}>
@@ -153,14 +183,10 @@ function MyPage(props) {
                   <Link to={`/editPw/${member.userId}`}>비밀번호변경</Link>
                 </li>
                 <li>
-                  <Link to={`/complainList/users/${member.userId}`}>
-                    1:1 문의 내역
-                  </Link>
+                  <Link to={`/complainList/users/${member.userId}`}>1:1 문의 내역</Link>
                 </li>
                 <li>
-                  <Link to={`/complain/users/${member.userId}`}>
-                    문의하기
-                  </Link>
+                  <Link to={`/complain/users/${member.userId}`}>문의하기</Link>
                 </li>
                 <li className="deleteId">
                   <Link to="#" id="deleteId" onClick={handleDelete}>
@@ -176,22 +202,22 @@ function MyPage(props) {
             <h2>내정보</h2>
             <div className="profile-img">
               <div className="img-edit">
-                <label
-                  htmlFor="imgUrl"
-                  style={{ cursor: "pointer" }}
-                  className="find"
-                >
+                <label htmlFor="imgUrl" style={{ cursor: 'pointer' }} className="find">
                   사진변경
                 </label>
+                <button type="button" onClick={handleDeleteImage}>
+                  사진 삭제
+                    </button>
                 <input
                   id="imgUrl"
                   name="imgUrl"
                   type="file"
                   accept="image/*"
-                  style={{ display: "none" }}
+                  style={{ display: 'none' }}
                   src={previewSrc}
                   onChange={handleImageChange}
                 />
+                
                 {member.memImg ? (
                   <div className="person-circle">
                     <img
@@ -200,15 +226,11 @@ function MyPage(props) {
                       src={`/users/${member.memImg.imgUrl}`}
                       alt="이미지변경"
                     />
+                 
                   </div>
                 ) : (
                   <div className="person-circle">
-                    <img
-                      id="profileImage"
-                      name="profileImage"
-                      src="/test/Pic.jpg"
-                      alt="기본이미지"
-                    />
+                    <img id="profileImage" name="profileImage" src="/test/Pic.jpg" alt="기본이미지" />
                   </div>
                 )}
               </div>
@@ -219,13 +241,7 @@ function MyPage(props) {
                   <tr className="tr-id">
                     <th>아이디</th>
                     <td>
-                      <input
-                        id="userId"
-                        className="userId col"
-                        name="userId"
-                        value={member.userId}
-                        readOnly
-                      />
+                      <input id="userId" className="userId col" name="userId" value={member.userId} readOnly />
                     </td>
                   </tr>
                   <tr className="tr-name">
@@ -259,11 +275,12 @@ function MyPage(props) {
                     <td>
                       <input
                         id="phone"
+                        type="text"
                         className="phone"
                         name="phone"
                         placeholder="phone"
                         value={member.phone}
-                        onChange={handleInputChange}
+                        onChange={handlePhoneChange}
                       />
                     </td>
                   </tr>
@@ -271,11 +288,7 @@ function MyPage(props) {
               </table>
             </div>
             <div className="edit-box">
-              <button
-                className="edit"
-                data-id={member.userId}
-                onClick={handleSubmit}
-              >
+              <button className="edit" data-id={member.userId} onClick={handleSubmit}>
                 변경사항저장
               </button>
             </div>
