@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import UserRatings from './UserRatings'
 
 function calculateAvgRating(reviews) {
   if (!reviews || reviews.length === 0) return 0;
@@ -11,7 +12,9 @@ function calculateAvgRating(reviews) {
   return (totalRating / reviews.length).toFixed(1);
 }
 
-function Detailreview({ reviews, userAvgRatings, filteredreviewImgList }) {
+function Detailreview({ reviews, filteredreviewImgList }) {
+
+
   const avgRating = calculateAvgRating(reviews);
   const reviewCount = reviews ? reviews.length : 0;
 
@@ -53,19 +56,8 @@ function Detailreview({ reviews, userAvgRatings, filteredreviewImgList }) {
 
       {reviews.map((review, index) => (
         <div key={index} className="container userReview">
-          <p className="personGrade">
-            <span className="username">
-              <strong>{review.userId} </strong>
-            </span>
-            <span className="scoreInfo">
-              리뷰작성=
-              <span className="scoreCnt">
-                {userAvgRatings[review.userId] && userAvgRatings[review.userId].reviewCount}개, 평균 :
-                {userAvgRatings[review.userId] && <span>{userAvgRatings[review.userId].avgRating}점</span>}
-              </span>
-            </span>
-          </p>
-
+          <UserRatings userId = {review.userId}></UserRatings>
+          {/* <span>{review.userId}</span> */}
           <div className="container reviewcontainer">
             <div className="pointDetail">
               <div className="restaurantRating">
