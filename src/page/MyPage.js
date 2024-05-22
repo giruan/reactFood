@@ -91,7 +91,6 @@ function MyPage(props) {
     }));
     document.getElementById('profileImage').src = '/test/Pic.jpg';
   };
-  
 
   // 회원 탈퇴 기능
   const handleDelete = (e) => {
@@ -213,7 +212,7 @@ function MyPage(props) {
                 </label>
                 <button type="button" onClick={handleDeleteImage}>
                   사진 삭제
-                    </button>
+                </button>
                 <input
                   id="imgUrl"
                   name="imgUrl"
@@ -223,7 +222,7 @@ function MyPage(props) {
                   src={previewSrc}
                   onChange={handleImageChange}
                 />
-                
+
                 {member.memImg ? (
                   <div className="person-circle">
                     <img

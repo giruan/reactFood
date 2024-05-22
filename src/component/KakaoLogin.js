@@ -23,7 +23,7 @@ useEffect(() => {
       .then((response) => response.json())
       .then((data) => {
         console.log(data); // 사용자 정보를 처리
-        
+        login(data)
         navigate('/')
       })
       .catch((error) => console.error('Error:', error));
