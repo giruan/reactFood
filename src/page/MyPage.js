@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import "../styles/myPage.css";
+import { useEffect, useRef, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import '../styles/myPage.css';
 
 function MyPage(props) {
   const { name } = props;
@@ -88,7 +88,6 @@ function MyPage(props) {
     }));
     document.getElementById('profileImage').src = '/test/Pic.jpg';
   };
-  
 
   // 회원 탈퇴 기능
   const handleDelete = (e) => {
@@ -207,7 +206,7 @@ function MyPage(props) {
                 </label>
                 <button type="button" onClick={handleDeleteImage}>
                   사진 삭제
-                    </button>
+                </button>
                 <input
                   id="imgUrl"
                   name="imgUrl"
@@ -217,7 +216,7 @@ function MyPage(props) {
                   src={previewSrc}
                   onChange={handleImageChange}
                 />
-                
+
                 {member.memImg ? (
                   <div className="person-circle">
                     <img
@@ -226,7 +225,6 @@ function MyPage(props) {
                       src={`/users/${member.memImg.imgUrl}`}
                       alt="이미지변경"
                     />
-                 
                   </div>
                 ) : (
                   <div className="person-circle">

@@ -329,9 +329,9 @@ function Search(props) {
                       </span>
                     </div>
                     <div className="order">
-                    <button className="grade" onClick={sortByGrade}>
-                      <span>평점순</span>
-                    </button>
+                      <button className="grade" onClick={sortByGrade}>
+                        <span>평점순</span>
+                      </button>
                       <button className="review" onClick={sortByReviewCount}>
                         <span>리뷰많은순</span>
                       </button>
@@ -347,7 +347,10 @@ function Search(props) {
                 <Map></Map>
                 <div>
                   {/* 검색 페이지 컴포넌트 */}
-                  <SearchPage shops={sortedShops.length > 0 ? sortedShops : shops} handleReviewCount={handleReviewCount} />
+                  <SearchPage
+                    shops={sortedShops.length > 0 ? sortedShops : shops}
+                    handleReviewCount={handleReviewCount}
+                  />
                 </div>
               </div>
 
@@ -359,7 +362,7 @@ function Search(props) {
                       <Link to={`/complain/users/${userId}`}>문의하기</Link>
                     </button>
                   </div>
-                  <span>보통 당일 등록이 이루어지며, 등록 시 즉시 푸시 알림을 드립니다.</span>
+                  <span>문의사항이나 궁금한점이 있으시면 언제든지 연락 부탁드립니다.</span>
                 </div>
               </div>
             </div>
