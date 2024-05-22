@@ -8,13 +8,14 @@ a { text-decoration: none; }
 
 .restaurantInfo{padding: 0 10px;}
 
-.restaurantInfo .infoImg{padding: 10px 0; margin-bottom: 25px; display: flex;}
+.restaurantInfo .infoImg{padding: 10px 0; margin-bottom: 25px; display: flex; }
 .restaurantInfo .infoImg img
 { 
     width: 50%;
     height: auto; 
     object-fit: cover;
     margin-right: 5px;
+    cursor: pointer;
 }
 
 .restaurantInfo .infoImg img:last-child {
@@ -52,8 +53,8 @@ a { text-decoration: none; }
 .restaurantReviewPic h2{font-size: 25px; font-weight: bold; margin-bottom: 20px;} 
 .restaurantReviewPic .text-primary{font-size: 27px;}
 
-.restaurantReviewPic .picGridPhoto{display: grid; width: 100%;  grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 20px 0 20px;}
-.restaurantReviewPic .picGridPhoto img{width: 100%; height: 210px; object-fit: cover; border-radius: 10px;}
+.restaurantReviewPic .picGridPhoto{display: grid; width: 100%;  grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 20px 0 20px; }
+.restaurantReviewPic .picGridPhoto img{width: 100%; height: 210px; object-fit: cover; border-radius: 10px;cursor: pointer;}
 .restaurantReviewPic .morePic{padding: 18px; width: 100%;}
 
 /* 모달창 디자인 */
@@ -69,8 +70,11 @@ a { text-decoration: none; }
 .restaurantMain .modal-content img,
 .restaurantReview .modal-content img{max-width: 1600px;}
 
+.restaurantReviewPic .modal-body{transition: 0.5 ; }
+
+
 .reviewcontainer .picGrid { display: grid; width: 100%;  grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 10px 0 10px;}
-.reviewcontainer .picGrid img{ border-radius: 10px; width: 100%;}
+.reviewcontainer .picGrid img{ border-radius: 10px; width: 100%; cursor: pointer;}
 
 .restaurantReview{padding: 22px; background-color: white; border-radius: 10px;}
 .reviewCount p{font-size: 24px;font-weight: bold;  }

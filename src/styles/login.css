@@ -5,7 +5,7 @@ a { text-decoration: none; }
 .header_login { padding: 20px 0 20px; border-bottom: gray solid 1px; text-align: center;} 
 .header_login img{ width: 150px; } 
 
-.loginPage { width: 430px; margin: 0 auto; margin-bottom: 110px;} 
+.loginPage { width: 500px; margin: 0 auto; margin-bottom: 110px; padding: 0 40px; } 
 
 .loginPage .title_login{padding: 50px 15px 25px; border-bottom: gray solid 1px;text-align: center;}
 .loginPage .title_login h2{ font-size: 20px; font-weight: bold; } 
