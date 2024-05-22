@@ -3,11 +3,17 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import '../styles/util.css';
 import { Link } from 'react-router-dom';
 import { HiOutlineSearch } from 'react-icons/hi';
+import { useAuth } from '../contexts/AuthContext';
+
 
 function Header(props){
-  
+
+  const {logout} = useAuth()
   // 헤더부분 props
-  const {userId, name, onLogout} = props;
+  const {user} = useAuth();
+
+  console.log(user)
+  const {userId, name, onLogout, onKakaoLogout} = props;
 
   const [keyword, setKeyword] = useState('');
   const [selectedRegion, setSelectedRegion] = useState('');
@@ -30,7 +36,7 @@ function Header(props){
     navigate(targetUrl);
   };
 
-
+  
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
     const region = searchParams.get('region');
@@ -70,27 +76,29 @@ return (
             <button type="submit" className="searchBtn">
               <HiOutlineSearch />
             </button>
-          </div>
+          </div>  
 
           <div className="col-3 loginBar">
             <ul className="user d-flex justify-content-end">
-              {userId ? (
+              {userId || user? (
                 <>
                   {name === '관리자' ? (
                     <>
                       <li>관리자</li>
                       <Link to={`/myPage/${userId}`}>관리자페이지</Link>
-                      <Link to={'/'} onClick={onLogout}>
-                        로그아웃
-                      </Link>
+                      <Link to={'/'} onClick={onLogout}>로그아웃</Link>
+                    </>
+                  ) : user ? (
+                    <>
+                      <li>{user.properties.nickname}님</li>
+                      <Link to={`/myPage/${user.properties.nickname}`}>마이페이지</Link>
+                      <Link to={'/'} onClick={logout}>로그아웃</Link>
                     </>
                   ) : (
                     <>
                       <li>{name}님</li>
-                      <Link to={`/myPage/${userId}`}>마이페이지</Link>
-                      <Link to={'/'} onClick={onLogout}>
-                        로그아웃
-                      </Link>
+                        <Link to={`/myPage/${userId}`}>마이페이지</Link>
+                        <Link to={'/'} onClick={onLogout}>로그아웃</Link>
                     </>
                   )}
                 </>
@@ -104,10 +112,12 @@ return (
                   </li>
                 </>
               )}
+             
             </ul>
           </div>
         </div>
       </form>
+     
     </div>
   </header>
 );

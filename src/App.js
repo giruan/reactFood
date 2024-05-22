@@ -23,6 +23,7 @@ import { Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { UserProvider } from './contexts/UserContext';
 import ComplainDetail from './page/ComplainDetail';
+import KakaoLogin from './component/KakaoLogin';
 
 
 
@@ -67,6 +68,28 @@ function App() {
     setName('');
   };
 
+
+  useEffect(() => {
+    if (!window.Kakao.isInitialized()) {
+      window.Kakao.init('aef65a923d1e178fe495a1c9d64034e1'); // 여기에 자신의 JavaScript 키를 입력하세요.
+    }
+  }, []);
+
+  // const handleKakaoLogout = () => {
+  //   if (window.Kakao.Auth.getAccessToken()) {
+  //     window.Kakao.Auth.logout(() => {
+  //       console.log('로그아웃 되었습니다.');
+  //       // 여기서 추가적인 로그아웃 후 처리를 할 수 있습니다.
+  //     });
+  //   } else {
+  //     console.log('로그인 상태가 아닙니다.');
+  //   }
+  // };
+
+
+
+
+
   return (
     <UserProvider>
       <Routes>
@@ -76,7 +99,7 @@ function App() {
           path="/"
           element={
             <DefaultLayout userId={userId} name={name} onLogout={handleLogout}>
-              <Main setUserId={setUserId} setName={setName} userId={userId} name={name}></Main>
+              <Main setUserId={setUserId} setName={setName} userId={userId} name={name} ></Main>
             </DefaultLayout>
           }
         ></Route>
@@ -146,6 +169,8 @@ function App() {
         <Route path='/complainList/admin' element= {<AdminComplainList userId = {userId}></AdminComplainList>}></Route>
 
         <Route path='/complainDetailPost/admin/:complainId' element= {<ComplainDetailPost adminId = {userId}></ComplainDetailPost>}></Route>
+
+        <Route path='/auth' element= {<KakaoLogin ></KakaoLogin>}></Route>    
       </Routes>
       <Footer />
     </UserProvider>

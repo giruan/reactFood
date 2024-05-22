@@ -126,8 +126,8 @@ function EditPassword(){
           </div>
           <div className="content">
             <div className="text">
-              <p>YUM YARD 회원으로 인증이 완료된 휴대전화 혹은</p>
-              <p>이메일로 비밀번호를 재설정 하실수 있습니다.</p>
+              <p>YUM YARD 회원으로 인증이 완료된 아이디의</p>
+              <p> 비밀번호를 재설정 하실수 있습니다.</p>
             </div>
             <form onSubmit={handleSubmit} className="form-box">
               <div className="findEmail">

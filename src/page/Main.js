@@ -27,6 +27,12 @@ function Main(props) {
     fetchData(); // fetchData 함수 호출하여 데이터 받아오기
   }, []);
 
+  
+ 
+
+
+
+
   return (
     <main className='mainPage'>
       <nav>
@@ -50,6 +56,11 @@ function Main(props) {
           </ul>
         </div>
       </nav>
+      <>
+      
+  
+      </>
+
 
       {/* 모달창, 비쥬얼 */}
 

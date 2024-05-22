@@ -1,9 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import "../styles/myPage.css";
+import { useAuth } from "../contexts/AuthContext";
+
 
 function MyPage(props) {
   const { name } = props;
+  const {user} = useAuth()
   const { userId } = useParams();
   const [member, setMember] = useState({
     userId: '',
@@ -163,6 +166,9 @@ function MyPage(props) {
                 <li>
                   <Link to={`/complainList/admin`}>사용자 문의사항</Link>
                 </li>
+                <li>
+                  <Link to={`/add`}>식당 추가</Link>
+                </li>
                 <li className="deleteId">
                   <Link to="#" id="deleteId" onClick={handleDelete}>
                     회원탈퇴
@@ -226,7 +232,15 @@ function MyPage(props) {
                       src={`/users/${member.memImg.imgUrl}`}
                       alt="이미지변경"
                     />
-                 
+                  </div>
+                ) : user ? (
+                  <div className="person-circle">
+                    <img
+                      id="profileImage"
+                      name="profileImage"
+                      src={`${user.properties.profile_image}`}
+                      alt="이미지변경"
+                    />
                   </div>
                 ) : (
                   <div className="person-circle">
@@ -235,13 +249,15 @@ function MyPage(props) {
                 )}
               </div>
             </div>
+
+
             <div className="table">
               <table className="input-box">
                 <tbody>
                   <tr className="tr-id">
                     <th>아이디</th>
                     <td>
-                      <input id="userId" className="userId col" name="userId" value={member.userId} readOnly />
+                      <input id="userId" className="userId col" name="userId" value={user ? user.kakao_account.email : member.userId} readOnly />
                     </td>
                   </tr>
                   <tr className="tr-name">
@@ -252,7 +268,7 @@ function MyPage(props) {
                         className="name"
                         name="name"
                         placeholder="name"
-                        value={member.name}
+                        value={user ? user.properties.nickname : member.name}
                         onChange={handleInputChange}
                       />
                     </td>
