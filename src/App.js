@@ -75,22 +75,10 @@ function App() {
     }
   }, []);
 
-  // const handleKakaoLogout = () => {
-  //   if (window.Kakao.Auth.getAccessToken()) {
-  //     window.Kakao.Auth.logout(() => {
-  //       console.log('로그아웃 되었습니다.');
-  //       // 여기서 추가적인 로그아웃 후 처리를 할 수 있습니다.
-  //     });
-  //   } else {
-  //     console.log('로그인 상태가 아닙니다.');
-  //   }
-  // };
-
 
   return (
     <UserProvider>
       <Routes>
-
         {/* 메인 페이지 */}
         <Route
           path="/"
@@ -166,10 +154,12 @@ function App() {
         <Route path='/complainList/admin' element= {<AdminComplainList userId = {userId}></AdminComplainList>}></Route>
 
         <Route path='/complainDetailPost/admin/:complainId' element= {<ComplainDetailPost adminId = {userId}></ComplainDetailPost>}></Route>
-
         <Route path='/auth' element= {<KakaoLogin ></KakaoLogin>}></Route>    
+        
       </Routes>
+      
       <Footer />
+      
     </UserProvider>
   );
 }

@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 
 function KakaoLogin(){
-  const { login, logout } = useAuth();
+  const { login, logout, token, user } = useAuth();
  
   const navigate = useNavigate();
 
@@ -23,7 +23,8 @@ useEffect(() => {
       .then((response) => response.json())
       .then((data) => {
         console.log(data); // 사용자 정보를 처리
-        login(data)
+        login(data.userInfo)
+        token(data.access_token)
         navigate('/')
       })
       .catch((error) => console.error('Error:', error));
@@ -31,35 +32,12 @@ useEffect(() => {
 }, []);
 
 
-const handleLogout = () => {
 
-  if(user && user.kakao_account)
-  fetch('http://localhost:3000/kakaoLogout', { 
-    method: 'POST' ,
-    headers : {
-      'Content-Type' : 'application/json'
-    },
-    body : JSON.stringify({acc})
-  
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data); // 로그아웃 결과 처리
-      logout()
-      
-    })
-    .catch((error) => console.error('Error:', error));
-};
 return (
-
   <>
     <button onClick={handleKakaoLogin}>카카오 로그인</button>
   </>
 )
-
-
-
-
 }
 
 export default KakaoLogin;

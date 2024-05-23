@@ -7,18 +7,56 @@ import { useAuth } from '../contexts/AuthContext';
 
 
 function Header(props){
-
+  
   const {logout} = useAuth()
   // 헤더부분 props
   const {user} = useAuth();
 
-  console.log(user)
-  const {userId, name, onLogout, onKakaoLogout} = props;
+  const {userId, name, onLogout} = props;
 
   const [keyword, setKeyword] = useState('');
   const [selectedRegion, setSelectedRegion] = useState('');
   const navigate = useNavigate() 
   const location = useLocation();
+
+
+  // const handleKakaoLogout = () => {
+  //   if(user){
+  //   fetch(`https://kauth.kakao.com/oauth/logout?client_id=3ce68a4b4fe0845cf10e27373e9d893f&logout_redirect_uri=http://localhost:3000/kakaoLogout`, {
+  //     method: 'GET',
+  //     credentials: 'include',
+  //   })
+    
+  //   // fetch('http://localhost:3000/kakaoLogout', { 
+  //   //   method: 'POST' ,
+  //   //   headers : {
+  //   //     'Content-Type' : 'application/json'
+  //   //   },
+  //   //   body : JSON.stringify({access_token : user.access_token})
+    
+  //   // })
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       console.log(data); // 로그아웃 결과 처리
+  //       logout()
+        
+  //     })
+  //     .catch((error) => console.error('Error:', error));
+  //   }
+  // };
+  const handleKakaoLogout = () => {
+    if (user) {
+      const APP_KEY = '3ce68a4b4fe0845cf10e27373e9d893f'; // 카카오 애플리케이션의 앱 키
+      const LOGOUT_REDIRECT_URI = 'http://localhost:3000'; // 설정한 Logout Redirect URI
+  
+      // 카카오 로그아웃 API 호출
+      window.location.href = `https://kauth.kakao.com/oauth/logout?client_id=${APP_KEY}&logout_redirect_uri=${LOGOUT_REDIRECT_URI}`;
+      logout()
+    }
+  };
+  
+
+
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -92,7 +130,7 @@ return (
                     <>
                       <li>{user.properties.nickname}님</li>
                       <Link to={`/myPage/${user.properties.nickname}`}>마이페이지</Link>
-                      <Link to={'/'} onClick={logout}>로그아웃</Link>
+                      <Link to={'/'} onClick= {handleKakaoLogout} >로그아웃</Link>
                     </>
                   ) : (
                     <>

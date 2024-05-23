@@ -115,11 +115,7 @@ function Login(props){
             <div className="and">또는</div>
             <div className="line col"></div>
           </div>
-           
             <KakaoLogin></KakaoLogin>
-
-
-
         </div>
 
         <div className="join">
