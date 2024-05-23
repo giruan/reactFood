@@ -2,22 +2,84 @@
 a{text-decoration: none;}
 
 .mySec{
-  margin: 50px 0 0 0;
+  padding: 20px;
   display: flex;
   justify-content: center;
+  
+ 
 }
 
-.mySec .leftBar{position: relative; padding-top: 75px; margin-right: 10px; min-width: 190px; height: 828px;}
-.mySec .leftBar ul{margin-left: 10%;}
+.mySec .leftBar{
+  position: relative; padding-top: 75px; margin-right: 10px; min-width: 190px; height: 828px;
+}
+/* .mySec .leftBar ul{margin-left: 10%;} */
 .mySec .leftBar li{margin: 10px 0;}
-.mySec .leftBar .deleteId{position: absolute; bottom: 0; margin-bottom: 50px;}
-.mySec .leftBar .deleteId a{color: rgb(255, 0, 0);}
+.mySec .leftBar .deleteId{position: absolute; bottom: 0; margin-bottom: 50px; width: 100%;}
+.mySec .leftBar .deleteId a{color: #000;}
 
 .mySec .rightBar{max-width: 750px;}
 
 .mySec .leftBar, .mySec .rightBar{
   border: 1px grey solid;
   border-radius: 5px;
+}
+
+
+.SMN_effect-8 .effect-link {
+  overflow: hidden;
+
+  padding: 0;
+  display: block;
+  position: relative;
+  text-decoration: none;
+}
+
+.SMN_effect-8 .effect-link span {
+  display: block;
+  padding: 10px 20px;
+  background: #fff;
+  -webkit-transition: -webkit-transform 0.3s;
+  -moz-transition: -moz-transform 0.3s;
+  transition: transform 0.3s;
+}
+
+
+.SMN_effect-8 .effect-link:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  padding: 10px 20px;
+  width: 100%;
+  height: 100%;
+  background:  #ddd;
+  color: rgb(90, 90, 211);
+  content: attr(data-hover);
+  -webkit-transition: -webkit-transform 0.3s;
+  -moz-transition: -moz-transform 0.3s;
+  transition: transform 0.3s;
+  -webkit-transform: translateX(-25%);
+}
+
+
+.SMN_effect-8 .effect-link:hover span,
+.SMN_effect-8 .effect-link:focus span {
+  -webkit-transform: translateX(100%);
+  -moz-transform: translateX(100%);
+  transform: translateX(100%);
+}
+
+.SMN_effect-8 .effect-link:hover:before,
+.SMN_effect-8 .effect-link:focus:before {
+  -webkit-transform: translateX(0%);
+  -moz-transform: translateX(0%);
+  transform: translateX(0%);
+}
+
+
+/* 회원탈퇴 링크에 대한 추가 스타일 */
+.SMN_effect-8 #deleteId:before {
+  color: red; /* 빨간색으로 변경 */
 }
 
 .mySec h2{
@@ -28,11 +90,9 @@ a{text-decoration: none;}
 
 .mySec .profile-img{margin: 0 70px; width: 550px;}
 
-
 .mySec .img-edit{
   display: flex;
 }
-
 
 .mySec .img-edit .find{
   margin-top: 83px;
@@ -71,7 +131,7 @@ a{text-decoration: none;}
   border-bottom: none;
 }
 
-.mySec .input-box tr input{width: 400px; height: 40px;}
+.mySec .input-box tr input{width: 400px; height: 40px; border-radius: 5px;}
 .mySec .input-box th{width: 100px;}
 .mySec .input-box td{padding: 24px 95px 24px 0}
 
@@ -85,7 +145,7 @@ a{text-decoration: none;}
   font-size:  18px;
   color: white;
   border: none;
-  border-radius: 2px;
+  border-radius: 5px;
 }
 
 

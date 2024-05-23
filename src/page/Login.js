@@ -1,11 +1,14 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import '../styles/login.css'
 import { useUser } from "../contexts/UserContext";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { FaCheck } from 'react-icons/fa6';
+import KakaoLogin from "../component/KakaoLogin";
+
 
 function Login(props){
+ 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -47,6 +50,8 @@ function Login(props){
       });
   };
 
+
+ 
   return (
     <>
       <header>
@@ -110,9 +115,7 @@ function Login(props){
             <div className="and">또는</div>
             <div className="line col"></div>
           </div>
-          <button type="button" className="btn btn-warning loginButton">
-            카카오톡으로 로그인
-          </button>
+            <KakaoLogin></KakaoLogin>
         </div>
 
         <div className="join">

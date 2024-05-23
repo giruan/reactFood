@@ -3,16 +3,33 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import '../styles/util.css';
 import { Link } from 'react-router-dom';
 import { HiOutlineSearch } from 'react-icons/hi';
+import { useAuth } from '../contexts/AuthContext';
+
 
 function Header(props){
   
+  const {logout} = useAuth()
   // 헤더부분 props
+  const {user} = useAuth();
+
   const {userId, name, onLogout} = props;
 
   const [keyword, setKeyword] = useState('');
   const [selectedRegion, setSelectedRegion] = useState('');
   const navigate = useNavigate() 
   const location = useLocation();
+
+  const handleKakaoLogout = () => {
+    if (user) {
+      const APP_KEY = '3ce68a4b4fe0845cf10e27373e9d893f'; // 카카오 애플리케이션의 앱 키
+      const LOGOUT_REDIRECT_URI = 'http://localhost:3000'; // 설정한 Logout Redirect URI
+  
+      // 카카오 로그아웃 API 호출
+      window.location.href = `https://kauth.kakao.com/oauth/logout?client_id=${APP_KEY}&logout_redirect_uri=${LOGOUT_REDIRECT_URI}`;
+      logout()
+    }
+  };
+  
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -30,7 +47,7 @@ function Header(props){
     navigate(targetUrl);
   };
 
-
+  
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
     const region = searchParams.get('region');
@@ -70,27 +87,29 @@ return (
             <button type="submit" className="searchBtn">
               <HiOutlineSearch />
             </button>
-          </div>
+          </div>  
 
           <div className="col-3 loginBar">
             <ul className="user d-flex justify-content-end">
-              {userId ? (
+              {userId || user? (
                 <>
                   {name === '관리자' ? (
                     <>
                       <li>관리자</li>
                       <Link to={`/myPage/${userId}`}>관리자페이지</Link>
-                      <Link to={'/'} onClick={onLogout}>
-                        로그아웃
-                      </Link>
+                      <Link to={'/'} onClick={onLogout}>로그아웃</Link>
+                    </>
+                  ) : user ? (
+                    <>
+                      <li>{user.properties.nickname}님</li>
+                      <Link to={`/myPage/${user.properties.nickname}`}>마이페이지</Link>
+                      <Link to={'/'} onClick= {handleKakaoLogout} >로그아웃</Link>
                     </>
                   ) : (
                     <>
                       <li>{name}님</li>
-                      <Link to={`/myPage/${userId}`}>마이페이지</Link>
-                      <Link to={'/'} onClick={onLogout}>
-                        로그아웃
-                      </Link>
+                        <Link to={`/myPage/${userId}`}>마이페이지</Link>
+                        <Link to={'/'} onClick={onLogout}>로그아웃</Link>
                     </>
                   )}
                 </>
@@ -104,10 +123,12 @@ return (
                   </li>
                 </>
               )}
+             
             </ul>
           </div>
         </div>
       </form>
+     
     </div>
   </header>
 );

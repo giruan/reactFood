@@ -8,13 +8,14 @@ a { text-decoration: none; }
 
 .restaurantInfo{padding: 0 10px;}
 
-.restaurantInfo .infoImg{padding: 10px 0; margin-bottom: 25px; display: flex;}
+.restaurantInfo .infoImg{padding: 10px 0; margin-bottom: 25px; display: flex; }
 .restaurantInfo .infoImg img
 { 
     width: 50%;
     height: auto; 
     object-fit: cover;
     margin-right: 5px;
+    cursor: pointer;
 }
 
 .restaurantInfo .infoImg img:last-child {
@@ -48,18 +49,19 @@ a { text-decoration: none; }
 .restaurantDetail .address .btn{width: 73px; height: 32px; font-size: 14px; padding: 0; background-color: #124886; border-color: #124886; margin-left: auto;}
 .restaurantDetail svg{margin-right: 10px;}
 
+/* 디테일 포토 */
 .restaurantReviewPic{ background-color: white; padding: 22px; margin-bottom: 20px; border-radius: 10px;}
 .restaurantReviewPic h2{font-size: 25px; font-weight: bold; margin-bottom: 20px;} 
 .restaurantReviewPic .text-primary{font-size: 27px;}
 
-.restaurantReviewPic .picGridPhoto{display: grid; width: 100%;  grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 20px 0 20px;}
-.restaurantReviewPic .picGridPhoto img{width: 100%; height: 210px; object-fit: cover; border-radius: 10px;}
+.restaurantReviewPic .picGridPhoto{display: grid; width: 100%;  grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 20px 0 20px;  }
+.restaurantReviewPic .picGridPhoto img{width: 100%; height: 210px; object-fit: cover; border-radius: 10px;cursor: pointer; }
 .restaurantReviewPic .morePic{padding: 18px; width: 100%;}
 
 /* 모달창 디자인 */
 .restaurantReviewPic .modal-dialog,
 .restaurantMain .modal-dialog,
-.restaurantReview .modal-dialog{justify-content: center;}
+.restaurantReview .modal-dialog{justify-content: center; }
 
 .restaurantReviewPic .modal-content,
 .restaurantMain .modal-content,
@@ -67,10 +69,13 @@ a { text-decoration: none; }
 
 .restaurantReviewPic .modal-content img,
 .restaurantMain .modal-content img,
-.restaurantReview .modal-content img{max-width: 1600px;}
+.restaurantReview .modal-content img{max-width: 1600px; }
+
+.restaurantReviewPic .modal-body{transition: all 2s; }
+
 
 .reviewcontainer .picGrid { display: grid; width: 100%;  grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 10px 0 10px;}
-.reviewcontainer .picGrid img{ border-radius: 10px; width: 100%;}
+.reviewcontainer .picGrid img{ border-radius: 10px; width: 100%; cursor: pointer;}
 
 .restaurantReview{padding: 22px; background-color: white; border-radius: 10px;}
 .reviewCount p{font-size: 24px;font-weight: bold;  }
@@ -78,3 +83,7 @@ a { text-decoration: none; }
 .reviewCount span{font-weight: bold;}
 
 .restaurantReview .userReview{border: 1px solid gray; padding: 8px 10px 20px; margin-bottom: 30px; border-radius: 10px;} 
+
+
+
+

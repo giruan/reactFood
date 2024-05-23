@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useAuth } from '../contexts/AuthContext';
 
 function Visual(props) {
   const { userId, name } = props;
-
+  const {user} = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedCity, setSelectedCity] = useState(''); // 선택된 도시 상태 추가
   // 구 목록 상태 추가
@@ -111,7 +112,7 @@ const handleResetRegion = () =>{
   return (
     <section className="mainVisual">
       <div className="select">
-        {userId ? <p>{name} 님을 위한</p> : <p>회원님을 위한</p>}
+        {user ? <p>{user.properties.nickname} 님을 위한</p> : (userId ? <p>{name} 님을 위한</p> : <p>회원님을 위한</p>)}
         <h1>추천 맛집</h1>
         <button type="button" id="openModal" onClick={openModal}>
           <span>지역 선택</span>

@@ -95,9 +95,9 @@ const handleEmailInputChange = (e) =>{
       </header>
 
       <main>
-      <div className="container">
+      <div className="container findPw">
         <div className="content">
-          <div className="title">
+          <div className="findPwTitle">
             <h2>비밀번호를 찾으시나요?</h2>
           </div>
           <div className="text">
@@ -107,7 +107,7 @@ const handleEmailInputChange = (e) =>{
           <form onSubmit={handleSubmit} className="form-box">
             <div className="findEmail row justify-content-center">
               <div className="email-wrap">
-                <div className="col-2 radiobtn">
+                <div className="col-1 radiobtn">
                   <input 
                     type="radio" 
                     name="find" 
@@ -139,7 +139,7 @@ const handleEmailInputChange = (e) =>{
             </div>
             <div className="findPhone row justify-content-center">
               <div className="email-wrap">
-                <div className="col-2 radiobtn">
+                <div className="col-1 radiobtn">
                   <input 
                     type="radio" 
                     name="find" 
@@ -161,7 +161,6 @@ const handleEmailInputChange = (e) =>{
                       type="text" 
                       placeholder="휴대전화번호" 
                       name="phone" 
-                      value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                     />
                   </div>
