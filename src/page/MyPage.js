@@ -2,7 +2,12 @@ import { useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import "../styles/myPage.css";
 import { useAuth } from "../contexts/AuthContext";
-
+import { FaHeart } from "react-icons/fa";
+import { MdOutlineRateReview } from "react-icons/md";
+import { RiLockPasswordLine } from "react-icons/ri";
+import { TbMessage2Question } from "react-icons/tb";
+import { FaListUl } from "react-icons/fa";
+import { ImExit } from "react-icons/im";
 
 function MyPage(props) {
   const { name } = props;
@@ -143,7 +148,7 @@ function MyPage(props) {
       <header className="">
         <div className="header_login">
           <Link to="/">
-            <img src="/image/logo.PNG" alt="다이닝코드"></img>
+            <img src="/image/logo.PNG" alt="YUMYARD"></img>
           </Link>
         </div>
       </header>
@@ -152,50 +157,70 @@ function MyPage(props) {
         <div className="leftBar">
           {name === '관리자' ? (
             <>
-              <ul>
+              <ul className="SMN_effect-8"> 
                 <li>
-                  <Link to={`/zzimList/users/${member.userId}`}>찜목록</Link>
+                  <Link to={`/zzimList/users/${member.userId}`} className="effect-link" data-hover="찜목록">
+                    <span>찜목록</span>
+                    </Link>
                 </li>
                 <li>
-                  <Link to={`/myReview/${member.userId}`}>작성한 리뷰</Link>
+                  <Link to={`/myReview/${member.userId}`} className="effect-link" data-hover="작성한 리뷰">
+                    <span>작성한 리뷰</span>
+                  </Link>
                 </li>
                 <li>
-                  <Link to={`/editPw/${member.userId}`}>비밀번호 변경</Link>
+                  <Link to={`/editPw/${member.userId}`} className="effect-link" data-hover="비밀번호 변경"> 
+                    <span>비밀번호 변경</span>
+                  </Link>
                 </li>
                 <li>
-                  <Link to={`/complainList/admin`}>사용자 문의사항</Link>
+                  <Link to={`/complainList/admin`} className="effect-link" data-hover="사용자 문의사항"> 
+                    <span>사용자 문의사항</span>
+                  </Link>
                 </li>
                 <li>
-                  <Link to={`/add`}>식당 추가</Link>
+                  <Link to={`/add`} className="effect-link" data-hover="식당 추가">
+                    <span>식당 추가</span>
+                  </Link>
                 </li>
                 <li className="deleteId">
-                  <Link to="#" id="deleteId" onClick={handleDelete}>
-                    회원탈퇴
+                  <Link to="#" id="deleteId" onClick={handleDelete} className="effect-link" data-hover="회원탈퇴">
+                    <span>회원탈퇴</span>
                   </Link>
                 </li>
               </ul>
             </>
           ) : (
             <>
-              <ul>
+              <ul className="SMN_effect-8">
                 <li>
-                  <Link to={`/zzimList/users/${member.userId}`}>찜목록</Link>
+                  <Link to={`/zzimList/users/${member.userId}`} className="effect-link" data-hover="찜목록">
+                  <span><FaHeart/> 찜목록</span>
+                  </Link>
                 </li>
                 <li>
-                  <Link to={`/myReview/${member.userId}`}>작성한 리뷰</Link>
+                  <Link to={`/myReview/${member.userId}`} className="effect-link" data-hover="작성한 리뷰">
+                    <span><MdOutlineRateReview /> 작성한 리뷰</span>
+                  </Link>
                 </li>
                 <li>
-                  <Link to={`/editPw/${member.userId}`}>비밀번호변경</Link>
+                  <Link to={`/editPw/${member.userId}`} className="effect-link" data-hover="비밀번호 변경"> 
+                    <span><RiLockPasswordLine /> 비밀번호 변경</span>
+                  </Link>
                 </li>
                 <li>
-                  <Link to={`/complainList/users/${member.userId}`}>1:1 문의 내역</Link>
+                  <Link to={`/complainList/users/${member.userId}`} className="effect-link" data-hover="문의 내역">
+                    <span><FaListUl /> 문의 내역</span>
+                    </Link>
                 </li>
                 <li>
-                  <Link to={`/complain/users/${member.userId}`}>문의하기</Link>
+                  <Link to={`/complain/users/${member.userId}`} className="effect-link" data-hover="문의하기">
+                    <span><TbMessage2Question /> 문의하기</span>
+                    </Link>
                 </li>
                 <li className="deleteId">
-                  <Link to="#" id="deleteId" onClick={handleDelete}>
-                    회원탈퇴
+                  <Link to="#" id="deleteId" onClick={handleDelete} className="effect-link" data-hover="회원탈퇴">
+                    <span><ImExit /> 회원탈퇴</span>
                   </Link>
                 </li>
               </ul>
@@ -277,6 +302,7 @@ function MyPage(props) {
                     <td>
                       <input
                         id="birthNum"
+                        type="date"
                         className="birthNum"
                         name="birthNum"
                         placeholder="birthNum"

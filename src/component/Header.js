@@ -19,31 +19,6 @@ function Header(props){
   const navigate = useNavigate() 
   const location = useLocation();
 
-
-  // const handleKakaoLogout = () => {
-  //   if(user){
-  //   fetch(`https://kauth.kakao.com/oauth/logout?client_id=3ce68a4b4fe0845cf10e27373e9d893f&logout_redirect_uri=http://localhost:3000/kakaoLogout`, {
-  //     method: 'GET',
-  //     credentials: 'include',
-  //   })
-    
-  //   // fetch('http://localhost:3000/kakaoLogout', { 
-  //   //   method: 'POST' ,
-  //   //   headers : {
-  //   //     'Content-Type' : 'application/json'
-  //   //   },
-  //   //   body : JSON.stringify({access_token : user.access_token})
-    
-  //   // })
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       console.log(data); // 로그아웃 결과 처리
-  //       logout()
-        
-  //     })
-  //     .catch((error) => console.error('Error:', error));
-  //   }
-  // };
   const handleKakaoLogout = () => {
     if (user) {
       const APP_KEY = '3ce68a4b4fe0845cf10e27373e9d893f'; // 카카오 애플리케이션의 앱 키
@@ -55,8 +30,6 @@ function Header(props){
     }
   };
   
-
-
 
   const handleSearch = (e) => {
     e.preventDefault();

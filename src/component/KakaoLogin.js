@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
-
+import Button from 'react-bootstrap/Button';
+import '../styles/login.css'
 function KakaoLogin(){
   const { login, logout, token, user } = useAuth();
  
@@ -35,7 +36,7 @@ useEffect(() => {
 
 return (
   <>
-    <button onClick={handleKakaoLogin}>카카오 로그인</button>
+    <Button variant="warning" onClick={handleKakaoLogin}>카카오 로그인</Button>{' '}
   </>
 )
 }
