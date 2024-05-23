@@ -15,7 +15,6 @@ function Main(props) {
       try {
 
         const response = await axios.get('http://220.88.106.44:9090'); // 서버의 루트 경로로 GET 요청
-
         const { data } = response;
         const { userId, categories, name } = data;
         setCategories(categories); // 카테고리 목록 설정

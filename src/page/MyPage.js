@@ -158,31 +158,38 @@ function MyPage(props) {
           {name === '관리자' ? (
             <>
               <ul className="SMN_effect-8"> 
+              <h2 className="myInfo">내정보</h2>
+                <hr/>
                 <li>
                   <Link to={`/zzimList/users/${member.userId}`} className="effect-link" data-hover="찜목록">
                     <span>찜목록</span>
                     </Link>
                 </li>
+                <hr/>
                 <li>
                   <Link to={`/myReview/${member.userId}`} className="effect-link" data-hover="작성한 리뷰">
                     <span>작성한 리뷰</span>
                   </Link>
                 </li>
+                <hr/>
                 <li>
                   <Link to={`/editPw/${member.userId}`} className="effect-link" data-hover="비밀번호 변경"> 
                     <span>비밀번호 변경</span>
                   </Link>
                 </li>
+                <hr/>
                 <li>
                   <Link to={`/complainList/admin`} className="effect-link" data-hover="사용자 문의사항"> 
                     <span>사용자 문의사항</span>
                   </Link>
                 </li>
+                <hr/>
                 <li>
                   <Link to={`/add`} className="effect-link" data-hover="식당 추가">
                     <span>식당 추가</span>
                   </Link>
                 </li>
+                <hr/>
                 <li className="deleteId">
                   <Link to="#" id="deleteId" onClick={handleDelete} className="effect-link" data-hover="회원탈퇴">
                     <span>회원탈퇴</span>
@@ -193,31 +200,38 @@ function MyPage(props) {
           ) : (
             <>
               <ul className="SMN_effect-8">
+              <h2 className="myInfo">내정보</h2>
+              <hr/>
                 <li>
                   <Link to={`/zzimList/users/${member.userId}`} className="effect-link" data-hover="찜목록">
                   <span><FaHeart/> 찜목록</span>
                   </Link>
                 </li>
+                <hr/>
                 <li>
                   <Link to={`/myReview/${member.userId}`} className="effect-link" data-hover="작성한 리뷰">
                     <span><MdOutlineRateReview /> 작성한 리뷰</span>
                   </Link>
                 </li>
+                <hr/>
                 <li>
                   <Link to={`/editPw/${member.userId}`} className="effect-link" data-hover="비밀번호 변경"> 
                     <span><RiLockPasswordLine /> 비밀번호 변경</span>
                   </Link>
                 </li>
+                <hr/>
                 <li>
                   <Link to={`/complainList/users/${member.userId}`} className="effect-link" data-hover="문의 내역">
                     <span><FaListUl /> 문의 내역</span>
                     </Link>
                 </li>
+                <hr/>
                 <li>
                   <Link to={`/complain/users/${member.userId}`} className="effect-link" data-hover="문의하기">
                     <span><TbMessage2Question /> 문의하기</span>
                     </Link>
                 </li>
+                <hr/>
                 <li className="deleteId">
                   <Link to="#" id="deleteId" onClick={handleDelete} className="effect-link" data-hover="회원탈퇴">
                     <span><ImExit /> 회원탈퇴</span>
@@ -233,7 +247,7 @@ function MyPage(props) {
             <div className="profile-img">
               <div className="img-edit">
                 <label htmlFor="imgUrl" style={{ cursor: 'pointer' }} className="find">
-                  사진변경
+                  사진 변경
                 </label>
                 <button type="button" onClick={handleDeleteImage}>
                   사진 삭제

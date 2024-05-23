@@ -9,7 +9,7 @@ function KakaoLogin(){
   const navigate = useNavigate();
 
   const Rest_api_key='3ce68a4b4fe0845cf10e27373e9d893f' //REST API KEY
-  const redirect_uri = 'http://localhost:3000/auth' //Redirect URI
+  const redirect_uri = 'http://220.88.106.44:3000/auth' //Redirect URI
   // oauth 요청 URL
   const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${Rest_api_key}&redirect_uri=${redirect_uri}&response_type=code`
   
@@ -20,7 +20,7 @@ useEffect(() => {
   const code = new URL(window.location.href).searchParams.get('code');
   if (code) {
     // 로그인 후 백엔드에서 사용자 정보를 받아옴
-    fetch(`http://localhost:3000/auth?code=${code}`)
+    fetch(`http://220.88.106.44:3000/auth?code=${code}`)
       .then((response) => response.json())
       .then((data) => {
         console.log(data); // 사용자 정보를 처리
