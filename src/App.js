@@ -24,7 +24,7 @@ import { useEffect, useState } from 'react';
 import { UserProvider } from './contexts/UserContext';
 import ComplainDetail from './page/ComplainDetail';
 import KakaoLogin from './component/KakaoLogin';
-
+import ShopEdit from './page/ShopEdit';
 
 
 
@@ -94,10 +94,16 @@ function App() {
           path="/detail/:id"
           element={
             <DefaultLayout userId={userId} name={name} onLogout={handleLogout}>
-              <Detail setUserId={setUserId} setName={setName} userId={userId}></Detail>
+              <Detail setUserId={setUserId} setName={setName} userId={userId} name={name}></Detail>
             </DefaultLayout>
           }
         ></Route>
+        
+        {/* 가게 수정하기 */}
+        <Route
+          path="/shopInfo/:restaurantId"
+          element={<ShopEdit></ShopEdit>}>
+        </Route>
 
          {/* 리뷰 페이지 */} 
         <Route

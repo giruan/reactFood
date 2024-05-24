@@ -98,7 +98,7 @@ useEffect(() => {
 
       <div className="container addPage">
         <div className="userComplianitle">
-          <h2>사용자 문의 목록</h2>
+          <h2>문의 내용</h2>
         </div>
 
       <table className="complainTable">
@@ -108,6 +108,10 @@ useEffect(() => {
             <td>{formatDate(complainList.createdAt)}</td>
             <th>상태</th>
             <td>{complainList.status}</td>
+          </tr>
+          <tr>
+            <th>분류</th>
+            <td colSpan={4}>{complainList.complainCategory}</td>
           </tr>
           <tr>
             <th>제목</th>
