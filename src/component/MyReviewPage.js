@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
-
+import { FaStar } from "react-icons/fa";
 
 function MyReviewPage(props) {
   const { myReviews, restaurantName, myReviewsImg, handleDelete } = props;
@@ -31,6 +29,15 @@ function MyReviewPage(props) {
                 }
               })}
             </div>
+           
+
+            <div className="restaurantRating">
+              <span className="totalScore"><FaStar className="star"/> {review.rating} 점</span>
+              <span className="totalScore"><span>맛 </span>{review.taste}</span>
+              <span className="totalScore"><span>가격 </span>{review.price}</span>
+              <span className="totalScore"><span>응대 </span>{review.service}</span>
+            </div>
+          
             <div className="myReviewImg">
               {myReviewsImg.map((img, j) => {
                 if (img.reviewId === review.reviewId) {
@@ -48,14 +55,7 @@ function MyReviewPage(props) {
             <div className="content">
               <p>{review.content}</p>
             </div>
-            <div className="gradeRating col">
-              {[...Array(review.rating)].map((_, j) => (
-                <i key={j} className="bi bi-star-fill"></i>
-              ))}
-              {[...Array(5 - review.rating)].map((_, j) => (
-                <i key={j + review.rating} className="bi bi-star"></i>
-              ))}
-            </div>
+            
             <div className="createdAt">
             <p>작성일 : {formatDate(review.createdAt)}</p>
               <div className='reviewEdit-Box'>

@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from "react"
+import { Dropdown } from "react-bootstrap";
 import { Link, useNavigate, useParams } from "react-router-dom"
 
 
@@ -16,6 +17,9 @@ function MyReviewEdit(props){
     reviewId : reviewId,
     userId : userId,
     restaurantId : '',
+    taste : '',
+    price : '',
+    service : '',
     content : '',
     rating : ''
   })
@@ -23,6 +27,7 @@ function MyReviewEdit(props){
     restaurantName : '',
   })
  
+
   const navigate = useNavigate();
 
 // 이미지 삭제 처리 함수
@@ -77,13 +82,6 @@ const handleDeleteImage = (image, index) => {
     });
   };
 
-  // // 미리보기 이미지와 선택 초기화
-  // const handleResetPreviewImages = () => {
-  //   setPreviewImages([]);
-  //   if (inputFileRef.current) {
-  //     inputFileRef.current.value = ""; // input 파일 필드 초기화
-  //   }
-  // };
 
   // 입력값 변경
   const handleInputChange = (e) => {
@@ -169,6 +167,46 @@ const handleDeleteImage = (image, index) => {
                     />
                   </div>
                 </div>
+
+
+                <div className="dropMenu-list">
+                <strong>맛 </strong>
+                  <Dropdown className='dropdown'>
+                      <Dropdown.Toggle variant="light" className="category-dropdown">
+                        {review.taste}
+                      </Dropdown.Toggle>
+                    <Dropdown.Menu className="dropdown-menu">
+                      <Dropdown.Item className='menu-li' onClick={() => handleInputChange({target : {name : 'taste', value : '맛있음'}})}>맛있음</Dropdown.Item>
+                      <Dropdown.Item className='menu-li' onClick={() => handleInputChange({target : {name : 'taste', value : '보통'}})}>보통</Dropdown.Item>
+                      <Dropdown.Item className='menu-li' onClick={() => handleInputChange({target : {name : 'taste', value : '맛없음'}})}>맛없음</Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+             
+                <strong>가격</strong>
+                <Dropdown className='dropdown'>
+                    <Dropdown.Toggle variant="light" className="category-dropdown">
+                      {review.price}
+                    </Dropdown.Toggle>
+                  <Dropdown.Menu className="dropdown-menu">
+                    <Dropdown.Item className='menu-li' onClick={() => handleInputChange({target : {name : 'price', value : '만족'}})}>만족</Dropdown.Item>
+                    <Dropdown.Item className='menu-li' onClick={() => handleInputChange({target : {name : 'price', value : '보통'}})}>보통</Dropdown.Item>
+                    <Dropdown.Item className='menu-li' onClick={() => handleInputChange({target : {name : 'price', value : '불만족'}})}>불만족</Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+        
+                <strong>응대</strong>
+                <Dropdown className='dropdown'>
+                  <Dropdown.Toggle variant="light" className="category-dropdown">
+                    {review.service}
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu className="dropdown-menu">
+                    <Dropdown.Item className='menu-li' onClick={() => handleInputChange({target : {name : 'service', value : '만족'}})}>만족</Dropdown.Item>
+                    <Dropdown.Item className='menu-li' onClick={() => handleInputChange({target : {name : 'service', value : '보통'}})}>보통</Dropdown.Item>
+                    <Dropdown.Item className='menu-li' onClick={() => handleInputChange({target : {name : 'service', value : '불만족'}})}>불만족</Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+              </div>
+
                 <div className="review-content">
                   <h3>방문후기</h3>
                   <textarea
@@ -202,7 +240,6 @@ const handleDeleteImage = (image, index) => {
                   <button type="submit" className="write-btn">
                     작성하기
                   </button>
-                 
                 </div>
               </form>
             </div>

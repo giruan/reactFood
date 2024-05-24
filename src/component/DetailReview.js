@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import UserRatings from './UserRatings'
+import { FaStar } from "react-icons/fa";
 
 function calculateAvgRating(reviews) {
   if (!reviews || reviews.length === 0) return 0;
@@ -60,7 +61,11 @@ function Detailreview({ reviews, filteredreviewImgList }) {
           <div className="container reviewcontainer">
             <div className="pointDetail">
               <div className="restaurantRating">
-                <span className="totalScore">{review.rating}점</span>
+              <span className="totalScore"><FaStar className="star"/> {review.rating} 점</span>
+              <span className="totalScore"><span>맛 </span>{review.taste}</span>
+              <span className="totalScore"><span>가격 </span>{review.price}</span>
+              <span className="totalScore"><span>응대 </span>{review.service}</span>
+              
               </div>
             </div>
             <div className="reviewContent">{review.content}</div>
@@ -76,6 +81,7 @@ function Detailreview({ reviews, filteredreviewImgList }) {
                           onClick={() => handlePhotoClick(`/reviews/${img.imgUrl}`)}
                         />
                       </div>
+                      
                     ) : null
                   )}
                 </div>

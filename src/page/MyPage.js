@@ -1,17 +1,18 @@
-import { useEffect, useRef, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import "../styles/myPage.css";
-import { useAuth } from "../contexts/AuthContext";
-import { FaHeart } from "react-icons/fa";
-import { MdOutlineRateReview } from "react-icons/md";
-import { RiLockPasswordLine } from "react-icons/ri";
-import { TbMessage2Question } from "react-icons/tb";
-import { FaListUl } from "react-icons/fa";
-import { ImExit } from "react-icons/im";
+import { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import '../styles/myPage.css';
+import { useAuth } from '../contexts/AuthContext';
+import { FaHeart } from 'react-icons/fa';
+import { MdOutlineRateReview } from 'react-icons/md';
+import { RiLockPasswordLine } from 'react-icons/ri';
+import { TbMessage2Question } from 'react-icons/tb';
+import { FaListUl } from 'react-icons/fa';
+import { ImExit } from 'react-icons/im';
+import { MdAddBusiness } from 'react-icons/md';
 
 function MyPage(props) {
   const { name } = props;
-  const {user} = useAuth()
+  const { user } = useAuth();
   const { userId } = useParams();
   const [member, setMember] = useState({
     userId: '',
@@ -35,9 +36,6 @@ function MyPage(props) {
         .catch((err) => console.error('Error', err));
     }
   }, [userId]);
-
-  // 컴포넌트 내부
-  const profileImageRef = useRef(null);
 
   // 폼 제출을 처리하는 함수
   const handleSubmit = (e) => {
@@ -157,42 +155,57 @@ function MyPage(props) {
         <div className="leftBar">
           {name === '관리자' ? (
             <>
-              <ul className="SMN_effect-8"> 
-              <h2 className="myInfo">내정보</h2>
-                <hr/>
+              <ul className="SMN_effect-8">
+                <h2 className="myInfo">내정보</h2>
+                <hr />
                 <li>
                   <Link to={`/zzimList/users/${member.userId}`} className="effect-link" data-hover="찜목록">
-                    <span>찜목록</span>
-                    </Link>
+                    <span>
+                      <FaHeart /> 찜목록
+                    </span>
+                  </Link>
                 </li>
-                <hr/>
+                <hr />
                 <li>
                   <Link to={`/myReview/${member.userId}`} className="effect-link" data-hover="작성한 리뷰">
-                    <span>작성한 리뷰</span>
+                    <span>
+                      <MdOutlineRateReview /> 작성한 리뷰
+                    </span>
                   </Link>
                 </li>
-                <hr/>
+                <hr />
                 <li>
-                  <Link to={`/editPw/${member.userId}`} className="effect-link" data-hover="비밀번호 변경"> 
-                    <span>비밀번호 변경</span>
+                  <Link to={`/editPw/${member.userId}`} className="effect-link" data-hover="비밀번호 변경">
+                    <span>
+                      <RiLockPasswordLine /> 비밀번호 변경
+                    </span>
                   </Link>
                 </li>
-                <hr/>
+                <hr />
                 <li>
-                  <Link to={`/complainList/admin`} className="effect-link" data-hover="사용자 문의사항"> 
-                    <span>사용자 문의사항</span>
+                  <Link to={`/complainList/admin`} className="effect-link " data-hover="사용자 문의사항">
+                    <span className="qestionList">
+                      <FaListUl />
+                      사용자 문의사항
+                    </span>
                   </Link>
                 </li>
-                <hr/>
+                <hr />
                 <li>
                   <Link to={`/add`} className="effect-link" data-hover="식당 추가">
-                    <span>식당 추가</span>
+                    <span className="shopAdd">
+                      <MdAddBusiness />
+                      식당 추가
+                    </span>
                   </Link>
                 </li>
-                <hr/>
+                <hr />
                 <li className="deleteId">
                   <Link to="#" id="deleteId" onClick={handleDelete} className="effect-link" data-hover="회원탈퇴">
-                    <span>회원탈퇴</span>
+                    <span>
+                      <ImExit />
+                      회원탈퇴
+                    </span>
                   </Link>
                 </li>
               </ul>
@@ -200,41 +213,58 @@ function MyPage(props) {
           ) : (
             <>
               <ul className="SMN_effect-8">
-              <h2 className="myInfo">내정보</h2>
-              <hr/>
+                <h2 className="myInfo">내정보</h2>
+                <hr />
                 <li>
                   <Link to={`/zzimList/users/${member.userId}`} className="effect-link" data-hover="찜목록">
-                  <span><FaHeart/> 찜목록</span>
+                    <span>
+                      <FaHeart /> 찜목록
+                    </span>
                   </Link>
                 </li>
-                <hr/>
+                <hr />
                 <li>
                   <Link to={`/myReview/${member.userId}`} className="effect-link" data-hover="작성한 리뷰">
-                    <span><MdOutlineRateReview /> 작성한 리뷰</span>
+                    <span>
+                      <MdOutlineRateReview /> 작성한 리뷰
+                    </span>
                   </Link>
                 </li>
-                <hr/>
+                <hr />
                 <li>
-                  <Link to={`/editPw/${member.userId}`} className="effect-link" data-hover="비밀번호 변경"> 
-                    <span><RiLockPasswordLine /> 비밀번호 변경</span>
+                  <Link to={`/editPw/${member.userId}`} className="effect-link" data-hover="비밀번호 변경">
+                    <span>
+                      <RiLockPasswordLine /> 비밀번호 변경
+                    </span>
                   </Link>
                 </li>
-                <hr/>
+                <hr />
                 <li>
-                  <Link to={`/complainList/users/${member.userId}`} className="effect-link" data-hover="문의 내역">
-                    <span><FaListUl /> 문의 내역</span>
-                    </Link>
+                  <Link
+                    to={`/complainList/users/${member.userId}`}
+                    className="effect-link qestionList"
+                    data-hover="문의 내역"
+                  >
+                    <span>
+                      <FaListUl />
+                      문의 내역
+                    </span>
+                  </Link>
                 </li>
-                <hr/>
+                <hr />
                 <li>
                   <Link to={`/complain/users/${member.userId}`} className="effect-link" data-hover="문의하기">
-                    <span><TbMessage2Question /> 문의하기</span>
-                    </Link>
+                    <span>
+                      <TbMessage2Question /> 문의하기
+                    </span>
+                  </Link>
                 </li>
-                <hr/>
+                <hr />
                 <li className="deleteId">
                   <Link to="#" id="deleteId" onClick={handleDelete} className="effect-link" data-hover="회원탈퇴">
-                    <span><ImExit /> 회원탈퇴</span>
+                    <span>
+                      <ImExit /> 회원탈퇴
+                    </span>
                   </Link>
                 </li>
               </ul>
@@ -246,48 +276,46 @@ function MyPage(props) {
             <h2>내정보</h2>
             <div className="profile-img">
               <div className="img-edit">
-                <label htmlFor="imgUrl" style={{ cursor: 'pointer' }} className="find">
-                  사진 변경
+                <label htmlFor="imgUrl" style={{ cursor: 'pointer' }}>
+                  {member.memImg ? (
+                    <div className="person-circle">
+                      <img
+                        id="profileImage"
+                        name="profileImage"
+                        src={`/users/${member.memImg.imgUrl}`}
+                        alt="이미지변경"
+                      />
+                    </div>
+                  ) : user ? (
+                    <div className="person-circle">
+                      <img
+                        id="profileImage"
+                        name="profileImage"
+                        src={`${user.properties.profile_image}`}
+                        alt="이미지변경"
+                      />
+                    </div>
+                  ) : (
+                    <div className="person-circle">
+                      <img id="profileImage" name="profileImage" src="/test/Pic.jpg" alt="기본이미지" />
+                    </div>
+                  )}
                 </label>
+              </div>
+              <div className="delBtn">
                 <button type="button" onClick={handleDeleteImage}>
                   사진 삭제
                 </button>
-                <input
-                  id="imgUrl"
-                  name="imgUrl"
-                  type="file"
-                  accept="image/*"
-                  style={{ display: 'none' }}
-                  src={previewSrc}
-                  onChange={handleImageChange}
-                />
-
-                {member.memImg ? (
-                  <div className="person-circle">
-                    <img
-                      id="profileImage"
-                      name="profileImage"
-                      src={`/users/${member.memImg.imgUrl}`}
-                      alt="이미지변경"
-                    />
-                  </div>
-                ) : user ? (
-                  <div className="person-circle">
-                    <img
-                      id="profileImage"
-                      name="profileImage"
-                      src={`${user.properties.profile_image}`}
-                      alt="이미지변경"
-                    />
-                  </div>
-                ) : (
-                  <div className="person-circle">
-                    <img id="profileImage" name="profileImage" src="/test/Pic.jpg" alt="기본이미지" />
-                  </div>
-                )}
               </div>
+              <input
+                id="imgUrl"
+                name="imgUrl"
+                type="file"
+                accept="image/*"
+                style={{ display: 'none' }}
+                onChange={handleImageChange}
+              />
             </div>
-
 
             <div className="table">
               <table className="input-box">
@@ -295,7 +323,13 @@ function MyPage(props) {
                   <tr className="tr-id">
                     <th>아이디</th>
                     <td>
-                      <input id="userId" className="userId col" name="userId" value={user ? user.kakao_account.email : member.userId} readOnly />
+                      <input
+                        id="userId"
+                        className="userId col"
+                        name="userId"
+                        value={user ? user.kakao_account.email : member.userId}
+                        readOnly
+                      />
                     </td>
                   </tr>
                   <tr className="tr-name">
