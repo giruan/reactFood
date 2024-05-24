@@ -1,12 +1,18 @@
 import { useState } from "react";
 import '../styles/reviewWrite.css';
 import { useNavigate, useParams } from "react-router-dom";
+import { Dropdown } from "react-bootstrap";
 
 
 function ReviewWrite(props){
   const {userId} = props
   const [rating, setRating] = useState(1)
   const { restaurantId } = useParams();
+
+  const [selectedTaste, setSelectedTaste] = useState('맛'); // 선택된 카테고리 상태 설정
+  const [selectedPrice, setSelectedPrice] = useState('가격'); // 선택된 카테고리 상태 설정
+  const [selectedService, setSelectedService] = useState('응대'); // 선택된 카테고리 상태 설정
+  
   const navigate = useNavigate();
 
   console.log(restaurantId)
@@ -20,6 +26,9 @@ function ReviewWrite(props){
     e.preventDefault();
     const formData = new FormData(e.target);
     formData.append('rating', rating);
+    formData.append('taste', selectedTaste)
+    formData.append('price', selectedPrice)
+    formData.append('service', selectedService)
     
     try {
       const response = await fetch('/review',{
@@ -39,6 +48,21 @@ function ReviewWrite(props){
     }
   }
 
+   // 카테고리 변경 핸들러
+   const handleTasteChange = (taste) => { 
+    setSelectedTaste(taste);
+  };
+  
+  const handlePriceChange = (price) => { 
+    setSelectedPrice(price);
+  };
+
+  const handleServiceChange = (service) => { 
+    setSelectedService(service);
+  };
+
+
+  
   return (
     <>
       <div>
@@ -70,6 +94,49 @@ function ReviewWrite(props){
                     />
                   </div>
                 </div>
+              <div>
+                <strong>맛 </strong>
+                  <Dropdown className='dropdown'>
+                      <Dropdown.Toggle variant="light" className="category-dropdown">
+                        {selectedTaste}
+                      </Dropdown.Toggle>
+                    <Dropdown.Menu className="dropdown-menu">
+                      <Dropdown.Item className='menu-li' onClick={() => handleTasteChange('맛있음')}>맛있음</Dropdown.Item>
+                      <Dropdown.Item className='menu-li' onClick={() => handleTasteChange('보통')}>보통</Dropdown.Item>
+                      <Dropdown.Item className='menu-li' onClick={() => handleTasteChange('맛없음')}>맛없음</Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+              </div>
+
+              <div>
+                <strong>가격</strong>
+                <Dropdown className='dropdown'>
+                    <Dropdown.Toggle variant="light" className="category-dropdown">
+                      {selectedPrice}
+                    </Dropdown.Toggle>
+                  <Dropdown.Menu className="dropdown-menu">
+                    <Dropdown.Item className='menu-li' onClick={() => handlePriceChange('만족')}>만족</Dropdown.Item>
+                    <Dropdown.Item className='menu-li' onClick={() => handlePriceChange('보통')}>보통</Dropdown.Item>
+                    <Dropdown.Item className='menu-li' onClick={() => handlePriceChange('불만족')}>불만족</Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+              </div>
+
+              <div>
+                <strong>응대</strong>
+                <Dropdown className='dropdown'>
+                  <Dropdown.Toggle variant="light" className="category-dropdown">
+                    {selectedService}
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu className="dropdown-menu">
+                    <Dropdown.Item className='menu-li' onClick={() => handleServiceChange('만족')}>만족</Dropdown.Item>
+                    <Dropdown.Item className='menu-li' onClick={() => handleServiceChange('보통')}>보통</Dropdown.Item>
+                    <Dropdown.Item className='menu-li' onClick={() => handleServiceChange('불만족')}>불만족</Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+              </div>
+
+              
                 <div className="review-content">
                   <h3>방문후기</h3>
                   <textarea

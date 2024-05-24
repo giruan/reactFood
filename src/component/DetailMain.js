@@ -8,6 +8,7 @@ import { FaPhoneAlt } from 'react-icons/fa';
 import { BiSolidFoodMenu } from 'react-icons/bi';
 import { MdAccessTimeFilled } from 'react-icons/md';
 import { PiSirenFill } from 'react-icons/pi';
+import { IoMdShare } from "react-icons/io";
 
 //평점 계산
 function calculateAvgRating(reviews) {
@@ -123,7 +124,7 @@ function DetailMain({ restaurant, reviews, filteredImgList ,restaurantId,userId}
               <button className="col-3 reviewBtn">
                 <Link to={`/review/${restaurant.restaurantId}`}>리뷰작성</Link>
               </button>
-              <button className="col-3 shareBtn">공유</button>
+              <button className="col-3 shareBtn"><IoMdShare /></button>
             </div>
           </div>
         </div>

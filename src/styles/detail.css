@@ -2,6 +2,10 @@
 ul,ol,li { list-style: none; padding: 0;} 
 a { text-decoration: none; } 
 
+.star {
+  color: rgb(57, 131, 216);
+  margin-bottom: 3px;
+}
 .main .content{width: 760px; margin-left: 30%;}
 .main{padding: 20px 0 30px; background-color: #f0f0f3;} 
 .restaurantMain {padding-top: 20px; background-color: white; border-radius: 10px; margin: 0 auto;} 
@@ -35,6 +39,9 @@ a { text-decoration: none; }
 .restaurantCategory a:not(:last-child)::after {content: " |";}
 
 .gradeInfo {display: flex; align-items: center; margin-bottom: 20px; margin-left: 0px;}
+
+
+
 .restaurantRating .gradeInfo p{padding-left: 0;margin: 0;}
 .restaurantRating .gradeInfo span
 {font-weight: bold; font-size: 25px; padding-left: 5px;}
@@ -42,6 +49,19 @@ a { text-decoration: none; }
 .restaurantRating .gradeRating .bi-star-fill,
 .reviewCount .gradeRating .bi-star-fill
 {color: blue;}
+
+.restaurantRating .totalScore {
+  margin-right: 15px;
+  
+}
+.restaurantRating .totalScore span{
+  color: #9e9e9e;
+}
+
+
+
+
+
 
 .restaurantDetail{padding: 0 12px 10px 12px; margin-bottom: 20px;}
 .restaurantDetail .address{display: flex; align-items: center; margin-left: 0;}

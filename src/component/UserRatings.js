@@ -45,10 +45,10 @@ function UserRatings({userId}){
           <strong>{rating.userId} </strong>
         </span>
         <span className="scoreInfo">
-          작성한 리뷰 : 
+          평가
           <span className="scoreCnt">
-            {rating.rating_count}개, 평균 :
-            {averageRating}점
+            {rating.rating_count}, 평균 별점:
+            {averageRating}
           </span>
         </span>
       </p>
