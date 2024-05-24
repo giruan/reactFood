@@ -26,7 +26,7 @@ function calculateAvgRating(reviews) {
 
 
 
-function DetailMain({ restaurant, reviews, filteredImgList ,restaurantId,userId}) {
+function DetailMain({ restaurant, reviews, filteredImgList ,restaurantId, userId}) {
   const [zzim, setZzim] = useState(false);
 
   const [selectedImgUrl, setSelectedImgUrl] = useState(null);
@@ -41,6 +41,7 @@ function DetailMain({ restaurant, reviews, filteredImgList ,restaurantId,userId}
       });
   }, []);
 
+  
   const handleClick = (e) => {
 
     if(userId){
@@ -63,8 +64,6 @@ function DetailMain({ restaurant, reviews, filteredImgList ,restaurantId,userId}
     }else{
       alert("로그인이 필요합니다.")
     }
-
-    
   };
 
   // 사진 클릭 이벤트 핸들러
@@ -91,6 +90,16 @@ function DetailMain({ restaurant, reviews, filteredImgList ,restaurantId,userId}
 
   const avgRating = calculateAvgRating(reviews);
   const reviewCount = reviews ? reviews.length : 0;
+
+  // 로그인이 되었을 경우에 리뷰 작성이 가능
+  const handleSuccess = (e) =>{
+    if(!userId){
+      e.preventDefault();
+      alert('로그인 후 이용 해주시길 바랍니다.')
+      return ;
+    }
+  }
+
 
   return (
     <div className="restaurantMain container">
@@ -125,7 +134,7 @@ function DetailMain({ restaurant, reviews, filteredImgList ,restaurantId,userId}
                 </svg>
               </span>
               <button className="col-3 reviewBtn">
-                <Link to={`/review/${restaurant.restaurantId}`}>리뷰작성</Link>
+                <Link to={`/review/${restaurant.restaurantId}`} onClick={handleSuccess}>리뷰작성</Link>
               </button>
               <button className="col-3 shareBtn">
                 <IoMdShare />
