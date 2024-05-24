@@ -30,7 +30,6 @@ a{text-decoration: none;}
 
 .SMN_effect-8 .effect-link {
   overflow: hidden;
-
   padding: 0;
   display: block;
   position: relative;
@@ -46,6 +45,10 @@ a{text-decoration: none;}
   transition: transform 0.3s;
 
 }
+
+.SMN_effect-8 .effect-link svg{margin: 0 5px 2px 0;}
+.SMN_effect-8 .qestionList svg{margin: 0 9px 2px 0; font-size: 16px;}
+.SMN_effect-8 .shopAdd svg{font-size: 19px;}
 
 
 .SMN_effect-8 .effect-link:before {
@@ -94,26 +97,25 @@ a{text-decoration: none;}
 }
 
 
-.mySec .profile-img{margin: 0 70px; width: 550px;}
+.mySec .profile-img{ 
+  margin: 0 70px; 
+  width: 550px;}
 
 .mySec .img-edit{
   display: flex;
+  justify-content: center;
 }
 
-.mySec .img-edit .find{
-  margin-top: 83px;
-  justify-content: center;
-  height: 34px;
-  font-size: 12px;
-  padding: 8px 20px; color: white; 
-  background-color: black;
-}
-.mySec .img-edit button{margin-top: 83px;
-  justify-content: center;
-  height: 34px;
-  font-size: 12px;
-  padding: 7px 20px;background-color: black; color: white;}
+.mySec .profile-img .delBtn{display: flex; justify-content: end;}
 
+.mySec .profile-img button{
+  height: 34px;
+  font-size: 12px;
+  padding: 7px 20px;
+  background-color: gray; 
+  border: none;
+  color: white;
+}
 .mySec .person-circle {
 
   margin: 0 auto;
