@@ -22,7 +22,7 @@ function Header(props){
   const handleKakaoLogout = () => {
     if (user) {
       const APP_KEY = '3ce68a4b4fe0845cf10e27373e9d893f'; // 카카오 애플리케이션의 앱 키
-      const LOGOUT_REDIRECT_URI = 'http://220.88.106.44:3000'; // 설정한 Logout Redirect URI
+      const LOGOUT_REDIRECT_URI = 'http://localhost:3000'; // 설정한 Logout Redirect URI
   
       // 카카오 로그아웃 API 호출
       window.location.href = `https://kauth.kakao.com/oauth/logout?client_id=${APP_KEY}&logout_redirect_uri=${LOGOUT_REDIRECT_URI}`;

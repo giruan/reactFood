@@ -20,7 +20,7 @@ useEffect(() => {
   const code = new URL(window.location.href).searchParams.get('code');
   if (code) {
     // 로그인 후 백엔드에서 사용자 정보를 받아옴
-    fetch(`http://220.88.106.44:3000/auth?code=${code}`)
+    fetch(`http://localhost:3000/auth?code=${code}`)
       .then((response) => response.json())
       .then((data) => {
         console.log(data); // 사용자 정보를 처리
