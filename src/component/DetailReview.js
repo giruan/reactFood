@@ -57,7 +57,6 @@ function Detailreview({ reviews, filteredreviewImgList }) {
       {reviews.map((review, index) => (
         <div key={index} className="container userReview">
           <UserRatings userId = {review.userId}></UserRatings>
-          {/* <span>{review.userId}</span> */}
           <div className="container reviewcontainer">
             <div className="pointDetail">
               <div className="restaurantRating">
