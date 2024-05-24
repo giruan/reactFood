@@ -65,7 +65,6 @@ function Detailreview({ reviews, filteredreviewImgList }) {
               <span className="totalScore"><span>맛 </span>{review.taste}</span>
               <span className="totalScore"><span>가격 </span>{review.price}</span>
               <span className="totalScore"><span>응대 </span>{review.service}</span>
-              
               </div>
             </div>
             <div className="reviewContent">{review.content}</div>

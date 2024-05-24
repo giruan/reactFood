@@ -6,6 +6,7 @@ import '../styles/shopEdit.css'
 function ShopEdit(){
   const [storeInfo, setStoreInfo]= useState({});
   const [storeImg, setStoreImg] = useState([]);
+  const [storeImgId, setStoreImgId] = useState();
   const [selectedCategory, setSelectedCategory] = useState('카테고리');
   const {restaurantId} = useParams();
 
@@ -55,7 +56,9 @@ const handleSubmit = async (e) => {
 
   try {
     const formData = new FormData();
-    formData.append('storeInfo', JSON.stringify({storeImg, storeInfo}));
+    formData.append('storeInfo', JSON.stringify(storeInfo));
+    formData.append('storeImgId', storeImgId);
+
     for (let i = 0; i < storeImg.length; i++) {
       formData.append('imgUrl', storeImg[i]);
     }
@@ -77,6 +80,7 @@ const handleSubmit = async (e) => {
   }
 };
 
+
 // 입력값 변경 핸들러
 const handleInputChange = (e) => {
   const { name, value } = e.target;
@@ -88,7 +92,9 @@ const handleInputChange = (e) => {
 
 const handleDeleteImage = (imgIdToDelete) => {
   const updatedImages = storeImg.filter(image => image.imgId !== imgIdToDelete);
-  setStoreImg(updatedImages);
+  console.log(updatedImages[0].imgId)
+  setStoreImgId(updatedImages[0].imgId);
+  setStoreImg(updatedImages)
 };
 
   
@@ -168,7 +174,7 @@ const handleDeleteImage = (imgIdToDelete) => {
                     alt={`Image ${index}`} 
                     style={{ width: '100px', height: '100px' }} 
                   />
-                  <button type="button" onClick={() => handleDeleteImage(image.imgId)}>삭제</button>
+                  <button type="button" onClick={() => handleDeleteImage(image.index)}>삭제</button>
                 </div>
               ))}
             </div>

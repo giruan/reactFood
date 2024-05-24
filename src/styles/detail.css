@@ -97,7 +97,18 @@ a { text-decoration: none; }
 
 
 .reviewcontainer .picGrid { display: grid; width: 100%;  grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 10px 0 10px;}
-.reviewcontainer .picGrid img{ border-radius: 10px; width: 100%; cursor: pointer;}
+
+.reviewcontainer .picGrid .col{
+  height: 150px;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.reviewcontainer .picGrid img{ 
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+}
 
 .restaurantReview{padding: 22px; background-color: white; border-radius: 10px;}
 .reviewCount p{font-size: 24px;font-weight: bold;  }
@@ -107,7 +118,7 @@ a { text-decoration: none; }
 .restaurantReview .userReview{border: 1px solid gray; padding: 8px 10px 20px; margin-bottom: 30px; border-radius: 10px;} 
 
 
-
+/* userRating 부분 */
 .restaurantReview .userReview .userInfo{
   display: flex;
   margin: 10px;
@@ -145,5 +156,12 @@ a { text-decoration: none; }
   color: gray;
 }
 
+.restaurantReview .reviewcontainer .pointDetail{
+  margin: 20px 0;
+}
 
+.restaurantReview .reviewcontainer .reviewContent{
+  margin-bottom: 30px;
+  font-size: 17px;
+}
 
