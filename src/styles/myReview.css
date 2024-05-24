@@ -98,3 +98,12 @@ a{text-decoration: none; color: black;}
 .review-img-preview button{display: flex; border: none; margin-left: 10px;}
 
 .reviewEdit-Box a{margin-right: 10px; font-size: 18px;}
+
+.dropMenu-list {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dropMenu-list .dropdown-menu{
+  margin-bottom: 10px;
+}
