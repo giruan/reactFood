@@ -108,4 +108,42 @@ a { text-decoration: none; }
 
 
 
+.restaurantReview .userReview .userInfo{
+  display: flex;
+  margin: 10px;
+}
+
+.restaurantReview .userReview .userInfo p{
+  margin: 0;
+}
+
+.restaurantReview .userReview .userInfo .userImg{
+  width: 60px;
+  height: 60px;
+}
+
+.restaurantReview .userReview .userInfo .userImg img{
+  width: 100%;
+  border-radius: 100px;
+}
+
+
+.restaurantReview .userReview .userInfo .userTxt{
+  align-content: center;
+}
+
+.restaurantReview .userReview .userInfo .userTxt .userName{
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.restaurantReview .userReview .userInfo .userTxt span{
+  font-size: 14px;
+}
+
+.restaurantReview .userReview .userInfo .userTxt .averageRting{
+  color: gray;
+}
+
+
 

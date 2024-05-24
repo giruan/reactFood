@@ -51,7 +51,7 @@ if (error) return <div>Error! {error.message}</div>;
 
           <DetailReview
             reviews={data.reviews}
-            userAvgRatings={data.userAvgRatings}
+            // userAvgRatings={data.userAvgRatings}
             filteredreviewImgList={data.filteredreviewImgList}
           />
         </div>
