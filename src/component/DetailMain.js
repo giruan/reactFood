@@ -9,6 +9,9 @@ import { BiSolidFoodMenu } from 'react-icons/bi';
 import { MdAccessTimeFilled } from 'react-icons/md';
 import { PiSirenFill } from 'react-icons/pi';
 import { IoMdShare } from "react-icons/io";
+import { FaStar } from 'react-icons/fa';
+import { IoPerson } from 'react-icons/io5';
+
 
 //평점 계산
 function calculateAvgRating(reviews) {
@@ -124,7 +127,9 @@ function DetailMain({ restaurant, reviews, filteredImgList ,restaurantId,userId}
               <button className="col-3 reviewBtn">
                 <Link to={`/review/${restaurant.restaurantId}`}>리뷰작성</Link>
               </button>
-              <button className="col-3 shareBtn"><IoMdShare /></button>
+              <button className="col-3 shareBtn">
+                <IoMdShare />
+              </button>
             </div>
           </div>
         </div>
@@ -136,14 +141,15 @@ function DetailMain({ restaurant, reviews, filteredImgList ,restaurantId,userId}
 
         <div className="restaurantRating">
           <div className="gradeInfo row row-cols-auto">
-            {/* <div className="gradeRating">
-              별표시
-              {[...Array(5)].map((_, index) => (
-                <i key={index} className={`bi bi-star${index + 1 <= avgRating ? '-fill' : ''}`}></i>
-              ))}
-            </div> */}
-            <span className="totalScore col">{avgRating}점</span>
-            <p className="col">{reviewCount}명의 평가</p>
+
+            <span className="totalScore col">
+              <FaStar className="star" />
+              {avgRating}점
+            </span>
+            <p className="col">
+              <IoPerson className="star" />
+              {reviewCount}명의 평가
+            </p>
           </div>
         </div>
       </div>
