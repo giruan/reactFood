@@ -45,7 +45,7 @@ function MyReviewPage(props) {
                 }
               })}
             </div>
-            <div className="content">
+            <div className="reviewcontent ">
               <p>{review.content}</p>
             </div>
             <div className="gradeRating col">
