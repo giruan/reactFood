@@ -143,8 +143,6 @@ function DetailMain({ restaurant, reviews, filteredImgList ,restaurantId,userId,
               <button className="col-3 shareBtn">
                 <IoMdShare />
               </button>
-
-              <button className="col-3 shareBtn">공유</button>
               <div>{name === '관리자'? (
                 <Link to={`/shopInfo/${restaurant.restaurantId}`}>수정</Link>
               ):(
