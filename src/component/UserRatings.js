@@ -40,18 +40,23 @@ function UserRatings({userId}){
 
   return(
     <>
-      <p className="personGrade">
-        <span className="username">
-          <strong>{rating.userId} </strong>
-        </span>
-        <span className="scoreInfo">
-          평가
-          <span className="scoreCnt">
-            {rating.rating_count}, 평균 별점:
-            {averageRating}
-          </span>
-        </span>
-      </p>
+      <div className="userInfo">
+        <div className="userImg">
+          <img src={ rating.imgUrl ? `/users/${rating.imgUrl}` : '/test/Pic.jpg' }> 
+          </img>
+        </div>
+        <div className="userTxt">
+          <p className="userName">
+            <strong>{rating.userName} </strong>
+          </p>
+          <p>
+            <span className="scoreInfo">
+              <span className="averageRting">평균 별점</span> <span>{averageRating}&nbsp;</span>
+              <span className="averageRting">평가 </span> {rating.rating_count}
+            </span>
+          </p>
+        </div>
+      </div>
     </>
   )
 }

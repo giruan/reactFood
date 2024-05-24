@@ -12,11 +12,11 @@ a { text-decoration: none; }
 
 .restaurantInfo{padding: 0 10px;}
 
-.restaurantInfo .infoImg{padding: 10px 0; margin-bottom: 25px; display: flex; }
+.restaurantInfo .infoImg{ max-width: 716px; padding: 10px 0; margin-bottom: 25px; display: flex; }
 .restaurantInfo .infoImg img
 { 
     width: 50%;
-    height: auto; 
+    height: auto; max-height: 325px;
     object-fit: cover;
     margin-right: 5px;
     cursor: pointer;
@@ -45,6 +45,8 @@ a { text-decoration: none; }
 .restaurantRating .gradeInfo p{padding-left: 0;margin: 0;}
 .restaurantRating .gradeInfo span
 {font-weight: bold; font-size: 25px; padding-left: 5px;}
+.restaurantRating .gradeInfo .star{margin-right: 5px;}
+
 .restaurantRating .gradeRating{font-size: 25px;}
 .restaurantRating .gradeRating .bi-star-fill,
 .reviewCount .gradeRating .bi-star-fill
@@ -89,7 +91,7 @@ a { text-decoration: none; }
 
 .restaurantReviewPic .modal-content img,
 .restaurantMain .modal-content img,
-.restaurantReview .modal-content img{max-width: 1600px; }
+.restaurantReview .modal-content img{max-width: 1600px; max-height: 600px; }
 
 .restaurantReviewPic .modal-body{transition: all 2s; }
 
@@ -104,6 +106,44 @@ a { text-decoration: none; }
 
 .restaurantReview .userReview{border: 1px solid gray; padding: 8px 10px 20px; margin-bottom: 30px; border-radius: 10px;} 
 
+
+
+.restaurantReview .userReview .userInfo{
+  display: flex;
+  margin: 10px;
+}
+
+.restaurantReview .userReview .userInfo p{
+  margin: 0;
+}
+
+.restaurantReview .userReview .userInfo .userImg{
+  width: 60px;
+  height: 60px;
+}
+
+.restaurantReview .userReview .userInfo .userImg img{
+  width: 100%;
+  border-radius: 100px;
+}
+
+
+.restaurantReview .userReview .userInfo .userTxt{
+  align-content: center;
+}
+
+.restaurantReview .userReview .userInfo .userTxt .userName{
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.restaurantReview .userReview .userInfo .userTxt span{
+  font-size: 14px;
+}
+
+.restaurantReview .userReview .userInfo .userTxt .averageRting{
+  color: gray;
+}
 
 
 
