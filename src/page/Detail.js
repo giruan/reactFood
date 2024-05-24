@@ -9,7 +9,8 @@ import DetailReview from '../component/DetailReview';
 
 function Detail(props) {
 
-const {userId} = props;
+const {userId, name} = props;
+console.log(name)
 const [data, setData] = useState(null);
 const [loading, setLoading] = useState(true);
 const [error, setError] = useState(null);
@@ -41,7 +42,7 @@ if (error) return <div>Error! {error.message}</div>;
     
       <main className="main">
         <div className="content">
-          <DetailMain restaurant={data.restaurant} reviews={data.reviews} filteredImgList={data.filteredImgList} restaurantId={id} userId={userId}/>
+          <DetailMain restaurant={data.restaurant} reviews={data.reviews} filteredImgList={data.filteredImgList} restaurantId={id} userId={userId} name={name}/>
 
           <DetailPhoto
             restaurant={data.restaurant}
