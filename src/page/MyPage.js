@@ -21,6 +21,7 @@ function MyPage(props) {
     phone: '',
   });
   const [previewSrc, setPreviewSrc] = useState(null);
+  const [file, setFile] = useState(null)
 
   useEffect(() => {
     if (userId) {
@@ -46,8 +47,10 @@ function MyPage(props) {
 
     // 기존 데이터 추가
     formData.append('data', JSON.stringify(member));
-    formData.append('imgUrl', document.getElementById('imgUrl').files[0]);
 
+    if(file){
+      formData.append('imgUrl', file);
+    }
     fetch(`/edit/${member.userId}`, {
       method: 'PUT',
       body: formData,
@@ -63,7 +66,7 @@ function MyPage(props) {
       });
   };
 
-  //
+  // 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setMember((prevState) => ({
@@ -75,6 +78,7 @@ function MyPage(props) {
   // 이미지 미리보기를 위한 함수 수정
   const handleImageChange = (e) => {
     const file = e.target.files[0];
+    setFile(file);
     if (file) {
       // 파일로부터 URL 생성
       const previewUrl = URL.createObjectURL(file);
@@ -307,6 +311,8 @@ function MyPage(props) {
                   사진 삭제
                 </button>
               </div>
+
+              {/* 사진 변경 후 사진 */}
               <input
                 id="imgUrl"
                 name="imgUrl"

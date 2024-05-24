@@ -10,6 +10,7 @@ function MyReviewEdit(props){
 
   // 삭제할 이미지 ID를 관리하는 상태 추가
   const [deletedImages, setDeletedImages] = useState([]);
+  
   const inputFileRef = useRef(null);
 
   const {reviewId} = useParams();
