@@ -15,9 +15,9 @@ a { text-decoration: none; }
 .restaurantInfo .infoImg{ max-width: 716px; padding: 10px 0; margin-bottom: 25px; display: flex; }
 .restaurantInfo .infoImg img
 { 
+  object-fit: cover;
     width: 50%;
-    height: auto; max-height: 325px;
-    object-fit: cover;
+    min-height: 325px;
     margin-right: 5px;
     cursor: pointer;
 }
