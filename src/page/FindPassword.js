@@ -7,7 +7,8 @@ function FindPassword(){
     // 상태 관리를 위한 useState 훅 사용
   const [method, setMethod] = useState('email'); // 'email' 또는 'phone'
   const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('010-0000-0000');
+  const [phone, setPhone] = useState('');
+  const [message, setMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
 
@@ -26,9 +27,9 @@ function FindPassword(){
   // email 정규식 확인
   const [emailValidationMessage, setEmailValidationMessage] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setIsLoading(true);
+  const handleSubmitEmail = (e) => {
+      e.preventDefault();
+      setIsLoading(true);
 
       fetch('/findEmail', {
         method: 'POST',
@@ -79,10 +80,38 @@ const handleEmailInputChange = (e) =>{
     });
 }
 
+const handlePhoneInputChange = (e) =>{
+  const phonNum = e.target.value;
+    setPhone(phonNum);
+ 
+}
 
-
-
-
+const handleSubmitSMS = async (e) => {
+  e.preventDefault()
+  setIsLoading(true);
+     await fetch('/send-sms', {
+      method: 'POST', // HTTP 요청 메소드 설정
+      headers: {
+        'Content-Type': 'application/json', // 요청의 Content-Type 헤더를 application/json으로 설정
+      },
+      body: JSON.stringify({ phone: phone }), // JavaScript 객체를 JSON 문자열로 변환
+    })
+    .then(response => {
+      if (!response.ok) throw new Error('Network response was not ok');
+      return response.json();
+    })
+    .then(data => {
+      setMessage('SMS sent successfully');
+      alert("메세지가 전송되었습니다.")
+      window.location.href = '/login'
+    })
+    
+    .catch(error => {
+      console.error('Error:', error);
+      alert('오류가 발생했습니다.');
+    })
+    .finally(() => setIsLoading(false));
+}
 
   return(
     <>
@@ -104,7 +133,7 @@ const handleEmailInputChange = (e) =>{
             <p>YUM YARD 회원으로 인증이 완료된 휴대전화 혹은</p>
             <p>이메일로 비밀번호를 재설정 하실수 있습니다.</p>
           </div>
-          <form onSubmit={handleSubmit} className="form-box">
+          <div className="form-box">
             <div className="findEmail row justify-content-center">
               <div className="email-wrap">
                 <div className="col-1 radiobtn">
@@ -133,6 +162,9 @@ const handleEmailInputChange = (e) =>{
                       onChange={handleEmailInputChange}
                     />
                   </div>
+                  <div className="btn-box">
+                  <button type="submit" className="btn btn-dark loginButton" disabled={isLoading} onClick={handleSubmitEmail}>{isLoading ? '처리 중...' : '발송'}</button>
+                </div>
                   <div id="userIdValidation">{emailValidationMessage}</div>
                 </div>
               )}
@@ -164,14 +196,13 @@ const handleEmailInputChange = (e) =>{
                       onChange={(e) => setPhone(e.target.value)}
                     />
                   </div>
+                  <div className="btn-box">
+                  <button type="submit" className="btn btn-dark loginButton" onClick={handleSubmitSMS} disabled={isLoading}>{isLoading ? '처리 중...' : '발송'}</button>
+                </div>
                 </div>
               )}
             </div>
-            <div className="btn-box">
-              <button type="submit" className="btn btn-dark loginButton" disabled={isLoading}>{isLoading ? '처리 중...' : '발송'}</button>
-
-            </div>
-          </form>
+          </div>
         </div>
       </div>
     </main>

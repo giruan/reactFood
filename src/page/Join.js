@@ -19,11 +19,17 @@ function Join() {
   // Id 중복 확인
   const [isIdValidated, setIsIdValidated] = useState(false);
 
+  // phone 중복 확인
+  const [isPhoneValidated, setIsPhoneValidated] = useState(false);
+
   // email 정규식 확인
   const [emailValidationMessage, setEmailValidationMessage] = useState('');
 
   // password 중복확인
   const [passwordValidationMessage, setPasswordValidationMessage] = useState('');
+
+  // phone 중복확인
+  const [phoneValidationMessage, setPhoneValidationMessage] = useState('');
 
   // 비밀번호 재확인
   const [rePasswordValidationMessage, setRePasswordValidationMessage] = useState('');
@@ -106,8 +112,9 @@ function Join() {
       .then((data) => {
         if (!validateEmail(userIdValue)) {
           setEmailValidationMessage('올바르지 않은 아이디 형식입니다.');
+          setIsIdValidated(false);
         } else if (data.exists) {
-          setEmailValidationMessage('중복된 아이디입니다.');
+          setEmailValidationMessage('중복된 아이디입니다.');setIsIdValidated(false);
         } else if (!data.exists && validateEmail(userIdValue)) {
           setEmailValidationMessage('사용 가능한 아이디입니다.');
           setIsIdValidated(true);
@@ -125,7 +132,7 @@ function Join() {
     setPassword(newPassword);
 
     if (passwordRegex.test(newPassword)) {
-      setPasswordValidationMessage('사용가능한 비밀번호입니다.');
+      setPasswordValidationMessage('사용 가능한 비밀번호입니다.');
       // 여기서 추가적인 상태 변경이 필요하면 수행합니다.
     } else {
       setPasswordValidationMessage('비밀번호는 최소 8자 이상이어야 하며, 숫자, 소문자, 특수문자를 포함해야 합니다.');
@@ -145,19 +152,25 @@ function Join() {
   // 회원가입 버튼 눌렀을시 이벤트
   const handleJoinClick = (e) => {
     e.preventDefault();
-    if (isIdValidated && passwordRegex.test(password) && rePassword == password) {
+    if (isIdValidated && isPhoneValidated &&passwordRegex.test(password) && rePassword == password && birthNum && address && phone && name) {
       alert('환영합니다! 회원가입 되었습니다.');
       handleSubmit(e);
     } else if (!isIdValidated && passwordRegex.test(password)) {
-      e.preventDefault();
       alert('아이디를 규칙에 맞게 입력 해주세요.');
+      return;
     } else if (isIdValidated && !passwordRegex.test(password)) {
-      e.preventDefault();
       alert('비밀번호를 규칙에 맞게 입력 해주세요');
-    } else {
-      e.preventDefault();
+      return;
+    } 
+    else if(!isIdValidated && !passwordRegex.test(password)){
       alert('아이디와 비밀번호를 입력해주세요.');
+      return;
     }
+      else if(!name || !birthNum || !address || !phone){
+        alert('필수 항목들을 전부 입력해주세요.')
+        return;
+      }
+    
   };
 
   const handleImageChange = (e) => {
@@ -173,22 +186,47 @@ function Join() {
     }
   };
 
-  //
-  const handlePhoneChange = (e) => {
+  
+  const handlePhoneChange = async (e) => {
     let value = e.target.value.replace(/\D/g, ''); // 숫자가 아닌 모든 문자를 제거
+    
     if (value.length > 11) {
       value = value.slice(0, 11); // 최대 11자리로 제한
     }
-
     let formattedValue = value;
-
     if (formattedValue.length > 3 && formattedValue.length <= 7) {
       formattedValue = value.replace(/(\d{3})(\d{1,4})/, '$1-$2');
     } else if (formattedValue.length > 7) {
       formattedValue = formattedValue.replace(/(\d{3})(\d{3,4})(\d{1,4})/, '$1-$2-$3');
     }
 
-    setPhone(formattedValue);
+    fetch('/checkPhone', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ phone: formattedValue }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.exists && phone.length == 12) { 
+          setPhoneValidationMessage('다른 전화번호를 사용해주세요.')
+          setIsPhoneValidated(false);
+        } else if (!data.exists && phone.length == 12) {
+          setPhoneValidationMessage('사용 가능한 전화번호입니다.')
+          setIsPhoneValidated(true);
+        }
+        else if(phone.length > 0){
+          setPhoneValidationMessage('전화번호를 입력해주세요.')
+          setIsPhoneValidated(false);
+        } 
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        alert('서버 오류가 발생했습니다.');
+      });
+      setPhone(formattedValue);
+    
   };
   //
 
@@ -231,7 +269,7 @@ function Join() {
               <input name="password" type="password" placeholder="비밀번호 (필수)" onChange={handlePasswordChange} />
               <div
                 id="passwordValidation"
-                className={passwordValidationMessage === '사용가능한 비밀번호입니다.' ? 'valid' : 'invalid'}
+                className={passwordValidationMessage === '사용 가능한 비밀번호입니다.' ? 'valid' : 'invalid'}
               >
                 {passwordValidationMessage}
               </div>
@@ -274,6 +312,12 @@ function Join() {
                   value={phone}
                 />
                 <button type="button">인증번호발송</button>
+              </div>
+              <div
+                id="phoneValidation"
+                className={phoneValidationMessage === '사용 가능한 비밀번호입니다.'? 'valid' : 'invalid'}
+              >
+                {phoneValidationMessage}
               </div>
             </div>
             <br />

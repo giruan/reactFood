@@ -53,7 +53,6 @@ function MyPage(props) {
     }
     
     
-    
     fetch(`/edit/${member.userId}`, {
       method: 'PUT',
       body: formData,
