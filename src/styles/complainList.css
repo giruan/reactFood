@@ -1,8 +1,10 @@
-.complainSec{
-  min-height: 600px; max-width: 1000px;
+.cpList{background-color: #f0f0f3; padding-bottom: 80px;}
+
+.complainSec{ padding: 0 40px;
+  min-height: 500px; max-width: 1000px; background-color: white; border-radius: 10px;
 }
 
-.complainListTitle{display: flex; margin: 50px 0 45px; padding-bottom: 30px;  justify-content: center; border-bottom: 1px gray solid;}
+.complainListTitle{display: flex; margin: 50px 0 45px; padding-top: 20px; padding-bottom: 30px;  justify-content: center; border-bottom: 1px gray solid;}
 
 .complainTable {
   width: 100%;

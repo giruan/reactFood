@@ -47,7 +47,7 @@ function ComplainList() {
 
 
   return (
-    <main>
+    <main className='cpList'>
       <header>
         <div className="header_login">
           <Link to="/">

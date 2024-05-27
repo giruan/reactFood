@@ -3,7 +3,7 @@ ul,ol,li { list-style: none; }
 a { text-decoration: none; } 
 
 
-.adminComplain, .shopAddDetail{background-color: #f0f0f3; padding-bottom: 80px;}
+.adminComplain, .shopAddDetail, .complain{background-color: #f0f0f3; padding-bottom: 80px;}
 
 
 .shopAdd .container { width: 960px; margin: 0 auto; padding-bottom: 25px; } 
@@ -57,3 +57,41 @@ text-align: center;}
 .shopAdd .addBtn{display: flex; justify-content: space-between; padding-top: 15px; }
 .shopAdd .addBtn .btn{margin: 0 30px;}
 .shopAdd .addBtn .btn a{color: white;}
+
+
+/* 리뷰 사진 */
+.addItem .review-img{
+  border: 1px solid gray;
+}
+.addItem .upload-img{ display: flex; justify-content: space-between; flex-wrap: wrap; }
+.addItem #imgUrl{ padding: 10px 0; padding-left: 10px;}
+
+.addItem .review-img-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  max-width: 427px;
+}
+
+.addItem .review-img-preview > div {
+  flex: 1 0 45%; /* 한 줄에 두 개씩 배치되도록 설정 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.addItem .review-img-preview img {
+  max-width: 100%;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.addItem .review-img-preview button {
+  margin-top: 5px;
+  color: red;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
