@@ -114,3 +114,5 @@ ul,ol,li { list-style: none; }
   margin-bottom: 30px;
   text-align: center;
 }
+
+.dropList strong{display: flex; align-items: center;}
