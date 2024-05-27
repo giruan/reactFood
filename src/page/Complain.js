@@ -49,7 +49,7 @@ function Complain(props){
   
 
   return (
-    <div className="shopAdd">
+    <div className="shopAdd complain">
       <header>
         <div className="header">
           <a href="/">
