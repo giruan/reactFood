@@ -12,12 +12,12 @@ a { text-decoration: none; }
 
 .restaurantInfo{padding: 0 10px;}
 
-.restaurantInfo .infoImg{padding: 10px 0; margin-bottom: 25px; display: flex; }
+.restaurantInfo .infoImg{ max-width: 716px; padding: 10px 0; margin-bottom: 25px; display: flex; }
 .restaurantInfo .infoImg img
 { 
+  object-fit: cover;
     width: 50%;
-    height: auto; 
-    object-fit: cover;
+    min-height: 325px;
     margin-right: 5px;
     cursor: pointer;
 }
@@ -45,6 +45,8 @@ a { text-decoration: none; }
 .restaurantRating .gradeInfo p{padding-left: 0;margin: 0;}
 .restaurantRating .gradeInfo span
 {font-weight: bold; font-size: 25px; padding-left: 5px;}
+.restaurantRating .gradeInfo .star{margin-right: 5px;}
+
 .restaurantRating .gradeRating{font-size: 25px;}
 .restaurantRating .gradeRating .bi-star-fill,
 .reviewCount .gradeRating .bi-star-fill
@@ -89,7 +91,7 @@ a { text-decoration: none; }
 
 .restaurantReviewPic .modal-content img,
 .restaurantMain .modal-content img,
-.restaurantReview .modal-content img{max-width: 1600px; }
+.restaurantReview .modal-content img{max-width: 1600px; max-height: 600px; }
 
 .restaurantReviewPic .modal-body{transition: all 2s; }
 

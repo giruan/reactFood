@@ -47,12 +47,13 @@ function MyReviewPage(props) {
                       src={`/reviews/${img.imgUrl}`}
                       alt="Review Image"
                       className="myReviews-img"
+                      style={{objectFit: 'cover'}}
                     />
                   );
                 }
               })}
             </div>
-            <div className="content">
+            <div className="reviewcontent ">
               <p>{review.content}</p>
             </div>
             

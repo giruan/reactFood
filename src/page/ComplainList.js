@@ -47,7 +47,7 @@ function ComplainList() {
 
 
   return (
-    <main>
+    <main className='cpList'>
       <header>
         <div className="header_login">
           <Link to="/">
@@ -57,7 +57,7 @@ function ComplainList() {
       </header>
 
       <section className="container complainSec">
-        <h1 className="complainListTitle">문의 내역</h1>
+        <h1 className="complainListTitle">나의 문의 내역</h1>
         <div className="complainListContent">
           <table className="complainTable">
             <thead>
