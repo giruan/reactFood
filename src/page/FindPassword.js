@@ -11,6 +11,15 @@ function FindPassword(){
   const [message, setMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
+// Id 중복 확인
+const [isIdValidated, setIsIdValidated] = useState(false);
+
+
+ // phone 중복확인
+ const [phoneValidationMessage, setPhoneValidationMessage] = useState('');
+
+  // phone 정규식
+  const [isPhoneValidated, setIsPhoneValidated] = useState(false);
 
   // 이메일 정규식
   const validateEmail = (email) => {
@@ -18,40 +27,36 @@ function FindPassword(){
     return re.test(String(email).toLowerCase());
   }
   
-  // 휴대폰 정규식 
-  const validatePhone = (phone) => {
-    const re = /^010-\d{4}-\d{4}$/;
-    return re.test(String(phone));
-  }
-
   // email 정규식 확인
   const [emailValidationMessage, setEmailValidationMessage] = useState("");
 
   const handleSubmitEmail = (e) => {
-      e.preventDefault();
-      setIsLoading(true);
-
-      fetch('/findEmail', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({userId : email}),
-      })
-      .then(response => {
-        if (!response.ok) throw new Error('Network response was not ok');
-        return response.json();
-      })
-      .then(data => {
-        alert('비밀번호 재설정 링크가 이메일로 발송되었습니다.'); // 예: '비밀번호 재설정 링크가 이메일로 발송되었습니다.'
-        window.location.href = '/login'
-      })
-      .catch(error => {
-        console.error('Error:', error);
-        alert('오류가 발생했습니다.');
-      })
-      .finally(() => setIsLoading(false));
-    }
+    e.preventDefault();
+    setIsLoading(true);
+      if(isIdValidated){
+        fetch('/findEmail', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({userId : email}),
+        })
+        .then(response => {
+          if (!response.ok) throw new Error('Network response was not ok');
+          return response.json();
+        })
+        .then(data => {
+          alert('비밀번호 재설정 링크가 이메일로 발송되었습니다.'); // 예: '비밀번호 재설정 링크가 이메일로 발송되었습니다.'
+          
+          window.location.href = '/login'
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          alert('오류가 발생했습니다.');
+        })
+        .finally(() => setIsLoading(false));
+      }
+  }
 
 
 const handleEmailInputChange = (e) =>{
@@ -68,10 +73,13 @@ const handleEmailInputChange = (e) =>{
     .then((data) => {
       if (!validateEmail(userIdValue)) {
         setEmailValidationMessage("올바르지 않은 아이디 형식입니다.");
+        setIsIdValidated(false)
       } else if (data.exists) {
-        setEmailValidationMessage("존재하는 이메일입니다.");
+        setEmailValidationMessage("이메일이 일치합니다.");
+        setIsIdValidated(true)
       } else if (!data.exists && validateEmail(userIdValue)) {
         setEmailValidationMessage("가입되지 않은 이메일입니다. 다시 입력해주세요");
+        setIsIdValidated(false)
       }
     })
     .catch((error) => {
@@ -80,15 +88,55 @@ const handleEmailInputChange = (e) =>{
     });
 }
 
-const handlePhoneInputChange = (e) =>{
-  const phonNum = e.target.value;
-    setPhone(phonNum);
- 
-}
+// 휴대폰 번호 제약조건
+const handlePhoneChange = async (e) => {
+  let value = e.target.value.replace(/\D/g, ''); // 숫자가 아닌 모든 문자를 제거
+  
+  if (value.length > 11) {
+    value = value.slice(0, 11); // 최대 11자리로 제한
+  }
+  let formattedValue = value;
+  if (formattedValue.length > 3 && formattedValue.length <= 7) {
+    formattedValue = value.replace(/(\d{3})(\d{1,4})/, '$1-$2');
+  } else if (formattedValue.length > 7) {
+    formattedValue = formattedValue.replace(/(\d{3})(\d{3,4})(\d{1,4})/, '$1-$2-$3');
+  }
 
+  fetch('/checkPhone', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ phone: formattedValue }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.exists && phone.length == 12) { 
+        setPhoneValidationMessage('전화번호가 일치합니다.')
+        setIsPhoneValidated(true);
+      } else if (!data.exists && phone.length == 12) {
+        setPhoneValidationMessage('존재하지 않는 비밀번호입니다.')
+        setIsPhoneValidated(false);
+      }
+      else if(phone.length > 0){
+        setPhoneValidationMessage('전화번호를 입력해주세요.')
+        setIsPhoneValidated(false);
+      } 
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+      alert('서버 오류가 발생했습니다.');
+    });
+    setPhone(formattedValue);
+
+};
+
+
+// submit SMS 
 const handleSubmitSMS = async (e) => {
   e.preventDefault()
-  setIsLoading(true);
+  if(isPhoneValidated){
+    setIsLoading(true);
      await fetch('/send-sms', {
       method: 'POST', // HTTP 요청 메소드 설정
       headers: {
@@ -111,6 +159,7 @@ const handleSubmitSMS = async (e) => {
       alert('오류가 발생했습니다.');
     })
     .finally(() => setIsLoading(false));
+  }
 }
 
   return(
@@ -192,13 +241,21 @@ const handleSubmitSMS = async (e) => {
                     <input 
                       type="text" 
                       placeholder="휴대전화번호" 
-                      name="phone" 
-                      onChange={(e) => setPhone(e.target.value)}
+                      name="phone"
+                      value={phone} 
+                      onChange={handlePhoneChange}
+
                     />
                   </div>
                   <div className="btn-box">
                   <button type="submit" className="btn btn-dark loginButton" onClick={handleSubmitSMS} disabled={isLoading}>{isLoading ? '처리 중...' : '발송'}</button>
                 </div>
+                <div
+                id="phoneValidation"
+                className={phoneValidationMessage === '사용 가능한 비밀번호입니다.'? 'valid' : 'invalid'}
+              >
+                {phoneValidationMessage}
+              </div>
                 </div>
               )}
             </div>

@@ -39,7 +39,7 @@ a { text-decoration: none; }
 }
   */
 
-  .joinPage .valid{  font-weight: 600;
+.joinPage .valid{  font-weight: 600;
  color: lightgreen;}
 
 .joinPage .invaild{  font-weight: 600;
