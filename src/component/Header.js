@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom';
 import { HiOutlineSearch } from 'react-icons/hi';
 import { useAuth } from '../contexts/AuthContext';
 import { IoLogOutOutline } from "react-icons/io5";
-import { IoLogInOutline } from "react-icons/io5";
+
 import { BsPersonFill } from "react-icons/bs";
 import { GrUserAdmin } from "react-icons/gr";
-
+import { FaUserPlus } from "react-icons/fa";
 
 
 function Header(props){
@@ -121,10 +121,10 @@ return (
               ) : (
                 <>
                   <li>
-                    <Link to="/login"><IoLogInOutline /> 로그인</Link>
+                    <Link to="/login">로그인</Link>
                   </li>
                   <li>
-                    <Link to="/join">회원가입</Link>
+                    <Link to="/join"><FaUserPlus /> 회원가입</Link>
                   </li>
                 </>
               )}

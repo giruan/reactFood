@@ -94,6 +94,7 @@ function ReviewWrite(props){
                     />
                   </div>
                 </div>
+            <div className="dropList">
               <div>
                 <strong>맛 </strong>
                   <Dropdown className='dropdown'>
@@ -135,7 +136,7 @@ function ReviewWrite(props){
                   </Dropdown.Menu>
                 </Dropdown>
               </div>
-
+            </div>
               
                 <div className="review-content">
                   <h3>방문후기</h3>
