@@ -7,7 +7,7 @@ function ShopAdd() {
   const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState('카테고리');
   const [previewImages, setPreviewImages] = useState([]);
-
+  
   const inputFileRef = useRef(null);
 
   const handleSubmit = async (event) => {
@@ -61,7 +61,7 @@ function ShopAdd() {
       alert('사진은 최대 2개까지만 등록할 수 있습니다.');
       return;
     }
-
+    
     Array.from(files).forEach((file) => {
       const reader = new FileReader();
       reader.onload = () => {
@@ -158,7 +158,7 @@ function ShopAdd() {
               </Dropdown>
             </div>
             <div className="addItem">
-              <strong>매장 번호 (선택)</strong>
+              {/* <strong>매장 번호 (선택)</strong>
               <input name="callNumber" id="callNumber" type="text" placeholder="전화 번호" />
             </div>
             <div className="addItem">
@@ -192,9 +192,40 @@ function ShopAdd() {
                     );
                   })}
                 </div>
-              </div>
+              </div> */}
 
-             
+              
+              {/*  */}
+              <h3>음식 및 메뉴판 사진</h3>
+              <div className="review-img">
+                <div className="upload-img">
+                  <input
+                    ref={inputFileRef}
+                    name="imgUrl"
+                    id="imgUrl"
+                    type="file"
+                    placeholder="리뷰사진"
+                    onChange={handleImageChange}
+                    multiple
+                  />
+                </div>
+                <div className="review-img-preview">
+                  {previewImages.map((image, index) => {
+                    const imageUrl = image.isFromServer ? `/reviews/${image.url}` : image.url;
+                    return (
+                      <div key={index}>
+                        <img src={imageUrl} alt="Preview" style={{ width: '100px', height: '100px' }} />
+                        <button type="button" onClick={() => handleDeleteImage(image, index)}>
+                          삭제
+                        </button>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+              {/*  */}
+
+
             </div>
             <div className="addItem">
               <input name="views" id="views" type="hidden" value="0" placeholder="조회수" />
