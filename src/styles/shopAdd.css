@@ -2,13 +2,16 @@
 ul,ol,li { list-style: none; } 
 a { text-decoration: none; } 
 
+
+.adminComplain, .shopAddDetail{background-color: #f0f0f3; padding-bottom: 80px;}
+
+
 .shopAdd .container { width: 960px; margin: 0 auto; padding-bottom: 25px; } 
 
-/* body .mainPage { width: 400px; padding-left: 0; margin-bottom: 110px; }  */
-.shopAdd .addPage { width: 500px; padding-left: 0; margin-bottom: 110px; } 
+.shopAdd .addPage { width: 500px; background-color: white; border-radius: 10px; } 
 
-.shopAdd .header { padding: 20px 0 20px; border-bottom: gray solid 1px; } 
-.shopAdd .header img { width: 150px; } 
+.shopAdd .header {border-bottom: gray solid 1px; background-color: white; margin-bottom: 50px;} 
+.shopAdd .header img {width: 250px;} 
 
 .shopAdd .subtitle,
 .shopAdd .header,

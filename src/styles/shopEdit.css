@@ -3,17 +3,18 @@
   height: 100%;
 }
 
-.header {
+.shopheader {
   padding: 10px;
-  background-color: #f8f9fa;
   text-align: center;
+  border-bottom: 1px gray solid;
+  margin-bottom: 50px
 }
 
-.header img {
+.shopheader img {
   max-width: 200px;
 }
 
-.container {
+.addPage {
   margin-top: 20px;
 }
 

@@ -110,7 +110,8 @@ function EditPassword(){
   };
 
   return (
-    <>
+    <main className="editMain">
+      
       <header>
         <div className="header_login">
           <Link to="/">
@@ -119,7 +120,6 @@ function EditPassword(){
         </div>
       </header>
 
-      <main>
         <div className="container editPage">
           <div className="editTitle">
             <h2>비밀번호 변경</h2>
@@ -194,7 +194,6 @@ function EditPassword(){
           </div>
         </div>
       </main>
-    </>
   );
 }
 

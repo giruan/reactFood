@@ -102,7 +102,7 @@ const handleDeleteImage = (imgIdToDelete) => {
   return(
     <div className="shopAdd">
       <header>
-        <div className="header">
+        <div className="shopheader">
           <a href="/">
             <img src="/image/logo.PNG" alt="다이닝코드" />
           </a>

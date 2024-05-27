@@ -89,7 +89,7 @@ function ShopAdd() {
   };
 
   return (
-    <div className="shopAdd">
+    <div className="shopAdd shopAddDetail">
       <header>
         <div className="header">
           <a href="/">
@@ -120,25 +120,53 @@ function ShopAdd() {
             <div className="addItem">
               <strong>카테고리</strong>
 
-              <Dropdown className='dropdown'>
+              <Dropdown className="dropdown">
                 <Dropdown.Toggle variant="light" className="category-dropdown">
                   {selectedCategory}
                 </Dropdown.Toggle>
                 <Dropdown.Menu className="dropdown-menu">
-                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('고기')}>고기</Dropdown.Item>
-                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('돈까스')}>돈까스</Dropdown.Item>
-                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('버거')}>버거</Dropdown.Item>
-                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('분식')}>분식</Dropdown.Item>
-                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('아시안')}>아시안</Dropdown.Item>
-                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('양식')}>양식</Dropdown.Item>
-                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('일식')}>일식</Dropdown.Item>
-                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('족발 • 보쌈')}>족발 • 보쌈</Dropdown.Item>
-                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('죽')}>죽</Dropdown.Item>
-                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('중식')}>중식</Dropdown.Item>
-                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('탕 • 찌개')}>탕 • 찌개</Dropdown.Item>
-                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('치킨')}>치킨</Dropdown.Item>
-                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('피자')}>피자</Dropdown.Item>
-                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('디저트')}>디저트</Dropdown.Item>
+                  <Dropdown.Item className="menu-li" onClick={() => handleCategoryChange('고기')}>
+                    고기
+                  </Dropdown.Item>
+                  <Dropdown.Item className="menu-li" onClick={() => handleCategoryChange('돈까스')}>
+                    돈까스
+                  </Dropdown.Item>
+                  <Dropdown.Item className="menu-li" onClick={() => handleCategoryChange('버거')}>
+                    버거
+                  </Dropdown.Item>
+                  <Dropdown.Item className="menu-li" onClick={() => handleCategoryChange('분식')}>
+                    분식
+                  </Dropdown.Item>
+                  <Dropdown.Item className="menu-li" onClick={() => handleCategoryChange('아시안')}>
+                    아시안
+                  </Dropdown.Item>
+                  <Dropdown.Item className="menu-li" onClick={() => handleCategoryChange('양식')}>
+                    양식
+                  </Dropdown.Item>
+                  <Dropdown.Item className="menu-li" onClick={() => handleCategoryChange('일식')}>
+                    일식
+                  </Dropdown.Item>
+                  <Dropdown.Item className="menu-li" onClick={() => handleCategoryChange('족발 • 보쌈')}>
+                    족발 • 보쌈
+                  </Dropdown.Item>
+                  <Dropdown.Item className="menu-li" onClick={() => handleCategoryChange('죽')}>
+                    죽
+                  </Dropdown.Item>
+                  <Dropdown.Item className="menu-li" onClick={() => handleCategoryChange('중식')}>
+                    중식
+                  </Dropdown.Item>
+                  <Dropdown.Item className="menu-li" onClick={() => handleCategoryChange('탕 • 찌개')}>
+                    탕 • 찌개
+                  </Dropdown.Item>
+                  <Dropdown.Item className="menu-li" onClick={() => handleCategoryChange('치킨')}>
+                    치킨
+                  </Dropdown.Item>
+                  <Dropdown.Item className="menu-li" onClick={() => handleCategoryChange('피자')}>
+                    피자
+                  </Dropdown.Item>
+                  <Dropdown.Item className="menu-li" onClick={() => handleCategoryChange('디저트')}>
+                    디저트
+                  </Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             </div>

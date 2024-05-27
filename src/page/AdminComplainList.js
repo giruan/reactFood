@@ -31,7 +31,7 @@ function AdminComplainList(){
 
 
   return (
-    <div className="shopAdd">
+    <div className="shopAdd adminComplain">
       <header>
         <div className="header">
           <a href="/">
@@ -40,36 +40,34 @@ function AdminComplainList(){
         </div>
       </header>
 
-      <div className="container addPage">
+      <div className="container addPage ">
         <div className="addtitle">
           <h2>사용자 문의 목록</h2>
         </div>
-        {complainList.filter(complain => complain.status !== "처리 완료").map((complain, index) => (
-          <Link to={`/complainDetailPost/admin/${complain.complainId}`}>
-          
-            <div className="addForm">
-              <div key={index} className="addItem">
-              
-                <div className="addItem">
-                  <strong>문의 ID</strong>
-                  <p>{complain.userId}</p>
-                </div>
-      
-                <div className="addItem">
-                  <strong>제목</strong>
-                  <p>{complain.title}</p>
-                </div>
-          
-                <div className="addItem">
-                  <strong>상태</strong>
-                  <p>{complain.status}</p>
-                </div>
-          </div>
-        </div>
-  
-      </Link>
-    ))}
+        {complainList
+          .filter((complain) => complain.status !== '처리 완료')
+          .map((complain, index) => (
+            <Link to={`/complainDetailPost/admin/${complain.complainId}`}>
+              <div className="addForm">
+                <div key={index} className="addItem">
+                  <div className="addItem">
+                    <strong>문의 ID</strong>
+                    <p>{complain.userId}</p>
+                  </div>
 
+                  <div className="addItem">
+                    <strong>제목</strong>
+                    <p>{complain.title}</p>
+                  </div>
+
+                  <div className="addItem">
+                    <strong>상태</strong>
+                    <p>{complain.status}</p>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          ))}
       </div>
     </div>
   );
