@@ -2,7 +2,12 @@
 ul,ol,li { list-style: none; } 
 a { text-decoration: none; } 
 
-.editPage { width: 500px; margin: 0 auto; padding-left: 0; margin-bottom: 110px;} 
+.header_login {border-bottom: gray solid 1px; background-color: white; margin-bottom: 50px;} 
+.header_login img {width: 250px;} 
+
+.editMain{background-color: #f0f0f3; padding-bottom: 80px;}
+
+.editPage {background-color: white; width: 500px; margin: 0 auto; border-radius: 10px; padding-bottom: 30px;} 
 
 
 .editPage .editTitle {padding: 50px 15px 25px; border-bottom: gray solid 1px; text-align: center; margin-bottom: 50px;}
