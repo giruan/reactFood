@@ -160,7 +160,7 @@ function MyReviewEdit(props) {
                   </div>
                 </div>
 
-                <div className="dropMenu-list">
+                <div className="dropList">
                   <strong>맛 </strong>
                   <Dropdown className="dropdown">
                     <Dropdown.Toggle variant="light" className="category-dropdown">
