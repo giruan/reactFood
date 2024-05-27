@@ -4,6 +4,11 @@ import '../styles/util.css';
 import { Link } from 'react-router-dom';
 import { HiOutlineSearch } from 'react-icons/hi';
 import { useAuth } from '../contexts/AuthContext';
+import { IoLogOutOutline } from "react-icons/io5";
+import { IoLogInOutline } from "react-icons/io5";
+import { BsPersonFill } from "react-icons/bs";
+import { GrUserAdmin } from "react-icons/gr";
+
 
 
 function Header(props){
@@ -95,28 +100,28 @@ return (
                 <>
                   {name === '관리자' ? (
                     <>
-                      <li>관리자</li>
-                      <Link to={`/myPage/${userId}`}>관리자페이지</Link>
-                      <Link to={'/'} onClick={onLogout}>로그아웃</Link>
+                      <li><GrUserAdmin /> 관리자</li>
+                      <Link to={`/myPage/${userId}`}> 관리자페이지</Link>
+                      <Link to={'/'} onClick={onLogout}><IoLogOutOutline /> 로그아웃</Link>
                     </>
                   ) : user ? (
                     <>
-                      <li>{user.properties.nickname}님</li>
+                      <li><BsPersonFill /> {user.properties.nickname}님</li>
                       <Link to={`/myPage/${user.properties.nickname}`}>마이페이지</Link>
-                      <Link to={'/'} onClick= {handleKakaoLogout} >로그아웃</Link>
+                      <Link to={'/'} onClick= {handleKakaoLogout} ><IoLogOutOutline /> 로그아웃</Link>
                     </>
                   ) : (
                     <>
-                      <li>{name}님</li>
-                        <Link to={`/myPage/${userId}`}>마이페이지</Link>
-                        <Link to={'/'} onClick={onLogout}>로그아웃</Link>
+                      <li><BsPersonFill /> {name}님</li>
+                        <Link to={`/myPage/${userId}`}> 마이페이지</Link>
+                        <Link to={'/'} onClick={onLogout}><IoLogOutOutline className='logout'/> 로그아웃</Link>
                     </>
                   )}
                 </>
               ) : (
                 <>
                   <li>
-                    <Link to="/login">로그인</Link>
+                    <Link to="/login"><IoLogInOutline /> 로그인</Link>
                   </li>
                   <li>
                     <Link to="/join">회원가입</Link>

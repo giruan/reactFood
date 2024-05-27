@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import '../styles/join.css';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function Join() {
@@ -28,7 +28,7 @@ function Join() {
   // password 중복확인
   const [passwordValidationMessage, setPasswordValidationMessage] = useState('');
 
-  // phone 중복확인
+  // phone 정규식
   const [phoneValidationMessage, setPhoneValidationMessage] = useState('');
 
   // 비밀번호 재확인
@@ -173,6 +173,7 @@ function Join() {
     
   };
 
+  // 사진 변경
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -187,6 +188,8 @@ function Join() {
   };
 
   
+
+  // 휴대폰 번호 제약조건
   const handlePhoneChange = async (e) => {
     let value = e.target.value.replace(/\D/g, ''); // 숫자가 아닌 모든 문자를 제거
     
@@ -226,7 +229,6 @@ function Join() {
         alert('서버 오류가 발생했습니다.');
       });
       setPhone(formattedValue);
-    
   };
   //
 
