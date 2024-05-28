@@ -36,13 +36,11 @@ function MyReviewEdit(props) {
     }));
   };
 
-  
-  
   // 렌더링 되면 데이터 값 불러옴
   useEffect(() => {
     fetch(`/detailReview/${reviewId}`)
-    .then((response) => response.json())
-    .then((data) => {
+      .then((response) => response.json())
+      .then((data) => {
         setReview({
           ...data.review,
         });
@@ -52,17 +50,17 @@ function MyReviewEdit(props) {
         setPreviewImages(data.img.map((imgObject) => ({ url: imgObject.imgUrl, isFromServer: true })));
       })
       .catch((err) => console.error('Error', err));
-    }, []);
-    
-    // 이미지 삭제 처리 함수
-    const handleDeleteImage = (image, index) => {
-      if (image.isFromServer) {
-        // 서버에서 불러온 이미지의 경우, 삭제 목록에 추가
-        setDeletedImages((deletedImages) => [...deletedImages, image.url]);
-      }
-      // 상태에서 해당 이미지 제거
-      setPreviewImages((prevImages) => prevImages.filter((_, i) => i !== index));
-    };
+  }, []);
+
+  // 이미지 삭제 처리 함수
+  const handleDeleteImage = (image, index) => {
+    if (image.isFromServer) {
+      // 서버에서 불러온 이미지의 경우, 삭제 목록에 추가
+      setDeletedImages((deletedImages) => [...deletedImages, image.url]);
+    }
+    // 상태에서 해당 이미지 제거
+    setPreviewImages((prevImages) => prevImages.filter((_, i) => i !== index));
+  };
 
   const handleImageChange = (e) => {
     const files = e.target.files;

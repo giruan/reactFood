@@ -139,7 +139,10 @@ ul,li,a{text-decoration: none; list-style: none;}
 
 .mainVisual .modal-content .selectBtn button{height: 100%; width: 100%; border-radius: 10px; border: gray; color: gray;}
 
-#selectRegion {  height: 50px; background-color: white; border-color: #19b7c2; color: #19b7c2; border: 1px solid #19b7c2; }
+#selectRegion {  height: 50px; background-color: white; border-color: #124886; color: #124886; border: 1px solid #124886; }
+.mainVisual .modal-content .city button:hover,
+.mainVisual .modal-content .gu button:hover,
+#selectRegion:hover{background-color: #124886; color: white;}
 
 .modal-content .close {
   color: #aaa;

@@ -33,6 +33,7 @@ a{text-decoration: none; color: black;}
 
 /* 내 리뷰 목록의 배경을 변경합니다. */
 .myReview-box {
+  min-height: 450px;
   background-color: #f8f9fa;
   padding: 20px;
   border-radius: 10px;
