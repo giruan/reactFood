@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import '../styles/myPage.css';
 import { useAuth } from '../contexts/AuthContext';
 import { FaHeart } from 'react-icons/fa';
@@ -23,6 +23,7 @@ function MyPage(props) {
   });
   const [previewSrc, setPreviewSrc] = useState(null);
   const [file, setFile] = useState('')
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (userId) {
@@ -59,11 +60,25 @@ function MyPage(props) {
     })
       .then((r) => r.text())
       .then((r) => {
-        alert('회원 정보가 변경 되었습니다.');
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "회원 정보 수정",
+          text : "회원 정보가 정상적으로 수정 되었습니다.",
+          showConfirmButton: false,
+          timer: 2000,
+        }) 
+        setTimeout(() => {
+          window.location.href = "/"
+        }, 2000);
         sessionStorage.setItem('name', member.name);
-        window.location.href = '/';
       })
       .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: "회원 정보 수정 실패",
+          text: "회원 정보 수정에 실패하였습니다.",
+        });
         console.error('Error:', error);
       });
   };
@@ -110,25 +125,41 @@ function MyPage(props) {
   // 회원 탈퇴 기능
   const handleDelete = (e) => {
     e.preventDefault();
-    if (window.confirm('정말로 탈퇴하시겠습니까?')) {
-      // 회원 탈퇴 로직을 구현하세요.
-      fetch(`/delete/${member.userId}`, {
-        method: 'DELETE',
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          if (data) {
-            alert('정상적으로 탈퇴되었습니다.');
-            window.location.href = '/login';
-          } else {
-            alert('회원 탈퇴에 실패했습니다.');
-          }
-        })
-        .catch((error) => {
-          console.error('Error:', error);
-          alert('회원 탈퇴에 실패했습니다.');
+    Swal.fire({
+      title: "회원 탈퇴",
+      text: "정말로 탈퇴 하시겠습니까? ",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "삭제",
+      cancelButtonText: '취소'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "삭제 처리",
+          text: "정상적으로 삭제 되었습니다!",
+          icon: "success"
         });
-    }
+         // 회원 탈퇴 로직을 구현하세요.
+        fetch(`/delete/${member.userId}`, {
+          method: 'DELETE',
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data) {
+              window.location.href = '/login';
+            } else {
+              alert('회원 탈퇴에 실패했습니다.');
+            }
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+            alert('회원 탈퇴에 실패했습니다.');
+          });
+      }
+    });
+     
   };
 
   // 핸드폰 번호 제한

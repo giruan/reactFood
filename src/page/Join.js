@@ -89,9 +89,24 @@ function Join() {
       .then((response) => response.json())
       .then((data) => {
         // 서버로부터의 응답 처리
-        window.location.href = '/login';
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "환영합니다!",
+          text : "회원가입 되었습니다!",
+          showConfirmButton: false,
+          timer: 2000,
+        }) 
+        setTimeout(() => {
+          window.location.href = '/login'
+        }, 2000);
       })
       .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: "회원가입 실패!",
+          text: "올바르지 않은 정보가 입력 되었습니다.",
+        });
         console.error('Error:', error);
       });
   };
@@ -153,7 +168,7 @@ function Join() {
   const handleJoinClick = (e) => {
     e.preventDefault();
     if (isIdValidated && isPhoneValidated &&passwordRegex.test(password) && rePassword == password && birthNum && address && phone && name) {
-      alert('환영합니다! 회원가입 되었습니다.');
+      
       handleSubmit(e);
     } else if (!isIdValidated && passwordRegex.test(password)) {
       alert('아이디를 규칙에 맞게 입력 해주세요.');

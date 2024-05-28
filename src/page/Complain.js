@@ -31,8 +31,17 @@ function Complain(props){
       });
   
       if (response.ok) {
-        alert('등록 성공');
-        window.location.href = `/complainList/users/${userId}`;
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "문의 사항",
+          text : "문의 내용이 정상적으로 처리 되었습니다.",
+          showConfirmButton: false,
+          timer: 2000,
+        }) 
+        setTimeout(() => {
+          window.location.href = `/complainList/users/${userId}`;
+        }, 2000);
       } else {
         alert('오류가 발생했습니다.');
       }
@@ -46,7 +55,6 @@ function Complain(props){
     setSelectedCategory(category);
   };
 
-  
 
   return (
     <div className="shopAdd complain">
