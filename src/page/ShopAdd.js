@@ -196,7 +196,7 @@ function ShopAdd() {
               </Dropdown>
             </div>
             <div className="addItem">
-              <h3>음식 및 메뉴판 사진</h3>
+              <strong>음식 및 메뉴판 사진</strong>
               <div className="review-img">
                 <div className="upload-img">
                   <input
