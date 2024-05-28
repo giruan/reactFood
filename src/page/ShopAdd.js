@@ -42,11 +42,14 @@ function ShopAdd() {
       return;
     }
 
-    const imgUrlInput = event.target.imgUrl;
-    if (!imgUrlInput.files || imgUrlInput.files.length === 0) {
+    if (previewImages.length === 0) {
       alert('사진을 1개 이상 등록하세요.');
       return;
     }
+
+    previewImages.forEach((image) => {
+      formData.append('imgUrl', image.file);
+    });
 
     try {
       const response = await fetch('/add', {
@@ -76,18 +79,27 @@ function ShopAdd() {
       return;
     }
 
-    Array.from(files).forEach((file) => {
-      const reader = new FileReader();
-      reader.onload = () => {
-        const newImage = { url: reader.result, isFromServer: false, file: file };
-        setPreviewImages((previewImages) => [...previewImages, newImage]);
-      };
-      reader.readAsDataURL(file);
-    });
+    const newPreviewImages = Array.from(files).map((file) => ({
+      url: URL.createObjectURL(file),
+      file,
+    }));
+    setPreviewImages((prevImages) => [...prevImages, ...newPreviewImages]);
+
+    // 입력 필드 비우기
+    inputFileRef.current.value = '';
   };
 
-  const handleDeleteImage = (image, index) => {
+  const handleDeleteImage = (index) => {
     setPreviewImages((prevImages) => prevImages.filter((_, i) => i !== index));
+
+    // 새로운 FileList 생성
+    const dataTransfer = new DataTransfer();
+    previewImages.forEach((img, idx) => {
+      if (idx !== index) {
+        dataTransfer.items.add(img.file);
+      }
+    });
+    inputFileRef.current.files = dataTransfer.files;
   };
 
   return (
@@ -184,11 +196,7 @@ function ShopAdd() {
               </Dropdown>
             </div>
             <div className="addItem">
-              <strong>매장 번호 (선택)</strong>
-              <input name="callNumber" id="callNumber" type="text" placeholder="전화 번호" />
-            </div>
-            <div className="addItem">
-              <strong>가게사진</strong>
+              <h3>음식 및 메뉴판 사진</h3>
               <div className="review-img">
                 <div className="upload-img">
                   <input
@@ -202,25 +210,16 @@ function ShopAdd() {
                   />
                 </div>
                 <div className="review-img-preview">
-                  {previewImages.map((image, index) => {
-                    const imageUrl = image.isFromServer ? `/reviews/${image.url}` : image.url;
-                    return (
-                      <div key={index}>
-                        <img
-                          src={imageUrl}
-                          alt="Preview"
-                          style={{ width: '200px', height: '200px', objectFit: 'cover' }}
-                        />
-                        <button type="button" onClick={() => handleDeleteImage(image, index)}>
-                          삭제
-                        </button>
-                      </div>
-                    );
-                  })}
+                  {previewImages.map((image, index) => (
+                    <div key={index}>
+                      <img src={image.url} alt="Preview" style={{ width: '200px', height: '200px', objectFit: 'cover' }} />
+                      <button type="button" onClick={() => handleDeleteImage(index)}>
+                        삭제
+                      </button>
+                    </div>
+                  ))}
                 </div>
               </div>
-
-             
             </div>
             <div className="addItem">
               <input name="views" id="views" type="hidden" value="0" placeholder="조회수" />

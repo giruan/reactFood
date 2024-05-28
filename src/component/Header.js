@@ -123,7 +123,7 @@ return (
                     <Link to="/login">로그인</Link>
                   </li>
                   <li>
-                    <Link to="/join"><FaUserPlus /> 회원가입</Link>
+                    <Link to="/join"><FaUserPlus className='joinIcon' /> 회원가입</Link>
                   </li>
                 </>
               )}
