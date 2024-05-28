@@ -326,7 +326,7 @@ function Join() {
               </div>
             </div>
             <div className="joinItem">
-              <strong>비밀번호</strong>
+              <strong>비밀번호<span>*</span></strong>
               <input name="password" type="password" placeholder="비밀번호 (필수)" onChange={handlePasswordChange} />
               <div
                 id="passwordValidation"

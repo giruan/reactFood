@@ -33,10 +33,10 @@ a{color: black;}
 
 .header .user li,
 .header .user a
-{padding: 0 10px;}
+{padding: 0 8px;}
 
-.header .user svg{width: 20px; margin: 0 3px 3px 0;}
-
+.header .user svg{font-size: 19px; margin-bottom: 3px;}
+.header .user .joinIcon{font-size: 19px; margin: 0 2px 3px 0;}
 
 /* nav */
 .mainPage nav{

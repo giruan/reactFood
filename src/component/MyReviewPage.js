@@ -1,14 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaStar } from "react-icons/fa";
-import { IoMdCreate } from "react-icons/io";
-import { MdDelete } from "react-icons/md";
-
+import { FaStar } from 'react-icons/fa';
+import { IoMdCreate } from 'react-icons/io';
+import { MdDelete } from 'react-icons/md';
 
 function MyReviewPage(props) {
   const { myReviews, restaurantName, myReviewsImg, handleDelete } = props;
 
-  console.log(myReviews, restaurantName, myReviewsImg)
+  console.log(myReviews, restaurantName, myReviewsImg);
 
   const formatDate = (date) => {
     const d = new Date(date);
@@ -23,7 +22,6 @@ function MyReviewPage(props) {
             <div className="resName">
               {restaurantName.map((res, j) => {
                 if (res.restaurantId === review.restaurantId) {
-       
                   return (
                     <h2 className="resTitle" key={j}>
                       <Link to={`/detail/${res.restaurantId}`}>{res.restaurantName}</Link>
@@ -32,15 +30,25 @@ function MyReviewPage(props) {
                 }
               })}
             </div>
-           
 
             <div className="restaurantRating">
-              <span className="totalScore"><FaStar className="star"/> {review.rating} 점</span>
-              <span className="totalScore"><span>맛 </span>{review.taste}</span>
-              <span className="totalScore"><span>가격 </span>{review.price}</span>
-              <span className="totalScore"><span>응대 </span>{review.service}</span>
+              <span className="totalScore">
+                <FaStar className="star" /> {review.rating} 점
+              </span>
+              <span className="totalScore">
+                <span>맛 </span>
+                {review.taste}
+              </span>
+              <span className="totalScore">
+                <span>가격 </span>
+                {review.price}
+              </span>
+              <span className="totalScore">
+                <span>응대 </span>
+                {review.service}
+              </span>
             </div>
-          
+
             <div className="myReviewImg">
               {myReviewsImg.map((img, j) => {
                 if (img.reviewId === review.reviewId) {
@@ -50,7 +58,7 @@ function MyReviewPage(props) {
                       src={`/reviews/${img.imgUrl}`}
                       alt="Review Image"
                       className="myReviews-img"
-                      style={{objectFit: 'cover'}}
+                      style={{ objectFit: 'cover' }}
                     />
                   );
                 }
@@ -59,12 +67,21 @@ function MyReviewPage(props) {
             <div className="reviewcontent ">
               <p>{review.content}</p>
             </div>
-            
+
             <div className="createdAt">
-            <p>작성일 : {formatDate(review.createdAt)}</p>
-              <div className='reviewEdit-Box'>
-                <Link to={`/reviewEdit/${review.reviewId}`} id="editReview" reviewId={review.reviewId} restaurantName={restaurantName}><IoMdCreate /></Link>
-                <Link to="#" id="delReview" onClick={(e) => handleDelete(e, review.reviewId)}><MdDelete /></Link>
+              <p>작성일 : {formatDate(review.createdAt)}</p>
+              <div className="reviewEdit-Box">
+                <Link
+                  to={`/reviewEdit/${review.reviewId}`}
+                  id="editReview"
+                  reviewId={review.reviewId}
+                  restaurantName={restaurantName}
+                >
+                  <IoMdCreate />
+                </Link>
+                <Link to="#" id="delReview" onClick={(e) => handleDelete(e, review.reviewId)}>
+                  <MdDelete />
+                </Link>
               </div>
             </div>
           </div>
