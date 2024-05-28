@@ -37,11 +37,23 @@ function ReviewWrite(props){
       })
       console.log(response)
       if(response.ok){
-        alert('등록성공');
-        console.log(userId)
-        navigate(`/detail/${restaurantId}`)
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "리뷰 작성",
+          text : "정상 처리 되었습니다!",
+          showConfirmButton: false,
+          timer: 2000,
+        }) 
+        setTimeout(() => {
+          window.location.href = `/detail/${restaurantId}`
+        }, 2000);
       } else{
-        alert('등록 실패')
+        Swal.fire({
+          icon: "error",
+          title: "리뷰 작성 실패",
+          text: "리뷰 작성에 실패하셨습니다.",
+        });
       }
     } catch (error) {
       console.error('Error write:', error);

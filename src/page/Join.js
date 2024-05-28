@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import '../styles/join.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function Join() {
@@ -43,6 +43,13 @@ function Join() {
   const [birthNum, setBirthNum] = useState('');
   const [address, setAdderss] = useState('');
   const [phone, setPhone] = useState('');
+  const [allCheck, setAllCheck] = useState(false);
+  const [ageCheck, setAgeCheck] = useState(false);
+  const [useCheck, setUseCheck] = useState(false);
+  const [marketingCheck, setMarketingCheck] = useState(false);
+
+
+
 
   const [imgUrl, setImgUrl] = useState('');
 
@@ -245,7 +252,44 @@ function Join() {
       });
       setPhone(formattedValue);
   };
-  //
+  
+
+  const allBtnEvent = () => {
+    if (allCheck === false) {
+      setAllCheck(true);
+      setAgeCheck(true);
+      setUseCheck(true);
+      setMarketingCheck(true);
+    } else {
+      setAllCheck(false);
+      setAgeCheck(false);
+      setUseCheck(false);
+      setMarketingCheck(false);
+    }
+  };
+
+  const ageBtnEvent = () => {
+    setAgeCheck(!ageCheck);
+  };
+
+  const useBtnEvent = () => {
+    setUseCheck(!useCheck);
+  };
+
+  const marketingBtnEvent = () => {
+    setMarketingCheck(!marketingCheck);
+  };
+
+  useEffect(() => {
+    if (ageCheck === true && useCheck === true && marketingCheck === true) {
+      setAllCheck(true);
+    } else {
+      setAllCheck(false);
+    }
+  }, [ageCheck, useCheck, marketingCheck]);
+
+
+
 
   return (
     <>
@@ -368,6 +412,31 @@ function Join() {
                 )}
               </div>
             </div>
+
+
+            <div className="joinItem">
+              <input type="checkbox" id="all-check" checked={allCheck} onChange={allBtnEvent} />
+              <label htmlFor="all-check">전체동의</label>
+            </div>          
+            
+            <div className="joinItem">
+              <input type="checkbox" id="check1" checked={ageCheck} onChange={ageBtnEvent} />
+              <label htmlFor="check1">만 14세 이상입니다 <span>(필수)</span></label>
+            </div>                   
+            
+            <div className="joinItem">
+              <input type="checkbox" id="check2" checked={useCheck} onChange={useBtnEvent} />
+              <label htmlFor="check2">이용약관 <span >(필수)</span></label>
+            </div>  
+
+            <div className="joinItem">
+              <input type="checkbox" id="check3" checked={marketingCheck} onChange={marketingBtnEvent} />
+              <label htmlFor="check3">마케팅 동의 <span >(선택)</span></label>
+            </div>  
+
+
+
+
 
             {/* 회원가입 버튼 */}
             <div className="joinBtn" id="joinBtn">

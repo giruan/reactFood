@@ -109,11 +109,24 @@ function MyReviewEdit(props) {
         body: formData,
       });
       if (response.ok) {
-        alert('등록성공');
-        console.log(userId);
-        navigate(`/myReview/${userId}`);
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "리뷰 수정!",
+          text : "정상적으로 리뷰가 수정 되었습니다!",
+          showConfirmButton: false,
+          timer: 2000,
+        }) 
+        setTimeout(() => {
+          window.location.href = `/myReview/${userId}`
+        }, 2000);
+        
       } else {
-        alert('등록 실패');
+        Swal.fire({
+          icon: "error",
+          title: "리뷰 수정 실패!",
+          text: "리뷰 수정에 실패하였습니다.",
+        });
       }
     } catch (error) {
       console.error('Error write:', error);

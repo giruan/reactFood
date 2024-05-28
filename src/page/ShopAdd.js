@@ -6,12 +6,13 @@ import '../styles/shopAdd.css';
 function ShopAdd() {
   const [selectedCategory, setSelectedCategory] = useState('카테고리');
   const [previewImages, setPreviewImages] = useState([]);
-
+  const [deletedImages, setDeletedImages] = useState([]);
   const inputFileRef = useRef(null);
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    const formData = new FormData(event.target);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    
 
     if (selectedCategory === '카테고리') {
       Swal.fire({
@@ -23,8 +24,8 @@ function ShopAdd() {
       return;
     }
     formData.set('category', selectedCategory);
-    const restaurantName = event.target.restaurantName.value;
-    const restaurantAddress = event.target.restaurantAddress.value;
+    const restaurantName = e.target.restaurantName.value;
+    const restaurantAddress = e.target.restaurantAddress.value;
 
     if (!restaurantName || !restaurantAddress) {
       Swal.fire({
@@ -36,7 +37,7 @@ function ShopAdd() {
       return;
     }
 
-    const imgUrlInput = event.target.imgUrl;
+    const imgUrlInput = e.target.imgUrl;
     if (!imgUrlInput.files || imgUrlInput.files.length === 0) {
       Swal.fire({
         icon: "error",
@@ -105,15 +106,19 @@ function ShopAdd() {
 
   const handleDeleteImage = (image, index) => {
     // 상태에서 해당 이미지 제거
+    if (image.isFromServer) {
+      // 서버에서 불러온 이미지의 경우, 삭제 목록에 추가
+      setDeletedImages((deletedImages) => [...deletedImages, image.url]);
+    }
     setPreviewImages((prevImages) => prevImages.filter((_, i) => i !== index));
-    resetFileInput()
+    // resetFileInput()
   };
 
-  const resetFileInput = () => {
-    if (inputFileRef.current) {
-      inputFileRef.current.value = '';
-    }
-  };
+  // const resetFileInput = () => {
+  //   if (inputFileRef.current) {
+  //     inputFileRef.current.value = '';
+  //   }
+  // };
 
 
 

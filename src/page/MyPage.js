@@ -148,7 +148,11 @@ function MyPage(props) {
           .then((response) => response.json())
           .then((data) => {
             if (data) {
-              window.location.href = '/login';
+              
+              setTimeout(()=>{
+                window.location.href = `/myReview/${userId}`;
+              }, 1500)
+
             } else {
               alert('회원 탈퇴에 실패했습니다.');
             }
