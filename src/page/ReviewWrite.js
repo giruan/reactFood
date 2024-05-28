@@ -70,7 +70,7 @@ function ReviewWrite(props){
           <div className="container-lg">
             <h2 className="review-title">리뷰 작성하기</h2>
             <div className="review-box">
-              <form onSubmit={handleSubmit} encType="multipart/form-data">
+              <form onSubmit={handleSubmit} encType="multipart/form-data"className="formContainer" >
                 <input id="userId" name="userId" value={userId} type="hidden" />
                 <input id="restaurantId" name="restaurantId" value={restaurantId} type="hidden" />
                 <div className="review-user"></div>
@@ -94,7 +94,7 @@ function ReviewWrite(props){
                     />
                   </div>
                 </div>
-              <div>
+            <div className="dropList">
                 <strong>맛 </strong>
                   <Dropdown className='dropdown'>
                       <Dropdown.Toggle variant="light" className="category-dropdown">
@@ -106,9 +106,7 @@ function ReviewWrite(props){
                       <Dropdown.Item className='menu-li' onClick={() => handleTasteChange('맛없음')}>맛없음</Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
-              </div>
 
-              <div>
                 <strong>가격</strong>
                 <Dropdown className='dropdown'>
                     <Dropdown.Toggle variant="light" className="category-dropdown">
@@ -120,9 +118,7 @@ function ReviewWrite(props){
                     <Dropdown.Item className='menu-li' onClick={() => handlePriceChange('불만족')}>불만족</Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
-              </div>
 
-              <div>
                 <strong>응대</strong>
                 <Dropdown className='dropdown'>
                   <Dropdown.Toggle variant="light" className="category-dropdown">
@@ -135,7 +131,6 @@ function ReviewWrite(props){
                   </Dropdown.Menu>
                 </Dropdown>
               </div>
-
               
                 <div className="review-content">
                   <h3>방문후기</h3>

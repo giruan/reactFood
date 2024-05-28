@@ -1,6 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaStar } from "react-icons/fa";
+import { IoMdCreate } from "react-icons/io";
+import { MdDelete } from "react-icons/md";
+
 
 function MyReviewPage(props) {
   const { myReviews, restaurantName, myReviewsImg, handleDelete } = props;
@@ -60,8 +63,8 @@ function MyReviewPage(props) {
             <div className="createdAt">
             <p>작성일 : {formatDate(review.createdAt)}</p>
               <div className='reviewEdit-Box'>
-                <Link to={`/reviewEdit/${review.reviewId}`} id="editReview" reviewId={review.reviewId} restaurantName={restaurantName}>수정</Link>
-                <Link to="#" id="delReview" onClick={(e) => handleDelete(e, review.reviewId)}>삭제</Link>
+                <Link to={`/reviewEdit/${review.reviewId}`} id="editReview" reviewId={review.reviewId} restaurantName={restaurantName}><IoMdCreate /></Link>
+                <Link to="#" id="delReview" onClick={(e) => handleDelete(e, review.reviewId)}><MdDelete /></Link>
               </div>
             </div>
           </div>

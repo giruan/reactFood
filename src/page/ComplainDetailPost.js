@@ -56,9 +56,17 @@ function ComplainDetailPost({adminId}){
       });
   
       if (response.ok) {
-        alert('등록 성공');
-        window.location.href = `/myPage/${adminId}`
-       
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "문의 답변",
+          text : "정상적으로 처리 되었습니다.",
+          showConfirmButton: false,
+          timer: 2000,
+        }) 
+        setTimeout(() => {
+          window.location.href = `/myPage/${adminId}`
+        }, 2000);
       } else {
         alert('오류가 발생했습니다.');
       }

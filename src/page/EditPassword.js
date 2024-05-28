@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useParams } from
 "react-router-dom";
 import "../styles/pwEdit.css"
@@ -9,6 +9,7 @@ function EditPassword(){
   const [isCurrentPasswordCorrect, setIsCurrentPasswordCorrect] = useState(false);
   const [isCurrentRePasswordCorrect, setIsCurrentRePasswordCorrect] = useState(false);
   const [isCurrentNewPasswordCorrect, setIsCurrentNewPasswordCorrect] = useState(false);
+  const navigate = useNavigate();
   const {userId} = useParams()
 
   const [password, setPassword] = useState('');
@@ -74,12 +75,27 @@ function EditPassword(){
       return response.json();
     })
     .then((data) =>{
-      alert('비밀번호가 정상적으로 변경 되었습니다.')
-      window.location.href = '/login'
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "비밀번호 변경",
+        text : "비밀번호가 정상적으로 변경 되었습니다.",
+        showConfirmButton: false,
+        timer: 2000,
+      }) 
+      setTimeout(() => {
+        navigate('/');
+      }, 2000);
+      
     })
     .catch((error) => {
+      Swal.fire({
+        icon: "error",
+        title: "비밀번호 변경 실패!",
+        text: "비밀번호 변경에 실패하였습니다...",
+      });
       console.error("Error:", error);
-      alert("서버 오류가 발생했습니다.");
+      
     });
   };
 

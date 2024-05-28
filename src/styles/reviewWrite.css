@@ -60,7 +60,6 @@ ul,ol,li { list-style: none; }
 
 
 
-/*  */
 
 .reviewWrite .review-img-preview {
   display: flex;
@@ -93,7 +92,6 @@ ul,ol,li { list-style: none; }
 }
 
 
-/*  */
 
 
 /* 리뷰 버튼 */
@@ -109,3 +107,12 @@ ul,ol,li { list-style: none; }
   border: none;
   color: white;
 }
+
+.dropList{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.dropList strong{display: flex; align-items: center;}

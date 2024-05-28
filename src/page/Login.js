@@ -37,11 +37,25 @@ function Login(props){
       .then((data) => {
         if (data.exists && data.passwordCorrect) {
           props.onLoginSuccess(data.userId, data.name)
+          // alert(`로그인 되었습니다.${data.name}` );
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "환영합니다!",
+            text : "로그인 되었습니다!",
+            showConfirmButton: false,
+            timer: 2000,
+          }) 
+          setTimeout(() => {
+            navigate('/');
+          }, 2000);
           
-          alert(`로그인 되었습니다.${data.name}` );
-          navigate('/')
         } else {
-          alert('아이디 또는 비밀번호가 일치하지 않습니다.');
+          Swal.fire({
+            icon: "error",
+            title: "로그인 실패!",
+            text: "아이디 또는 비밀번호가 일치하지 않습니다...",
+          });
         }
       })
       .catch((error) => {
