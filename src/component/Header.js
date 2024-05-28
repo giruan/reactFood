@@ -99,19 +99,19 @@ return (
                 <>
                   {name === '관리자' ? (
                     <>
-                      <li><GrUserAdmin /> 관리자</li>
+                      <li><strong><GrUserAdmin /> 관리자</strong></li>
                       <Link to={`/myPage/${userId}`}> 관리자페이지</Link>
                       <Link to={'/'} onClick={onLogout}><IoLogOutOutline /> 로그아웃</Link>
                     </>
                   ) : user ? (
                     <>
-                      <li><BsPersonFill /> {user.properties.nickname}님</li>
+                      <li><strong><BsPersonFill /> {user.properties.nickname}님</strong></li>
                       <Link to={`/myPage/${user.properties.nickname}`}>마이페이지</Link>
                       <Link to={'/'} onClick= {handleKakaoLogout} ><IoLogOutOutline /> 로그아웃</Link>
                     </>
                   ) : (
                     <>
-                      <li><BsPersonFill /> {name}님</li>
+                      <li><strong><BsPersonFill /> {name}님</strong></li>
                         <Link to={`/myPage/${userId}`}> 마이페이지</Link>
                         <Link to={'/'} onClick={onLogout}><IoLogOutOutline className='logout'/> 로그아웃</Link>
                     </>

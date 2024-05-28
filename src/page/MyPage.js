@@ -66,11 +66,11 @@ function MyPage(props) {
           title: "회원 정보 수정",
           text : "회원 정보가 정상적으로 수정 되었습니다.",
           showConfirmButton: false,
-          timer: 2000,
+          timer: 1500,
         }) 
         setTimeout(() => {
           window.location.href = "/"
-        }, 2000);
+        }, 1500);
         sessionStorage.setItem('name', member.name);
       })
       .catch((error) => {
