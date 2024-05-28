@@ -47,11 +47,6 @@ function MyReviews() {
       cancelButtonText: '취소'
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire({
-          title: "삭제 처리",
-          text: "정상적으로 삭제 되었습니다!",
-          icon: "success"
-        })
         fetch(`/deleteReview/${reviewId}`, {
           method: 'DELETE',
           headers : {'Content-Type' : 'application/json'},
@@ -60,6 +55,11 @@ function MyReviews() {
           .then((response) => response.json())
           .then((data) => {
             if (data) {
+              Swal.fire({
+                title: "삭제 처리",
+                text: "정상적으로 삭제 되었습니다!",
+                icon: "success"
+              })
               setTimeout(()=>{
                 window.location.href = `/myReview/${userId}`;
               }, 1000)
@@ -79,7 +79,9 @@ function MyReviews() {
   return (
     <main>
       <section className="container-lg">
+        <br/><br/>
         <h1 className="myReviewTitle">마이 리뷰</h1>
+        <br/>
         <div className="myReview-box">
           <MyReviewPage myReviews={myReviews} restaurantName={restaurantName} myReviewsImg={myReviewsImg} handleDelete={handleDelete} />
         </div>

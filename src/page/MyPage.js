@@ -136,11 +136,6 @@ function MyPage(props) {
       cancelButtonText: '취소'
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire({
-          title: "삭제 처리",
-          text: "정상적으로 삭제 되었습니다!",
-          icon: "success"
-        });
          // 회원 탈퇴 로직을 구현하세요.
         fetch(`/delete/${member.userId}`, {
           method: 'DELETE',
@@ -148,9 +143,15 @@ function MyPage(props) {
           .then((response) => response.json())
           .then((data) => {
             if (data) {
-              
+              Swal.fire({
+                title: "삭제 처리",
+                text: "정상적으로 삭제 되었습니다!",
+                icon: "success"
+              });  
+              sessionStorage.removeItem('userId');
               setTimeout(()=>{
-                window.location.href = `/myReview/${userId}`;
+                
+                window.location.href = `/`;
               }, 1500)
 
             } else {
