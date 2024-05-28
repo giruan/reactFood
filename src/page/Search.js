@@ -321,14 +321,14 @@ function Search(props) {
             <div className="col-9">
               <div className="food-shop">
                 <div className="order-wrap row">
-                  <div className="l-btn d-flex">
-                    <div className="range">
+                  <div className="l-btn d-flex ">
+                    <div className="range ">
                       <span>
                         <img src="/image/tab.png" alt="정렬" />
                         정렬
                       </span>
                     </div>
-                    <div className="order">
+                    {/* <div className="order btn-group">
                       <button className="grade" onClick={sortByGrade}>
                         <span>평점순</span>
                       </button>
@@ -341,6 +341,51 @@ function Search(props) {
                       <button className="load" onClick={sortByVisitCount}>
                         <span>조회순</span>
                       </button>
+                    </div> */}
+                    <div className="order btn-group" role="group">
+                      <input
+                        type="radio"
+                        className="grade btn-check"
+                        onClick={sortByGrade}
+                        name="btnradio"
+                        id="btnradio1"
+                        autocomplete="off"
+                      />
+                      <label class="btn btn-outline-primary" for="btnradio1">
+                        평점순
+                      </label>
+                      <input
+                        type="radio"
+                        className="review btn-check"
+                        onClick={sortByReviewCount}
+                        name="btnradio"
+                        id="btnradio2"
+                        autocomplete="off"
+                      />
+                      <label class="btn btn-outline-primary" for="btnradio2">
+                        리뷰많은순
+                      </label>
+                      <input
+                        type="radio"
+                        className="like btn-check"
+                        name="btnradio"
+                        id="btnradio3"
+                        autocomplete="off"
+                      />
+                      <label class="btn btn-outline-primary" for="btnradio3">
+                        좋아요많은순
+                      </label>
+                      <input
+                        type="radio"
+                        className="load btn-check"
+                        onClick={sortByVisitCount}
+                        name="btnradio"
+                        id="btnradio4"
+                        autocomplete="off"
+                      />
+                      <label class="btn btn-outline-primary" for="btnradio4">
+                        조회순
+                      </label>
                     </div>
                   </div>
                 </div>
