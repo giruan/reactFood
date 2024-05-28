@@ -4,9 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import '../styles/shopAdd.css';
 
 function ShopAdd() {
-  const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState('카테고리');
   const [previewImages, setPreviewImages] = useState([]);
+  const [deletedImages, setDeletedImages] = useState([]);
   const [startTime, setStartTime] = useState('00:00');
   const [endTime, setEndTime] = useState('00:00');
 
@@ -18,17 +18,22 @@ function ShopAdd() {
     setEndTime(event.target.value);
   };
 
-
-
   const inputFileRef = useRef(null);
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
     const timeRange = startTime + "~" + endTime;
+   
 
     if (selectedCategory === '카테고리') {
-      alert('카테고리를 선택해주세요.');
+      Swal.fire({
+        icon: "error",
+        title: "음식점 등록 실패",
+        text: "카테고리를 선택해주세요.",
+      });
+      console.error('Error:', error);
       return;
     }
     formData.set('category', selectedCategory);
@@ -38,14 +43,27 @@ function ShopAdd() {
     const restaurantAddress = event.target.restaurantAddress.value;
 
     if (!restaurantName || !restaurantAddress) {
-      alert('음식점 이름과 주소를 모두 입력하세요.');
+      Swal.fire({
+        icon: "error",
+        title: "음식점 등록 실패",
+        text: "음식점 이름과 주소를 모두 입력하세요.",
+      });
+      console.error('Error:', error);
       return;
     }
 
-    if (previewImages.length === 0) {
-      alert('사진을 1개 이상 등록하세요.');
-      return;
-    }
+
+    // const imgUrlInput = event.target.imgUrl;
+    // if (!imgUrlInput.files || imgUrlInput.files.length === 0) 
+    //   Swal.fire({
+    //     icon: "error",
+    //     title: "음식점 등록 실패",
+    //     text: "사진을 1개 이상 등록하세요.",
+    //   });
+    // if (previewImages.length === 0) {
+    //   alert('사진을 1개 이상 등록하세요.');
+    //   return;
+    // }
 
     previewImages.forEach((image) => {
       formData.append('imgUrl', image.file);
@@ -56,26 +74,48 @@ function ShopAdd() {
         method: 'POST',
         body: formData,
       });
-
       if (response.ok) {
-        alert('등록 성공');
-        navigate('/');
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "음식점 등록 성공!",
+          text : "정상적으로 음식점이 등록 되었습니다.",
+          showConfirmButton: false,
+          timer: 2000,
+        }) 
+        setTimeout(() => {
+          window.location.href = "/"
+        }, 2000);
       } else {
-        alert('음식점이 존재합니다');
+        Swal.fire({
+          icon: "error",
+          title: "음식점 등록 실패...",
+          text: "이미 존재하는 음식점입니다.",
+        });
       }
     } catch (error) {
       console.error('Error adding shop:', error);
     }
-  };
+  
+}
+
+
 
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);
   };
 
+
+  // 미리보기 이미지 배열
   const handleImageChange = (e) => {
     const files = e.target.files;
     if (previewImages.length + files.length > 2) {
-      alert('사진은 최대 2개까지만 등록할 수 있습니다.');
+      Swal.fire({
+        icon: "error",
+        title: "사진",
+        text: "사진은 최대 2개까지만 등록할 수 있습니다.",
+      });
+      inputFileRef.current.value = '';
       return;
     }
 
@@ -89,6 +129,8 @@ function ShopAdd() {
     inputFileRef.current.value = '';
   };
 
+
+  // 미리보기 삭제
   const handleDeleteImage = (index) => {
     setPreviewImages((prevImages) => prevImages.filter((_, i) => i !== index));
 
@@ -102,6 +144,7 @@ function ShopAdd() {
     inputFileRef.current.files = dataTransfer.files;
   };
 
+ 
   return (
     <div className="shopAdd shopAddDetail">
       <header>

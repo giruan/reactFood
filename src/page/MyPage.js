@@ -66,11 +66,11 @@ function MyPage(props) {
           title: "회원 정보 수정",
           text : "회원 정보가 정상적으로 수정 되었습니다.",
           showConfirmButton: false,
-          timer: 2000,
+          timer: 1500,
         }) 
         setTimeout(() => {
           window.location.href = "/"
-        }, 2000);
+        }, 1500);
         sessionStorage.setItem('name', member.name);
       })
       .catch((error) => {
@@ -136,11 +136,6 @@ function MyPage(props) {
       cancelButtonText: '취소'
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire({
-          title: "삭제 처리",
-          text: "정상적으로 삭제 되었습니다!",
-          icon: "success"
-        });
          // 회원 탈퇴 로직을 구현하세요.
         fetch(`/delete/${member.userId}`, {
           method: 'DELETE',
@@ -148,7 +143,17 @@ function MyPage(props) {
           .then((response) => response.json())
           .then((data) => {
             if (data) {
-              window.location.href = '/login';
+              Swal.fire({
+                title: "삭제 처리",
+                text: "정상적으로 삭제 되었습니다!",
+                icon: "success"
+              });  
+              sessionStorage.removeItem('userId');
+              setTimeout(()=>{
+                
+                window.location.href = `/`;
+              }, 1500)
+
             } else {
               alert('회원 탈퇴에 실패했습니다.');
             }

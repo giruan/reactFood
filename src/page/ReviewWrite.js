@@ -51,41 +51,79 @@
       setRating(parseInt(event.target.value));
     };
 
-    const handleSubmit = async (e) => {
-      e.preventDefault();
-      const formData = new FormData(e.target);
-      formData.append('rating', rating);
-      formData.append('taste', selectedTaste);
-      formData.append('price', selectedPrice);
-      formData.append('service', selectedService);
+  const handleSubmit = async(e) =>{
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    formData.append('rating', rating);
+    formData.append('taste', selectedTaste)
+    formData.append('price', selectedPrice)
+    formData.append('service', selectedService)
+    
+    formData.append('data', JSON.stringify({ deletedImages }));
 
-      // 이미지 작업
-      formData.append('data', JSON.stringify({ deletedImages }));
-
-      previewImages.forEach((image) => {
-        if (!image.isFromServer) {
-          formData.append('imgUrl', image.file); // 'file'을 'imgUrl'로 변경. 여기서 image.file은 FileReader로 읽은 파일 데이터입니다.
-        }
-      });
-      // 
-
-      try {
-        const response = await fetch('/review', {
-          method: 'POST',
-          body: formData,
-        });
-        console.log(response);
-        if (response.ok) {
-          alert('등록성공');
-          console.log(userId);
-          navigate(`/detail/${restaurantId}`);
-        } else {
-          alert('등록 실패');
-        }
-      } catch (error) {
-        console.error('Error write:', error);
+    previewImages.forEach((image) => {
+      if (!image.isFromServer) {
+        formData.append('imgUrl', image.file); // 'file'을 'imgUrl'로 변경. 여기서 image.file은 FileReader로 읽은 파일 데이터입니다.
       }
-    };
+    });
+    try {
+      const response = await fetch('/review',{
+        method: 'POST',
+        body: formData
+      })
+      console.log(response)
+      if(response.ok){
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "리뷰 작성",
+          text : "정상 처리 되었습니다!",
+          showConfirmButton: false,
+          timer: 2000,
+        }) 
+        setTimeout(() => {
+          window.location.href = `/detail/${restaurantId}`
+        }, 2000);
+      } else{
+        Swal.fire({
+          icon: "error",
+          title: "리뷰 작성 실패",
+          text: "리뷰 작성에 실패하셨습니다.",
+        });
+      }
+    } catch (error) {
+      console.error('Error write:', error);
+    }
+  }
+    // const handleSubmit = async (e) => {
+    //   e.preventDefault();
+    //   const formData = new FormData(e.target);
+    //   formData.append('rating', rating);
+    //   formData.append('taste', selectedTaste);
+    //   formData.append('price', selectedPrice);
+    //   formData.append('service', selectedService);
+
+    //   // 이미지 작업
+    
+    //   // 
+
+    //   try {
+    //     const response = await fetch('/review', {
+    //       method: 'POST',
+    //       body: formData,
+    //     });
+    //     console.log(response);
+    //     if (response.ok) {
+    //       alert('등록성공');
+    //       console.log(userId);
+    //       navigate(`/detail/${restaurantId}`);
+    //     } else {
+    //       alert('등록 실패');
+    //     }
+    //   } catch (error) {
+    //     console.error('Error write:', error);
+    //   }
+    // };
 
     // 카테고리 변경 핸들러
     const handleTasteChange = (taste) => {

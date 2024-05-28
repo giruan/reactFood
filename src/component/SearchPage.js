@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { MdDeleteForever } from "react-icons/md";
 
 function SearchPage(props) {
   const { shops, handleReviewCount, name } = props;
@@ -53,7 +54,7 @@ function SearchPage(props) {
                   </div>
                 )}
                 <div className='li-delete'>{name === '관리자'? (
-                  <Link onClick={()=> handleDelete(shop.restaurantId)}>삭제</Link>
+                  <Link onClick={()=> handleDelete(shop.restaurantId)}><MdDeleteForever /></Link>
                     ):(
                       <></>
                 )}</div>

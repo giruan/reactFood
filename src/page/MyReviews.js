@@ -36,33 +36,52 @@ function MyReviews() {
   
   const handleDelete = (e, reviewId) => {
     e.preventDefault();
-    if (window.confirm('삭제하시겠습니까?')) {
-      console.log(reviewId);
-      fetch(`/deleteReview/${reviewId}`, {
-        method: 'DELETE',
-        headers : {'Content-Type' : 'application/json'},
-        body: JSON.stringify({ reviewId: reviewId })
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          if (data) {
-            alert('정상적으로 삭제되었습니다.');
-            window.location.href = `/myReview/${userId}`;
-          } else {
-            alert('리뷰 삭제에 실패했습니다.');
-          }
+    Swal.fire({
+      title: "리뷰 삭제",
+      text: "정말로 삭제 하시겠습니까? ",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "삭제",
+      cancelButtonText: '취소'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`/deleteReview/${reviewId}`, {
+          method: 'DELETE',
+          headers : {'Content-Type' : 'application/json'},
+          body: JSON.stringify({ reviewId: reviewId })
         })
-        .catch((error) => {
-          console.error('Error:', error);
-          alert('리뷰 삭제 실패했습니다.');
-        });
-    }
+          .then((response) => response.json())
+          .then((data) => {
+            if (data) {
+              Swal.fire({
+                title: "삭제 처리",
+                text: "정상적으로 삭제 되었습니다!",
+                icon: "success"
+              })
+              setTimeout(()=>{
+                window.location.href = `/myReview/${userId}`;
+              }, 1000)
+              
+            } else {
+              alert('리뷰 삭제에 실패했습니다.');
+            }
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+            alert('리뷰 삭제 실패했습니다.');
+          });
+      }
+    })      
   };
 
   return (
     <main>
       <section className="container-lg">
+        <br/><br/>
         <h1 className="myReviewTitle">마이 리뷰</h1>
+        <br/>
         <div className="myReview-box">
           <MyReviewPage myReviews={myReviews} restaurantName={restaurantName} myReviewsImg={myReviewsImg} handleDelete={handleDelete} />
         </div>
