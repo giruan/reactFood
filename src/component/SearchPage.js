@@ -2,15 +2,38 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 function SearchPage(props) {
-  const { shops, handleReviewCount } = props;
+  const { shops, handleReviewCount, name } = props;
+  console.log(name)
+
+  const handleDelete = (restaurantId) => {
+    const isConfirmed = window.confirm(' 가게를 삭제하시겠습니까?');
+  
+    if (isConfirmed) {
+      fetch(`/searchPage/delete/${restaurantId}`, {
+        method: 'DELETE'
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('가게 삭제에 실패했습니다.');
+        }
+
+        // 페이지를 현재 URL로 새로 고침
+        window.location.href = window.location.href;
+      })
+      .catch(error => {
+        console.error('가게 삭제 실패:', error.message);
+      });
+    }
+  }
 
   return (
     <div className="select-shop">
       <ul className="shop-box">
         {shops.map((shop) => (
           <li key={shop.restaurantId} className="look-shop" onClick={() => handleReviewCount(shop.restaurantId)}>
-            <Link to={`/detail/${shop.restaurantId}`} className="search">
+            
               <div className="shop-h row">
+                <Link to={`/detail/${shop.restaurantId}`} className="search d-flex">
                 <img src={`/store/${shop.imgUrl}`} alt={shop.restaurantName} className="col-3 title-img" />
                 <div className="info col-9">
                   <h3 className="shop-name">{shop.restaurantName}</h3>
@@ -29,8 +52,13 @@ function SearchPage(props) {
                     <span> "{shop.content}" </span>
                   </div>
                 )}
+                <div className='li-delete'>{name === '관리자'? (
+                  <Link onClick={()=> handleDelete(shop.restaurantId)}>삭제</Link>
+                    ):(
+                      <></>
+                )}</div>
+                </Link>
               </div>
-            </Link>
           </li>
         ))}
       </ul>

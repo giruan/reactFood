@@ -8,9 +8,10 @@ import '../styles/Search.css'
 
 
 
+
 function Search(props) {
 
-  const {userId} = props;
+  const {userId, name} = props;
   // useLocation 훅을 사용하여 현재 URL 정보 가져오기
   const location = useLocation();
   // URL의 쿼리스트링 파라미터에서 keyword 값을 가져오기
@@ -87,6 +88,8 @@ function Search(props) {
       fetchSearchResults();
     }
   }, [keyword, region]);
+
+
 
   return (
     <>
@@ -395,6 +398,7 @@ function Search(props) {
                   <SearchPage
                     shops={sortedShops.length > 0 ? sortedShops : shops}
                     handleReviewCount={handleReviewCount}
+                    name={name}
                   />
                 </div>
               </div>
