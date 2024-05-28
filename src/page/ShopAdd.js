@@ -7,18 +7,32 @@ function ShopAdd() {
   const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState('카테고리');
   const [previewImages, setPreviewImages] = useState([]);
+  const [startTime, setStartTime] = useState('00:00');
+  const [endTime, setEndTime] = useState('00:00');
+
+  const handleStartTimeChange = (event) => {
+    setStartTime(event.target.value);
+  };
+
+  const handleEndTimeChange = (event) => {
+    setEndTime(event.target.value);
+  };
+
+
 
   const inputFileRef = useRef(null);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
+    const timeRange = startTime + "~" + endTime;
 
     if (selectedCategory === '카테고리') {
       alert('카테고리를 선택해주세요.');
       return;
     }
     formData.set('category', selectedCategory);
+    formData.set('openTime',timeRange);
 
     const restaurantName = event.target.restaurantName.value;
     const restaurantAddress = event.target.restaurantAddress.value;
@@ -101,9 +115,21 @@ function ShopAdd() {
               <strong>음식점 주소</strong>
               <input name="restaurantAddress" id="restaurantAddress" type="text" placeholder="음식점 주소" />
             </div>
-            <div className="addItem">
-              <strong>영업 시간</strong>
-              <input name="openTime" id="openTime" type="text" placeholder="영업 시간" />
+            <div className="addItem time-range">
+              <div><strong>영업 시간 </strong></div>
+              <div className='time-select'>
+                <select id="start-time" value={startTime} onChange={handleStartTimeChange}>
+                {[...Array(24).keys()].map(hour => (
+                  <option key={hour} value={`${hour < 10 ? '0' : ''}${hour}:00`}>{`${hour < 10 ? '0' : ''}${hour}:00`}</option>
+                ))}
+                </select>
+                ~
+                <select id="end-time" value={endTime} onChange={handleEndTimeChange}>
+                {[...Array(24).keys()].map(hour => (
+                  <option key={hour} value={`${hour < 10 ? '0' : ''}${hour}:00`}>{`${hour < 10 ? '0' : ''}${hour}:00`}</option>
+                ))}
+                </select>
+              </div>
             </div>
             <div className="addItem">
               <strong>카테고리</strong>
