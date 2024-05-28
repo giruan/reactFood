@@ -11,7 +11,7 @@ function SearchPage(props) {
           <li key={shop.restaurantId} className="look-shop" onClick={() => handleReviewCount(shop.restaurantId)}>
             <Link to={`/detail/${shop.restaurantId}`} className="search">
               <div className="shop-h row">
-                <img src={`/test/${shop.imgUrl}`} alt={shop.restaurantName} className="col-3 title-img" />
+                <img src={`/store/${shop.imgUrl}`} alt={shop.restaurantName} className="col-3 title-img" />
                 <div className="info col-9">
                   <h3 className="shop-name">{shop.restaurantName}</h3>
                   <p className="category">{shop.category}</p>
