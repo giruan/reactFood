@@ -114,9 +114,9 @@ function DetailMain({ restaurant, reviews, filteredImgList ,restaurantId,userId,
               return (
                 <img
                   key={index}
-                  src={`/test/${img.imgUrl}`}
+                  src={`/store/${img.imgUrl}`}
                   alt={`Restaurant Image ${index + 1}`}
-                  onClick={() => handlePhotoClick(`/test/${img.imgUrl}`)}
+                  onClick={() => handlePhotoClick(`/store/${img.imgUrl}`)}
                 />
               );
             })}

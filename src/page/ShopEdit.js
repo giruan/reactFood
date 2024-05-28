@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Dropdown } from 'react-bootstrap';
-import '../styles/shopEdit.css'
+import '../styles/shopEdit.css';
 
 function ShopEdit(){
-  const [storeInfo, setStoreInfo]= useState({});
+  const [storeInfo, setStoreInfo] = useState({});
   const [storeImg, setStoreImg] = useState([]);
-  const [storeImgId, setStoreImgId] = useState();
+  const [storeImgId, setStoreImgId] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('카테고리');
-  const {restaurantId} = useParams();
+  const { restaurantId } = useParams();
 
   // 카테고리 변경 핸들러
   const handleCategoryChange = (category) => { 
@@ -18,16 +18,19 @@ function ShopEdit(){
   useEffect(() => {
     const getStoreInfo = async () => {
       try {
-        const response = await fetch(`/shopInfo/${restaurantId}`, {
-          method: 'GET'
-        });
-
+        const response = await fetch(`/shopInfo/${restaurantId}`, { method: 'GET' });
         const data = await response.json();
         console.log('store Data ', data);
         setStoreInfo(data.storeInfo);
-        setStoreImg(data.storeImg);
-        
-        // 카테고리 설정
+
+        // 기존 이미지를 상태에 설정
+        const existingImages = data.storeImg.map(img => ({
+          imgUrl: `/store/${img.imgUrl}`, 
+          isNew: false, 
+          imgId: img.imgId
+        }));
+        setStoreImg(existingImages);
+
         if (data.storeInfo && data.storeInfo.category) {
           setSelectedCategory(data.storeInfo.category);
         }
@@ -38,68 +41,84 @@ function ShopEdit(){
     getStoreInfo();
   }, [restaurantId]);
 
-// 이미지 추가 핸들러
-const handleImageChange = (e) => {
-  const files = e.target.files;
-  const updatedImages = [...storeImg];
+  const handleImageChange = (e) => {
+    const files = e.target.files;
+    const updatedImages = [...storeImg];
 
-  for (let i = 0; i < files.length; i++) {
-    updatedImages.push(files[i]);
-  }
-
-  setStoreImg(updatedImages);
-};
-
-// 폼 제출을 처리하는 함수
-const handleSubmit = async (e) => {
-  e.preventDefault();
-
-  try {
-    const formData = new FormData();
-    formData.append('storeInfo', JSON.stringify(storeInfo));
-    formData.append('storeImgId', storeImgId);
-
-    for (let i = 0; i < storeImg.length; i++) {
-      formData.append('imgUrl', storeImg[i]);
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      updatedImages.push({ file, preview: URL.createObjectURL(file), isNew: true });
     }
 
-    const response = await fetch(`/shopEdit/${restaurantId}`, {
-      method: 'PUT',
-      body: formData,
-    });
+    setStoreImg(updatedImages);
+  };
 
-    if (!response.ok) {
-      throw new Error('가게 정보를 수정하는 데 문제가 발생했습니다.');
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log('Submitting form with restaurantId:', restaurantId);
+  
+    try {
+      const formData = new FormData();
+      formData.append('storeInfo', JSON.stringify(storeInfo));
+  
+      // 삭제된 이미지의 ID 배열을 formData에 추가합니다.
+      storeImgId.forEach(id => {
+        formData.append('storeImgId', id);
+      });
+  
+      for (let i = 0; i < storeImg.length; i++) {
+        if (storeImg[i].isNew) {
+          formData.append('imgUrl', storeImg[i].file);
+        }
+      }
+  
+      const response = await fetch(`/shopInfo/shopEdit/${restaurantId}`, {
+        method: 'PUT',
+        body: formData,
+      });
+  
+      if (!response.ok) {
+        throw new Error('가게 정보를 수정하는 데 문제가 발생했습니다.');
+      }
+  
+      const data = await response.json();
+      alert(data.message);
+      window.location.href=`/detail/${restaurantId}`
+    } catch (error) {
+      console.error('Error:', error.message);
+      alert('가게 정보 수정에 실패했습니다.');
     }
+  };
 
-    const data = await response.json();
-    alert(data.message);
-  } catch (error) {
-    console.error('Error:', error.message);
-    alert('가게 정보 수정에 실패했습니다.');
-  }
-};
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setStoreInfo((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
 
-
-// 입력값 변경 핸들러
-const handleInputChange = (e) => {
-  const { name, value } = e.target;
-  setStoreInfo((prevState) => ({
-    ...prevState,
-    [name]: value,
-  }));
-};
-
-const handleDeleteImage = (imgIdToDelete) => {
-  const updatedImages = storeImg.filter(image => image.imgId !== imgIdToDelete);
-  console.log(updatedImages[0].imgId)
-  setStoreImgId(updatedImages[0].imgId);
-  setStoreImg(updatedImages)
-};
-
+  const handleDeleteImage = (index) => {
+    const updatedImages = storeImg.filter((_, imgIndex) => imgIndex !== index);
+    setStoreImg(updatedImages);
+  
+    const deletedImage = storeImg[index];
+    
+    // 삭제된 이미지가 새로 추가된 이미지가 아닌 경우에만 해당 이미지의 ID를 추적합니다.
+    if (!deletedImage.isNew) {
+      setStoreImgId((prevIds) => {
+        // 기존 ID 배열을 복사하여 업데이트합니다.
+        const updatedIds = [...prevIds];
+        // 삭제된 이미지의 ID를 배열에 추가합니다.
+        updatedIds.push(deletedImage.imgId);
+        return updatedIds;
+      });
+    }
+  };
+  
   
 
-  return(
+  return (
     <div className="shopAdd">
       <header>
         <div className="shopheader">
@@ -128,26 +147,25 @@ const handleDeleteImage = (imgIdToDelete) => {
           </div>
           <div className="editItem">
             <strong>카테고리</strong>
-
             <Dropdown className='dropdown'>
               <Dropdown.Toggle variant="light" className="category-dropdown">
                 {selectedCategory}
               </Dropdown.Toggle>
               <Dropdown.Menu className="dropdown-menu">
                 <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('고기')}>고기</Dropdown.Item>
-                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('돈까스')}>돈까스</Dropdown.Item>
-                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('버거')}>버거</Dropdown.Item>
-                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('분식')}>분식</Dropdown.Item>
-                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('아시안')}>아시안</Dropdown.Item>
-                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('양식')}>양식</Dropdown.Item>
-                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('일식')}>일식</Dropdown.Item>
-                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('족발 • 보쌈')}>족발 • 보쌈</Dropdown.Item>
-                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('죽')}>죽</Dropdown.Item>
-                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('중식')}>중식</Dropdown.Item>
-                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('탕 • 찌개')}>탕 • 찌개</Dropdown.Item>
-                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('치킨')}>치킨</Dropdown.Item>
-                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('피자')}>피자</Dropdown.Item>
-                  <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('디저트')}>디저트</Dropdown.Item>
+                <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('돈까스')}>돈까스</Dropdown.Item>
+                <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('버거')}>버거</Dropdown.Item>
+                <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('분식')}>분식</Dropdown.Item>
+                <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('아시안')}>아시안</Dropdown.Item>
+                <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('양식')}>양식</Dropdown.Item>
+                <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('일식')}>일식</Dropdown.Item>
+                <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('족발 • 보쌈')}>족발 • 보쌈</Dropdown.Item>
+                <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('죽')}>죽</Dropdown.Item>
+                <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('중식')}>중식</Dropdown.Item>
+                <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('탕 • 찌개')}>탕 • 찌개</Dropdown.Item>
+                <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('치킨')}>치킨</Dropdown.Item>
+                <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('피자')}>피자</Dropdown.Item>
+                <Dropdown.Item className='menu-li' onClick={() => handleCategoryChange('디저트')}>디저트</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           </div>
@@ -170,11 +188,11 @@ const handleDeleteImage = (imgIdToDelete) => {
               {storeImg.map((image, index) => (
                 <div key={index}>
                   <img 
-                    src={`/test/${image.imgUrl}`} 
+                    src={image.isNew ? image.preview : image.imgUrl} 
                     alt={`Image ${index}`} 
                     style={{ width: '100px', height: '100px' }} 
                   />
-                  <button type="button" onClick={() => handleDeleteImage(image.index)}>삭제</button>
+                  <button type="button" onClick={() => handleDeleteImage(index)}>삭제</button>
                 </div>
               ))}
             </div>
@@ -192,7 +210,6 @@ const handleDeleteImage = (imgIdToDelete) => {
       </div>
     </div>
   );
-
 }
 
 export default ShopEdit;
