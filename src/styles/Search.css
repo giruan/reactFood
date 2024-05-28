@@ -111,7 +111,10 @@ a { text-decoration: none; }
 
 
 .select-shop { border-top: 1px solid lightgray;}
-.select-shop .look-shop{padding: 15px 20px; cursor: pointer;}
+.select-shop .look-shop{
+  padding: 15px 20px; 
+  cursor: pointer; 
+}
 .select-shop .shop-h .contentbody{margin-top: 12px;}
 .select-shop .shop-h{padding-bottom: 17px; box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.1);}
 .select-shop .shop-h:hover{background-color: rgb(243, 239, 239);}

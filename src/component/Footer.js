@@ -14,12 +14,12 @@ function Footer() {
             <li className="col fw-bolder mainName">(주)식사 시간 </li>
             <li className="col">대표이사 : 멋쟁이</li>
             <li className="col">소재지 : 인천광역시 귀엽구 사랑스럽동</li>
-            <li className="col">사업자등록번호 : 206-36-43579</li>
+            <li className="col">사업자등록번호 : 205-15-12345</li>
           </ul>
           <p>이메일 문의 : contact@sicksatime.com</p>
           <div className="row row-cols-auto d-flex justify-content-between detailInfo">
             <span className="">
-              전화 문의 : 032-461-1304 (평일 : 10:00 ~ 19:00, 주말/공휴일 제외)
+              전화 문의 : 032-461-1004 (평일 : 10:00 ~ 19:00, 주말/공휴일 제외)
             </span>
             <span className="">Copyright ⓒ 2024 SicksaTime</span>
           </div>
