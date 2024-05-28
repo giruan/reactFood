@@ -70,25 +70,50 @@ a { text-decoration: none; }
 
 .searchBody .food-shop{width: 900px; overflow-x: auto; border: black 1px solid; margin-left: 20px; border-radius: 10px; padding: 0 20px;} 
 .searchBody .order-wrap{
-  border-bottom: 1px solid rgb(245, 245, 245);
+  border-bottom: 1px solid lightgray;
   border-top-right-radius:14px;
   border-top-left-radius: 14px;
 }
 
-.searchBody .range{width: 80px; border-right: 1px solid rgb(245, 245, 245); justify-content: center; align-items: center; display: flex;}
+.searchBody .range{width: 80px; border-right: 1px solid lightgray; justify-content: center; align-items: center; display: flex;}
 .searchBody .range img{width: 23px; margin-right: 5px;}
 
 
 .searchBody .l-btn{margin: 20px 0;}
 
-.searchBody .order{ align-items: center; justify-content: center; display: flex;}
+/* 
+원본
+.searchBody .order{ align-items: center; justify-content: center; display: flex;} 
 .searchBody .order button{height: 34px; border-radius: 6px; cursor: pointer; margin-left: 20px;}
-.searchBody .order button span{margin: 0 15px;}
+.searchBody .order button span{margin: 0 15px;}*/
+/*  */
+.searchBody .order{ align-items: center; justify-content: center; display: flex; margin-left: 10px; border-color: lightgray; }
+.searchBody .order  label{margin: 0 15px; border-color: black; color: black;}
 
-#map{width: 400px; height: 400px; border-radius: 10px;}
 
-.select-shop .look-shop{padding: 20px 20px; cursor: pointer;}
-.select-shop .shop-h{ box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.1); margin-bottom: 20px;}
+/* 라디오 버튼 부트스트랩 디자인 수정 */
+/* 버튼 개별의 radius */
+.searchBody .btn-group>.btn-group:not(:last-child)>.btn, .btn-group>.btn.dropdown-toggle-split:first-child, .btn-group>.btn:not(:last-child):not(.dropdown-toggle),
+.searchBody .btn-group>.btn-group:not(:first-child)>.btn, .btn-group>.btn:nth-child(n+3), .btn-group>:not(.btn-check)+.btn 
+{border-radius: 5px;}
+
+/* 클릭 했을때 색  */
+.searchBody .btn-check:checked+.btn, .btn.active, .btn.show, .btn:first-child:active, :not(.btn-check)+.btn:active{background-color: gray; border-color: darkgray;}
+
+/* hover했을때 색 */
+.searchBody .btn-outline-primary {
+    --bs-btn-color: darkgray;
+    --bs-btn-border-color: darkgray;
+    
+}
+/*  */
+#map{width: 94%; height: 370px; border-radius: 10px; margin: 25px auto; }
+
+
+.select-shop { border-top: 1px solid lightgray;}
+.select-shop .look-shop{padding: 15px 20px; cursor: pointer;}
+.select-shop .shop-h .contentbody{margin-top: 12px;}
+.select-shop .shop-h{padding-bottom: 17px; box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.1);}
 .select-shop .shop-h:hover{background-color: rgb(243, 239, 239);}
 .select-shop .shop-box{padding-left: 0;}
 

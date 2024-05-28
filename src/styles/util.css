@@ -35,6 +35,8 @@ a{color: black;}
 .header .user a
 {padding: 0 10px;}
 
+.header .user svg{width: 20px; margin: 0 3px 3px 0;}
+
 
 /* nav */
 .mainPage nav{
