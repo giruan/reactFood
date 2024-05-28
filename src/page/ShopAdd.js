@@ -239,7 +239,11 @@ function ShopAdd() {
               </Dropdown>
             </div>
             <div className="addItem">
-              <h3>음식 및 메뉴판 사진</h3>
+              <strong>매장 번호 (선택)</strong>
+              <input name="callNumber" id="callNumber" type="text" placeholder="전화 번호" />
+            </div>
+            <div className="addItem">
+              <strong>가게 사진</strong>
               <div className="review-img">
                 <div className="upload-img">
                   <input
