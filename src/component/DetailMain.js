@@ -124,7 +124,12 @@ function DetailMain({ restaurant, reviews, filteredImgList ,restaurantId,userId,
 
         <div className="infoName row justify-content-between">
           <div className="detailTitle d-flex">
-            <h1 className="col">{restaurant.restaurantName}</h1>
+            <h1 className="col detailName">{restaurant.restaurantName}
+              <button className="fixBtn">
+              {name === '관리자' ? <Link to={`/shopInfo/${restaurant.restaurantId}`}>수정</Link> : <></>}
+              </button>
+            </h1>
+            
             <div className="col infoShare d-flex">
               <span className="zzimBtn" onClick={handleClick}>
                 찜하기
@@ -138,17 +143,13 @@ function DetailMain({ restaurant, reviews, filteredImgList ,restaurantId,userId,
                 </svg>
               </span>
               <button className="col-3 reviewBtn">
-                <Link to={`/review/${restaurant.restaurantId}`} onClick={handleSuccess}>리뷰작성</Link>
+                <Link to={`/review/${restaurant.restaurantId}`} onClick={handleSuccess}>
+                  리뷰작성
+                </Link>
               </button>
               <button className="col-3 shareBtn">
                 <IoMdShare />
               </button>
-              <div>{name === '관리자'? (
-                <Link to={`/shopInfo/${restaurant.restaurantId}`}>수정</Link>
-              ):(
-                <></>
-              )}</div>
-
             </div>
           </div>
         </div>
@@ -160,7 +161,6 @@ function DetailMain({ restaurant, reviews, filteredImgList ,restaurantId,userId,
 
         <div className="restaurantRating">
           <div className="gradeInfo row row-cols-auto">
-
             <span className="totalScore col">
               <FaStar className="star" />
               {avgRating}점

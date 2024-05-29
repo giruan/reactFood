@@ -47,7 +47,7 @@ ul,li,a{text-decoration: none; list-style: none;}
   padding: 20px 10px;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
-  box-shadow: rgba(0, 0, 0, 0.06) 0px 0px 6px 0px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   border-bottom: 0.3px solid #f0f0f0;
 }
 
@@ -60,7 +60,7 @@ ul,li,a{text-decoration: none; list-style: none;}
 .categoryMain .category_box .restoraunt_list{
   padding: 20px 20px 10px 20px;
   background-color: rgb(255, 255, 255);
-  box-shadow: rgba(0, 0, 0, 0.06) 0px 0px 6px 0px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
 .categoryMain .category_box .restoraunt_list:last-child{
