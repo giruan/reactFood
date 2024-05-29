@@ -3,6 +3,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
+
+// 리액트 아이콘
 import { FaHouse } from 'react-icons/fa6';
 import { FaPhoneAlt } from 'react-icons/fa';
 import { BiSolidFoodMenu } from 'react-icons/bi';
@@ -23,8 +25,6 @@ function calculateAvgRating(reviews) {
   }
   return (totalRating / reviews.length).toFixed(1);
 }
-
-
 
 
 function DetailMain({ restaurant, reviews, filteredImgList ,restaurantId,userId,name}) {
@@ -104,6 +104,42 @@ function DetailMain({ restaurant, reviews, filteredImgList ,restaurantId,userId,
     }
   }
 
+  const searchAddressToCoordinate = (address) => {
+    if (!window.naver || !window.naver.maps || !window.naver.maps.Service) {
+        console.error('Naver Maps API is not loaded.');
+        return;
+    }
+
+    window.naver.maps.Service.geocode({ address: address }, (status, response) => {
+        if (status !== window.naver.maps.Service.Status.OK) {
+            return alert('Something went wrong!');
+        }
+        const result = response.v2.addresses[0];
+        const coord = new window.naver.maps.Point(result.x, result.y);
+        console.log(coord);
+        // 여기서 coord를 사용하여 지도를 업데이트할 수 있습니다.
+    });
+};
+
+
+
+  useEffect(() => {
+    if (typeof naver === 'undefined' || !naver.maps) {
+      console.error('네이버 지도 API가 로드되지 않았습니다.');
+      return;
+    }
+    const center = new naver.maps.LatLng(37.3595316, 127.1052133);  
+    const map = new naver.maps.Map('map', {
+      center: center,
+      zoom: 15,
+    });
+
+    // 필요 시 searchAddressToCoordinate 함수 호출
+  }, []);
+
+ 
+
+
 
   return (
     <div className="restaurantMain container">
@@ -155,8 +191,8 @@ function DetailMain({ restaurant, reviews, filteredImgList ,restaurantId,userId,
         </div>
 
         <div className="restaurantCategory">
-          <a>{restaurant.restaurantAddress}</a>
-          <a> {restaurant.category}</a>
+          <p>{restaurant.restaurantAddress}</p>
+          <p> {restaurant.category}</p>
         </div>
 
         <div className="restaurantRating">
@@ -177,9 +213,10 @@ function DetailMain({ restaurant, reviews, filteredImgList ,restaurantId,userId,
           <li className="address ">
             <FaHouse className="iconHouse" />
             {restaurant.restaurantAddress}
-            <button type="button" className=" btn btn-info text-light">
+            <button type="button" className=" btn btn-info text-light" onClick={() => searchAddressToCoordinate(restaurant.restaurantAddress)}>
               지도보기
             </button>
+            <div id="map" style={{ width: '100%', height: '400px' }}></div>
           </li>
           <li className="number">
             <FaPhoneAlt />

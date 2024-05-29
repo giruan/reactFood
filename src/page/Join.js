@@ -439,7 +439,7 @@ function Join() {
               </div>
             </div>
 
-
+            {/* 이용약관 동의 */}
             <div className="joinItem">
               <input type="checkbox" id="all-check" checked={allCheck} onChange={allBtnEvent} />
               <label htmlFor="all-check">전체동의</label>

@@ -378,7 +378,10 @@ function Search(props) {
                     </div>
                   </div>
                 </div>
+
                 <Map></Map>
+
+                
                 <div>
                   {/* 검색 페이지 컴포넌트 */}
                   <SearchPage
