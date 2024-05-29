@@ -46,9 +46,18 @@ const [isIdValidated, setIsIdValidated] = useState(false);
           return response.json();
         })
         .then(data => {
-          alert('비밀번호 재설정 링크가 이메일로 발송되었습니다.'); // 예: '비밀번호 재설정 링크가 이메일로 발송되었습니다.'
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "성공!",
+            text : "비밀번호 재설정 링크가 이메일로 발송되었습니다.",
+            showConfirmButton: false,
+            timer: 1500,
+          }) 
+          setTimeout(() => {
+            window.location.href = '/login'
+          }, 1500);
           
-          window.location.href = '/login'
         })
         .catch(error => {
           console.error('Error:', error);
@@ -150,13 +159,25 @@ const handleSubmitSMS = async (e) => {
     })
     .then(data => {
       setMessage('SMS sent successfully');
-      alert("메세지가 전송되었습니다.")
-      window.location.href = '/login'
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "성공!",
+        text : "메세지가 전송되었습니다.",
+        showConfirmButton: false,
+        timer: 2000,
+      }) 
+      setTimeout(() => {
+        window.location.href = '/login'
+      }, 2000);
+      
     })
-    
     .catch(error => {
-      console.error('Error:', error);
-      alert('오류가 발생했습니다.');
+      Swal.fire({
+        icon: "error",
+        title: "오류 발생!",
+        text: "오류가 발생했습니다.",
+      });
     })
     .finally(() => setIsLoading(false));
   }
