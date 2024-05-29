@@ -13,14 +13,14 @@ a{text-decoration: none;}
   padding-right: 75px;
 }
 .mySec .leftBar{
-  position: relative;  margin-right: 10px; min-width: 190px; height: 862px;
+  position: relative;  margin-right: 20px; min-width: 190px; height: 862px;  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 /* .mySec .leftBar ul{margin-left: 10%;} */
 .mySec .leftBar li{margin: 10px 0;}
 .mySec .leftBar .deleteId{position: absolute; bottom: 0; margin-bottom: 50px; width: 100%;}
 .mySec .leftBar .deleteId a{color: #000;}
 
-.mySec .rightBar{max-width: 750px;}
+.mySec .rightBar{max-width: 750px;  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);}
 
 .mySec .leftBar, .mySec .rightBar{
   border: 1px grey solid;

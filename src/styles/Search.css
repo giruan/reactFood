@@ -120,6 +120,8 @@ a { text-decoration: none; }
 .select-shop .shop-h:hover{background-color: rgb(243, 239, 239);}
 .select-shop .shop-box{padding-left: 0;}
 
+.select-shop .shop-h .li-delete{font-size: 23px;}
+
 .select-shop .info{padding: 2px 0 2px 16px;  }
 .select-shop .info .shop-name{margin-bottom: 10px; font-size: 24px;}
 .select-shop .info .shop-name .heart img{margin: 0 0 4px 10px;}

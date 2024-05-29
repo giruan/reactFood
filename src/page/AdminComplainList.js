@@ -35,7 +35,7 @@ function AdminComplainList(){
       <header>
         <div className="header">
           <a href="/">
-            <img src="/image/logo.PNG" alt="다이닝코드" />
+            <img src="/image/logo.PNG" alt="yumYard" />
           </a>
         </div>
       </header>

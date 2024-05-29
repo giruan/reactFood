@@ -331,20 +331,6 @@ function Search(props) {
                         정렬
                       </span>
                     </div>
-                    {/* <div className="order btn-group">
-                      <button className="grade" onClick={sortByGrade}>
-                        <span>평점순</span>
-                      </button>
-                      <button className="review" onClick={sortByReviewCount}>
-                        <span>리뷰많은순</span>
-                      </button>
-                      <button className="like">
-                        <span>좋아요많은순</span>
-                      </button>
-                      <button className="load" onClick={sortByVisitCount}>
-                        <span>조회순</span>
-                      </button>
-                    </div> */}
                     <div className="order btn-group" role="group">
                       <input
                         type="radio"
