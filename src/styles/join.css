@@ -2,7 +2,9 @@
 ul,ol,li { list-style: none; } 
 a { text-decoration: none; } 
 
-.joinPage { width: 500px; margin: 0 auto; padding-left: 0; margin-bottom: 110px;} 
+.joinContainer{background-color: #f0f0f4; padding-bottom: 80px}
+.joinContainer header{background-color: white; margin-bottom: 50px;}
+.joinPage { width: 500px; margin: 0 auto; padding: 0 40px 40px 40px; background-color: white; border-radius: 10px; box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);} 
 
 
 .joinPage .jointitle {padding: 50px 15px 25px; border-bottom: gray solid 1px; text-align: center; margin-bottom: 50px;}

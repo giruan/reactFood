@@ -11,6 +11,7 @@ import { PiSirenFill } from 'react-icons/pi';
 import { IoMdShare } from "react-icons/io";
 import { FaStar } from 'react-icons/fa';
 import { IoPerson } from 'react-icons/io5';
+import { FaRegEdit } from 'react-icons/fa';
 
 
 //평점 계산
@@ -124,12 +125,19 @@ function DetailMain({ restaurant, reviews, filteredImgList ,restaurantId,userId,
 
         <div className="infoName row justify-content-between">
           <div className="detailTitle d-flex">
-            <h1 className="col detailName">{restaurant.restaurantName}
-              <button className="fixBtn">
-              {name === '관리자' ? <Link to={`/shopInfo/${restaurant.restaurantId}`}>수정</Link> : <></>}
-              </button>
+            <h1 className="col detailName">
+              {restaurant.restaurantName}
+              {name === '관리자' ? (
+                // <button className="fixBtn">
+                <Link className="fixBtn" to={`/shopInfo/${restaurant.restaurantId}`}>
+                  <FaRegEdit />
+                </Link>
+              ) : (
+                // </button>
+                <></>
+              )}
             </h1>
-            
+
             <div className="col infoShare d-flex">
               <span className="zzimBtn" onClick={handleClick}>
                 찜하기

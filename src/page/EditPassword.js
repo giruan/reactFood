@@ -129,9 +129,9 @@ function EditPassword(){
     <main className="editMain">
       
       <header>
-        <div className="header_login">
+        <div className="header_editPw">
           <Link to="/">
-            <img src="/image/logo.PNG" alt="다이닝코드"></img>
+            <img src="/image/logo.PNG" alt="YumYard"></img>
           </Link>
         </div>
       </header>

@@ -2,7 +2,7 @@
 a{text-decoration: none;}
 
 .mySec{
-  padding: 20px;
+  padding: 50px;
   display: flex;
   justify-content: center;
   
@@ -23,7 +23,7 @@ a{text-decoration: none;}
 .mySec .rightBar{max-width: 750px;  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);}
 
 .mySec .leftBar, .mySec .rightBar{
-  border: 1px grey solid;
+  border: 1px lightgray solid;
   border-radius: 5px;
 }
 

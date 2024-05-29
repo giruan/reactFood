@@ -52,19 +52,6 @@ function ShopAdd() {
       return;
     }
 
-
-    // const imgUrlInput = event.target.imgUrl;
-    // if (!imgUrlInput.files || imgUrlInput.files.length === 0) 
-    //   Swal.fire({
-    //     icon: "error",
-    //     title: "음식점 등록 실패",
-    //     text: "사진을 1개 이상 등록하세요.",
-    //   });
-    // if (previewImages.length === 0) {
-    //   alert('사진을 1개 이상 등록하세요.');
-    //   return;
-    // }
-
     previewImages.forEach((image) => {
       formData.append('imgUrl', image.file);
     });
