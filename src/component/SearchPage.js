@@ -1,9 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { MdDeleteForever } from "react-icons/md";
 
 function SearchPage(props) {
   const { shops, handleReviewCount, name } = props;
+  const location = useLocation(); 
+  const navigate = useNavigate();
   console.log(name)
 
   const handleDelete = (restaurantId) => {
@@ -18,8 +20,7 @@ function SearchPage(props) {
           throw new Error('가게 삭제에 실패했습니다.');
         }
 
-        // 페이지를 현재 URL로 새로 고침
-        window.location.href = window.location.href;
+        navigate(location.pathname + location.search, { replace: true });
       })
       .catch(error => {
         console.error('가게 삭제 실패:', error.message);
