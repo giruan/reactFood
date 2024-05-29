@@ -19,6 +19,9 @@ a { text-decoration: none; }
 .joinPage .picCheck .picPreview .btn{height: 80px;margin-left: 8px;}
 .joinPage .joinItem button {border: 2px gray solid; border-radius: 5px;}
 
+.joinPage .joinItem .essential {
+  color: red;
+}
 .joinPage .joinForm input { width: 100%; height: 40px; padding-left: 10px; margin-bottom: 10px; border-radius: 5px; border: 1px gray solid;} 
 .joinPage .joinForm .picCheck input{border: none;}
 .joinPage .joinForm { border: lightgray 1px solid; padding: 15px; border-radius: 10px;}

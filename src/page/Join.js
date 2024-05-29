@@ -43,6 +43,8 @@ function Join() {
   const [birthNum, setBirthNum] = useState('');
   const [address, setAdderss] = useState('');
   const [phone, setPhone] = useState('');
+
+  // 회원가입 동의 체크박스 
   const [allCheck, setAllCheck] = useState(false);
   const [ageCheck, setAgeCheck] = useState(false);
   const [useCheck, setUseCheck] = useState(false);
@@ -174,24 +176,48 @@ function Join() {
   // 회원가입 버튼 눌렀을시 이벤트
   const handleJoinClick = (e) => {
     e.preventDefault();
-    if (isIdValidated && isPhoneValidated &&passwordRegex.test(password) && rePassword == password && birthNum && address && phone && name) {
+    if (isIdValidated && isPhoneValidated &&passwordRegex.test(password) && rePassword == password && birthNum && address && phone && name && ageCheck && useCheck) {
       
       handleSubmit(e);
     } else if (!isIdValidated && passwordRegex.test(password)) {
-      alert('아이디를 규칙에 맞게 입력 해주세요.');
+      Swal.fire({
+        icon: "error",
+        title: "회원가입 실패!",
+        text: "아이디를 규칙에 맞게 입력 해주세요...",
+      });
       return;
     } else if (isIdValidated && !passwordRegex.test(password)) {
-      alert('비밀번호를 규칙에 맞게 입력 해주세요');
+      Swal.fire({
+        icon: "error",
+        title: "회원가입 실패!",
+        text: "비밀번호를 규칙에 맞게 입력 해주세요...",
+      });
       return;
     } 
     else if(!isIdValidated && !passwordRegex.test(password)){
-      alert('아이디와 비밀번호를 입력해주세요.');
+      Swal.fire({
+        icon: "error",
+        title: "회원가입 실패!",
+        text: "아이디와 비밀번호를 입력해주세요...",
+      });
       return;
     }
-      else if(!name || !birthNum || !address || !phone){
-        alert('필수 항목들을 전부 입력해주세요.')
-        return;
-      }
+    else if(!name || !birthNum || !address || !phone){
+      Swal.fire({
+        icon: "error",
+        title: "회원가입 실패!",
+        text: "필수 항목들을 전부 입력해주세요...",
+      });
+      return;
+    }
+    else if(!ageCheck || !useCheck){
+      Swal.fire({
+        icon: "error",
+        title: "회원가입 실패!",
+        text: "약관 동의를 클릭해주세요...",
+      });
+      return;
+    }
     
   };
 
@@ -309,12 +335,12 @@ function Join() {
         <form id="form-box">
           <div className="joinForm">
             <div className="joinItem">
-              <strong>아이디</strong>
+              <strong>아이디 <span className='essential' title='필수 항목입니다.'>*</span></strong>
               <div className="idCheck">
                 <input
                   name="userId"
                   type="text"
-                  placeholder="example@example.com (필수)"
+                  placeholder="example@example.com"
                   onChange={handleUserIdChange}
                 />
               </div>
@@ -326,8 +352,8 @@ function Join() {
               </div>
             </div>
             <div className="joinItem">
-              <strong>비밀번호<span>*</span></strong>
-              <input name="password" type="password" placeholder="비밀번호 (필수)" onChange={handlePasswordChange} />
+              <strong>비밀번호 <span title='필수 항목입니다.' className='essential'>*</span></strong>
+              <input name="password" type="password" placeholder="비밀번호" onChange={handlePasswordChange} />
               <div
                 id="passwordValidation"
                 className={passwordValidationMessage === '사용 가능한 비밀번호입니다.' ? 'valid' : 'invalid'}
@@ -336,11 +362,11 @@ function Join() {
               </div>
             </div>
             <div className="joinItem">
-              <strong>비밀번호 재확인</strong>
+              <strong>비밀번호 재확인 <span className='essential' title='필수 항목입니다.'>*</span></strong>
               <input
                 name="rePassword"
                 type="password"
-                placeholder="비밀번호 재확인 (필수)"
+                placeholder="비밀번호 재확인"
                 onChange={handleRePasswordChange}
               />
               <div
@@ -351,24 +377,24 @@ function Join() {
               </div>
             </div>
             <div className="joinItem">
-              <strong>이름</strong>
-              <input name="name" type="text" placeholder="이름 (필수)" onChange={handleInputChange} />
+              <strong>이름 <span title='필수 항목입니다.' className='essential'>*</span></strong>
+              <input name="name" type="text" placeholder="이름" onChange={handleInputChange} />
             </div>
             <div className="joinItem">
-              <strong>생년월일</strong>
+              <strong>생년월일 <span title='필수 항목입니다.' className='essential'>*</span></strong>
               <input name="birthNum" type="date" onChange={handleInputChange} />
             </div>
             <div className="joinItem">
-              <strong>주소</strong>
-              <input name="address" type="text" placeholder="주소 (필수)" onChange={handleInputChange} />
+              <strong>주소 <span title='필수 항목입니다.' className='essential'>*</span></strong>
+              <input name="address" type="text" placeholder="주소" onChange={handleInputChange} />
             </div>
             <div className="joinItem ">
-              <strong>휴대폰</strong>
+              <strong>휴대폰 <span title='필수 항목입니다.' className='essential'>*</span></strong>
               <div className="phoneReg">
                 <input
                   name="phone"
                   type="text"
-                  placeholder="전화번호 (필수)"
+                  placeholder="전화번호"
                   onChange={handlePhoneChange}
                   value={phone}
                 />
@@ -386,7 +412,7 @@ function Join() {
             {/* 이미지 선택 서버에서 upload가 single로 되어있어서 한 개만 설정됨.*/}
             <div className="joinItem row align-items-center">
               <div className="col picCheck">
-                <strong className="col">프로필 사진 : (선택)</strong>
+                <strong className="col">프로필 사진 (선택) :</strong>
                 <input name="imgUrl" type="file" className="form-control-file" onChange={handleImageChange} />
                 {/* 이미지 미리보기 */}
                 {previewSrc && (
@@ -421,20 +447,18 @@ function Join() {
             
             <div className="joinItem">
               <input type="checkbox" id="check1" checked={ageCheck} onChange={ageBtnEvent} />
-              <label htmlFor="check1">만 14세 이상입니다 <span>(필수)</span></label>
+              <label htmlFor="check1">만 14세 이상입니다 <span className='essential'>(필수)</span></label>
             </div>                   
             
             <div className="joinItem">
               <input type="checkbox" id="check2" checked={useCheck} onChange={useBtnEvent} />
-              <label htmlFor="check2">이용약관 <span >(필수)</span></label>
+              <label htmlFor="check2">이용약관 <span className='essential'>(필수)</span></label>
             </div>  
 
             <div className="joinItem">
               <input type="checkbox" id="check3" checked={marketingCheck} onChange={marketingBtnEvent} />
               <label htmlFor="check3">마케팅 동의 <span >(선택)</span></label>
             </div>  
-
-
 
 
 
