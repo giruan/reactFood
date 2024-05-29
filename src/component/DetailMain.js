@@ -129,7 +129,7 @@ function DetailMain({ restaurant, reviews, filteredImgList ,restaurantId,userId,
       console.error('네이버 지도 API가 로드되지 않았습니다.');
       return;
     }
-    const center = new naver.maps.LatLng(37.3595316, 127.1052133);  
+    const center = new naver.maps.LatLng(37.4444514, 126.7028091);  
     const map = new naver.maps.Map('map', {
       center: center,
       zoom: 15,
