@@ -462,33 +462,30 @@ function Join() {
               </div>
             </div>
 
-            <div className="terms">
-              <div className="joinItem">
-                <input type="checkbox" id="all-check" checked={allCheck} onChange={allBtnEvent} />
-                <label htmlFor="all-check">전체동의</label>
-              </div>
 
-              <div className="joinItem">
-                <input type="checkbox" id="check1" checked={ageCheck} onChange={ageBtnEvent} />
-                <label htmlFor="check1">
-                  만 14세 이상입니다 <span className="essential">(필수)</span>
-                </label>
-              </div>
+           <div className="terms">
+ 
+            {/* 이용약관 동의 */}
+            <div className="joinItem">
+              <input type="checkbox" id="all-check" checked={allCheck} onChange={allBtnEvent} />
+              <label htmlFor="all-check">전체동의</label>
+            </div>          
+            
+            <div className="joinItem">
+              <input type="checkbox" id="check1" checked={ageCheck} onChange={ageBtnEvent} />
+              <label htmlFor="check1">만 14세 이상입니다 <span className='essential'>(필수)</span></label>
+            </div>                   
+            
+            <div className="joinItem">
+              <input type="checkbox" id="check2" checked={useCheck} onChange={useBtnEvent} />
+              <label htmlFor="check2">이용약관 <span className='essential'>(필수)</span></label>
+            </div>  
 
-              <div className="joinItem">
-                <input type="checkbox" id="check2" checked={useCheck} onChange={useBtnEvent} />
-                <label htmlFor="check2">
-                  이용약관 <span className="essential">(필수)</span>
-                </label>
-              </div>
-
-              <div className="joinItem">
-                <input type="checkbox" id="check3" checked={marketingCheck} onChange={marketingBtnEvent} />
-                <label htmlFor="check3">
-                  마케팅 동의 <span>(선택)</span>
-                </label>
-              </div>
-            </div>
+            <div className="joinItem">
+              <input type="checkbox" id="check3" checked={marketingCheck} onChange={marketingBtnEvent} />
+              <label htmlFor="check3">마케팅 동의 <span >(선택)</span></label>
+            </div>  
+           </div>
 
             {/* 회원가입 버튼 */}
             <div className="joinBtn" id="joinBtn">

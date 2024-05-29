@@ -35,14 +35,6 @@ a { text-decoration: none; }
 .joinPage .joinForm .phoneReg input {width: 360px;}
 .joinPage .joinForm .phoneReg button{margin-left: 10px; height: 40px; padding: 0 5px;}
  
-/* #userIdValidation, #passwordValidation, #rePasswordValidation, #newPasswordValidation{
-  font-weight: 600;
-  color: red;
-}
-#userIdValidation.invalid, #passwordValidation.invalid,#rePasswordValidation.invalid ,#newPasswordValidation.invalid{
-  color: red;
-}
-  */
 
 .joinPage .valid{  font-weight: 600;
  color: lightgreen;}
