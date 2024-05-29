@@ -4,7 +4,7 @@ a { text-decoration: none; }
 
 .joinContainer{background-color: #f0f0f4; padding-bottom: 80px}
 .joinContainer header{background-color: white; margin-bottom: 50px;}
-.joinPage { width: 500px; margin: 0 auto; padding: 0 40px 40px 40px; background-color: white; border-radius: 10px; box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);} 
+.joinPage { width: 580px; margin: 0 auto; padding: 0 40px 40px 40px; background-color: white; border-radius: 10px; box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);} 
 
 
 .joinPage .jointitle {padding: 50px 15px 25px; border-bottom: gray solid 1px; text-align: center; margin-bottom: 50px;}
@@ -24,6 +24,11 @@ a { text-decoration: none; }
 .joinPage .joinItem .essential {
   color: red;
 }
+
+.joinPage .joinForm .terms .joinItem{display: flex; align-items: center; margin: 0 0 10px 5px; font-size: 18px;}
+.joinPage .joinForm .terms input{width: 20px; height: 20px; margin: 0 5px 0 0;}
+
+
 .joinPage .joinForm input { width: 100%; height: 40px; padding-left: 10px; margin-bottom: 10px; border-radius: 5px; border: 1px gray solid;} 
 .joinPage .joinForm .picCheck input{border: none;}
 .joinPage .joinForm { border: lightgray 1px solid; padding: 15px; border-radius: 10px;}
