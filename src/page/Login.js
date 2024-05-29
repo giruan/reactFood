@@ -67,11 +67,11 @@ function Login(props){
 
  
   return (
-    <>
+    <div className="loginContainer">
       <header>
         <div className="header_login">
           <Link to="/">
-            <img src="/image/logo.PNG" alt="다이닝코드"></img>
+            <img src="/image/logo.PNG" alt="YumYard"></img>
           </Link>
         </div>
       </header>
@@ -143,7 +143,7 @@ function Login(props){
           </a>
         </div>
       </div>
-    </>
+    </div>
   );
 }
   

@@ -318,11 +318,11 @@ function Join() {
 
 
   return (
-    <>
+    <div className="joinContainer">
       <header>
         <div className="header_login">
           <Link to="/">
-            <img src="/image/logo.PNG" alt="다이닝코드"></img>
+            <img src="/image/logo.PNG" alt="YumYard"></img>
           </Link>
         </div>
       </header>
@@ -331,18 +331,17 @@ function Join() {
         <div className="jointitle">
           <h2>신규 회원가입</h2>
         </div>
-
         <form id="form-box">
           <div className="joinForm">
             <div className="joinItem">
-              <strong>아이디 <span className='essential' title='필수 항목입니다.'>*</span></strong>
+              <strong>
+                아이디{' '}
+                <span className="essential" title="필수 항목입니다.">
+                  *
+                </span>
+              </strong>
               <div className="idCheck">
-                <input
-                  name="userId"
-                  type="text"
-                  placeholder="example@example.com"
-                  onChange={handleUserIdChange}
-                />
+                <input name="userId" type="text" placeholder="example@example.com" onChange={handleUserIdChange} />
               </div>
               <div
                 id="userIdValidation"
@@ -352,7 +351,12 @@ function Join() {
               </div>
             </div>
             <div className="joinItem">
-              <strong>비밀번호 <span title='필수 항목입니다.' className='essential'>*</span></strong>
+              <strong>
+                비밀번호{' '}
+                <span title="필수 항목입니다." className="essential">
+                  *
+                </span>
+              </strong>
               <input name="password" type="password" placeholder="비밀번호" onChange={handlePasswordChange} />
               <div
                 id="passwordValidation"
@@ -362,7 +366,12 @@ function Join() {
               </div>
             </div>
             <div className="joinItem">
-              <strong>비밀번호 재확인 <span className='essential' title='필수 항목입니다.'>*</span></strong>
+              <strong>
+                비밀번호 재확인{' '}
+                <span className="essential" title="필수 항목입니다.">
+                  *
+                </span>
+              </strong>
               <input
                 name="rePassword"
                 type="password"
@@ -377,32 +386,46 @@ function Join() {
               </div>
             </div>
             <div className="joinItem">
-              <strong>이름 <span title='필수 항목입니다.' className='essential'>*</span></strong>
+              <strong>
+                이름{' '}
+                <span title="필수 항목입니다." className="essential">
+                  *
+                </span>
+              </strong>
               <input name="name" type="text" placeholder="이름" onChange={handleInputChange} />
             </div>
             <div className="joinItem">
-              <strong>생년월일 <span title='필수 항목입니다.' className='essential'>*</span></strong>
+              <strong>
+                생년월일{' '}
+                <span title="필수 항목입니다." className="essential">
+                  *
+                </span>
+              </strong>
               <input name="birthNum" type="date" onChange={handleInputChange} />
             </div>
             <div className="joinItem">
-              <strong>주소 <span title='필수 항목입니다.' className='essential'>*</span></strong>
+              <strong>
+                주소{' '}
+                <span title="필수 항목입니다." className="essential">
+                  *
+                </span>
+              </strong>
               <input name="address" type="text" placeholder="주소" onChange={handleInputChange} />
             </div>
             <div className="joinItem ">
-              <strong>휴대폰 <span title='필수 항목입니다.' className='essential'>*</span></strong>
+              <strong>
+                휴대폰{' '}
+                <span title="필수 항목입니다." className="essential">
+                  *
+                </span>
+              </strong>
               <div className="phoneReg">
-                <input
-                  name="phone"
-                  type="text"
-                  placeholder="전화번호"
-                  onChange={handlePhoneChange}
-                  value={phone}
-                />
+                <input name="phone" type="text" placeholder="전화번호" onChange={handlePhoneChange} value={phone} />
                 <button type="button">인증번호발송</button>
               </div>
               <div
                 id="phoneValidation"
-                className={phoneValidationMessage === '사용 가능한 비밀번호입니다.'? 'valid' : 'invalid'}
+                className={phoneValidationMessage === '사용 가능한 비밀번호입니다.' ? 'valid' : 'invalid'}
               >
                 {phoneValidationMessage}
               </div>
@@ -439,6 +462,9 @@ function Join() {
               </div>
             </div>
 
+
+           <div className="terms">
+ 
             {/* 이용약관 동의 */}
             <div className="joinItem">
               <input type="checkbox" id="all-check" checked={allCheck} onChange={allBtnEvent} />
@@ -459,8 +485,7 @@ function Join() {
               <input type="checkbox" id="check3" checked={marketingCheck} onChange={marketingBtnEvent} />
               <label htmlFor="check3">마케팅 동의 <span >(선택)</span></label>
             </div>  
-
-
+           </div>
 
             {/* 회원가입 버튼 */}
             <div className="joinBtn" id="joinBtn">
@@ -471,7 +496,7 @@ function Join() {
           </div>
         </form>
       </div>
-    </>
+    </div>
   );
 }
 

@@ -2,8 +2,8 @@
 ul,ol,li { list-style: none; } 
 a { text-decoration: none; } 
 
-.header_login {border-bottom: gray solid 1px; background-color: white; margin-bottom: 50px;} 
-.header_login img {width: 250px;} 
+.header_editPw {padding: 20px 0 20px; border-bottom: gray solid 1px; background-color: white; margin-bottom: 50px; text-align: center;} 
+.header_editPw img {width: 250px;} 
 
 .editMain{background-color: #f0f0f3; padding-bottom: 80px;}
 
