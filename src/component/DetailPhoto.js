@@ -7,7 +7,7 @@ function DetailPhoto({ restaurant, imgList, filteredreviewImgList }) {
   const [renderImgList, setRenderImgList] = useState([])
   // 렌더링할 이미지 배열 생성
   const [selectedImgUrl, setSelectedImgUrl] = useState(null);
-  const [modalStyle, setModalStyle] = useState({});
+  // const [modalStyle, setModalStyle] = useState({});
     
   
 
@@ -24,9 +24,9 @@ useEffect(() => {
     // 이미지가 로드된 후, 이미지의 크기를 측정하여 모달 창에 적용
     const img = new Image();
     img.src = imgUrl;
-    img.onload = () => {
-      setModalStyle({ maxHeight: `${img.height}px` });
-    };
+    // img.onload = () => {
+    //   // setModalStyle({ maxHeight: `${img.height}px` });
+    // };
   };
 
  const closeModal = () => {
@@ -45,6 +45,7 @@ useEffect(() => {
   const handleMorePhotosClick = () => {
     setRenderedImgCount((prevCount) => prevCount + 9); // 기존 렌더링된 사진 개수에 6를 더하여 상태 업데이트
   };
+
 
   return (
     <section className="restaurantReviewPic container">

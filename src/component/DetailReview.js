@@ -13,14 +13,16 @@ function calculateAvgRating(reviews) {
   return (totalRating / reviews.length).toFixed(1);
 }
 
+
 function Detailreview({ reviews, filteredreviewImgList }) {
 
+  const [renderedImgCounts, setRenderedImgCounts] = useState({});
 
   const avgRating = calculateAvgRating(reviews);
   const reviewCount = reviews ? reviews.length : 0;
 
   const [selectedImgUrl, setSelectedImgUrl] = useState(null);
-  const [modalStyle, setModalStyle] = useState({});
+  // const [modalStyle, setModalStyle] = useState({});
 
   // 사진 클릭 이벤트 핸들러
   const handlePhotoClick = (imgUrl) => {
@@ -29,9 +31,9 @@ function Detailreview({ reviews, filteredreviewImgList }) {
     // 이미지가 로드된 후, 이미지의 크기를 측정하여 모달 창에 적용
     const img = new Image();
     img.src = imgUrl;
-    img.onload = () => {
-      setModalStyle({ maxHeight: `${img.height}px` });
-    };
+    // img.onload = () => {
+    //   // setModalStyle({ maxHeight: `${img.height}px` });
+    // };
   };
 
   const closeModal = () => {
@@ -44,6 +46,13 @@ function Detailreview({ reviews, filteredreviewImgList }) {
     }
   };
 
+  const handleShowMore = (reviewId) => {
+    setRenderedImgCounts(prevCounts => ({
+      ...prevCounts,
+      [reviewId]: (prevCounts[reviewId] || 4) + 4
+    }));
+  };
+  
   return (
     <div className="restaurantReview container">
       <div className="reviewCount">
@@ -55,7 +64,9 @@ function Detailreview({ reviews, filteredreviewImgList }) {
         </div>
       </div>
 
-      {reviews.map((review, index) => (
+      {reviews.map((review, index) =>{
+        const currentRenderedImgCount = renderedImgCounts[review.reviewId] || 4;
+        return(
         <div key={index} className="container userReview">
           <UserRatings userId = {review.userId}></UserRatings>
           <div className="container reviewcontainer">
@@ -68,27 +79,35 @@ function Detailreview({ reviews, filteredreviewImgList }) {
               </div>
             </div>
             <div className="reviewContent">{review.content}</div>
+            
             <div className="userReviewPic">
               <div className="userReviewPic">
                 <div className="picGrid">
-                  {filteredreviewImgList.map((img, index) =>
-                    img.userId === review.userId && img.reviewId === review.reviewId ? (
-                      <div key={index} className="col">
+                  {filteredreviewImgList
+                    .filter(img => img.userId === review.userId && img.reviewId === review.reviewId)
+                    .slice(0, currentRenderedImgCount)
+                    .map((img, index) => (
+                      
+                      <div key={index} className="col img">
                         <img
                           src={`/reviews/${img.imgUrl}`}
                           alt={`Review Image ${index}`}
                           onClick={() => handlePhotoClick(`/reviews/${img.imgUrl}`)}
                         />
+                         {index === 3 && currentRenderedImgCount === 4 && filteredreviewImgList.filter(img => img.userId === review.userId && img.reviewId === review.reviewId).length > 4 && (
+                          <button className="show-more-button" onClick={() => handleShowMore(review.reviewId)}>
+                            <span>4개 더보기</span>
+                          </button>
+                        )}
                       </div>
-                      
-                    ) : null
-                  )}
+                    ))}
                 </div>
               </div>
             </div>
           </div>
         </div>
-      ))}
+        )
+      })}
       {/* 모달 창 */}
       {selectedImgUrl && (
         <div

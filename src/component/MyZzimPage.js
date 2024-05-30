@@ -49,7 +49,7 @@ function MyZzimPage(props) {
             <li key={i}>
               <div className="lookmyFavorites">
                 <div className="myZzimImg">
-                  <img src={`/test/${matchingImg.imgUrl}`} className="col-3 title-img" />
+                  <img src={`/store/${matchingImg.imgUrl}`} className="col-3 title-img" />
                 </div>
                 <div className='zzimBox'>
                   <div className="ZzimResName">
