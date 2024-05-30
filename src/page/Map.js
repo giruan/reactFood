@@ -18,7 +18,7 @@ function Map(){
         map: map,
       });
 
-      infowindow.setContent('<div style="padding:20px;">Current location</div>');
+      infowindow.setContent('<div style="padding:20px;">현위치</div>');
       infowindow.open(map, marker);
       console.log('Coordinates: ' + location.toString());
     };

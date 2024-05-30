@@ -1,8 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
-
 
 // 리액트 아이콘
 import { FaHouse } from 'react-icons/fa6';
@@ -29,8 +27,8 @@ function calculateAvgRating(reviews) {
 
 
 function DetailMain({ restaurant, reviews, filteredImgList ,restaurantId,userId,name}) {
-
-
+  const [modalOpen, setModalOpen] = useState(false);
+  const modalBackground = useRef();
   const [zzim, setZzim] = useState(false);
   console.log('디테일메인',name)
 
@@ -87,6 +85,10 @@ function DetailMain({ restaurant, reviews, filteredImgList ,restaurantId,userId,
     setSelectedImgUrl(null);
   };
 
+  const mapCloseModal = () => {
+    setModalOpen(false);
+  };
+
   const handleModalOutsideClick = (e) => {
     if (e.target.classList.contains('modal')) {
       closeModal();
@@ -119,27 +121,36 @@ function DetailMain({ restaurant, reviews, filteredImgList ,restaurantId,userId,
         const coord = new window.naver.maps.Point(result.x, result.y);
         console.log(coord);
         // 여기서 coord를 사용하여 지도를 업데이트할 수 있습니다.
+        
+        // 지도 객체 찾기 또는 생성하기
+        const map = new window.naver.maps.Map('map', {
+          center: coord,
+          zoom: 15,
+        });
+
+        // 마커 생성 및 지도에 추가
+        const marker = new window.naver.maps.Marker({
+          position: coord,
+          map: map,
+        });
+
+        // 인포윈도우 설정 및 열기
+        const infowindow = new window.naver.maps.InfoWindow({
+          content: `<div style="padding:20px;">${restaurant.restaurantName}</div>`
+        });
+        infowindow.open(map, marker);
+        
+        console.log(coord); // 좌표 로깅
+            
     });
 };
 
 
-
-  useEffect(() => {
-    if (typeof naver === 'undefined' || !naver.maps) {
-      console.error('네이버 지도 API가 로드되지 않았습니다.');
-      return;
-    }
-    const center = new naver.maps.LatLng(37.4444514, 126.7028091);  
-    const map = new naver.maps.Map('map', {
-      center: center,
-      zoom: 15,
-    });
-
-    // 필요 시 searchAddressToCoordinate 함수 호출
-  }, []);
-
- 
-
+useEffect(()=>{
+  if(modalOpen){
+    searchAddressToCoordinate(restaurant.restaurantAddress)
+  }
+},[modalOpen])
 
 
   return (
@@ -221,10 +232,35 @@ function DetailMain({ restaurant, reviews, filteredImgList ,restaurantId,userId,
           <li className="address ">
             <FaHouse className="iconHouse" />
             {restaurant.restaurantAddress}
-            <button type="button" className=" btn btn-info text-light" onClick={() => searchAddressToCoordinate(restaurant.restaurantAddress)}>
-              지도보기
-            </button>
-            <div id="map" style={{ width: '100%', height: '400px' }}></div>
+            
+            <button type="button" className=" btn btn-info text-light" onClick={() => setModalOpen(true)}>지도 보기</button>   
+            {modalOpen && (
+              <div
+                className="modal"
+                tabIndex="-1"
+                role="dialog"
+                style={{ display: 'block' }}
+                onClick={handleModalOutsideClick}
+              >
+                <div className="modal-dialog modal-dialog-centered" role="document">
+                  <div className="modal-content style={modalStyle}">
+                    <div className="modal-body">
+                      <div id="map" style={{ width: '800px', height: '450px' }}></div>
+                    </div>
+                    <div className="modal-footer">
+                      <button type="button" className="btn btn-secondary" onClick={mapCloseModal}>
+                        닫기
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            
+          
+
+            
           </li>
           <li className="number">
             <FaPhoneAlt />
@@ -269,6 +305,7 @@ function DetailMain({ restaurant, reviews, filteredImgList ,restaurantId,userId,
       )}
       {/* 배경 */}
       {selectedImgUrl && <div className="modal-backdrop fade show"></div>}
+      {modalOpen && <div className="modal-backdrop fade show"></div>}
     </div>
   );
 }
