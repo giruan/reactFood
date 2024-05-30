@@ -25,7 +25,6 @@ import { UserProvider } from './contexts/UserContext';
 import ComplainDetail from './page/ComplainDetail';
 import KakaoLogin from './component/KakaoLogin';
 import ShopEdit from './page/ShopEdit';
-import SignUp from './page/SignUp';
 
 
 
@@ -163,8 +162,7 @@ function App() {
 
         <Route path='/complainDetailPost/admin/:complainId' element= {<ComplainDetailPost adminId = {userId}></ComplainDetailPost>}></Route>
         <Route path='/auth' element= {<KakaoLogin ></KakaoLogin>}></Route>    
-        
-        <Route path='/signup' element= {<SignUp ></SignUp>}></Route>    
+      
         
       </Routes>
       
