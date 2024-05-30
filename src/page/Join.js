@@ -436,24 +436,28 @@ function Join() {
                 <input name="imgUrl" type="file" className="form-control-file" onChange={handleImageChange} />
                 {/* 이미지 미리보기 */}
                 {previewSrc && (
-                  <div className="col-12 picPreview">
-                    <img
-                      id="preview"
-                      src={previewSrc}
-                      alt="Preview"
-                      style={{ maxWidth: '200px', maxHeight: '200px' }}
-                    />
-                    {/* 삭제 버튼 */}
-                    <button
-                      className="btn btn-danger"
-                      onClick={() => {
-                        setPreviewSrc('');
-                        const fileInput = document.querySelector('input[type="file"]');
-                        fileInput.value = '';
-                      }}
-                    >
-                      ✖
-                    </button>
+                  <div className="picPreview">
+                    <div className="profile-img">
+                      <img
+                        id="preview"
+                        src={previewSrc}
+                        alt="Preview"
+                        style={{ maxWidth: '200px', maxHeight: '200px', objectFit: 'cover' }}
+                      />
+                    <div className="profile-img-preview">
+                      {/* 삭제 버튼 */}
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setPreviewSrc('');
+                          const fileInput = document.querySelector('input[type="file"]');
+                          fileInput.value = '';
+                        }}
+                        >
+                        삭제
+                      </button>
+                    </div>
+                        </div>
                   </div>
                 )}
               </div>
