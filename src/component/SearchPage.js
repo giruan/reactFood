@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { MdDeleteForever } from "react-icons/md";
+import TruncatedText from './TruncatedText';
 
 function SearchPage(props) {
   const { shops, handleReviewCount, name } = props;
@@ -33,9 +34,8 @@ function SearchPage(props) {
       <ul className="shop-box">
         {shops.map((shop) => (
           <li key={shop.restaurantId} className="look-shop" onClick={() => handleReviewCount(shop.restaurantId)}>
-            
-              <div className="shop-h row">
-                <Link to={`/detail/${shop.restaurantId}`} className="search d-flex">
+            <div className="shop-h row">
+              <Link to={`/detail/${shop.restaurantId}`} className="search d-flex">
                 <img src={`/store/${shop.imgUrl}`} alt={shop.restaurantName} className="col-3 title-img" />
                 <div className="info col-9">
                   <h3 className="shop-name">{shop.restaurantName}</h3>
@@ -46,21 +46,25 @@ function SearchPage(props) {
                         <span>{shop.avg_rating ? parseFloat(shop.avg_rating).toFixed(1) : '0'}점</span>{' '}
                         <span>({shop.review_count || 0}명)</span>
                       </p>
+                      {shop.content && (
+                        <div className="contentbody">
+                          <TruncatedText text={`"${shop.content}"`}  />
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
-                {shop.content && (
-                  <div className="contentbody">
-                    <span> "{shop.content}" </span>
-                  </div>
-                )}
-                <div className='li-delete'>{name === '관리자'? (
-                  <Link onClick={()=> handleDelete(shop.restaurantId)}><MdDeleteForever /></Link>
-                    ):(
-                      <></>
-                )}</div>
-                </Link>
-              </div>
+                <div className="li-delete">
+                  {name === '관리자' ? (
+                    <Link onClick={() => handleDelete(shop.restaurantId)}>
+                      <MdDeleteForever />
+                    </Link>
+                  ) : (
+                    <></>
+                  )}
+                </div>
+              </Link>
+            </div>
           </li>
         ))}
       </ul>

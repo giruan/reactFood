@@ -115,10 +115,16 @@ a { text-decoration: none; }
   padding: 15px 20px; 
   cursor: pointer; 
 }
-.select-shop .shop-h .contentbody{margin-top: 12px;}
-.select-shop .shop-h{padding-bottom: 17px; box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.1);}
+.select-shop .shop-h{padding-bottom: 17px; box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+
+}
 .select-shop .shop-h:hover{background-color: rgb(243, 239, 239);}
 .select-shop .shop-box{padding-left: 0;}
+.select-shop .shop-h .contentbody{
+  margin-top: 12px;
+  white-space: nowrap;}
+  .select-shop .shop-h .contentbody span{max-width: 700px;}
 
 .select-shop .shop-h .li-delete{font-size: 23px;}
 
