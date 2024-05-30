@@ -8,10 +8,10 @@ import { FaPhoneAlt } from 'react-icons/fa';
 import { BiSolidFoodMenu } from 'react-icons/bi';
 import { MdAccessTimeFilled } from 'react-icons/md';
 import { PiSirenFill } from 'react-icons/pi';
-import { IoMdShare } from "react-icons/io";
 import { FaStar } from 'react-icons/fa';
 import { IoPerson } from 'react-icons/io5';
 import { FaRegEdit } from 'react-icons/fa';
+import { FaRegShareFromSquare } from "react-icons/fa6";
 
 
 //평점 계산
@@ -203,7 +203,7 @@ useEffect(()=>{
                 </Link>
               </button>
               <button className="col-3 shareBtn">
-                <IoMdShare />
+              <FaRegShareFromSquare /> 공유
               </button>
             </div>
           </div>

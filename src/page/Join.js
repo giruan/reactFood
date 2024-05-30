@@ -422,7 +422,7 @@ function Join() {
               </div>
               <div
                 id="phoneValidation"
-                className={phoneValidationMessage === '사용 가능한 비밀번호입니다.' ? 'valid' : 'invalid'}
+                className={phoneValidationMessage === '사용 가능한 전화번호입니다.' ? 'valid' : 'invalid'}
               >
                 {phoneValidationMessage}
               </div>

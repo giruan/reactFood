@@ -51,10 +51,12 @@ a { text-decoration: none; }
  
 
 .joinPage .valid{  font-weight: 600;
- color: lightgreen;}
+ color: rgb(107, 214, 107);
+}
 
-.joinPage .invaild{  font-weight: 600;
+.joinPage .invalid{  font-weight: 600;
   color: red;
 }
+
 
 
