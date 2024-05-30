@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import '../styles/findPassword.css'
+import Swal from 'sweetalert2';
 
 function FindPassword(){
 

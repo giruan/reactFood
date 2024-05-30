@@ -28,7 +28,6 @@ import ShopEdit from './page/ShopEdit';
 
 
 
-
 function DefaultLayout({ children, userId, name, onLogout }) {
   return (
     <>
@@ -79,6 +78,7 @@ function App() {
 
   return (
     <UserProvider>
+
       <Routes>
         {/* 메인 페이지 */}
         <Route
@@ -167,7 +167,7 @@ function App() {
       </Routes>
       
       <Footer />
-      
+
     </UserProvider>
   );
 }

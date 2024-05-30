@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { Dropdown } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import '../styles/shopAdd.css';
-
+import Swal from 'sweetalert2';
 function ShopAdd() {
   const [selectedCategory, setSelectedCategory] = useState('카테고리');
   const [previewImages, setPreviewImages] = useState([]);
@@ -33,7 +33,7 @@ function ShopAdd() {
         title: "음식점 등록 실패",
         text: "카테고리를 선택해주세요.",
       });
-      console.error('Error:', error);
+    
       return;
     }
     formData.set('category', selectedCategory);
@@ -48,7 +48,7 @@ function ShopAdd() {
         title: "음식점 등록 실패",
         text: "음식점 이름과 주소를 모두 입력하세요.",
       });
-      console.error('Error:', error);
+     
       return;
     }
 

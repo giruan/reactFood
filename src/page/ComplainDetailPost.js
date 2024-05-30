@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { Link } from "react-router-dom";
+import Swal from 'sweetalert2';
 
 function ComplainDetailPost({adminId}){
 

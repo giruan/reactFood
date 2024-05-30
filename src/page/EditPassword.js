@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { useParams } from
 "react-router-dom";
 import "../styles/pwEdit.css"
+import Swal from 'sweetalert2';
 
 function EditPassword(){
   const passwordRegex = /^(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()`])[a-z\d!@#$%^&*()`]{8,}$/;

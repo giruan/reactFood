@@ -2,7 +2,8 @@
   import '../styles/reviewWrite.css';
   import { useNavigate, useParams } from 'react-router-dom';
   import { Dropdown } from 'react-bootstrap';
-
+  import Swal from 'sweetalert2';
+  
   function ReviewWrite(props) {
     const { userId } = props;
     const [rating, setRating] = useState(1);

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import MyReviewPage from '../component/MyReviewPage';
 import { useParams } from 'react-router-dom';
 import '../styles/myReview.css'
+import Swal from 'sweetalert2';
 
 function MyReviews() {
   const [myReviews, setMyReviews] = useState([]);
