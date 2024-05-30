@@ -44,14 +44,11 @@ function Join() {
   const [address, setAdderss] = useState('');
   const [phone, setPhone] = useState('');
 
-  // 회원가입 동의 체크박스 
+  // 회원가입 동의 체크박스
   const [allCheck, setAllCheck] = useState(false);
   const [ageCheck, setAgeCheck] = useState(false);
   const [useCheck, setUseCheck] = useState(false);
   const [marketingCheck, setMarketingCheck] = useState(false);
-
-
-
 
   const [imgUrl, setImgUrl] = useState('');
 
@@ -99,22 +96,22 @@ function Join() {
       .then((data) => {
         // 서버로부터의 응답 처리
         Swal.fire({
-          position: "center",
-          icon: "success",
-          title: "환영합니다!",
-          text : "회원가입 되었습니다!",
+          position: 'center',
+          icon: 'success',
+          title: '환영합니다!',
+          text: '회원가입 되었습니다!',
           showConfirmButton: false,
           timer: 2000,
-        }) 
+        });
         setTimeout(() => {
-          window.location.href = '/login'
+          window.location.href = '/login';
         }, 2000);
       })
       .catch((error) => {
         Swal.fire({
-          icon: "error",
-          title: "회원가입 실패!",
-          text: "올바르지 않은 정보가 입력 되었습니다.",
+          icon: 'error',
+          title: '회원가입 실패!',
+          text: '올바르지 않은 정보가 입력 되었습니다.',
         });
         console.error('Error:', error);
       });
@@ -138,7 +135,8 @@ function Join() {
           setEmailValidationMessage('올바르지 않은 아이디 형식입니다.');
           setIsIdValidated(false);
         } else if (data.exists) {
-          setEmailValidationMessage('중복된 아이디입니다.');setIsIdValidated(false);
+          setEmailValidationMessage('중복된 아이디입니다.');
+          setIsIdValidated(false);
         } else if (!data.exists && validateEmail(userIdValue)) {
           setEmailValidationMessage('사용 가능한 아이디입니다.');
           setIsIdValidated(true);
@@ -176,49 +174,55 @@ function Join() {
   // 회원가입 버튼 눌렀을시 이벤트
   const handleJoinClick = (e) => {
     e.preventDefault();
-    if (isIdValidated && isPhoneValidated &&passwordRegex.test(password) && rePassword == password && birthNum && address && phone && name && ageCheck && useCheck) {
-      
+    if (
+      isIdValidated &&
+      isPhoneValidated &&
+      passwordRegex.test(password) &&
+      rePassword == password &&
+      birthNum &&
+      address &&
+      phone &&
+      name &&
+      ageCheck &&
+      useCheck
+    ) {
       handleSubmit(e);
     } else if (!isIdValidated && passwordRegex.test(password)) {
       Swal.fire({
-        icon: "error",
-        title: "회원가입 실패!",
-        text: "아이디를 규칙에 맞게 입력 해주세요...",
+        icon: 'error',
+        title: '회원가입 실패!',
+        text: '아이디를 규칙에 맞게 입력 해주세요...',
       });
       return;
     } else if (isIdValidated && !passwordRegex.test(password)) {
       Swal.fire({
-        icon: "error",
-        title: "회원가입 실패!",
-        text: "비밀번호를 규칙에 맞게 입력 해주세요...",
+        icon: 'error',
+        title: '회원가입 실패!',
+        text: '비밀번호를 규칙에 맞게 입력 해주세요...',
       });
       return;
-    } 
-    else if(!isIdValidated && !passwordRegex.test(password)){
+    } else if (!isIdValidated && !passwordRegex.test(password)) {
       Swal.fire({
-        icon: "error",
-        title: "회원가입 실패!",
-        text: "아이디와 비밀번호를 입력해주세요...",
+        icon: 'error',
+        title: '회원가입 실패!',
+        text: '아이디와 비밀번호를 입력해주세요...',
+      });
+      return;
+    } else if (!name || !birthNum || !address || !phone) {
+      Swal.fire({
+        icon: 'error',
+        title: '회원가입 실패!',
+        text: '필수 항목들을 전부 입력해주세요...',
+      });
+      return;
+    } else if (!ageCheck || !useCheck) {
+      Swal.fire({
+        icon: 'error',
+        title: '회원가입 실패!',
+        text: '약관 동의를 클릭해주세요...',
       });
       return;
     }
-    else if(!name || !birthNum || !address || !phone){
-      Swal.fire({
-        icon: "error",
-        title: "회원가입 실패!",
-        text: "필수 항목들을 전부 입력해주세요...",
-      });
-      return;
-    }
-    else if(!ageCheck || !useCheck){
-      Swal.fire({
-        icon: "error",
-        title: "회원가입 실패!",
-        text: "약관 동의를 클릭해주세요...",
-      });
-      return;
-    }
-    
   };
 
   // 사진 변경
@@ -235,12 +239,10 @@ function Join() {
     }
   };
 
-  
-
   // 휴대폰 번호 제약조건
   const handlePhoneChange = async (e) => {
     let value = e.target.value.replace(/\D/g, ''); // 숫자가 아닌 모든 문자를 제거
-    
+
     if (value.length > 11) {
       value = value.slice(0, 11); // 최대 11자리로 제한
     }
@@ -260,25 +262,23 @@ function Join() {
     })
       .then((response) => response.json())
       .then((data) => {
-        if (data.exists && phone.length == 12) { 
-          setPhoneValidationMessage('다른 전화번호를 사용해주세요.')
+        if (data.exists && phone.length == 12) {
+          setPhoneValidationMessage('다른 전화번호를 사용해주세요.');
           setIsPhoneValidated(false);
         } else if (!data.exists && phone.length == 12) {
-          setPhoneValidationMessage('사용 가능한 전화번호입니다.')
+          setPhoneValidationMessage('사용 가능한 전화번호입니다.');
           setIsPhoneValidated(true);
-        }
-        else if(phone.length > 0){
-          setPhoneValidationMessage('전화번호를 입력해주세요.')
+        } else if (phone.length > 0) {
+          setPhoneValidationMessage('전화번호를 입력해주세요.');
           setIsPhoneValidated(false);
-        } 
+        }
       })
       .catch((error) => {
         console.error('Error:', error);
         alert('서버 오류가 발생했습니다.');
       });
-      setPhone(formattedValue);
+    setPhone(formattedValue);
   };
-  
 
   const allBtnEvent = () => {
     if (allCheck === false) {
@@ -313,9 +313,6 @@ function Join() {
       setAllCheck(false);
     }
   }, [ageCheck, useCheck, marketingCheck]);
-
-
-
 
   return (
     <div className="joinContainer">
@@ -444,7 +441,7 @@ function Join() {
                       id="preview"
                       src={previewSrc}
                       alt="Preview"
-                      style={{ maxWidth: '400px', maxHeight: '500px' }}
+                      style={{ maxWidth: '200px', maxHeight: '200px' }}
                     />
                     {/* 삭제 버튼 */}
                     <button
@@ -462,30 +459,34 @@ function Join() {
               </div>
             </div>
 
+            <div className="terms">
+              {/* 이용약관 동의 */}
+              <div className="joinItem">
+                <input type="checkbox" id="all-check" checked={allCheck} onChange={allBtnEvent} />
+                <label htmlFor="all-check">전체동의</label>
+              </div>
 
-           <div className="terms">
- 
-            {/* 이용약관 동의 */}
-            <div className="joinItem">
-              <input type="checkbox" id="all-check" checked={allCheck} onChange={allBtnEvent} />
-              <label htmlFor="all-check">전체동의</label>
-            </div>          
-            
-            <div className="joinItem">
-              <input type="checkbox" id="check1" checked={ageCheck} onChange={ageBtnEvent} />
-              <label htmlFor="check1">만 14세 이상입니다 <span className='essential'>(필수)</span></label>
-            </div>                   
-            
-            <div className="joinItem">
-              <input type="checkbox" id="check2" checked={useCheck} onChange={useBtnEvent} />
-              <label htmlFor="check2">이용약관 <span className='essential'>(필수)</span></label>
-            </div>  
+              <div className="joinItem">
+                <input type="checkbox" id="check1" checked={ageCheck} onChange={ageBtnEvent} />
+                <label htmlFor="check1">
+                  만 14세 이상입니다 <span className="essential">(필수)</span>
+                </label>
+              </div>
 
-            <div className="joinItem">
-              <input type="checkbox" id="check3" checked={marketingCheck} onChange={marketingBtnEvent} />
-              <label htmlFor="check3">마케팅 동의 <span >(선택)</span></label>
-            </div>  
-           </div>
+              <div className="joinItem">
+                <input type="checkbox" id="check2" checked={useCheck} onChange={useBtnEvent} />
+                <label htmlFor="check2">
+                  이용약관 <span className="essential">(필수)</span>
+                </label>
+              </div>
+
+              <div className="joinItem">
+                <input type="checkbox" id="check3" checked={marketingCheck} onChange={marketingBtnEvent} />
+                <label htmlFor="check3">
+                  마케팅 동의 <span>(선택)</span>
+                </label>
+              </div>
+            </div>
 
             {/* 회원가입 버튼 */}
             <div className="joinBtn" id="joinBtn">
