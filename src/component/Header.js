@@ -87,10 +87,7 @@ return (
               value={keyword}
               onChange={(e) => setKeyword(e.target.value)}
             />
-
-            <button type="submit" className="searchBtn">
-              <HiOutlineSearch />
-            </button>
+            <button type="submit" className="searchBtn"><HiOutlineSearch /></button>
           </div>  
 
           <div className="col-3 loginBar">

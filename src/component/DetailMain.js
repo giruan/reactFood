@@ -258,9 +258,6 @@ useEffect(()=>{
             )}
 
             
-          
-
-            
           </li>
           <li className="number">
             <FaPhoneAlt />
