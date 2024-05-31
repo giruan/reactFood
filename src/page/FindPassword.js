@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import '../styles/findPassword.css'
+import Swal from 'sweetalert2';
 
 function FindPassword(){
 
@@ -124,7 +125,7 @@ const handlePhoneChange = async (e) => {
         setPhoneValidationMessage('전화번호가 일치합니다.')
         setIsPhoneValidated(true);
       } else if (!data.exists && phone.length == 12) {
-        setPhoneValidationMessage('존재하지 않는 비밀번호입니다.')
+        setPhoneValidationMessage('존재하지 않는 전화번호입니다.');
         setIsPhoneValidated(false);
       }
       else if(phone.length > 0){
@@ -235,7 +236,7 @@ const handleSubmitSMS = async (e) => {
                   <div className="btn-box">
                   <button type="submit" className="btn btn-dark loginButton" disabled={isLoading} onClick={handleSubmitEmail}>{isLoading ? '처리 중...' : '발송'}</button>
                 </div>
-                  <div id="userIdValidation">{emailValidationMessage}</div>
+                  <div id="userIdValidation" className={emailValidationMessage === "이메일이 일치합니다." ? 'valid' : 'invalid'}>{emailValidationMessage}</div>
                 </div>
               )}
             </div>
@@ -265,7 +266,6 @@ const handleSubmitSMS = async (e) => {
                       name="phone"
                       value={phone} 
                       onChange={handlePhoneChange}
-
                     />
                   </div>
                   <div className="btn-box">
@@ -273,7 +273,7 @@ const handleSubmitSMS = async (e) => {
                 </div>
                 <div
                 id="phoneValidation"
-                className={phoneValidationMessage === '사용 가능한 비밀번호입니다.'? 'valid' : 'invalid'}
+                className={phoneValidationMessage === '전화번호가 일치합니다.'? 'valid' : 'invalid'}
               >
                 {phoneValidationMessage}
               </div>

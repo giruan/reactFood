@@ -9,6 +9,7 @@ import { TbMessage2Question } from 'react-icons/tb';
 import { FaListUl } from 'react-icons/fa';
 import { ImExit } from 'react-icons/im';
 import { MdAddBusiness } from 'react-icons/md';
+import Swal from 'sweetalert2';
 
 function MyPage(props) {
   const { name } = props;

@@ -35,7 +35,7 @@ const handleResetRegion = () =>{
     setSelectedCity(city);
 
     axios
-      .get(`http://localhost:9090/region?city=${city}`)
+      .get(`http://14.37.173.33:9090/region?city=${city}`)
       .then(function (response) {
         setGuList(response.data);
       })

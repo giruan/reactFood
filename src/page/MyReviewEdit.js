@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { Dropdown } from 'react-bootstrap';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-
+import Swal from 'sweetalert2';
 function MyReviewEdit(props) {
   const { userId } = props;
   const [previewImages, setPreviewImages] = useState([]);
