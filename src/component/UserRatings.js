@@ -11,7 +11,7 @@ function UserRatings({userId}){
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://14.37.173.33:9090/userRating/userId/${userId}`);
+        const response = await fetch(`http://localhost:9090/userRating/userId/${userId}`);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }

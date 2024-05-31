@@ -149,26 +149,32 @@ function ShopAdd() {
         <form onSubmit={handleSubmit} encType="multipart/form-data">
           <div className="addForm">
             <div className="addItem">
-              <strong>음식점 이름</strong>
-              <input name="restaurantName" id="restaurantName" type="text" placeholder="음식점 이름" />
+              <strong>식당 이름</strong>
+              <input name="restaurantName" id="restaurantName" type="text" placeholder="식당 이름" />
             </div>
             <div className="addItem">
-              <strong>음식점 주소</strong>
-              <input name="restaurantAddress" id="restaurantAddress" type="text" placeholder="음식점 주소" />
+              <strong>식당 주소</strong>
+              <input name="restaurantAddress" id="restaurantAddress" type="text" placeholder="식당 주소" />
             </div>
             <div className="addItem time-range">
-              <div><strong>영업 시간 </strong></div>
-              <div className='time-select'>
+              <div>
+                <strong>영업 시간 </strong>
+              </div>
+              <div className="time-select">
                 <select id="start-time" value={startTime} onChange={handleStartTimeChange}>
-                {[...Array(24).keys()].map(hour => (
-                  <option key={hour} value={`${hour < 10 ? '0' : ''}${hour}:00`}>{`${hour < 10 ? '0' : ''}${hour}:00`}</option>
-                ))}
+                  {[...Array(24).keys()].map((hour) => (
+                    <option key={hour} value={`${hour < 10 ? '0' : ''}${hour}:00`}>{`${
+                      hour < 10 ? '0' : ''
+                    }${hour}:00`}</option>
+                  ))}
                 </select>
                 ~
                 <select id="end-time" value={endTime} onChange={handleEndTimeChange}>
-                {[...Array(24).keys()].map(hour => (
-                  <option key={hour} value={`${hour < 10 ? '0' : ''}${hour}:00`}>{`${hour < 10 ? '0' : ''}${hour}:00`}</option>
-                ))}
+                  {[...Array(24).keys()].map((hour) => (
+                    <option key={hour} value={`${hour < 10 ? '0' : ''}${hour}:00`}>{`${
+                      hour < 10 ? '0' : ''
+                    }${hour}:00`}</option>
+                  ))}
                 </select>
               </div>
             </div>
@@ -225,11 +231,11 @@ function ShopAdd() {
               </Dropdown>
             </div>
             <div className="addItem">
-              <strong>매장 번호 (선택)</strong>
+              <strong>전화 번호 (선택)</strong>
               <input name="callNumber" id="callNumber" type="text" placeholder="전화 번호" />
             </div>
             <div className="addItem">
-              <strong>가게 사진</strong>
+              <strong>식당 사진</strong>
               <div className="review-img">
                 <div className="upload-img">
                   <input
@@ -245,7 +251,11 @@ function ShopAdd() {
                 <div className="review-img-preview">
                   {previewImages.map((image, index) => (
                     <div key={index}>
-                      <img src={image.url} alt="Preview" style={{ width: '200px', height: '200px', objectFit: 'cover' }} />
+                      <img
+                        src={image.url}
+                        alt="Preview"
+                        style={{ width: '200px', height: '200px', objectFit: 'cover' }}
+                      />
                       <button type="button" onClick={() => handleDeleteImage(index)}>
                         삭제
                       </button>

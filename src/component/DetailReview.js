@@ -59,54 +59,71 @@ function Detailreview({ reviews, filteredreviewImgList }) {
         <p> {reviewCount}건의 방문자 평가</p>
         <div className="gradeInfo">
           <div className="gradeRating">
-            <span className="totalScore">{avgRating}점</span>
+            <span className="totalScore">
+              <FaStar className="star" />
+              {avgRating}점
+            </span>
           </div>
         </div>
       </div>
 
-      {reviews.map((review, index) =>{
+      {reviews.map((review, index) => {
         const currentRenderedImgCount = renderedImgCounts[review.reviewId] || 4;
-        return(
-        <div key={index} className="container userReview">
-          <UserRatings userId = {review.userId}></UserRatings>
-          <div className="container reviewcontainer">
-            <div className="pointDetail">
-              <div className="restaurantRating">
-              <span className="totalScore"><FaStar className="star"/> {review.rating} 점</span>
-              <span className="totalScore"><span>맛 </span>{review.taste}</span>
-              <span className="totalScore"><span>가격 </span>{review.price}</span>
-              <span className="totalScore"><span>응대 </span>{review.service}</span>
+        return (
+          <div key={index} className="container userReview">
+            <UserRatings userId={review.userId}></UserRatings>
+            <div className="container reviewcontainer">
+              <div className="pointDetail">
+                <div className="restaurantRating">
+                  <span className="totalScore">
+                    <FaStar className="star" /> {review.rating} 점
+                  </span>
+                  <span className="totalScore">
+                    <span>맛 </span>
+                    {review.taste}
+                  </span>
+                  <span className="totalScore">
+                    <span>가격 </span>
+                    {review.price}
+                  </span>
+                  <span className="totalScore">
+                    <span>응대 </span>
+                    {review.service}
+                  </span>
+                </div>
               </div>
-            </div>
-            <div className="reviewContent">{review.content}</div>
-            
-            <div className="userReviewPic">
+              <div className="reviewContent">{review.content}</div>
+
               <div className="userReviewPic">
-                <div className="picGrid">
-                  {filteredreviewImgList
-                    .filter(img => img.userId === review.userId && img.reviewId === review.reviewId)
-                    .slice(0, currentRenderedImgCount)
-                    .map((img, index) => (
-                      
-                      <div key={index} className="col img">
-                        <img
-                          src={`/reviews/${img.imgUrl}`}
-                          alt={`Review Image ${index}`}
-                          onClick={() => handlePhotoClick(`/reviews/${img.imgUrl}`)}
-                        />
-                         {index === 3 && currentRenderedImgCount === 4 && filteredreviewImgList.filter(img => img.userId === review.userId && img.reviewId === review.reviewId).length > 4 && (
-                          <button className="show-more-button" onClick={() => handleShowMore(review.reviewId)}>
-                            <span>4개 더보기</span>
-                          </button>
-                        )}
-                      </div>
-                    ))}
+                <div className="userReviewPic">
+                  <div className="picGrid">
+                    {filteredreviewImgList
+                      .filter((img) => img.userId === review.userId && img.reviewId === review.reviewId)
+                      .slice(0, currentRenderedImgCount)
+                      .map((img, index) => (
+                        <div key={index} className="col img">
+                          <img
+                            src={`/reviews/${img.imgUrl}`}
+                            alt={`Review Image ${index}`}
+                            onClick={() => handlePhotoClick(`/reviews/${img.imgUrl}`)}
+                          />
+                          {index === 3 &&
+                            currentRenderedImgCount === 4 &&
+                            filteredreviewImgList.filter(
+                              (img) => img.userId === review.userId && img.reviewId === review.reviewId
+                            ).length > 4 && (
+                              <button className="show-more-button" onClick={() => handleShowMore(review.reviewId)}>
+                                <span>4개 더보기</span>
+                              </button>
+                            )}
+                        </div>
+                      ))}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        )
+        );
       })}
       {/* 모달 창 */}
       {selectedImgUrl && (

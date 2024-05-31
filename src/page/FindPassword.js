@@ -125,7 +125,7 @@ const handlePhoneChange = async (e) => {
         setPhoneValidationMessage('전화번호가 일치합니다.')
         setIsPhoneValidated(true);
       } else if (!data.exists && phone.length == 12) {
-        setPhoneValidationMessage('존재하지 않는 비밀번호입니다.')
+        setPhoneValidationMessage('존재하지 않는 전화번호입니다.');
         setIsPhoneValidated(false);
       }
       else if(phone.length > 0){

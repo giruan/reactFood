@@ -20,7 +20,7 @@ useEffect(() => {
   const fetchData = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`http://14.37.173.33:9090/detail/${id}`);
+      const response = await axios.get(`http://localhost:9090/detail/${id}`);
       const filteredImgList = response.data.imgList.filter(img => img.userId === null && img.reviewId === null);
       const filteredreviewImgList = response.data.imgList.filter(img => img.userId && img.reviewId);
       setData({ ...response.data, filteredImgList, filteredreviewImgList});

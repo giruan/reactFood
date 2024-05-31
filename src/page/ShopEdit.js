@@ -159,7 +159,7 @@ function ShopEdit(){
         </div>
         <form onSubmit={handleSubmit}>
           <div className="editItem">
-            <strong>음식점 이름</strong>
+            <strong>식당 이름</strong>
             <input
               name="restaurantName"
               id="restaurantName"
@@ -169,7 +169,7 @@ function ShopEdit(){
             />
           </div>
           <div className="editItem">
-            <strong>음식점 주소</strong>
+            <strong>식당 주소</strong>
             <input
               name="restaurantAddress"
               id="restaurantAddress"
@@ -178,12 +178,6 @@ function ShopEdit(){
               onChange={handleInputChange}
             />
           </div>
-          {/* <div className="editItem">
-            <strong>영업 시간</strong>
-            <input name="openTime" id="openTime" type="text" value={storeInfo.openTime} onChange={handleInputChange} />
-          </div> */}
-
-          
 
           <div className="addItem time-range">
             <div>
@@ -207,9 +201,6 @@ function ShopEdit(){
               </select>
             </div>
           </div>
-
-
-
 
           <div className="editItem">
             <strong>카테고리</strong>
@@ -265,7 +256,7 @@ function ShopEdit(){
           </div>
 
           <div className="editItem">
-            <strong>매장 번호 (선택)</strong>
+            <strong>전화 번호 (선택)</strong>
             <input
               name="callNumber"
               id="callNumber"
@@ -280,7 +271,7 @@ function ShopEdit(){
           </div>
 
           <div className="addItem">
-            <strong>가게 사진</strong>
+            <strong>식당 사진</strong>
             <div className="review-img">
               <div className="upload-img">
                 <input
